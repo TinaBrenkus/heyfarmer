@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mobile-specific utilities */
+@layer utilities {
+  .safe-area-pb {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-pt {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-pl {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-area-pr {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Mobile touch optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Improve touch targets on mobile */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .hover\:bg-gray-50:hover {
+    background-color: initial;
+  }
+  
+  .hover\:text-gray-900:hover {
+    color: initial;
+  }
+}
+
+/* Smooth scrolling for mobile */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Hide scrollbars on mobile for cleaner look */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Card swipe animations */
+  .swipe-card {
+    transform: translateX(0);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .swipe-card.swiping {
+    transition: none;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 2px;
+}
+
+/* Loading animations */
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Bottom sheet animation for mobile modals */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* Mobile-first responsive text */
+.text-mobile-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-mobile-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-mobile-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+/* Prevent zoom on input focus (iOS) */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+@media (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Custom scrollbar for desktop */
+@media (min-width: 768px) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
