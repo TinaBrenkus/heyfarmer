@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F8F9FA;
+  --foreground: #171717;
+  
+  /* Hey Farmer Brand Colors */
+  --farm-green: #2E7D32;
+  --harvest-orange: #FFA726;
+  --trust-blue: #1976D2;
+  --clean-white: #F8F9FA;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Custom brand colors */
+  --color-farm-green: var(--farm-green);
+  --color-harvest-orange: var(--harvest-orange);
+  --color-trust-blue: var(--trust-blue);
+  --color-clean-white: var(--clean-white);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
