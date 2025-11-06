@@ -12,6 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: "Hey Farmer - North Texas Farming Marketplace",
   description: "Connect with local farmers, backyard growers, and market gardeners in North Texas. Buy fresh, local produce directly from the source.",
