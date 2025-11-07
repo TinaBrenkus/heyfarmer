@@ -2,22 +2,57 @@
 
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
-import { UserType, NorthTexasCounty } from '@/lib/database'
+import { UserType, TexasTriangleCounty } from '@/lib/database'
 import { Loader2, User, Tractor, ShoppingCart } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 
-const counties: { value: NorthTexasCounty; label: string }[] = [
-  { value: 'collin', label: 'Collin County' },
-  { value: 'dallas', label: 'Dallas County' },
-  { value: 'denton', label: 'Denton County' },
-  { value: 'tarrant', label: 'Tarrant County' },
-  { value: 'wise', label: 'Wise County' },
-  { value: 'parker', label: 'Parker County' },
-  { value: 'jack', label: 'Jack County' },
-  { value: 'grayson', label: 'Grayson County' },
-  { value: 'hunt', label: 'Hunt County' },
-  { value: 'kaufman', label: 'Kaufman County' },
-  { value: 'rockwall', label: 'Rockwall County' }
+const counties: { value: TexasTriangleCounty; label: string; region: string }[] = [
+  // Dallas-Fort Worth Metro
+  { value: 'collin', label: 'Collin County', region: 'DFW Metro' },
+  { value: 'dallas', label: 'Dallas County', region: 'DFW Metro' },
+  { value: 'denton', label: 'Denton County', region: 'DFW Metro' },
+  { value: 'grayson', label: 'Grayson County', region: 'DFW Metro' },
+  { value: 'hunt', label: 'Hunt County', region: 'DFW Metro' },
+  { value: 'jack', label: 'Jack County', region: 'DFW Metro' },
+  { value: 'kaufman', label: 'Kaufman County', region: 'DFW Metro' },
+  { value: 'parker', label: 'Parker County', region: 'DFW Metro' },
+  { value: 'rockwall', label: 'Rockwall County', region: 'DFW Metro' },
+  { value: 'tarrant', label: 'Tarrant County', region: 'DFW Metro' },
+  { value: 'wise', label: 'Wise County', region: 'DFW Metro' },
+  // Austin Metro
+  { value: 'bastrop', label: 'Bastrop County', region: 'Austin Metro' },
+  { value: 'blanco', label: 'Blanco County', region: 'Austin Metro' },
+  { value: 'burnet', label: 'Burnet County', region: 'Austin Metro' },
+  { value: 'caldwell', label: 'Caldwell County', region: 'Austin Metro' },
+  { value: 'hays', label: 'Hays County', region: 'Austin Metro' },
+  { value: 'lee', label: 'Lee County', region: 'Austin Metro' },
+  { value: 'travis', label: 'Travis County', region: 'Austin Metro' },
+  { value: 'williamson', label: 'Williamson County', region: 'Austin Metro' },
+  // San Antonio Metro
+  { value: 'atascosa', label: 'Atascosa County', region: 'San Antonio Metro' },
+  { value: 'bandera', label: 'Bandera County', region: 'San Antonio Metro' },
+  { value: 'bexar', label: 'Bexar County', region: 'San Antonio Metro' },
+  { value: 'comal', label: 'Comal County', region: 'San Antonio Metro' },
+  { value: 'guadalupe', label: 'Guadalupe County', region: 'San Antonio Metro' },
+  { value: 'kendall', label: 'Kendall County', region: 'San Antonio Metro' },
+  { value: 'medina', label: 'Medina County', region: 'San Antonio Metro' },
+  { value: 'wilson', label: 'Wilson County', region: 'San Antonio Metro' },
+  // Houston Metro
+  { value: 'austin-county', label: 'Austin County', region: 'Houston Metro' },
+  { value: 'brazoria', label: 'Brazoria County', region: 'Houston Metro' },
+  { value: 'chambers', label: 'Chambers County', region: 'Houston Metro' },
+  { value: 'fort-bend', label: 'Fort Bend County', region: 'Houston Metro' },
+  { value: 'galveston', label: 'Galveston County', region: 'Houston Metro' },
+  { value: 'harris', label: 'Harris County', region: 'Houston Metro' },
+  { value: 'liberty', label: 'Liberty County', region: 'Houston Metro' },
+  { value: 'montgomery', label: 'Montgomery County', region: 'Houston Metro' },
+  { value: 'waller', label: 'Waller County', region: 'Houston Metro' },
+  // Central Corridor
+  { value: 'bell', label: 'Bell County (Temple/Killeen)', region: 'Central' },
+  { value: 'brazos', label: 'Brazos County (College Station)', region: 'Central' },
+  { value: 'burleson', label: 'Burleson County', region: 'Central' },
+  { value: 'grimes', label: 'Grimes County', region: 'Central' },
+  { value: 'mclennan', label: 'McLennan County (Waco)', region: 'Central' },
 ]
 
 const userTypes: { value: UserType; label: string; description: string; icon: any }[] = [
@@ -57,7 +92,7 @@ export default function SignupForm() {
     password: '',
     full_name: '',
     user_type: 'consumer' as UserType,
-    county: 'dallas' as NorthTexasCounty,
+    county: 'dallas' as TexasTriangleCounty,
     farm_name: '',
     phone: ''
   })
@@ -177,7 +212,7 @@ export default function SignupForm() {
                   id="county"
                   required
                   value={formData.county}
-                  onChange={(e) => setFormData({ ...formData, county: e.target.value as NorthTexasCounty })}
+                  onChange={(e) => setFormData({ ...formData, county: e.target.value as TexasTriangleCounty })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   {counties.map((county) => (
