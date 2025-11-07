@@ -38,7 +38,7 @@ export default function TermsPage() {
           <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">2. Platform Description</h2>
           <p className="text-gray-700 mb-4">
             Hey Farmer is a free platform that connects farmers, market gardeners, backyard growers, and consumers 
-            in North Texas. We provide a marketplace for direct sales and a network for the farming community.
+            in Texas Triangle. We provide a marketplace for direct sales and a network for the farming community.
           </p>
 
           <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">3. User Responsibilities</h2>
@@ -107,7 +107,7 @@ export default function TermsPage() {
 
           <div className="mt-12 pt-8 border-t border-gray-200">
             <p className="text-sm text-gray-600 text-center">
-              Hey Farmer is committed to supporting the North Texas farming community and promoting 
+              Hey Farmer is committed to supporting the Texas Triangle farming community and promoting 
               sustainable, local food systems.
             </p>
           </div>

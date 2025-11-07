@@ -65,7 +65,7 @@ export default function Header() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900">Hey Farmer</h1>
-              <p className="text-xs" style={{ color: '#2E7D32' }}>North Texas</p>
+              <p className="text-xs" style={{ color: '#2E7D32' }}>Texas Triangle</p>
             </div>
           </Link>
 

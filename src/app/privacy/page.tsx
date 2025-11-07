@@ -74,7 +74,7 @@ export default function PrivacyPage() {
           <p className="text-gray-700 mb-4">We use your information to:</p>
           <ul className="list-disc pl-6 text-gray-700 mb-4 space-y-1">
             <li>Provide and improve Hey Farmer services</li>
-            <li>Connect farmers with consumers in North Texas</li>
+            <li>Connect farmers with consumers in Texas Triangle</li>
             <li>Facilitate communication between users</li>
             <li>Send important platform updates and notifications</li>
             <li>Ensure platform safety and prevent fraud</li>
@@ -142,7 +142,7 @@ export default function PrivacyPage() {
 
           <div className="mt-12 pt-8 border-t border-gray-200">
             <p className="text-sm text-gray-600 text-center">
-              Hey Farmer respects your privacy and is committed to protecting the North Texas farming community.
+              Hey Farmer respects your privacy and is committed to protecting the Texas Triangle farming community.
             </p>
           </div>
         </div>

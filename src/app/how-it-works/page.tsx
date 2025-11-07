@@ -21,7 +21,7 @@ const steps = [
   {
     step: 1,
     title: "Create Your Profile",
-    description: "Tell North Texas about your farm, what you grow, and your farming practices",
+    description: "Tell Texas Triangle about your farm, what you grow, and your farming practices",
     icon: "👨‍🌾",
     details: [
       "Share your story and farming philosophy",
@@ -60,7 +60,7 @@ const steps = [
     description: "Share knowledge, resources, and support with the farming community",
     icon: "🌱",
     details: [
-      "Connect with other growers in North Texas",
+      "Connect with other growers in Texas Triangle",
       "Share equipment, seeds, and resources",
       "Ask for advice on growing challenges",
       "Collaborate on farmers markets and events"
@@ -109,7 +109,7 @@ const benefits = [
   {
     icon: "🌍",
     title: "Support Local Food",
-    description: "Be part of the growing local food movement in North Texas"
+    description: "Be part of the growing local food movement in Texas Triangle"
   }
 ]
 
@@ -225,7 +225,7 @@ export default function AboutPage() {
               Why Farmers Choose Hey Farmer
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Join hundreds of North Texas farmers who are building stronger, more profitable farming businesses.
+              Join hundreds of Texas Triangle farmers who are building stronger, more profitable farming businesses.
             </p>
           </div>
 
@@ -315,7 +315,7 @@ export default function AboutPage() {
             Questions? We're Here to Help
           </h3>
           <p className="text-gray-600 mb-6">
-            Our team is dedicated to supporting North Texas farmers succeed.
+            Our team is dedicated to supporting Texas Triangle farmers succeed.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 

@@ -94,7 +94,7 @@ export default function DashboardClient() {
             farm_name: authUser.user_metadata.farm_name,
             city: authUser.user_metadata.city,
             phone: authUser.user_metadata.phone,
-            bio: authUser.user_metadata.bio || `Hi! I'm a ${authUser.user_metadata.user_type?.replace('_', ' ') || 'food lover'} from ${authUser.user_metadata.county || 'North Texas'}. Excited to connect with the local farming community!`,
+            bio: authUser.user_metadata.bio || `Hi! I'm a ${authUser.user_metadata.user_type?.replace('_', ' ') || 'food lover'} from ${authUser.user_metadata.county || 'Texas Triangle'}. Excited to connect with the local farming community!`,
             avatar_url: authUser.user_metadata.avatar_url || null
           }
           
@@ -118,7 +118,7 @@ export default function DashboardClient() {
                 farm_name: authUser.user_metadata.farm_name,
                 city: authUser.user_metadata.city,
                 phone: authUser.user_metadata.phone,
-                bio: authUser.user_metadata.bio || `Hi! I'm a ${authUser.user_metadata.user_type?.replace('_', ' ') || 'food lover'} from ${authUser.user_metadata.county || 'North Texas'}. Excited to connect with the local farming community!`,
+                bio: authUser.user_metadata.bio || `Hi! I'm a ${authUser.user_metadata.user_type?.replace('_', ' ') || 'food lover'} from ${authUser.user_metadata.county || 'Texas Triangle'}. Excited to connect with the local farming community!`,
                 avatar_url: authUser.user_metadata.avatar_url || null,
                 created_at: new Date().toISOString()
               })
@@ -138,7 +138,7 @@ export default function DashboardClient() {
               farm_name: authUser.user_metadata.farm_name,
               city: authUser.user_metadata.city,
               phone: authUser.user_metadata.phone,
-              bio: authUser.user_metadata.bio || `Hi! I'm a ${authUser.user_metadata.user_type?.replace('_', ' ') || 'food lover'} from ${authUser.user_metadata.county || 'North Texas'}. Excited to connect with the local farming community!`,
+              bio: authUser.user_metadata.bio || `Hi! I'm a ${authUser.user_metadata.user_type?.replace('_', ' ') || 'food lover'} from ${authUser.user_metadata.county || 'Texas Triangle'}. Excited to connect with the local farming community!`,
               avatar_url: authUser.user_metadata.avatar_url || null,
               created_at: new Date().toISOString()
             })

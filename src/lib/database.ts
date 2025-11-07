@@ -5,7 +5,18 @@ export type UserType = 'backyard_grower' | 'market_gardener' | 'production_farme
 export type PostVisibility = 'public' | 'farmers_only'
 export type PostType = 'produce' | 'equipment' | 'resource' | 'discussion'
 export type PostStatus = 'active' | 'sold' | 'expired' | 'draft'
-export type NorthTexasCounty = 'wise' | 'denton' | 'parker' | 'tarrant' | 'collin' | 'jack' | 'dallas' | 'grayson' | 'hunt' | 'kaufman' | 'rockwall'
+// Texas Triangle Megaregion Counties (organized by metro area)
+export type TexasTriangleCounty =
+  // Dallas-Fort Worth Metro
+  | 'dallas' | 'tarrant' | 'denton' | 'collin' | 'rockwall' | 'kaufman' | 'wise' | 'parker' | 'jack' | 'grayson' | 'hunt'
+  // Austin Metro
+  | 'travis' | 'williamson' | 'hays' | 'bastrop' | 'caldwell' | 'lee' | 'burnet' | 'blanco'
+  // San Antonio Metro
+  | 'bexar' | 'comal' | 'guadalupe' | 'wilson' | 'medina' | 'kendall' | 'bandera' | 'atascosa'
+  // Houston Metro
+  | 'harris' | 'fort-bend' | 'montgomery' | 'brazoria' | 'galveston' | 'liberty' | 'chambers' | 'waller' | 'austin-county'
+  // Central Corridor (Waco, Temple, College Station)
+  | 'mclennan' | 'bell' | 'brazos' | 'grimes' | 'burleson'
 
 export interface Profile {
   id: string
@@ -18,7 +29,7 @@ export interface Profile {
   bio?: string
   avatar_url?: string
   phone?: string
-  county: NorthTexasCounty
+  county: TexasTriangleCounty
   city?: string
   zip_code?: string
   farm_size_acres?: number
@@ -45,7 +56,7 @@ export interface Post {
   post_type: PostType
   visibility: PostVisibility
   status: PostStatus
-  county: NorthTexasCounty
+  county: TexasTriangleCounty
   city?: string
   price?: number
   unit?: string
@@ -106,7 +117,7 @@ export const db = {
       return data as Profile
     },
     
-    async listByCounty(county: NorthTexasCounty) {
+    async listByCounty(county: TexasTriangleCounty) {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -175,7 +186,7 @@ export const db = {
     },
     
     async listPublic(filters?: {
-      county?: NorthTexasCounty
+      county?: TexasTriangleCounty
       post_type?: PostType
       status?: PostStatus
     }) {
@@ -376,7 +387,7 @@ export const db = {
   
   // Waitlist functions
   waitlist: {
-    async add(email: string, user_type?: UserType, county?: NorthTexasCounty) {
+    async add(email: string, user_type?: UserType, county?: TexasTriangleCounty) {
       const { data, error } = await supabase
         .from('waitlist')
         .insert({

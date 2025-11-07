@@ -27,7 +27,7 @@ export default function ContactPage() {
         <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
           <div className="text-center mb-8">
             <p className="text-lg text-gray-700 mb-4">
-              Have questions about Hey Farmer? Need help getting started? We're here to support the North Texas farming community.
+              Have questions about Hey Farmer? Need help getting started? We're here to support the Texas Triangle farming community.
             </p>
             <div className="bg-green-50 border border-green-200 rounded-lg p-4 inline-block">
               <p className="text-green-800 font-semibold">
@@ -104,7 +104,7 @@ export default function ContactPage() {
             <div className="border-l-4 border-orange-500 pl-4">
               <h3 className="font-semibold text-gray-900 mb-2">Which areas does Hey Farmer serve?</h3>
               <p className="text-gray-700">
-                We currently serve all of North Texas, including Dallas, Tarrant, Collin, Denton, and surrounding 
+                We currently serve all of Texas Triangle, including Dallas, Tarrant, Collin, Denton, and surrounding 
                 counties. If you're outside this area but interested, 
                 <a href="mailto:weareheyfarmer@gmail.com" className="text-orange-600 hover:text-orange-700 underline"> contact us</a> 
                 about future expansion.
@@ -138,11 +138,11 @@ export default function ContactPage() {
           <div className="text-center">
             <div className="inline-flex items-center gap-2 text-gray-600 mb-4">
               <MapPin className="w-5 h-5" />
-              <span className="font-semibold">Based in North Texas</span>
+              <span className="font-semibold">Based in Texas Triangle</span>
             </div>
             <p className="text-gray-700 mb-4">
               Wise County, Texas<br />
-              Serving the greater North Texas region
+              Serving the greater Texas Triangle region
             </p>
             <p className="text-sm text-gray-600">
               Founded by local farmers, for the farming community
@@ -156,7 +156,7 @@ export default function ContactPage() {
             Ready to Join Hey Farmer?
           </h2>
           <p className="text-lg mb-6 opacity-90">
-            Don't wait - start connecting with the North Texas farming community today.
+            Don't wait - start connecting with the Texas Triangle farming community today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 

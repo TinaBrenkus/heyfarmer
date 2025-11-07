@@ -100,7 +100,7 @@ export default function DiscussionThreadPage() {
     // Mock data for now
     setDiscussion({
       id: '1',
-      title: 'Best practices for fall tomato planting in North Texas?',
+      title: 'Best practices for fall tomato planting in Texas Triangle?',
       content: `I'm planning to start my fall tomato crop next week and wanted to get advice from other growers. I've been having issues with blossom end rot in my summer tomatoes and want to make sure I avoid that problem.
 
 Here's what I'm planning:
@@ -108,7 +108,7 @@ Here's what I'm planning:
 • 4x8 raised beds with drip irrigation
 • Organic compost and bone meal amendments
 
-Has anyone had success with these varieties in fall? Any specific timing recommendations for North Texas?
+Has anyone had success with these varieties in fall? Any specific timing recommendations for Texas Triangle?
 
 Photos attached show my current setup and the blossom end rot issues I've been dealing with.`,
       category: 'growing-tips',
@@ -130,7 +130,7 @@ Photos attached show my current setup and the blossom end rot issues I've been d
     setReplies([
       {
         id: 'r1',
-        content: "I've had great success with fall tomatoes! The key is getting them started early enough. For North Texas, I usually plant my transplants around mid-August. Cherokee Purple is an excellent choice - very heat tolerant.",
+        content: "I've had great success with fall tomatoes! The key is getting them started early enough. For Texas Triangle, I usually plant my transplants around mid-August. Cherokee Purple is an excellent choice - very heat tolerant.",
         author: {
           name: 'Sarah Chen',
           user_type: 'market_gardener',

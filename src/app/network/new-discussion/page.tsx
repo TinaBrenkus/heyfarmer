@@ -190,7 +190,7 @@ export default function NewDiscussionPage() {
               type="text"
               value={formData.title}
               onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-              placeholder="What would you like to discuss? (e.g., 'Best practices for fall tomato planting in North Texas?')"
+              placeholder="What would you like to discuss? (e.g., 'Best practices for fall tomato planting in Texas Triangle?')"
               className={`w-full p-4 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-lg ${
                 errors.title ? 'border-red-300' : 'border-gray-300'
               }`}

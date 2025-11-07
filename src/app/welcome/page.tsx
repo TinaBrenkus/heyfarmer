@@ -45,7 +45,7 @@ export default function WelcomePage() {
     {
       icon: Users,
       title: 'Farmer Network',
-      description: 'Connect with growers across North Texas',
+      description: 'Connect with growers across Texas Triangle',
       color: 'bg-blue-50',
       iconColor: 'text-blue-600',
       borderColor: 'border-blue-200'
@@ -61,7 +61,7 @@ export default function WelcomePage() {
     {
       icon: MapPin,
       title: 'Hyperlocal Focus',
-      description: 'Exclusively for North Texas communities',
+      description: 'Exclusively for Texas Triangle communities',
       color: 'bg-orange-50',
       iconColor: 'text-orange-600',
       borderColor: 'border-orange-200'
@@ -116,7 +116,7 @@ export default function WelcomePage() {
               Welcome to <span className="text-green-600">Hey Farmer</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-2">
-              North Texas Farming Community
+              Texas Triangle Farming Community
             </p>
             <p className="text-lg text-green-600 font-semibold">
               Connect • Trade • Grow Together
@@ -194,7 +194,7 @@ export default function WelcomePage() {
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-600 mb-2">11</div>
-                <p className="text-gray-600">North Texas Counties</p>
+                <p className="text-gray-600">Texas Triangle Counties</p>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-600 mb-2">2,000+</div>
@@ -275,7 +275,7 @@ export default function WelcomePage() {
               <div className="p-2 rounded-lg" style={{ backgroundColor: '#2E7D32' }}>
                 <FarmLogo size={20} className="text-white" />
               </div>
-              <span className="text-gray-600">© 2024 Hey Farmer North Texas</span>
+              <span className="text-gray-600">© 2024 Hey Farmer Texas Triangle</span>
             </div>
             <div className="flex gap-6">
               <Link href="/contact" className="text-gray-600 hover:text-gray-900">Contact</Link>

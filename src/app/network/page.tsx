@@ -81,7 +81,7 @@ export default function FarmerNetworkPage() {
   const hotTopics = [
     {
       id: '1',
-      title: 'Best practices for fall tomato planting in North Texas?',
+      title: 'Best practices for fall tomato planting in Texas Triangle?',
       category: 'growing-tips',
       author: { name: 'Mike Johnson', user_type: 'production_farmer' as UserType, verified: true },
       replies: 23,

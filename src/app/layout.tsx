@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 
 export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
-  title: "Hey Farmer - North Texas Farming Marketplace",
-  description: "Connect with local farmers, backyard growers, and market gardeners in North Texas. Buy fresh, local produce directly from the source.",
+  title: "Hey Farmer - Texas Triangle Farming Marketplace",
+  description: "Connect with local farmers, backyard growers, and market gardeners in Texas Triangle. Buy fresh, local produce directly from the source.",
 };
 
 export default function RootLayout({

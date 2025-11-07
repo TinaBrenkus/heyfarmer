@@ -228,7 +228,7 @@ export default function FarmersPage() {
           <div className="flex items-center gap-3 mb-4">
             <span className="text-4xl">🧑‍🌾</span>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">North Texas Farmers</h1>
+              <h1 className="text-3xl font-bold text-gray-900">Texas Triangle Farmers</h1>
               <p className="text-gray-600">Discover local farmers and growers in your area</p>
             </div>
           </div>

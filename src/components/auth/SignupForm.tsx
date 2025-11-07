@@ -103,7 +103,7 @@ export default function SignupForm() {
             <FarmLogo className="h-8 w-8" style={{ color: '#2E7D32' }} />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Join Hey Farmer</h2>
-          <p className="text-gray-600">Connect with North Texas farmers and fresh food</p>
+          <p className="text-gray-600">Connect with Texas Triangle farmers and fresh food</p>
         </div>
         
         {success ? (

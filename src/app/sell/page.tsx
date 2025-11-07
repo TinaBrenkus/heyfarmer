@@ -131,7 +131,7 @@ export default function SellPage() {
             Sell on <span style={{ color: '#2E7D32' }}>Hey Farmer</span>
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            List your produce, equipment, or farming resources to connect with the North Texas farming community
+            List your produce, equipment, or farming resources to connect with the Texas Triangle farming community
           </p>
         </div>
 

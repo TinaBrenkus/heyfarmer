@@ -22,7 +22,7 @@ export default function AboutPage() {
             About Hey Farmer
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            The story behind connecting North Texas farmers with their communities
+            The story behind connecting Texas Triangle farmers with their communities
           </p>
         </div>
 
@@ -45,7 +45,7 @@ export default function AboutPage() {
             
             <p className="text-lg leading-relaxed font-semibold">
               My MAIN MISSION for Hey Farmer is to provide a safe and free place for farmers, market gardeners 
-              and backyard growers in North Texas to network with each other. With the added bonus of selling 
+              and backyard growers in Texas Triangle to network with each other. With the added bonus of selling 
               directly to consumers in their local markets.
             </p>
             
@@ -93,7 +93,7 @@ export default function AboutPage() {
               <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
             </div>
             <p className="text-gray-700 leading-relaxed">
-              To strengthen North Texas communities by connecting local farmers directly with food lovers, 
+              To strengthen Texas Triangle communities by connecting local farmers directly with food lovers, 
               creating a sustainable ecosystem where farmers thrive and families have access to fresh, 
               locally-grown food.
             </p>
@@ -107,7 +107,7 @@ export default function AboutPage() {
               <h3 className="text-2xl font-bold text-gray-900">Our Vision</h3>
             </div>
             <p className="text-gray-700 leading-relaxed">
-              A North Texas where every community has direct access to local farmers, where small-scale 
+              A Texas Triangle where every community has direct access to local farmers, where small-scale 
               agriculture flourishes, and where the connection between grower and consumer strengthens 
               our local food system.
             </p>
@@ -142,7 +142,7 @@ export default function AboutPage() {
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">Local Community</h4>
               <p className="text-sm text-gray-600">
-                Strengthening bonds within North Texas neighborhoods
+                Strengthening bonds within Texas Triangle neighborhoods
               </p>
             </div>
           </div>

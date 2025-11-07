@@ -64,7 +64,7 @@ const tourSteps: Record<UserType, TourStep[]> = {
     },
     {
       title: 'Connect with Growers',
-      description: 'Network with other backyard gardeners and market farmers in North Texas',
+      description: 'Network with other backyard gardeners and market farmers in Texas Triangle',
       icon: Users,
       action: 'Join Network',
       highlight: 'network'
