@@ -3,25 +3,34 @@
 import { useState } from 'react'
 import { Calendar, Package, DollarSign, MapPin, Truck, Camera, Tag } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
-import { db, PostType, PostVisibility, NorthTexasCounty } from '@/lib/database'
+import { db, PostType, PostVisibility, TexasTriangleCounty } from '@/lib/database'
 
 interface CreateListingFormProps {
   onSuccess?: (listing: any) => void
   onCancel?: () => void
 }
 
-const counties: { value: NorthTexasCounty; label: string }[] = [
-  { value: 'collin', label: 'Collin County' },
-  { value: 'dallas', label: 'Dallas County' },
-  { value: 'denton', label: 'Denton County' },
-  { value: 'tarrant', label: 'Tarrant County' },
-  { value: 'wise', label: 'Wise County' },
-  { value: 'parker', label: 'Parker County' },
-  { value: 'jack', label: 'Jack County' },
-  { value: 'grayson', label: 'Grayson County' },
-  { value: 'hunt', label: 'Hunt County' },
-  { value: 'kaufman', label: 'Kaufman County' },
-  { value: 'rockwall', label: 'Rockwall County' }
+const counties: { value: TexasTriangleCounty; label: string }[] = [
+  // DFW Metro
+  { value: 'collin', label: 'Collin County' }, { value: 'dallas', label: 'Dallas County' }, { value: 'denton', label: 'Denton County' },
+  { value: 'grayson', label: 'Grayson County' }, { value: 'hunt', label: 'Hunt County' }, { value: 'jack', label: 'Jack County' },
+  { value: 'kaufman', label: 'Kaufman County' }, { value: 'parker', label: 'Parker County' }, { value: 'rockwall', label: 'Rockwall County' },
+  { value: 'tarrant', label: 'Tarrant County' }, { value: 'wise', label: 'Wise County' },
+  // Austin Metro
+  { value: 'bastrop', label: 'Bastrop County' }, { value: 'blanco', label: 'Blanco County' }, { value: 'burnet', label: 'Burnet County' },
+  { value: 'caldwell', label: 'Caldwell County' }, { value: 'hays', label: 'Hays County' }, { value: 'lee', label: 'Lee County' },
+  { value: 'travis', label: 'Travis County' }, { value: 'williamson', label: 'Williamson County' },
+  // San Antonio Metro
+  { value: 'atascosa', label: 'Atascosa County' }, { value: 'bandera', label: 'Bandera County' }, { value: 'bexar', label: 'Bexar County' },
+  { value: 'comal', label: 'Comal County' }, { value: 'guadalupe', label: 'Guadalupe County' }, { value: 'kendall', label: 'Kendall County' },
+  { value: 'medina', label: 'Medina County' }, { value: 'wilson', label: 'Wilson County' },
+  // Houston Metro
+  { value: 'austin-county', label: 'Austin County' }, { value: 'brazoria', label: 'Brazoria County' }, { value: 'chambers', label: 'Chambers County' },
+  { value: 'fort-bend', label: 'Fort Bend County' }, { value: 'galveston', label: 'Galveston County' }, { value: 'harris', label: 'Harris County' },
+  { value: 'liberty', label: 'Liberty County' }, { value: 'montgomery', label: 'Montgomery County' }, { value: 'waller', label: 'Waller County' },
+  // Central
+  { value: 'bell', label: 'Bell County (Temple)' }, { value: 'brazos', label: 'Brazos County (College Station)' },
+  { value: 'burleson', label: 'Burleson County' }, { value: 'grimes', label: 'Grimes County' }, { value: 'mclennan', label: 'McLennan County (Waco)' },
 ]
 
 const produceCategories = [
@@ -41,7 +50,7 @@ export default function CreateListingForm({ onSuccess, onCancel }: CreateListing
     description: '',
     post_type: 'produce' as PostType,
     visibility: 'public' as PostVisibility,
-    county: 'dallas' as NorthTexasCounty,
+    county: 'dallas' as TexasTriangleCounty,
     city: '',
     price: '',
     unit: '',

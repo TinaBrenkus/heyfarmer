@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation'
 import { Users, Mail, MapPin, Filter, Download, Calendar, User, Tractor, ShoppingCart } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 import { supabase } from '@/lib/supabase'
-import { UserType, NorthTexasCounty } from '@/lib/database'
+import { UserType, TexasTriangleCounty } from '@/lib/database'
 
 interface WaitlistEntry {
   id: string
   email: string
   user_type: UserType
-  county: NorthTexasCounty
+  county: TexasTriangleCounty
   created_at: string
 }
 

@@ -6,21 +6,56 @@ import Link from 'next/link'
 import { User, Tractor, ShoppingCart } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 import { supabase } from '@/lib/supabase'
-import { UserType, NorthTexasCounty } from '@/lib/database'
+import { UserType, TexasTriangleCounty } from '@/lib/database'
 import { WelcomeTour } from '@/components/onboarding/QuickTour'
 
-const counties: { value: NorthTexasCounty; label: string }[] = [
+const counties: { value: TexasTriangleCounty; label: string }[] = [
+  // Dallas-Fort Worth Metro
   { value: 'collin', label: 'Collin County' },
   { value: 'dallas', label: 'Dallas County' },
   { value: 'denton', label: 'Denton County' },
-  { value: 'tarrant', label: 'Tarrant County' },
-  { value: 'wise', label: 'Wise County' },
-  { value: 'parker', label: 'Parker County' },
-  { value: 'jack', label: 'Jack County' },
   { value: 'grayson', label: 'Grayson County' },
   { value: 'hunt', label: 'Hunt County' },
+  { value: 'jack', label: 'Jack County' },
   { value: 'kaufman', label: 'Kaufman County' },
-  { value: 'rockwall', label: 'Rockwall County' }
+  { value: 'parker', label: 'Parker County' },
+  { value: 'rockwall', label: 'Rockwall County' },
+  { value: 'tarrant', label: 'Tarrant County' },
+  { value: 'wise', label: 'Wise County' },
+  // Austin Metro  
+  { value: 'bastrop', label: 'Bastrop County' },
+  { value: 'blanco', label: 'Blanco County' },
+  { value: 'burnet', label: 'Burnet County' },
+  { value: 'caldwell', label: 'Caldwell County' },
+  { value: 'hays', label: 'Hays County' },
+  { value: 'lee', label: 'Lee County' },
+  { value: 'travis', label: 'Travis County' },
+  { value: 'williamson', label: 'Williamson County' },
+  // San Antonio Metro
+  { value: 'atascosa', label: 'Atascosa County' },
+  { value: 'bandera', label: 'Bandera County' },
+  { value: 'bexar', label: 'Bexar County' },
+  { value: 'comal', label: 'Comal County' },
+  { value: 'guadalupe', label: 'Guadalupe County' },
+  { value: 'kendall', label: 'Kendall County' },
+  { value: 'medina', label: 'Medina County' },
+  { value: 'wilson', label: 'Wilson County' },
+  // Houston Metro
+  { value: 'austin-county', label: 'Austin County' },
+  { value: 'brazoria', label: 'Brazoria County' },
+  { value: 'chambers', label: 'Chambers County' },
+  { value: 'fort-bend', label: 'Fort Bend County' },
+  { value: 'galveston', label: 'Galveston County' },
+  { value: 'harris', label: 'Harris County' },
+  { value: 'liberty', label: 'Liberty County' },
+  { value: 'montgomery', label: 'Montgomery County' },
+  { value: 'waller', label: 'Waller County' },
+  // Central Corridor
+  { value: 'bell', label: 'Bell County (Temple/Killeen)' },
+  { value: 'brazos', label: 'Brazos County (College Station)' },
+  { value: 'burleson', label: 'Burleson County' },
+  { value: 'grimes', label: 'Grimes County' },
+  { value: 'mclennan', label: 'McLennan County (Waco)' },
 ]
 
 const userTypes: { value: UserType; label: string; description: string; icon: any }[] = [
@@ -62,7 +97,7 @@ export default function SignupPage() {
     fullName: '',
     farmName: '',
     userType: 'consumer' as UserType,
-    county: 'dallas' as NorthTexasCounty,
+    county: 'dallas' as TexasTriangleCounty,
     city: '',
     phone: '',
     bio: '',

@@ -16,13 +16,13 @@ import {
 import Navigation from '@/components/navigation/Navigation'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import { supabase } from '@/lib/supabase'
-import { UserType, NorthTexasCounty } from '@/lib/database'
+import { UserType, TexasTriangleCounty } from '@/lib/database'
 
 interface ProfileData {
   full_name: string
   farm_name: string
   bio: string
-  county: NorthTexasCounty
+  county: TexasTriangleCounty
   city: string
   exact_address: string
   phone: string
@@ -472,7 +472,7 @@ export default function ProfileSettingsPage() {
                 </label>
                 <select
                   value={profileData.county}
-                  onChange={(e) => setProfileData(prev => ({ ...prev, county: e.target.value as NorthTexasCounty }))}
+                  onChange={(e) => setProfileData(prev => ({ ...prev, county: e.target.value as TexasTriangleCounty }))}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 >
                   {counties.map(county => (

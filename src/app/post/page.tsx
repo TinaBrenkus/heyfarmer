@@ -22,7 +22,7 @@ import {
 import Navigation from '@/components/navigation/Navigation'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import { supabase } from '@/lib/supabase'
-import { UserType, NorthTexasCounty } from '@/lib/database'
+import { UserType, TexasTriangleCounty } from '@/lib/database'
 
 interface PostType {
   id: string

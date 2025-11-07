@@ -9,14 +9,14 @@ import {
   X
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
-import { db, Post, PostType, NorthTexasCounty } from '@/lib/database'
+import { db, Post, PostType, TexasTriangleCounty } from '@/lib/database'
 import Navigation from '@/components/navigation/Navigation'
 import Footer from '@/components/layout/Footer'
 import ListingsGrid from '@/components/marketplace/ListingsGrid'
 
 interface FilterOptions {
   postType?: PostType | 'all'
-  county?: NorthTexasCounty | 'all'
+  county?: TexasTriangleCounty | 'all'
   priceRange?: 'all' | 'under-25' | '25-100' | 'over-100'
   availability?: 'all' | 'pickup' | 'delivery'
 }
