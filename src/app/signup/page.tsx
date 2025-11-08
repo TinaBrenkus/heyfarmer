@@ -184,21 +184,25 @@ export default function SignupPage() {
       }
 
       // Sign up with Supabase Auth
+      // Only include defined, non-empty values in metadata
+      const metadata: Record<string, any> = {
+        full_name: formData.fullName,
+        user_type: formData.userType,
+        county: formData.county,
+      }
+
+      // Add optional fields only if they have values
+      if (formData.farmName) metadata.farm_name = formData.farmName
+      if (formData.city) metadata.city = formData.city
+      if (formData.phone) metadata.phone = formData.phone
+      if (formData.bio) metadata.bio = formData.bio
+      if (avatarUrl) metadata.avatar_url = avatarUrl
+
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
         options: {
-          data: {
-            full_name: formData.fullName,
-            user_type: formData.userType,
-            county: formData.county,
-            farm_name: formData.farmName,
-            city: formData.city,
-            phone: formData.phone,
-            bio: formData.bio,
-            grow_types: formData.growTypes,
-            avatar_url: avatarUrl
-          }
+          data: metadata
         }
       })
 
