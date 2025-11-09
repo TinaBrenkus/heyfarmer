@@ -152,12 +152,19 @@ export default function SignupPage() {
     }
 
     try {
+      // Helper function to sanitize string values for HTTP headers
+      // Removes newlines, tabs, and control characters that cause "Invalid value" errors
+      const sanitize = (str: string): string => {
+        return str.replace(/[\r\n\t\x00-\x1F\x7F]/g, ' ').trim()
+      }
+
       let avatarUrl = null
 
       // Upload profile photo if provided
       if (formData.profilePhoto) {
         try {
-          const fileExt = formData.profilePhoto.name.split('.').pop()
+          // Sanitize file extension - only allow alphanumeric characters
+          const fileExt = formData.profilePhoto.name.split('.').pop()?.replace(/[^a-zA-Z0-9]/g, '') || 'jpg'
           const fileName = `${Date.now()}_${formData.email.replace('@', '_').replace(/[^a-zA-Z0-9_]/g, '')}.${fileExt}`
           
           // First, check if the avatars bucket exists and is accessible
@@ -186,16 +193,16 @@ export default function SignupPage() {
       // Sign up with Supabase Auth
       // Only include defined, non-empty values in metadata
       const metadata: Record<string, any> = {
-        full_name: formData.fullName,
+        full_name: sanitize(formData.fullName),
         user_type: formData.userType,
         county: formData.county,
       }
 
       // Add optional fields only if they have values
-      if (formData.farmName) metadata.farm_name = formData.farmName
-      if (formData.city) metadata.city = formData.city
-      if (formData.phone) metadata.phone = formData.phone
-      if (formData.bio) metadata.bio = formData.bio
+      if (formData.farmName?.trim()) metadata.farm_name = sanitize(formData.farmName)
+      if (formData.city?.trim()) metadata.city = sanitize(formData.city)
+      if (formData.phone?.trim()) metadata.phone = sanitize(formData.phone)
+      if (formData.bio?.trim()) metadata.bio = sanitize(formData.bio)
       if (avatarUrl) metadata.avatar_url = avatarUrl
 
       const { data: authData, error: authError } = await supabase.auth.signUp({
