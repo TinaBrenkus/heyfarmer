@@ -165,7 +165,7 @@ export default function SignupPage() {
         try {
           // Sanitize file extension - only allow alphanumeric characters
           const fileExt = formData.profilePhoto.name.split('.').pop()?.replace(/[^a-zA-Z0-9]/g, '') || 'jpg'
-          const fileName = `${Date.now()}_${formData.email.replace('@', '_').replace(/[^a-zA-Z0-9_]/g, '')}.${fileExt}`
+          const fileName = `${Date.now()}_${sanitize(formData.email).replace('@', '_').replace(/[^a-zA-Z0-9_]/g, '')}.${fileExt}`
           
           // First, check if the avatars bucket exists and is accessible
           const { data: uploadData, error: uploadError } = await supabase.storage
