@@ -206,8 +206,8 @@ export default function SignupPage() {
       if (avatarUrl) metadata.avatar_url = avatarUrl
 
       const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
+        email: sanitize(formData.email.trim()),
+        password: sanitize(formData.password.trim()),
         options: {
           data: metadata
         }
