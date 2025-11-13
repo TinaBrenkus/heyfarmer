@@ -152,15 +152,17 @@ export default function SignupPage() {
     }
 
     try {
-      // Helper function to sanitize string values for HTTP headers
-      // Removes newlines, tabs, control characters, and non-ASCII that cause "Invalid value" errors
+      // Helper function to sanitize string values for HTTP headers and JWT encoding
+      // Removes problematic characters that cause "Invalid value" errors in Supabase metadata
       const sanitize = (str: string | null | undefined): string => {
         if (!str) return ''
-        // Remove control characters, newlines, tabs, and any character that could cause header issues
+        // Remove control characters, newlines, tabs, and problematic chars
         return str
-          .replace(/[\r\n\t\x00-\x1F\x7F-\x9F]/g, ' ')  // Remove control chars including extended ASCII
+          .replace(/[\r\n\t\x00-\x1F\x7F-\x9F]/g, ' ')  // Remove control chars
+          .replace(/["\u201C\u201D]/g, "'")  // Replace double quotes with single quotes
           .replace(/\s+/g, ' ')  // Collapse multiple spaces
           .trim()
+          .substring(0, 500)  // Limit length to prevent JWT size issues
       }
 
       // Note: Avatar upload is disabled during signup to avoid RLS policy issues
