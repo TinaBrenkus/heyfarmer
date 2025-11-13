@@ -101,25 +101,34 @@ export default function SignupForm() {
     e.preventDefault()
     setLoading(true)
     setError(null)
-    
+
     try {
+      // Build metadata object, only including non-empty values
+      const metadata: Record<string, string> = {
+        full_name: formData.full_name,
+        user_type: formData.user_type,
+        county: formData.county
+      }
+
+      // Only add optional fields if they have values
+      if (formData.farm_name && formData.farm_name.trim()) {
+        metadata.farm_name = formData.farm_name.trim()
+      }
+      if (formData.phone && formData.phone.trim()) {
+        metadata.phone = formData.phone.trim()
+      }
+
       // Sign up the user
       const { data, error: signUpError } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
         options: {
-          data: {
-            full_name: formData.full_name,
-            user_type: formData.user_type,
-            county: formData.county,
-            farm_name: formData.farm_name,
-            phone: formData.phone
-          }
+          data: metadata
         }
       })
-      
+
       if (signUpError) throw signUpError
-      
+
       setSuccess(true)
     } catch (err: any) {
       setError(err.message)

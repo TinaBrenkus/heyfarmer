@@ -153,70 +153,70 @@ export default function SignupPage() {
 
     try {
       // Helper function to sanitize string values for HTTP headers
-      // Removes newlines, tabs, and control characters that cause "Invalid value" errors
-      const sanitize = (str: string): string => {
-        return str.replace(/[\r\n\t\x00-\x1F\x7F]/g, ' ').trim()
+      // Removes newlines, tabs, control characters, and non-ASCII that cause "Invalid value" errors
+      const sanitize = (str: string | null | undefined): string => {
+        if (!str) return ''
+        // Remove control characters, newlines, tabs, and any character that could cause header issues
+        return str
+          .replace(/[\r\n\t\x00-\x1F\x7F-\x9F]/g, ' ')  // Remove control chars including extended ASCII
+          .replace(/\s+/g, ' ')  // Collapse multiple spaces
+          .trim()
       }
 
-      let avatarUrl = null
-
-      // Upload profile photo if provided
-      if (formData.profilePhoto) {
-        try {
-          // Sanitize file extension - only allow alphanumeric characters
-          const fileExt = formData.profilePhoto.name.split('.').pop()?.replace(/[^a-zA-Z0-9]/g, '') || 'jpg'
-          const fileName = `${Date.now()}_${sanitize(formData.email).replace('@', '_').replace(/[^a-zA-Z0-9_]/g, '')}.${fileExt}`
-          // Create a new File object with sanitized name to avoid header errors
-          const cleanFile = new File([formData.profilePhoto], fileName, { type: formData.profilePhoto.type })
-          
-          // First, check if the avatars bucket exists and is accessible
-          const { data: uploadData, error: uploadError } = await supabase.storage
-            .from('avatars')
-            .upload(fileName, cleanFile, {
-              upsert: true
-            })
-
-          if (uploadError) {
-            console.error('Avatar upload failed:', uploadError.message)
-            // For MVP, we'll skip profile photos if storage isn't set up
-            // This prevents signup from failing due to storage issues
-          } else {
-            const { data: { publicUrl } } = supabase.storage
-              .from('avatars')
-              .getPublicUrl(fileName)
-            avatarUrl = publicUrl
-          }
-        } catch (storageError: any) {
-          console.error('Storage error:', storageError.message)
-          // Continue without avatar - don't block signup
-        }
-      }
+      // Note: Avatar upload is disabled during signup to avoid RLS policy issues
+      // Users can upload their profile photo after signup in their profile settings
+      // This is because uploads require authentication, which doesn't exist yet during signup
+      let avatarUrl: string | null = null
 
       // Sign up with Supabase Auth
+      // Clean email - remove any control characters but preserve the actual email value
+      const cleanEmail = formData.email.trim().replace(/[\r\n\t\x00-\x1F\x7F-\x9F]/g, '')
+
       // Only include defined, non-empty values in metadata
-      const metadata: Record<string, any> = {
-        full_name: sanitize(formData.fullName),
-        user_type: formData.userType,
-        county: formData.county,
-      }
+      const metadata: Record<string, string> = {}
+
+      // Add required fields
+      const fullName = sanitize(formData.fullName)
+      if (fullName) metadata.full_name = fullName
+
+      metadata.user_type = formData.userType
+      metadata.county = formData.county
 
       // Add optional fields only if they have values
-      if (formData.farmName?.trim()) metadata.farm_name = sanitize(formData.farmName)
-      if (formData.city?.trim()) metadata.city = sanitize(formData.city)
-      if (formData.phone?.trim()) metadata.phone = sanitize(formData.phone)
-      if (formData.bio?.trim()) metadata.bio = sanitize(formData.bio)
-      if (avatarUrl) metadata.avatar_url = avatarUrl
+      const farmName = sanitize(formData.farmName)
+      if (farmName) metadata.farm_name = farmName
+
+      const city = sanitize(formData.city)
+      if (city) metadata.city = city
+
+      const phone = sanitize(formData.phone)
+      if (phone) metadata.phone = phone
+
+      const bio = sanitize(formData.bio)
+      if (bio) metadata.bio = bio
+
+      // Only add avatar URL if it exists and is valid
+      if (avatarUrl && avatarUrl.startsWith('http')) {
+        metadata.avatar_url = avatarUrl
+      }
+
+      console.log('Attempting signup with metadata:', metadata)
 
       const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: formData.email.trim(),
-        password: formData.password.trim(),
+        email: cleanEmail,
+        password: formData.password,
         options: {
           data: metadata
         }
       })
 
       if (authError) {
-        console.error('Auth error details:', authError)
+        console.error('Auth error details:', {
+          message: authError.message,
+          status: authError.status,
+          name: authError.name,
+          metadata: metadata
+        })
         throw new Error(authError.message)
       }
 
@@ -510,31 +510,11 @@ export default function SignupPage() {
                   />
                 </div>
 
-                {/* Profile Photo */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">
-                    📷 Add Profile Photo (Optional)
-                  </label>
-                  <div className="flex items-center gap-4">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handlePhotoChange}
-                      className="hidden"
-                      id="profilePhoto"
-                    />
-                    <label
-                      htmlFor="profilePhoto"
-                      className="cursor-pointer px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      Choose Photo
-                    </label>
-                    {formData.profilePhoto && (
-                      <span className="text-sm text-gray-600">
-                        {formData.profilePhoto.name}
-                      </span>
-                    )}
-                  </div>
+                {/* Note about profile photo */}
+                <div className="p-3 rounded-lg bg-blue-50 border border-blue-200">
+                  <p className="text-sm text-blue-700">
+                    💡 You can add a profile photo after creating your account in your profile settings.
+                  </p>
                 </div>
               </div>
             )}
