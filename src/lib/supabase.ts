@@ -1,16 +1,19 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Check for required environment variables
-if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-  throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL environment variable')
+// Get environment variables - use direct access for client-side
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+
+// Validate environment variables
+if (!supabaseUrl || !supabaseUrl.startsWith('http')) {
+  console.error('Invalid or missing NEXT_PUBLIC_SUPABASE_URL:', supabaseUrl)
+  throw new Error('NEXT_PUBLIC_SUPABASE_URL is not configured properly. Please check your .env.local file.')
 }
 
-if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-  throw new Error('Missing NEXT_PUBLIC_SUPABASE_ANON_KEY environment variable')
+if (!supabaseAnonKey || supabaseAnonKey.length < 20) {
+  console.error('Invalid or missing NEXT_PUBLIC_SUPABASE_ANON_KEY')
+  throw new Error('NEXT_PUBLIC_SUPABASE_ANON_KEY is not configured properly. Please check your .env.local file.')
 }
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {

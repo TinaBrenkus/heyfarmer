@@ -202,8 +202,6 @@ export default function SignupPage() {
         metadata.avatar_url = avatarUrl
       }
 
-      console.log('Attempting signup with metadata:', metadata)
-
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: cleanEmail,
         password: formData.password,
