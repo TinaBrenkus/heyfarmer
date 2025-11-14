@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { User, LogOut, Settings } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 import { supabase } from '@/lib/supabase'
@@ -90,26 +91,53 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             {user ? (
               <div className="flex items-center space-x-4">
-                <span className="text-gray-600 text-sm">
-                  {profile?.full_name || 'User'}
-                </span>
-                <button 
+                {/* Profile Photo */}
+                <Link href="/profile" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
+                    {profile?.avatar_url ? (
+                      <Image
+                        src={profile.avatar_url}
+                        alt={profile?.full_name || 'User'}
+                        width={40}
+                        height={40}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <User className="w-5 h-5 text-gray-500" />
+                    )}
+                  </div>
+                  <span className="text-gray-600 text-sm font-medium hidden md:block">
+                    {profile?.full_name || 'User'}
+                  </span>
+                </Link>
+
+                {/* Settings */}
+                <Link
+                  href="/profile"
+                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  title="Profile Settings"
+                >
+                  <Settings className="h-5 w-5" />
+                </Link>
+
+                {/* Sign Out */}
+                <button
                   onClick={handleSignOut}
                   className="flex items-center gap-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
                 >
                   <LogOut className="h-4 w-4" />
-                  Sign Out
+                  <span className="hidden md:inline">Sign Out</span>
                 </button>
               </div>
             ) : (
               <>
-                <Link 
+                <Link
                   href="/login"
                   className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
                 >
                   Log In
                 </Link>
-                <Link 
+                <Link
                   href="/signup"
                   className="text-white px-4 py-2 rounded-lg font-medium transition-colors hover:opacity-90"
                   style={{ backgroundColor: '#1976D2' }}
