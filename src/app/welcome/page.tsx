@@ -68,21 +68,21 @@ export default function WelcomePage() {
     }
   ]
 
-  const testimonials = [
+  const benefits = [
     {
-      quote: "Hey Farmer helped me find customers right in my neighborhood!",
-      author: "Sarah M.",
-      role: "Backyard Grower, Dallas"
+      icon: Heart,
+      title: "Support Local",
+      description: "Build relationships with farmers in your community and support the local economy"
     },
     {
-      quote: "Finally, a platform that connects local farmers and food lovers.",
-      author: "James T.",
-      role: "Market Gardener, Denton"
+      icon: Leaf,
+      title: "Fresh & Sustainable",
+      description: "Access the freshest produce while supporting sustainable farming practices"
     },
     {
-      quote: "I love buying fresh produce directly from local farms!",
-      author: "Maria L.",
-      role: "Food Lover, Collin County"
+      icon: Users,
+      title: "Direct Connection",
+      description: "Connect directly with growers to learn about your food and where it comes from"
     }
   ]
 
@@ -182,47 +182,54 @@ export default function WelcomePage() {
             })}
           </div>
 
-          {/* Stats Section */}
+          {/* Community Section */}
           <div className="bg-white rounded-2xl shadow-lg p-8 mb-16">
             <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
-              Growing Our Community
+              Our Texas Triangle Community
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">500+</div>
-                <p className="text-gray-600">Local Farmers</p>
+                <div className="text-3xl font-bold text-green-600 mb-2">
+                  <Users className="h-12 w-12 mx-auto mb-2" />
+                </div>
+                <p className="text-gray-600 font-semibold">Join Our Growing Network</p>
+                <p className="text-sm text-gray-500 mt-2">Connect with farmers and food lovers</p>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">11</div>
-                <p className="text-gray-600">Texas Triangle Counties</p>
+                <div className="text-3xl font-bold text-green-600 mb-2">40+</div>
+                <p className="text-gray-600 font-semibold">Texas Triangle Counties</p>
+                <p className="text-sm text-gray-500 mt-2">DFW, Austin, San Antonio, Houston</p>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">2,000+</div>
-                <p className="text-gray-600">Active Listings</p>
+                <div className="text-3xl font-bold text-green-600 mb-2">
+                  <Leaf className="h-12 w-12 mx-auto mb-2" />
+                </div>
+                <p className="text-gray-600 font-semibold">Hyperlocal Marketplace</p>
+                <p className="text-sm text-gray-500 mt-2">Buy and sell locally grown</p>
               </div>
             </div>
           </div>
 
-          {/* Testimonials */}
+          {/* Why Join Section */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
-              What Our Community Says
+              Why Join Hey Farmer?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="flex items-start gap-2 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Heart key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    ))}
+              {benefits.map((benefit, index) => {
+                const Icon = benefit.icon
+                return (
+                  <div key={index} className="bg-white p-6 rounded-xl shadow-sm border-2 border-green-100 hover:border-green-300 transition-colors">
+                    <div className="flex justify-center mb-4">
+                      <div className="p-3 bg-green-50 rounded-full">
+                        <Icon className="h-8 w-8 text-green-600" />
+                      </div>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 text-center mb-2">{benefit.title}</h3>
+                    <p className="text-gray-600 text-center text-sm">{benefit.description}</p>
                   </div>
-                  <p className="text-gray-600 italic mb-4">"{testimonial.quote}"</p>
-                  <div>
-                    <p className="font-semibold text-gray-900">{testimonial.author}</p>
-                    <p className="text-sm text-gray-500">{testimonial.role}</p>
-                  </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
 
