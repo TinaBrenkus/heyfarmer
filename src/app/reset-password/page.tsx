@@ -26,25 +26,33 @@ export default function ResetPasswordPage() {
     const handleRecoveryToken = async () => {
       // Check if there's a recovery token in the URL hash
       const hashParams = new URLSearchParams(window.location.hash.substring(1))
+      const accessToken = hashParams.get('access_token')
+      const refreshToken = hashParams.get('refresh_token')
       const type = hashParams.get('type')
 
-      if (type === 'recovery') {
-        // This is a password recovery link - verify the OTP token
-        console.log('Recovery link detected, verifying token...')
+      if (type === 'recovery' && accessToken) {
+        // This is a password recovery link - establish the session
+        console.log('Recovery link detected, establishing session...')
 
-        const { error: verifyError } = await supabase.auth.verifyOtp({
-          token_hash: window.location.hash.substring(1), // Pass the entire hash string
-          type: 'recovery'
-        })
+        if (refreshToken) {
+          // We have both tokens, set the session
+          const { error: sessionError } = await supabase.auth.setSession({
+            access_token: accessToken,
+            refresh_token: refreshToken
+          })
 
-        if (verifyError) {
-          console.error('Token verification error:', verifyError)
-          setError('Invalid or expired reset link. Please request a new password reset.')
+          if (sessionError) {
+            console.error('Session error:', sessionError)
+            setError('Invalid or expired reset link. Please request a new password reset.')
+          } else {
+            console.log('Session established successfully')
+            setIsValidSession(true)
+            // Clear the hash from URL for security
+            window.history.replaceState(null, '', window.location.pathname)
+          }
         } else {
-          console.log('Token verified successfully')
-          setIsValidSession(true)
-          // Clear the hash from URL for security
-          window.history.replaceState(null, '', window.location.pathname)
+          console.error('Missing refresh token in URL hash')
+          setError('Invalid or expired reset link. Please request a new password reset.')
         }
       } else {
         // No recovery token - check if there's already a session (page refresh after verification)
