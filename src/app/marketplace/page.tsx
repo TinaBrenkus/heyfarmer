@@ -228,31 +228,8 @@ export default function MarketplacePage() {
       return
     }
 
-    try {
-      // Create or get conversation with the farmer
-      const { data: conversationId, error } = await supabase.rpc('get_or_create_conversation', {
-        p_user1_id: user.id,
-        p_user2_id: listing.profiles.id
-      })
-
-      if (error) throw error
-
-      // Send initial message about the listing
-      const initialMessage = `Hi! I'm interested in your listing: "${listing.title}". Could you tell me more about it?`
-      
-      await supabase.from('messages').insert({
-        conversation_id: conversationId,
-        sender_id: user.id,
-        content: initialMessage
-      })
-
-      // Navigate to the conversation
-      router.push('/messages')
-    } catch (error) {
-      console.error('Error starting conversation:', error)
-      // Fallback to just opening messages
-      router.push('/messages')
-    }
+    // Navigate to messages with contact parameters - the messages page will handle creating the conversation
+    router.push(`/messages?contact=${listing.profiles.id}&post=${listing.id}`)
   }
 
   const handleSave = async (listing: Post) => {

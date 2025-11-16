@@ -73,7 +73,7 @@ export default function MessagesPage() {
   useEffect(() => {
     if (selectedConversation) {
       loadMessages(selectedConversation.id)
-      markAsRead(selectedConversation.id)
+      // markAsRead(selectedConversation.id) // TODO: implement this function in database
       subscribeToMessages()
     }
   }, [selectedConversation])
@@ -118,20 +118,24 @@ export default function MessagesPage() {
       // Send initial message if post exists
       if (post) {
         const initialMessage = `Hi! I'm interested in your listing: "${post.title}". Could you tell me more about it?`
-        
-        await supabase.from('messages').insert({
+
+        const { error: messageError } = await supabase.from('messages').insert({
           conversation_id: conversationId,
           sender_id: user.id,
           content: initialMessage
         })
+
+        if (messageError) {
+          console.error('Message insert error:', messageError)
+        }
       }
 
       // Reload conversations and select the new one
-      await loadConversations()
-      
-      // Find and select the conversation
-      const conversations = await getConversations()
+      const conversations = await loadConversations()
+
+      // Find and select the conversation (now using the transformed data with profiles)
       const conversation = conversations.find(c => c.id === conversationId)
+
       if (conversation) {
         setSelectedConversation(conversation)
       }
@@ -159,7 +163,6 @@ export default function MessagesPage() {
           )
         `)
         .eq('user_id', user.id)
-        .order('conversations(updated_at)', { ascending: false })
 
       if (error) {
         // Handle missing tables gracefully
@@ -168,7 +171,15 @@ export default function MessagesPage() {
         }
         throw error
       }
-      return data || []
+
+      // Sort by updated_at in JavaScript since we can't order by nested fields
+      const sorted = (data || []).sort((a, b) => {
+        const dateA = new Date(a.conversations.updated_at).getTime()
+        const dateB = new Date(b.conversations.updated_at).getTime()
+        return dateB - dateA // Most recent first
+      })
+
+      return sorted
     } catch (error) {
       // Return empty array if messaging tables don't exist
       return []
@@ -176,36 +187,48 @@ export default function MessagesPage() {
   }
 
   const loadConversations = async () => {
-    if (!user) return
+    if (!user) return []
 
     try {
       const conversationData = await getConversations()
-      
+
       // Get other participants for each conversation
       const conversationIds = conversationData.map(c => c.conversations.id)
-      
+
       if (conversationIds.length === 0) {
         setConversations([])
-        return
+        return []
       }
 
-      const { data: participants, error: participantsError } = await supabase
+      // Get other participants (user IDs)
+      const { data: participantRecords, error: participantsError } = await supabase
         .from('conversation_participants')
-        .select(`
-          conversation_id,
-          profiles!inner (
-            id,
-            full_name,
-            farm_name,
-            avatar_url,
-            user_type,
-            verified
-          )
-        `)
+        .select('conversation_id, user_id')
         .in('conversation_id', conversationIds)
         .neq('user_id', user.id)
 
       if (participantsError) throw participantsError
+
+      // Get profiles for those user IDs
+      const userIds = participantRecords?.map(p => p.user_id) || []
+      const { data: profilesData, error: profilesError } = await supabase
+        .from('profiles')
+        .select('id, full_name, farm_name, avatar_url, user_type, is_verified')
+        .in('id', userIds)
+
+      if (profilesError) throw profilesError
+
+      // Combine participants with their profiles (map is_verified to verified for UI compatibility)
+      const participants = participantRecords?.map(p => {
+        const profile = profilesData?.find(prof => prof.id === p.user_id)
+        return {
+          conversation_id: p.conversation_id,
+          profiles: profile ? {
+            ...profile,
+            verified: profile.is_verified // Map is_verified to verified
+          } : undefined
+        }
+      })
 
       // Combine conversation data with participant profiles
       const conversationsWithProfiles = conversationData.map(conv => {
@@ -225,38 +248,34 @@ export default function MessagesPage() {
       })
 
       setConversations(conversationsWithProfiles)
+      return conversationsWithProfiles
     } catch (error) {
       // Silently handle the case where messaging tables don't exist yet
       if (error?.code === '42P01' || error?.message?.includes('relation') || error?.message?.includes('does not exist')) {
         setConversations([])
-        return
+        return []
       }
       console.error('Error loading conversations:', error)
       setConversations([])
+      return []
     }
   }
 
   const loadMessages = async (conversationId: string) => {
     setLoadingMessages(true)
     try {
-      const { data, error } = await supabase
+      // Fetch messages without trying to join (since sender_id references auth.users, not profiles)
+      const { data: messagesData, error } = await supabase
         .from('messages')
-        .select(`
-          *,
-          profiles!messages_sender_id_fkey (
-            id,
-            full_name,
-            farm_name,
-            avatar_url,
-            user_type,
-            verified
-          )
-        `)
+        .select('*')
         .eq('conversation_id', conversationId)
         .order('created_at', { ascending: true })
 
       if (error) throw error
-      setMessages(data || [])
+
+      // We don't actually need sender profiles for displaying messages
+      // since we can just check if sender_id === current user.id
+      setMessages(messagesData || [])
     } catch (error) {
       console.error('Error loading messages:', error)
       setMessages([])
