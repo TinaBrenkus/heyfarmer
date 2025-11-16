@@ -22,16 +22,36 @@ export default function ResetPasswordPage() {
   })
 
   useEffect(() => {
-    // Check if user came from a valid reset link
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession()
-      if (session) {
-        setIsValidSession(true)
+    // Exchange the token from URL for a session
+    const handlePasswordReset = async () => {
+      // First check if there's a hash in the URL (token from email)
+      const hashParams = new URLSearchParams(window.location.hash.substring(1))
+      const accessToken = hashParams.get('access_token')
+      const type = hashParams.get('type')
+
+      if (accessToken && type === 'recovery') {
+        // We have a valid recovery token, set the session
+        const { error } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: hashParams.get('refresh_token') || '',
+        })
+
+        if (error) {
+          setError('Invalid or expired reset link. Please request a new password reset.')
+        } else {
+          setIsValidSession(true)
+        }
       } else {
-        setError('Invalid or expired reset link. Please request a new password reset.')
+        // Check if there's already a session (user refreshed page)
+        const { data: { session } } = await supabase.auth.getSession()
+        if (session) {
+          setIsValidSession(true)
+        } else {
+          setError('Invalid or expired reset link. Please request a new password reset.')
+        }
       }
     }
-    checkSession()
+    handlePasswordReset()
   }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
