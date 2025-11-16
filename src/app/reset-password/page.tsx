@@ -23,32 +23,41 @@ export default function ResetPasswordPage() {
 
   useEffect(() => {
     // Check if user came from a valid reset link
-    // Supabase will automatically detect and set the session from the URL
-    const checkSession = async () => {
-      // Wait a bit for Supabase to process the URL hash
-      await new Promise(resolve => setTimeout(resolve, 100))
+    const handleRecoveryToken = async () => {
+      // Check if there's a recovery token in the URL hash
+      const hashParams = new URLSearchParams(window.location.hash.substring(1))
+      const type = hashParams.get('type')
 
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+      if (type === 'recovery') {
+        // This is a password recovery link - verify the OTP token
+        console.log('Recovery link detected, verifying token...')
 
-      if (sessionError) {
-        console.error('Session error:', sessionError)
-        setError('Invalid or expired reset link. Please request a new password reset.')
-        return
-      }
+        const { error: verifyError } = await supabase.auth.verifyOtp({
+          token_hash: window.location.hash.substring(1), // Pass the entire hash string
+          type: 'recovery'
+        })
 
-      if (session) {
-        // Valid session from reset link
-        setIsValidSession(true)
-        // Clear the hash from URL for security
-        if (window.location.hash) {
+        if (verifyError) {
+          console.error('Token verification error:', verifyError)
+          setError('Invalid or expired reset link. Please request a new password reset.')
+        } else {
+          console.log('Token verified successfully')
+          setIsValidSession(true)
+          // Clear the hash from URL for security
           window.history.replaceState(null, '', window.location.pathname)
         }
       } else {
-        // No session - invalid or expired link
-        setError('Invalid or expired reset link. Please request a new password reset.')
+        // No recovery token - check if there's already a session (page refresh after verification)
+        const { data: { session } } = await supabase.auth.getSession()
+        if (session) {
+          console.log('Existing session found')
+          setIsValidSession(true)
+        } else {
+          setError('Invalid or expired reset link. Please request a new password reset.')
+        }
       }
     }
-    checkSession()
+    handleRecoveryToken()
   }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
