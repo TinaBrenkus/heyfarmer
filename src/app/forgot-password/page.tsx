@@ -19,7 +19,8 @@ export default function ForgotPasswordPage() {
 
     try {
       // Construct the full redirect URL
-      const redirectUrl = `${window.location.origin}/reset-password`
+      // Use non-www version to match Supabase configuration
+      const redirectUrl = `https://heyfarmer.farm/reset-password`
       console.log('Sending password reset to:', email, 'with redirect:', redirectUrl)
 
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
