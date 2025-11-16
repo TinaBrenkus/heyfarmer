@@ -22,36 +22,33 @@ export default function ResetPasswordPage() {
   })
 
   useEffect(() => {
-    // Exchange the token from URL for a session
-    const handlePasswordReset = async () => {
-      // First check if there's a hash in the URL (token from email)
-      const hashParams = new URLSearchParams(window.location.hash.substring(1))
-      const accessToken = hashParams.get('access_token')
-      const type = hashParams.get('type')
+    // Check if user came from a valid reset link
+    // Supabase will automatically detect and set the session from the URL
+    const checkSession = async () => {
+      // Wait a bit for Supabase to process the URL hash
+      await new Promise(resolve => setTimeout(resolve, 100))
 
-      if (accessToken && type === 'recovery') {
-        // We have a valid recovery token, set the session
-        const { error } = await supabase.auth.setSession({
-          access_token: accessToken,
-          refresh_token: hashParams.get('refresh_token') || '',
-        })
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
 
-        if (error) {
-          setError('Invalid or expired reset link. Please request a new password reset.')
-        } else {
-          setIsValidSession(true)
+      if (sessionError) {
+        console.error('Session error:', sessionError)
+        setError('Invalid or expired reset link. Please request a new password reset.')
+        return
+      }
+
+      if (session) {
+        // Valid session from reset link
+        setIsValidSession(true)
+        // Clear the hash from URL for security
+        if (window.location.hash) {
+          window.history.replaceState(null, '', window.location.pathname)
         }
       } else {
-        // Check if there's already a session (user refreshed page)
-        const { data: { session } } = await supabase.auth.getSession()
-        if (session) {
-          setIsValidSession(true)
-        } else {
-          setError('Invalid or expired reset link. Please request a new password reset.')
-        }
+        // No session - invalid or expired link
+        setError('Invalid or expired reset link. Please request a new password reset.')
       }
     }
-    handlePasswordReset()
+    checkSession()
   }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
