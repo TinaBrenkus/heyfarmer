@@ -389,9 +389,11 @@ export default function MarketplacePage() {
         {/* Results Header */}
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Available This Week in Wise County
+            {searchQuery ? `Results for "${searchQuery}"` : 'Fresh From North Texas Farmers'}
           </h2>
-          <p className="text-gray-600">{listings.length} listings found • Showing fresh, local options</p>
+          <p className="text-gray-600">
+            {filteredListings.length} {filteredListings.length === 1 ? 'listing' : 'listings'} found
+          </p>
         </div>
 
         {/* Listings Grid */}
