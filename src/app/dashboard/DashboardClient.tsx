@@ -428,33 +428,6 @@ ${profile?.full_name}`
             </div>
           </div>
 
-          {/* Near You Card */}
-          <div className="bg-white rounded-lg shadow-sm p-4">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                <span className="text-xl">📍</span>
-                Near You
-              </h3>
-              <button className="text-sm text-green-600 font-medium">See More →</button>
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
-                <div className="text-lg flex-shrink-0">🏡</div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900">Sarah: excess basil</p>
-                  <p className="text-xs text-gray-600">2 hrs ago • 3.2 miles</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
-                <div className="text-lg flex-shrink-0">🚜</div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900">Mike: tractor rental</p>
-                  <p className="text-xs text-gray-600">5 hrs ago • 7.8 miles</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Quick Post Button */}
           <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg shadow-sm p-4 text-center">
             <button 
@@ -565,51 +538,6 @@ ${profile?.full_name}`
                 </div>
               </div>
             )}
-          </div>
-
-          {/* Near You Section */}
-          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <span className="text-xl">📍</span>
-              Near You (10 miles)
-            </h3>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer">
-                <div className="text-xl">🏡</div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900">Sarah has excess basil</p>
-                  <p className="text-xs text-gray-600">Fresh organic basil, perfect for cooking • 2 hrs ago</p>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Backyard Grower</span>
-                    <span className="text-xs text-gray-500">3.2 miles away</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer">
-                <div className="text-xl">🚜</div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900">Mike's tractor available for rent</p>
-                  <p className="text-xs text-gray-600">John Deere compact tractor with implements • 5 hrs ago</p>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Production Farmer</span>
-                    <span className="text-xs text-gray-500">7.8 miles away</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer">
-                <div className="text-xl">🌱</div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900">Lisa asking about pest control</p>
-                  <p className="text-xs text-gray-600">Natural solutions for aphids on leafy greens • 1 day ago</p>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">Market Gardener</span>
-                    <span className="text-xs text-gray-500">4.1 miles away</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Help & Support Section */}

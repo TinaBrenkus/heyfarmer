@@ -52,7 +52,6 @@ const navItems: NavItem[] = [
 const mobileTabItems: NavItem[] = [
   { label: 'Home', href: '/dashboard', icon: Home },
   { label: 'Market', href: '/marketplace', icon: ShoppingCart },
-  { label: 'Farmers', href: '/farmers', icon: UserCheck },
   { label: 'Messages', href: '/messages', icon: MessageCircle },
   { label: 'Network', href: '/network', icon: Users, farmerOnly: true }
 ]
@@ -60,10 +59,8 @@ const mobileTabItems: NavItem[] = [
 const fullNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/dashboard', icon: Home },
   { label: 'Marketplace', href: '/marketplace', icon: ShoppingCart },
-  { label: 'Farmers', href: '/farmers', icon: UserCheck },
   { label: 'Messages', href: '/messages', icon: MessageCircle },
-  { label: 'Farmer Network', href: '/network', icon: Users, farmerOnly: true },
-  { label: 'My Posts', href: '/post', icon: FileText, farmerOnly: true }
+  { label: 'Network', href: '/network', icon: Users, farmerOnly: true }
 ]
 
 export default function Navigation() {
