@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { 
   Search, 
   Plus, 
@@ -37,9 +37,13 @@ interface Discussion {
 
 export default function FarmerNetworkPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
+
+  // Demo mode for showing placeholder content to potential partners
+  const isDemoMode = searchParams.get('demo') === 'true'
 
   useEffect(() => {
     checkAuth()
@@ -69,13 +73,13 @@ export default function FarmerNetworkPage() {
   }
 
   const categories = [
-    { id: 'all', name: 'All Discussions', icon: '💬', count: 47 },
-    { id: 'growing-tips', name: 'Growing Tips', icon: '🌱', count: 12 },
-    { id: 'equipment', name: 'Equipment', icon: '🔧', count: 8 },
-    { id: 'pest-control', name: 'Pest Control', icon: '🐛', count: 6 },
-    { id: 'marketing', name: 'Marketing', icon: '💰', count: 9 },
-    { id: 'weather', name: 'Weather', icon: '🌦️', count: 5 },
-    { id: 'resource-sharing', name: 'Resource Sharing', icon: '🤝', count: 7 }
+    { id: 'all', name: 'All Discussions', icon: '💬', count: isDemoMode ? 47 : 0 },
+    { id: 'growing-tips', name: 'Growing Tips', icon: '🌱', count: isDemoMode ? 12 : 0 },
+    { id: 'equipment', name: 'Equipment', icon: '🔧', count: isDemoMode ? 8 : 0 },
+    { id: 'pest-control', name: 'Pest Control', icon: '🐛', count: isDemoMode ? 6 : 0 },
+    { id: 'marketing', name: 'Marketing', icon: '💰', count: isDemoMode ? 9 : 0 },
+    { id: 'weather', name: 'Weather', icon: '🌦️', count: isDemoMode ? 5 : 0 },
+    { id: 'resource-sharing', name: 'Resource Sharing', icon: '🤝', count: isDemoMode ? 7 : 0 }
   ]
 
   const hotTopics = [
@@ -249,15 +253,17 @@ export default function FarmerNetworkPage() {
 
           {/* Main Content */}
           <div className="lg:col-span-3">
-            {/* Hot Topics */}
-            <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-              <div className="flex items-center gap-2 mb-4">
-                <TrendingUp className="h-5 w-5 text-orange-500" />
-                <h2 className="text-lg font-semibold text-gray-900">Hot Topics</h2>
-                <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">Trending</span>
-              </div>
-              <div className="space-y-3">
-                {hotTopics.map((discussion) => (
+            {isDemoMode ? (
+              <>
+                {/* Hot Topics - Demo Mode Only */}
+                <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <TrendingUp className="h-5 w-5 text-orange-500" />
+                    <h2 className="text-lg font-semibold text-gray-900">Hot Topics</h2>
+                    <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">Trending</span>
+                  </div>
+                  <div className="space-y-3">
+                    {hotTopics.map((discussion) => (
                   <div
                     key={discussion.id}
                     className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
@@ -290,12 +296,12 @@ export default function FarmerNetworkPage() {
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                    ))}
+                  </div>
+                </div>
 
-            {/* Recent Discussions */}
-            <div className="bg-white rounded-lg shadow-sm">
+                {/* Recent Discussions - Demo Mode Only */}
+                <div className="bg-white rounded-lg shadow-sm">
               <div className="flex items-center justify-between p-6 border-b border-gray-100">
                 <div className="flex items-center gap-2">
                   <Clock className="h-5 w-5 text-gray-500" />
@@ -357,13 +363,33 @@ export default function FarmerNetworkPage() {
                 ))}
               </div>
 
-              {/* Load More */}
-              <div className="p-6 border-t border-gray-100 text-center">
-                <button className="text-green-600 hover:text-green-700 font-medium text-sm">
-                  Load More Discussions
+                  {/* Load More */}
+                  <div className="p-6 border-t border-gray-100 text-center">
+                    <button className="text-green-600 hover:text-green-700 font-medium text-sm">
+                      Load More Discussions
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              /* Empty State - Live Mode */
+              <div className="bg-white rounded-lg shadow-sm p-12 text-center">
+                <div className="text-6xl mb-4">💬</div>
+                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                  Start the Conversation
+                </h2>
+                <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                  Be the first to create a discussion! Share tips, ask questions, or connect with fellow farmers in the network.
+                </p>
+                <button
+                  onClick={() => router.push('/network/new-discussion')}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                >
+                  <Plus size={20} />
+                  Create First Discussion
                 </button>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </main>
