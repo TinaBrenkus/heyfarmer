@@ -389,7 +389,7 @@ export default function MarketplacePage() {
         {/* Results Header */}
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            {searchQuery ? `Results for "${searchQuery}"` : 'Fresh From North Texas Farmers'}
+            {searchQuery ? `Results for "${searchQuery}"` : 'Local Marketplace'}
           </h2>
           <p className="text-gray-600">
             {filteredListings.length} {filteredListings.length === 1 ? 'listing' : 'listings'} found

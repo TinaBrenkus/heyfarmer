@@ -32,6 +32,7 @@ export default function DashboardClient() {
   const [showTour, setShowTour] = useState(false)
   const [showStepTour, setShowStepTour] = useState(false)
   const [unreadMessages, setUnreadMessages] = useState(0)
+  const [activeListings, setActiveListings] = useState(0)
 
   useEffect(() => {
     checkUser()
@@ -40,6 +41,7 @@ export default function DashboardClient() {
   useEffect(() => {
     if (profile) {
       loadUnreadMessages()
+      loadActiveListings()
     }
   }, [profile])
   
@@ -189,6 +191,28 @@ export default function DashboardClient() {
     } catch (error) {
       console.error('Error loading unread messages:', error)
       setUnreadMessages(0)
+    }
+  }
+
+  const loadActiveListings = async () => {
+    if (!profile) return
+
+    try {
+      const { count, error } = await supabase
+        .from('posts')
+        .select('*', { count: 'exact', head: true })
+        .eq('author_id', profile.id)
+
+      if (error) {
+        console.error('Error loading active listings:', error)
+        setActiveListings(0)
+        return
+      }
+
+      setActiveListings(count || 0)
+    } catch (error) {
+      console.error('Error loading active listings:', error)
+      setActiveListings(0)
     }
   }
 
@@ -451,7 +475,7 @@ ${profile?.full_name}`
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 rounded-lg bg-green-50 border border-green-200">
                 <div className="text-2xl font-bold text-green-600 mb-1">
-                  {isFarmer ? '0' : '-'}
+                  {isFarmer ? activeListings : '-'}
                 </div>
                 <div className="text-sm text-gray-600">Active Listings</div>
                 <p className="text-xs text-gray-500 mt-1">
