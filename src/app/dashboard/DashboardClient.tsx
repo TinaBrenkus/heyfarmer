@@ -198,10 +198,10 @@ export default function DashboardClient() {
     if (!profile) return
 
     try {
-      const { count, error } = await supabase
+      const { data, error } = await supabase
         .from('posts')
-        .select('id', { count: 'exact', head: true })
-        .eq('author_id', profile.id)
+        .select('id')
+        .eq('user_id', profile.id)
 
       if (error) {
         console.error('Error loading active listings:', error)
@@ -209,7 +209,7 @@ export default function DashboardClient() {
         return
       }
 
-      setActiveListings(count || 0)
+      setActiveListings(data?.length || 0)
     } catch (error) {
       console.error('Error loading active listings:', error)
       setActiveListings(0)
