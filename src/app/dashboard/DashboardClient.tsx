@@ -200,7 +200,7 @@ export default function DashboardClient() {
     try {
       const { count, error } = await supabase
         .from('posts')
-        .select('*', { count: 'exact', head: true })
+        .select('id', { count: 'exact', head: true })
         .eq('author_id', profile.id)
 
       if (error) {
