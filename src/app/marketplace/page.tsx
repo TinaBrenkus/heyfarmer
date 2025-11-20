@@ -404,10 +404,11 @@ export default function MarketplacePage() {
             </div>
           </div>
         ) : (
-          <ListingsGrid 
+          <ListingsGrid
             listings={filteredListings}
             onContact={handleContact}
             onSave={handleSave}
+            currentUserId={user?.id}
           />
         )}
       </main>

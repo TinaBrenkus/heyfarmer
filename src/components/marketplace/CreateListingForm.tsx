@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { Calendar, Package, DollarSign, MapPin, Truck, Camera, Tag } from 'lucide-react'
+import { Calendar, Package, DollarSign, MapPin, Truck, Camera, Tag, Plus, X } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
-import { db, PostType, PostVisibility, TexasTriangleCounty } from '@/lib/database'
+import { db, PostType, PostVisibility, TexasTriangleCounty, Product } from '@/lib/database'
+import MultiImageUpload from '@/components/common/MultiImageUpload'
 
 interface CreateListingFormProps {
+  existingListing?: any
   onSuccess?: (listing: any) => void
   onCancel?: () => void
 }
@@ -41,32 +43,41 @@ const equipmentCategories = [
   'Tractors', 'Tools', 'Irrigation', 'Planting Equipment', 'Harvesting Equipment', 'Storage', 'Greenhouse Supplies', 'Other'
 ]
 
-export default function CreateListingForm({ onSuccess, onCancel }: CreateListingFormProps) {
+export default function CreateListingForm({ existingListing, onSuccess, onCancel }: CreateListingFormProps) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  
+  const isEditMode = !!existingListing
+
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    post_type: 'produce' as PostType,
-    visibility: 'public' as PostVisibility,
-    county: 'dallas' as TexasTriangleCounty,
-    city: '',
-    price: '',
-    unit: '',
-    quantity_available: '',
-    available_from: '',
-    available_until: '',
-    category: '',
-    tags: '',
-    pickup_available: true,
-    delivery_available: false,
-    delivery_radius_miles: '',
-    condition: '',
-    brand: '',
-    model: '',
-    year: ''
+    title: existingListing?.title || '',
+    description: existingListing?.description || '',
+    post_type: (existingListing?.post_type || 'produce') as PostType,
+    visibility: (existingListing?.visibility || 'public') as PostVisibility,
+    county: (existingListing?.county || 'dallas') as TexasTriangleCounty,
+    city: existingListing?.city || '',
+    price: existingListing?.price?.toString() || '',
+    unit: existingListing?.unit || '',
+    quantity_available: existingListing?.quantity_available?.toString() || '',
+    available_from: existingListing?.available_from || '',
+    available_until: existingListing?.available_until || '',
+    category: existingListing?.category || '',
+    tags: existingListing?.tags?.join(', ') || '',
+    pickup_available: existingListing?.pickup_available ?? true,
+    delivery_available: existingListing?.delivery_available ?? false,
+    delivery_radius_miles: existingListing?.delivery_radius_miles?.toString() || '',
+    condition: existingListing?.condition || '',
+    brand: existingListing?.brand || '',
+    model: existingListing?.model || '',
+    year: existingListing?.year?.toString() || ''
   })
+
+  const [isMultiProduct, setIsMultiProduct] = useState(
+    existingListing?.products && existingListing.products.length > 0
+  )
+  const [products, setProducts] = useState<Product[]>(
+    existingListing?.products || [{ name: '', price: undefined, unit: '', quantity_available: undefined }]
+  )
+  const [images, setImages] = useState<string[]>(existingListing?.images || [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
@@ -76,6 +87,27 @@ export default function CreateListingForm({ onSuccess, onCancel }: CreateListing
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }))
+  }
+
+  const addProduct = () => {
+    setProducts([...products, { name: '', price: undefined, unit: '', quantity_available: undefined }])
+  }
+
+  const removeProduct = (index: number) => {
+    if (products.length > 1) {
+      setProducts(products.filter((_, i) => i !== index))
+    }
+  }
+
+  const updateProduct = (index: number, field: keyof Product, value: any) => {
+    const updatedProducts = [...products]
+    updatedProducts[index] = {
+      ...updatedProducts[index],
+      [field]: field === 'price' || field === 'quantity_available'
+        ? (value === '' ? undefined : parseFloat(value))
+        : value
+    }
+    setProducts(updatedProducts)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -100,9 +132,12 @@ export default function CreateListingForm({ onSuccess, onCancel }: CreateListing
         status: 'active' as const,
         county: formData.county,
         city: formData.city || undefined,
-        price: formData.price ? parseFloat(formData.price) : undefined,
-        unit: formData.unit || undefined,
-        quantity_available: formData.quantity_available ? parseInt(formData.quantity_available) : undefined,
+        price: !isMultiProduct && formData.price ? parseFloat(formData.price) : undefined,
+        unit: !isMultiProduct ? (formData.unit || undefined) : undefined,
+        quantity_available: !isMultiProduct && formData.quantity_available ? parseInt(formData.quantity_available) : undefined,
+        products: isMultiProduct ? products.filter(p => p.name.trim() !== '') : undefined,
+        images: images.length > 0 ? images : undefined,
+        thumbnail_url: images.length > 0 ? images[0] : undefined,
         available_from: formData.available_from || undefined,
         available_until: formData.available_until || undefined,
         category: formData.category || undefined,
@@ -116,36 +151,54 @@ export default function CreateListingForm({ onSuccess, onCancel }: CreateListing
         year: formData.year ? parseInt(formData.year) : undefined
       }
 
-      const newListing = await db.posts.create(postData)
-      onSuccess?.(newListing)
-      
-      // Reset form
-      setFormData({
-        title: '',
-        description: '',
-        post_type: 'produce',
-        visibility: 'public',
-        county: 'dallas',
-        city: '',
-        price: '',
-        unit: '',
-        quantity_available: '',
-        available_from: '',
-        available_until: '',
-        category: '',
-        tags: '',
-        pickup_available: true,
-        delivery_available: false,
-        delivery_radius_miles: '',
-        condition: '',
-        brand: '',
-        model: '',
-        year: ''
-      })
+      let listing
+      if (isEditMode) {
+        // Update existing listing
+        const { data, error: updateError } = await supabase
+          .from('posts')
+          .update(postData)
+          .eq('id', existingListing.id)
+          .select()
+          .single()
+
+        if (updateError) throw updateError
+        listing = data
+      } else {
+        // Create new listing
+        listing = await db.posts.create(postData)
+      }
+
+      onSuccess?.(listing)
+
+      // Reset form (only for create mode)
+      if (!isEditMode) {
+        setFormData({
+          title: '',
+          description: '',
+          post_type: 'produce',
+          visibility: 'public',
+          county: 'dallas',
+          city: '',
+          price: '',
+          unit: '',
+          quantity_available: '',
+          available_from: '',
+          available_until: '',
+          category: '',
+          tags: '',
+          pickup_available: true,
+          delivery_available: false,
+          delivery_radius_miles: '',
+          condition: '',
+          brand: '',
+          model: '',
+          year: ''
+        })
+      }
 
     } catch (err: any) {
-      console.error('Error creating listing:', err)
-      setError(err.message || 'Failed to create listing')
+      console.error(isEditMode ? 'Error updating listing:' : 'Error creating listing:', err)
+      setError(err.message || (isEditMode ? 'Failed to update listing' : 'Failed to create listing'))
     } finally {
       setLoading(false)
     }
@@ -157,7 +210,7 @@ export default function CreateListingForm({ onSuccess, onCancel }: CreateListing
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Create New Listing</h2>
+        <h2 className="text-2xl font-bold text-gray-900">{isEditMode ? 'Edit Listing' : 'Create New Listing'}</h2>
         {onCancel && (
           <button
             onClick={onCancel}
@@ -243,8 +296,141 @@ export default function CreateListingForm({ onSuccess, onCancel }: CreateListing
           />
         </div>
 
-        {/* Price and Quantity */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Image Upload */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Listing Images (up to 5)
+          </label>
+          <MultiImageUpload
+            currentImages={images}
+            onImagesUpdated={setImages}
+            bucket="listing-images"
+            maxImages={5}
+            maxSizeMB={5}
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            Upload photos of your products, farm, or growing areas. The first image will be the main photo.
+          </p>
+        </div>
+
+        {/* Multi-Product Toggle */}
+        {formData.post_type === 'produce' && (
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                checked={isMultiProduct}
+                onChange={(e) => {
+                  setIsMultiProduct(e.target.checked)
+                  if (e.target.checked && products.length === 0) {
+                    setProducts([{ name: '', price: undefined, unit: '', quantity_available: undefined }])
+                  }
+                }}
+                className="rounded border-gray-300 text-green-600 focus:ring-green-500 mr-3"
+              />
+              <div>
+                <span className="font-medium text-gray-900">Multiple Products</span>
+                <p className="text-sm text-gray-600 mt-1">
+                  List multiple items in one listing (e.g., tomatoes, kale, and flowers)
+                </p>
+              </div>
+            </label>
+          </div>
+        )}
+
+        {/* Multi-Product List */}
+        {isMultiProduct ? (
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-medium text-gray-900">Products</h3>
+              <button
+                type="button"
+                onClick={addProduct}
+                className="flex items-center gap-2 px-3 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                <Plus size={16} />
+                Add Product
+              </button>
+            </div>
+
+            {products.map((product, index) => (
+              <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="flex items-start justify-between mb-3">
+                  <h4 className="text-sm font-medium text-gray-700">Product {index + 1}</h4>
+                  {products.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => removeProduct(index)}
+                      className="text-red-600 hover:text-red-700"
+                    >
+                      <X size={18} />
+                    </button>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Product Name *
+                    </label>
+                    <input
+                      type="text"
+                      required={isMultiProduct}
+                      value={product.name}
+                      onChange={(e) => updateProduct(index, 'name', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      placeholder="e.g., Tomatoes, Kale, etc."
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Price ($)
+                    </label>
+                    <input
+                      type="number"
+                      step="0.01"
+                      min="0"
+                      value={product.price ?? ''}
+                      onChange={(e) => updateProduct(index, 'price', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      placeholder="0.00"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Unit
+                    </label>
+                    <input
+                      type="text"
+                      value={product.unit ?? ''}
+                      onChange={(e) => updateProduct(index, 'unit', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      placeholder="lb, bunch"
+                    />
+                  </div>
+
+                  <div className="md:col-span-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Quantity Available
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      value={product.quantity_available ?? ''}
+                      onChange={(e) => updateProduct(index, 'quantity_available', e.target.value)}
+                      className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      placeholder="100"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          /* Single Product - Price and Quantity */
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
               Price ($)
@@ -293,6 +479,7 @@ export default function CreateListingForm({ onSuccess, onCancel }: CreateListing
             />
           </div>
         </div>
+        )}
 
         {/* Equipment specific fields */}
         {isEquipment && (
@@ -516,7 +703,7 @@ export default function CreateListingForm({ onSuccess, onCancel }: CreateListing
             className="flex-1 py-3 px-4 rounded-lg font-medium text-white transition-colors disabled:opacity-50"
             style={{ backgroundColor: loading ? '#94a3b8' : '#2E7D32' }}
           >
-            {loading ? 'Creating...' : 'Create Listing'}
+            {loading ? (isEditMode ? 'Updating...' : 'Creating...') : (isEditMode ? 'Update Listing' : 'Create Listing')}
           </button>
           
           {onCancel && (

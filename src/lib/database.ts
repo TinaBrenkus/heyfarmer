@@ -46,6 +46,13 @@ export interface Profile {
   review_count?: number
 }
 
+export interface Product {
+  name: string
+  price?: number
+  unit?: string
+  quantity_available?: number
+}
+
 export interface Post {
   id: string
   created_at: string
@@ -61,6 +68,7 @@ export interface Post {
   price?: number
   unit?: string
   quantity_available?: number
+  products?: Product[]
   available_from?: string
   available_until?: string
   condition?: string

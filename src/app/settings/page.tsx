@@ -15,6 +15,8 @@ import {
 } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
 import FarmerBadge from '@/components/badges/FarmerBadge'
+import ImageUpload from '@/components/common/ImageUpload'
+import MultiImageUpload from '@/components/common/MultiImageUpload'
 import { supabase } from '@/lib/supabase'
 import { UserType, TexasTriangleCounty } from '@/lib/database'
 
@@ -31,6 +33,7 @@ interface ProfileData {
   grow_tags: string[]
   profile_photo?: File | null
   avatar_url?: string
+  farm_images?: string[]
   contact_preferences: {
     platform_messages: boolean
     show_phone: boolean
@@ -60,6 +63,7 @@ export default function ProfileSettingsPage() {
     user_type: 'backyard_grower',
     grow_tags: [],
     profile_photo: null,
+    farm_images: [],
     contact_preferences: {
       platform_messages: true,
       show_phone: false,
@@ -108,6 +112,7 @@ export default function ProfileSettingsPage() {
         user_type: profile.user_type || 'backyard_grower',
         grow_tags: profile.grow_tags || [],
         avatar_url: profile.avatar_url,
+        farm_images: profile.farm_images || [],
         contact_preferences: {
           platform_messages: profile.platform_messages ?? true,
           show_phone: profile.show_phone ?? false,
@@ -211,14 +216,6 @@ export default function ProfileSettingsPage() {
     setErrors({ submit: '' })
 
     try {
-      // Upload photo if there's a new one
-      let avatarUrl = profileData.avatar_url
-      if (profileData.profile_photo) {
-        // Here you would upload the photo to Supabase storage
-        console.log('Would upload photo:', profileData.profile_photo)
-        // avatarUrl = await uploadPhoto(profileData.profile_photo)
-      }
-
       // Prepare profile data for database
       const updateData = {
         full_name: profileData.full_name,
@@ -231,7 +228,8 @@ export default function ProfileSettingsPage() {
         email: profileData.email,
         user_type: profileData.user_type,
         grow_tags: profileData.grow_tags,
-        avatar_url: avatarUrl,
+        avatar_url: profileData.avatar_url || null,
+        farm_images: profileData.farm_images || [],
         platform_messages: profileData.contact_preferences.platform_messages,
         show_phone: profileData.contact_preferences.show_phone,
         show_email: profileData.contact_preferences.show_email,
@@ -246,16 +244,6 @@ export default function ProfileSettingsPage() {
       
       // Simulate save delay
       await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      // Clear the uploaded photo from state since it's now saved
-      if (profileData.profile_photo) {
-        setProfileData(prev => ({ 
-          ...prev, 
-          profile_photo: null, 
-          avatar_url: avatarUrl 
-        }))
-        setPhotoPreview('')
-      }
       
       // Success feedback
       alert('Profile updated successfully! ✅')
@@ -325,52 +313,34 @@ export default function ProfileSettingsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-3">
                 📷 Profile Photo
               </label>
-              <div className="flex items-center gap-4">
-                <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border-2 border-gray-200">
-                  {photoPreview ? (
-                    <img
-                      src={photoPreview}
-                      alt="Profile preview"
-                      className="w-full h-full object-cover"
-                    />
-                  ) : profileData.avatar_url ? (
-                    <img
-                      src={profileData.avatar_url}
-                      alt="Profile"
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <Camera className="h-8 w-8 text-gray-400" />
-                  )}
-                </div>
-                <div className="flex gap-2">
-                  <label className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handlePhotoUpload}
-                      className="hidden"
-                    />
-                    {photoPreview || profileData.avatar_url ? 'Change Photo' : 'Upload Photo'}
-                  </label>
-                  {(photoPreview || profileData.avatar_url) && (
-                    <button
-                      onClick={removePhoto}
-                      className="px-4 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 transition-colors"
-                    >
-                      Remove
-                    </button>
-                  )}
-                </div>
+              <div className="max-w-md">
+                <ImageUpload
+                  currentImage={profileData.avatar_url}
+                  onImageUploaded={(url) => setProfileData(prev => ({ ...prev, avatar_url: url }))}
+                  bucket="profile-images"
+                  maxSizeMB={5}
+                  aspectRatio="1/1"
+                />
               </div>
-              {errors.photo && (
-                <div className="flex items-center gap-2 mt-2 text-red-600 text-sm">
-                  <AlertCircle size={16} />
-                  <span>{errors.photo}</span>
-                </div>
-              )}
               <p className="text-xs text-gray-500 mt-2">
-                Recommended: Square image, at least 200x200px, max 5MB
+                This photo will appear on your profile and listings. Recommended: Square image, at least 400x400 pixels.
+              </p>
+            </div>
+
+            {/* Farm Gallery */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-3">
+                🏡 Farm Gallery (up to 5 photos)
+              </label>
+              <MultiImageUpload
+                currentImages={profileData.farm_images || []}
+                onImagesUpdated={(urls) => setProfileData(prev => ({ ...prev, farm_images: urls }))}
+                bucket="profile-images"
+                maxImages={5}
+                maxSizeMB={5}
+              />
+              <p className="text-xs text-gray-500 mt-2">
+                Showcase your farm, barn, garden, homestead, or growing areas. These photos will appear on your public profile.
               </p>
             </div>
 

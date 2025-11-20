@@ -33,6 +33,7 @@ export default function DashboardClient() {
   const [showStepTour, setShowStepTour] = useState(false)
   const [unreadMessages, setUnreadMessages] = useState(0)
   const [activeListings, setActiveListings] = useState(0)
+  const [listings, setListings] = useState<any[]>([])
 
   useEffect(() => {
     checkUser()
@@ -42,6 +43,7 @@ export default function DashboardClient() {
     if (profile) {
       loadUnreadMessages()
       loadActiveListings()
+      loadUserListings()
     }
   }, [profile])
   
@@ -213,6 +215,31 @@ export default function DashboardClient() {
     } catch (error) {
       console.error('Error loading active listings:', error)
       setActiveListings(0)
+    }
+  }
+
+  const loadUserListings = async () => {
+    if (!profile) return
+
+    try {
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .eq('user_id', profile.id)
+        .eq('status', 'active')
+        .order('created_at', { ascending: false })
+        .limit(10)
+
+      if (error) {
+        console.error('Error loading user listings:', error)
+        setListings([])
+        return
+      }
+
+      setListings(data || [])
+    } catch (error) {
+      console.error('Error loading user listings:', error)
+      setListings([])
     }
   }
 
@@ -496,6 +523,91 @@ ${profile?.full_name}`
               </div>
             )}
           </div>
+
+          {/* My Listings Section */}
+          {isFarmer && (
+            <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                  <ShoppingCart className="h-5 w-5 text-green-600" />
+                  My Listings
+                </h3>
+                <button
+                  onClick={() => router.push('/sell')}
+                  className="text-sm text-green-600 hover:text-green-700 font-medium flex items-center gap-1"
+                >
+                  <Plus className="h-4 w-4" />
+                  New Listing
+                </button>
+              </div>
+
+              {listings.length === 0 ? (
+                <div className="text-center py-8 text-gray-500">
+                  <ShoppingCart className="h-12 w-12 mx-auto mb-3 text-gray-300" />
+                  <p className="text-sm mb-2">No active listings yet</p>
+                  <button
+                    onClick={() => router.push('/sell')}
+                    className="text-green-600 hover:text-green-700 text-sm font-medium"
+                  >
+                    Create your first listing →
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {listings.map((listing) => (
+                    <div key={listing.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-gray-900 mb-1">{listing.title}</h4>
+                          <p className="text-sm text-gray-600 mb-2 line-clamp-1">{listing.description}</p>
+                          <div className="flex items-center gap-4 text-xs text-gray-500">
+                            {listing.price && (
+                              <span className="font-semibold text-green-600">
+                                ${listing.price}{listing.unit ? `/${listing.unit}` : ''}
+                              </span>
+                            )}
+                            {listing.products && listing.products.length > 0 && (
+                              <span className="text-blue-600 font-medium">
+                                {listing.products.length} products
+                              </span>
+                            )}
+                            {listing.quantity_available && !listing.products && (
+                              <span>{listing.quantity_available} available</span>
+                            )}
+                            <span>•</span>
+                            <span>{new Date(listing.created_at).toLocaleDateString()}</span>
+                          </div>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <button
+                            onClick={() => router.push(`/sell/${listing.id}`)}
+                            className="px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-1"
+                          >
+                            <Tractor className="h-4 w-4" />
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => router.push(`/listing/${listing.id}`)}
+                            className="px-3 py-1.5 text-sm border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                          >
+                            View
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  {listings.length > 0 && (
+                    <button
+                      onClick={() => router.push('/marketplace')}
+                      className="w-full text-center text-sm text-gray-600 hover:text-gray-900 py-2"
+                    >
+                      View all in marketplace →
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Help & Support Section */}
           <div className="bg-white rounded-lg shadow-sm p-6 mb-6">

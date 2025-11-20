@@ -20,13 +20,15 @@ interface ListingsGridProps {
   loading?: boolean
   onContact?: (listing: Post) => void
   onSave?: (listing: Post) => void
+  currentUserId?: string
 }
 
 export default function ListingsGrid({
   listings,
   loading = false,
   onContact,
-  onSave
+  onSave,
+  currentUserId
 }: ListingsGridProps) {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
 
@@ -91,6 +93,7 @@ export default function ListingsGrid({
               listing={listing}
               onContact={() => onContact?.(listing)}
               onSave={() => onSave?.(listing)}
+              currentUserId={currentUserId}
             />
           ))}
         </div>

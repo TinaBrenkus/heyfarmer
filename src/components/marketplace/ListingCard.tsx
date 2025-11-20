@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Heart, MapPin, User, Calendar, Package, DollarSign, Truck, MessageCircle } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Heart, MapPin, User, Calendar, Package, DollarSign, Truck, MessageCircle, Edit } from 'lucide-react'
 import { Post, UserType } from '@/lib/database'
 import FarmLogo from '@/components/icons/FarmLogo'
 import FarmerBadge from '@/components/badges/FarmerBadge'
+import Linkify from '@/components/common/Linkify'
 
 interface ListingCardProps {
   listing: Post & {
@@ -23,20 +25,25 @@ interface ListingCardProps {
   onSave?: () => void
   onContact?: () => void
   showActions?: boolean
+  currentUserId?: string
 }
 
-export default function ListingCard({ 
-  listing, 
-  onSave, 
-  onContact, 
-  showActions = true 
+export default function ListingCard({
+  listing,
+  onSave,
+  onContact,
+  showActions = true,
+  currentUserId
 }: ListingCardProps) {
+  const router = useRouter()
   const [isSaved, setIsSaved] = useState(false)
-  
+
   const handleSave = () => {
     setIsSaved(!isSaved)
     onSave?.()
   }
+
+  const isOwnListing = currentUserId && listing.user_id === currentUserId
 
   const formatPrice = (price?: number, unit?: string) => {
     if (!price) return 'Price on request'
@@ -69,7 +76,10 @@ export default function ListingCard({
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
       {/* Image placeholder */}
-      <div className="h-48 bg-gray-100 relative">
+      <div
+        className="h-48 bg-gray-100 relative cursor-pointer"
+        onClick={() => router.push(`/listing/${listing.id}`)}
+      >
         {listing.thumbnail_url ? (
           <img 
             src={listing.thumbnail_url} 
@@ -109,22 +119,49 @@ export default function ListingCard({
 
       <div className="p-4">
         {/* Title and Price */}
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="font-semibold text-gray-900 flex-1 mr-2">{listing.title}</h3>
-          <div className="text-right">
-            <p className="font-bold text-lg" style={{ color: getPostTypeColor(listing.post_type) }}>
-              {formatPrice(listing.price, listing.unit)}
-            </p>
-          </div>
+        <div
+          className="flex justify-between items-start mb-2 cursor-pointer"
+          onClick={() => router.push(`/listing/${listing.id}`)}
+        >
+          <h3 className="font-semibold text-gray-900 flex-1 mr-2 hover:text-green-600 transition-colors">{listing.title}</h3>
+          {!listing.products && (
+            <div className="text-right">
+              <p className="font-bold text-lg" style={{ color: getPostTypeColor(listing.post_type) }}>
+                {formatPrice(listing.price, listing.unit)}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Description */}
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-          {listing.description}
-        </p>
+        <div className="text-gray-600 text-sm mb-3 line-clamp-2">
+          <Linkify text={listing.description} />
+        </div>
+
+        {/* Multiple Products List */}
+        {listing.products && listing.products.length > 0 && (
+          <div className="mb-3 space-y-2">
+            <p className="text-xs font-medium text-gray-700 uppercase">Available Products:</p>
+            <div className="space-y-1">
+              {listing.products.slice(0, 3).map((product, index) => (
+                <div key={index} className="flex items-center justify-between text-sm bg-gray-50 rounded px-2 py-1">
+                  <span className="font-medium text-gray-900">{product.name}</span>
+                  {product.price && (
+                    <span className="text-green-600 font-semibold">
+                      ${product.price}{product.unit ? `/${product.unit}` : ''}
+                    </span>
+                  )}
+                </div>
+              ))}
+              {listing.products.length > 3 && (
+                <p className="text-xs text-gray-500 italic">+{listing.products.length - 3} more</p>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Quantity and availability */}
-        {listing.quantity_available && (
+        {!listing.products && listing.quantity_available && (
           <div className="flex items-center gap-1 text-sm text-gray-500 mb-2">
             <Package size={14} />
             <span>{listing.quantity_available} available</span>
@@ -158,9 +195,9 @@ export default function ListingCard({
                   <p className="text-sm font-medium text-gray-900 truncate hover:text-green-600 transition-colors">
                     {listing.profiles.farm_name || listing.profiles.full_name}
                   </p>
-                  <FarmerBadge 
-                    userType={listing.profiles.user_type} 
-                    verified={listing.profiles.verified}
+                  <FarmerBadge
+                    userType={listing.profiles.user_type}
+                    verified={false}
                     size="sm"
                     showLabel={false}
                   />
@@ -215,14 +252,24 @@ export default function ListingCard({
         {/* Actions */}
         {showActions && (
           <div className="flex gap-2">
-            <button
-              onClick={onContact}
-              className="flex-1 py-2 px-3 rounded-lg font-medium text-white transition-colors flex items-center justify-center gap-2"
-              style={{ backgroundColor: getPostTypeColor(listing.post_type) }}
-            >
-              <MessageCircle size={14} />
-              Contact
-            </button>
+            {isOwnListing ? (
+              <button
+                onClick={() => router.push(`/sell/${listing.id}`)}
+                className="flex-1 py-2 px-3 rounded-lg font-medium text-white transition-colors flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700"
+              >
+                <Edit size={14} />
+                Edit Listing
+              </button>
+            ) : (
+              <button
+                onClick={onContact}
+                className="flex-1 py-2 px-3 rounded-lg font-medium text-white transition-colors flex items-center justify-center gap-2"
+                style={{ backgroundColor: getPostTypeColor(listing.post_type) }}
+              >
+                <MessageCircle size={14} />
+                Contact
+              </button>
+            )}
           </div>
         )}
       </div>

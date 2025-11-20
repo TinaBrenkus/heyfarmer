@@ -17,6 +17,7 @@ import {
 import Navigation from '@/components/navigation/Navigation'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import ListingCard from '@/components/marketplace/ListingCard'
+import Linkify from '@/components/common/Linkify'
 import { supabase } from '@/lib/supabase'
 import { UserType, Post } from '@/lib/database'
 
@@ -112,8 +113,7 @@ export default function PublicProfilePage() {
             full_name,
             farm_name,
             avatar_url,
-            user_type,
-            verified
+            user_type
           )
         `)
         .eq('user_id', profileId)
@@ -131,6 +131,7 @@ export default function PublicProfilePage() {
         return
       }
 
+      console.log('Fetched listings for profile:', profileId, 'Count:', data?.length, 'Data:', data)
       setListings(data || [])
     } catch (error) {
       console.error('Error fetching listings:', error)
@@ -371,23 +372,21 @@ export default function PublicProfilePage() {
               </div>
 
               <div className="p-8">
-                {/* About Section */}
-                <div className="mb-8">
-                  <h2 className="text-lg font-semibold text-gray-900 mb-4">About</h2>
-                  <p className="text-gray-700 leading-relaxed">
-                    {profile.bio || 'No bio provided yet.'}
-                  </p>
-                </div>
-
-                {/* What I Grow */}
+                {/* Showcase Section - What I Always Sell */}
                 {profile.grow_tags && profile.grow_tags.length > 0 && (
-                  <div className="mb-8">
-                    <h2 className="text-lg font-semibold text-gray-900 mb-4">What I Grow</h2>
-                    <div className="flex flex-wrap gap-2">
+                  <div className="mb-8 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 border-2 border-green-200">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Package size={24} className="text-green-600" />
+                      <h2 className="text-xl font-bold text-gray-900">What I Grow & Sell</h2>
+                    </div>
+                    <p className="text-gray-600 text-sm mb-4">
+                      These are the products I typically have available throughout the growing season
+                    </p>
+                    <div className="flex flex-wrap gap-3">
                       {profile.grow_tags.map((tag, index) => (
                         <span
                           key={index}
-                          className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium"
+                          className="inline-flex items-center px-4 py-2 bg-white border-2 border-green-300 text-green-800 rounded-lg text-base font-semibold shadow-sm"
                         >
                           {tag}
                         </span>
@@ -396,16 +395,33 @@ export default function PublicProfilePage() {
                   </div>
                 )}
 
-                {/* Featured Products Section */}
-                {listings.length > 0 && !isOwnProfile && (
+                {/* About Section */}
+                <div className="mb-8">
+                  <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <MessageCircle size={20} />
+                    About {profile.farm_name || profile.full_name}
+                  </h2>
+                  <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+                    <Linkify text={profile.bio || 'No bio provided yet.'} />
+                  </div>
+                </div>
+
+                {/* Current Listings Section */}
+                {listings.length > 0 && (
                   <div className="mb-8">
                     <div className="flex items-center justify-between mb-4">
-                      <h2 className="text-lg font-semibold text-gray-900">Featured Products</h2>
+                      <div>
+                        <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                          <Calendar size={20} className="text-blue-600" />
+                          Available Right Now
+                        </h2>
+                        <p className="text-sm text-gray-600 mt-1">Current listings from this farmer</p>
+                      </div>
                       <button
                         onClick={() => router.push(`/marketplace?farmer=${profile.id}`)}
                         className="text-sm text-green-600 hover:text-green-700 font-medium"
                       >
-                        View All Products →
+                        View All →
                       </button>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -437,18 +453,37 @@ export default function PublicProfilePage() {
                               )}
 
                               <div className="flex gap-2">
-                                <button
-                                  onClick={() => handleListingContact(listing)}
-                                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
-                                >
-                                  Buy Now
-                                </button>
-                                <button
-                                  onClick={() => handleListingContact(listing)}
-                                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
-                                >
-                                  Ask Question
-                                </button>
+                                {isOwnProfile ? (
+                                  <>
+                                    <button
+                                      onClick={() => router.push(`/sell/${listing.id}`)}
+                                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                                    >
+                                      Edit
+                                    </button>
+                                    <button
+                                      onClick={() => router.push(`/listing/${listing.id}`)}
+                                      className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
+                                    >
+                                      View Listing
+                                    </button>
+                                  </>
+                                ) : (
+                                  <>
+                                    <button
+                                      onClick={() => handleListingContact(listing)}
+                                      className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                                    >
+                                      Buy Now
+                                    </button>
+                                    <button
+                                      onClick={() => handleListingContact(listing)}
+                                      className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
+                                    >
+                                      Ask Question
+                                    </button>
+                                  </>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -548,7 +583,22 @@ export default function PublicProfilePage() {
                             )}
                           </div>
 
-                          {!isOwnProfile && (
+                          {isOwnProfile ? (
+                            <div className="flex gap-2">
+                              <button
+                                onClick={() => router.push(`/sell/${listing.id}`)}
+                                className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xs font-medium"
+                              >
+                                Edit
+                              </button>
+                              <button
+                                onClick={() => router.push(`/listing/${listing.id}`)}
+                                className="px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-xs font-medium"
+                              >
+                                View
+                              </button>
+                            </div>
+                          ) : (
                             <div className="flex gap-2">
                               <button
                                 onClick={() => handleListingContact(listing)}
