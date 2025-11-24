@@ -9,6 +9,7 @@ import { UserType } from '@/lib/database'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import Navigation from '@/components/navigation/Navigation'
 import QuickTour, { WelcomeTour } from '@/components/onboarding/QuickTour'
+import { useWeather } from '@/hooks/useWeather'
 
 interface Profile {
   id: string
@@ -34,6 +35,9 @@ export default function DashboardClient() {
   const [unreadMessages, setUnreadMessages] = useState(0)
   const [activeListings, setActiveListings] = useState(0)
   const [listings, setListings] = useState<any[]>([])
+
+  // Fetch real weather based on user's location (must be called before any returns)
+  const { weather, loading: weatherLoading, error: weatherError } = useWeather(profile?.city, profile?.county)
 
   useEffect(() => {
     checkUser()
@@ -339,19 +343,36 @@ ${profile?.full_name}`
                 </div>
               </div>
             </div>
+            {/* Desktop weather */}
             <div className="text-right hidden md:block">
-              <div className="flex items-center gap-2 text-lg font-semibold text-gray-900">
-                <span className="text-2xl">🌡️</span>
-                <span>78°F</span>
-                <span className="text-2xl">☀️</span>
-                <span className="text-sm text-gray-600">Sunny</span>
-              </div>
-              <p className="text-xs text-gray-500 mt-1">Perfect weather for farming!</p>
+              {weatherLoading ? (
+                <div className="flex items-center gap-2 text-gray-400">
+                  <div className="w-4 h-4 border-2 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
+                  <span className="text-sm">Loading weather...</span>
+                </div>
+              ) : weatherError ? (
+                <div className="text-sm text-gray-400">Weather unavailable</div>
+              ) : weather ? (
+                <>
+                  <div className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+                    <span className="text-2xl">{weather.icon}</span>
+                    <span>{weather.temp}°F</span>
+                    <span className="text-sm text-gray-600">{weather.description}</span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">{weather.city}, TX</p>
+                </>
+              ) : null}
             </div>
             {/* Mobile weather */}
             <div className="md:hidden">
               <div className="text-right">
-                <div className="text-lg">☀️ 78°F</div>
+                {weatherLoading ? (
+                  <div className="w-4 h-4 border-2 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
+                ) : weatherError ? (
+                  <div className="text-xs text-gray-400">--</div>
+                ) : weather ? (
+                  <div className="text-lg">{weather.icon} {weather.temp}°F</div>
+                ) : null}
               </div>
             </div>
           </div>
