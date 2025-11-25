@@ -15,8 +15,9 @@ export default function FarmerNetworkPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState('discussions')
+  const [activeTab, setActiveTab] = useState('from-the-field')
   const [isAdmin, setIsAdmin] = useState(false)
+  const [isFarmer, setIsFarmer] = useState(false)
 
   // Demo mode for showing placeholder content to potential partners
   const isDemoMode = searchParams.get('demo') === 'true'
@@ -64,24 +65,32 @@ export default function FarmerNetworkPage() {
       .eq('id', user.id)
       .single()
 
-    if (profile?.user_type === 'consumer') {
-      router.push('/dashboard')
-      return
-    }
+    // Determine if user is a farmer (not a consumer)
+    const userIsFarmer = profile?.user_type !== 'consumer'
+    setIsFarmer(userIsFarmer)
 
     // Check if user is admin (verified production farmer)
     const isUserAdmin = profile?.user_type === 'production_farmer' && profile?.is_verified === true
     setIsAdmin(isUserAdmin)
 
+    // Set default tab based on user type
+    if (!userIsFarmer) {
+      // Consumers start on From the Field tab (no access to Discussions)
+      setActiveTab('from-the-field')
+    }
+
     setLoading(false)
   }
 
-  const tabs = [
-    { id: 'discussions', label: 'Discussions', hash: 'discussions' },
-    { id: 'from-the-field', label: 'From the Field', hash: 'from-the-field' },
-    { id: 'resources', label: 'Resource Library', hash: 'resources' },
-    { id: 'newsletter', label: 'Newsletter Archive', hash: 'newsletter' }
+  // Filter tabs based on user type - Discussions is farmers-only
+  const allTabs = [
+    { id: 'discussions', label: 'Discussions', hash: 'discussions', farmersOnly: true },
+    { id: 'from-the-field', label: 'From the Field', hash: 'from-the-field', farmersOnly: false },
+    { id: 'resources', label: 'Resource Library', hash: 'resources', farmersOnly: false },
+    { id: 'newsletter', label: 'Newsletter Archive', hash: 'newsletter', farmersOnly: false }
   ]
+
+  const tabs = allTabs.filter(tab => !tab.farmersOnly || isFarmer)
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId)
@@ -120,11 +129,13 @@ export default function FarmerNetworkPage() {
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
               <span className="text-4xl">👥</span>
-              Farmer Network
+              {isFarmer ? 'Farmer Network' : 'Hey Farmer Network'}
             </h1>
-            <p className="text-gray-600">Connect, share knowledge, and grow together</p>
+            <p className="text-gray-600">
+              {isFarmer ? 'Connect, share knowledge, and grow together' : 'Resources, stories, and insights for food lovers'}
+            </p>
           </div>
-          {activeTab === 'discussions' && (
+          {activeTab === 'discussions' && isFarmer && (
             <button
               onClick={() => router.push('/network/new-discussion')}
               className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
@@ -144,7 +155,7 @@ export default function FarmerNetworkPage() {
 
         {/* Tab Content */}
         <div>
-          {activeTab === 'discussions' && (
+          {activeTab === 'discussions' && isFarmer && (
             <DiscussionsTab isDemoMode={isDemoMode} />
           )}
           {activeTab === 'from-the-field' && (

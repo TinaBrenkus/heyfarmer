@@ -500,16 +500,18 @@ ${profile?.full_name}`
             </div>
           </div>
 
-          {/* Quick Post Button */}
-          <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg shadow-sm p-4 text-center">
-            <button 
-              onClick={() => router.push('/post')}
-              className="w-full flex items-center justify-center gap-2 text-white font-semibold"
-            >
-              <Plus className="h-5 w-5" />
-              Quick Post
-            </button>
-          </div>
+          {/* Quick Post Button - Farmers Only */}
+          {isFarmer && (
+            <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg shadow-sm p-4 text-center">
+              <button
+                onClick={() => router.push('/post')}
+                className="w-full flex items-center justify-center gap-2 text-white font-semibold"
+              >
+                <Plus className="h-5 w-5" />
+                Quick Post
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Desktop Layout */}
@@ -708,17 +710,19 @@ ${profile?.full_name}`
             </div>
           </div>
 
-          {/* Create New Post CTA */}
-          <div className="text-center">
-            <button 
-              onClick={() => router.push('/post')}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:bg-green-700 transition-all transform hover:scale-105"
-            >
-              <Plus className="h-6 w-6" />
-              Create New Post
-            </button>
-            <p className="text-sm text-gray-600 mt-2">Share what you're growing or what you need</p>
-          </div>
+          {/* Create New Post CTA - Farmers Only */}
+          {isFarmer && (
+            <div className="text-center">
+              <button
+                onClick={() => router.push('/post')}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:bg-green-700 transition-all transform hover:scale-105"
+              >
+                <Plus className="h-6 w-6" />
+                Create New Post
+              </button>
+              <p className="text-sm text-gray-600 mt-2">Share what you're growing or what you need</p>
+            </div>
+          )}
         </div>
       </div>
 
