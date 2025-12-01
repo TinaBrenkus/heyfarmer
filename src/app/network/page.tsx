@@ -24,31 +24,33 @@ export default function FarmerNetworkPage() {
 
   useEffect(() => {
     checkAuth()
-    initializeTabFromHash()
   }, [])
 
   useEffect(() => {
     // Listen for hash changes to update active tab
+    // Filter valid hashes based on user type (consumers can't access discussions)
+    const validHashes = isFarmer
+      ? ['discussions', 'from-the-field', 'resources', 'newsletter']
+      : ['from-the-field', 'resources', 'newsletter']
+
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '')
-      if (hash && tabs.some(tab => tab.hash === hash)) {
+      if (hash && validHashes.includes(hash)) {
+        setActiveTab(hash)
+      }
+    }
+
+    // Initialize tab from hash on mount (after isFarmer is set)
+    if (!loading) {
+      const hash = window.location.hash.replace('#', '')
+      if (hash && validHashes.includes(hash)) {
         setActiveTab(hash)
       }
     }
 
     window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [])
-
-  const initializeTabFromHash = () => {
-    const hash = window.location.hash.replace('#', '')
-    if (hash) {
-      const validHashes = ['discussions', 'from-the-field', 'resources', 'newsletter']
-      if (validHashes.includes(hash)) {
-        setActiveTab(hash)
-      }
-    }
-  }
+  }, [isFarmer, loading])
 
   const checkAuth = async () => {
     const { data: { user } } = await supabase.auth.getUser()
@@ -73,10 +75,18 @@ export default function FarmerNetworkPage() {
     const isUserAdmin = profile?.user_type === 'production_farmer' && profile?.is_verified === true
     setIsAdmin(isUserAdmin)
 
-    // Set default tab based on user type
-    if (!userIsFarmer) {
-      // Consumers start on From the Field tab (no access to Discussions)
+    // Set default tab based on user type (only if no valid hash in URL)
+    const hash = window.location.hash.replace('#', '')
+    const consumerValidHashes = ['from-the-field', 'resources', 'newsletter']
+    const farmerValidHashes = ['discussions', ...consumerValidHashes]
+    const validHashesForUser = userIsFarmer ? farmerValidHashes : consumerValidHashes
+
+    if (!hash || !validHashesForUser.includes(hash)) {
+      // No hash or invalid hash for this user type - set default
       setActiveTab('from-the-field')
+    } else {
+      // Valid hash for this user type
+      setActiveTab(hash)
     }
 
     setLoading(false)
@@ -99,12 +109,10 @@ export default function FarmerNetworkPage() {
   }
 
   const handleCreateArticle = () => {
-    // TODO: Navigate to article creation page or open modal
     router.push('/network/new-article')
   }
 
   const handleAddResource = () => {
-    // TODO: Navigate to resource creation page or open modal
     router.push('/network/new-resource')
   }
 
