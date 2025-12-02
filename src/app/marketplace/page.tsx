@@ -466,11 +466,57 @@ export default function MarketplacePage() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 >
                   <option value="all">All Counties</option>
-                  <option value="wise">Wise County</option>
-                  <option value="dallas">Dallas County</option>
-                  <option value="denton">Denton County</option>
-                  <option value="tarrant">Tarrant County</option>
-                  <option value="collin">Collin County</option>
+                  <optgroup label="Dallas-Fort Worth Metro">
+                    <option value="dallas">Dallas County</option>
+                    <option value="tarrant">Tarrant County</option>
+                    <option value="denton">Denton County</option>
+                    <option value="collin">Collin County</option>
+                    <option value="rockwall">Rockwall County</option>
+                    <option value="kaufman">Kaufman County</option>
+                    <option value="wise">Wise County</option>
+                    <option value="parker">Parker County</option>
+                    <option value="jack">Jack County</option>
+                    <option value="grayson">Grayson County</option>
+                    <option value="hunt">Hunt County</option>
+                  </optgroup>
+                  <optgroup label="Austin Metro">
+                    <option value="travis">Travis County</option>
+                    <option value="williamson">Williamson County</option>
+                    <option value="hays">Hays County</option>
+                    <option value="bastrop">Bastrop County</option>
+                    <option value="caldwell">Caldwell County</option>
+                    <option value="lee">Lee County</option>
+                    <option value="burnet">Burnet County</option>
+                    <option value="blanco">Blanco County</option>
+                  </optgroup>
+                  <optgroup label="San Antonio Metro">
+                    <option value="bexar">Bexar County</option>
+                    <option value="comal">Comal County</option>
+                    <option value="guadalupe">Guadalupe County</option>
+                    <option value="wilson">Wilson County</option>
+                    <option value="medina">Medina County</option>
+                    <option value="kendall">Kendall County</option>
+                    <option value="bandera">Bandera County</option>
+                    <option value="atascosa">Atascosa County</option>
+                  </optgroup>
+                  <optgroup label="Houston Metro">
+                    <option value="harris">Harris County</option>
+                    <option value="fort-bend">Fort Bend County</option>
+                    <option value="montgomery">Montgomery County</option>
+                    <option value="brazoria">Brazoria County</option>
+                    <option value="galveston">Galveston County</option>
+                    <option value="liberty">Liberty County</option>
+                    <option value="chambers">Chambers County</option>
+                    <option value="waller">Waller County</option>
+                    <option value="austin-county">Austin County</option>
+                  </optgroup>
+                  <optgroup label="Central Corridor">
+                    <option value="mclennan">McLennan County</option>
+                    <option value="bell">Bell County</option>
+                    <option value="brazos">Brazos County</option>
+                    <option value="grimes">Grimes County</option>
+                    <option value="burleson">Burleson County</option>
+                  </optgroup>
                 </select>
               </div>
 

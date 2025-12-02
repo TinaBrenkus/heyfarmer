@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Heart, Users, Sprout } from 'lucide-react'
+import { ArrowRight, Heart, Users, Sprout, MapPin } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
 import FarmLogo from '@/components/icons/FarmLogo'
+import TexasTriangleMap from '@/components/maps/TexasTriangleMap'
 
 export default function AboutPage() {
   return (
@@ -148,6 +149,7 @@ export default function AboutPage() {
           </div>
         </div>
 
+{/* Texas Triangle Map Section */}        <div className="bg-white rounded-lg shadow-sm p-8 mb-12">          <div className="flex items-center gap-3 mb-6 justify-center">            <MapPin className="w-8 h-8 text-green-600" />            <h3 className="text-2xl font-bold text-gray-900">Our Coverage Area</h3>          </div>          <p className="text-gray-600 text-center mb-8 max-w-2xl mx-auto">            Hey Farmer serves the Texas Triangle - connecting Dallas-Fort Worth, Houston, San Antonio,            and Austin through 39 counties. Click any county to explore local farmers and listings.          </p>          <TexasTriangleMap />        </div>
         {/* Call to Action */}
         <div className="text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
