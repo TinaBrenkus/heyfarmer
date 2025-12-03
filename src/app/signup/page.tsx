@@ -101,6 +101,7 @@ export default function SignupPage() {
     userType: 'consumer' as UserType,
     county: 'dallas' as TexasTriangleCounty,
     city: '',
+    zip: '',
     phone: '',
     bio: '',
     growTypes: [] as string[],
@@ -192,6 +193,9 @@ export default function SignupPage() {
 
       const city = sanitize(formData.city)
       if (city) metadata.city = city
+
+      const zip = sanitize(formData.zip)
+      if (zip) metadata.zip = zip
 
       const phone = sanitize(formData.phone)
       if (phone) metadata.phone = phone
@@ -472,6 +476,42 @@ export default function SignupPage() {
                         </option>
                       ))}
                     </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                      City/Town {isFarmer && '*'}
+                    </label>
+                    <input
+                      id="city"
+                      name="city"
+                      type="text"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      placeholder="Decatur"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      required={isFarmer}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="zip" className="block text-sm font-medium text-gray-700 mb-1">
+                      ZIP Code {isFarmer && '*'}
+                    </label>
+                    <input
+                      id="zip"
+                      name="zip"
+                      type="text"
+                      value={formData.zip}
+                      onChange={handleInputChange}
+                      placeholder="76234"
+                      pattern="[0-9]{5}"
+                      maxLength={5}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      required={isFarmer}
+                    />
                   </div>
 
                   <div>

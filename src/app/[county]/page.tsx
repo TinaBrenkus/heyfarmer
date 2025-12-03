@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, useRouter, notFound } from 'next/navigation'
 import Link from 'next/link'
-import { MapPin, Users, ShoppingBag, ArrowRight, Store } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import { MapPin, Users, ShoppingBag, ArrowRight, Store, Map } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
 import { supabase } from '@/lib/supabase'
 import {
@@ -16,6 +17,22 @@ import {
 } from '@/lib/countyUtils'
 import type { TexasTriangleCounty } from '@/lib/database'
 
+// Dynamically import the map component to avoid SSR issues
+const CountyListingsMap = dynamic(
+  () => import('@/components/maps/CountyListingsMap'),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="bg-gray-100 rounded-xl h-[400px] flex items-center justify-center">
+        <div className="text-center text-gray-500">
+          <MapPin className="w-8 h-8 mx-auto mb-2 animate-pulse" />
+          <p>Loading map...</p>
+        </div>
+      </div>
+    )
+  }
+)
+
 interface Listing {
   id: string
   title: string
@@ -26,11 +43,14 @@ interface Listing {
   images?: string[]
   thumbnail_url?: string
   created_at: string
+  latitude?: number
+  longitude?: number
   profiles: {
     id: string
     full_name: string
     farm_name?: string
     avatar_url?: string
+    city?: string
   }
 }
 
@@ -81,14 +101,14 @@ export default function CountyPage() {
         .select(`
           id, title, description, price, unit, post_type, images, thumbnail_url, created_at,
           profiles!posts_user_id_fkey (
-            id, full_name, farm_name, avatar_url
+            id, full_name, farm_name, avatar_url, city
           )
         `)
         .eq('county', county)
         .eq('status', 'active')
         .eq('visibility', 'public')
         .order('created_at', { ascending: false })
-        .limit(8)
+        .limit(12)
 
       if (!listingsError && listingsData) {
         setListings(listingsData as unknown as Listing[])
@@ -214,6 +234,17 @@ export default function CountyPage() {
             </Link>
           </div>
         </div>
+
+        {/* Interactive Map Section */}
+        {listings.length > 0 && (
+          <div className="mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <Map size={20} className="text-green-600" />
+              <h2 className="text-xl font-bold text-gray-900">Listings Map</h2>
+            </div>
+            <CountyListingsMap county={countyId} listings={listings} />
+          </div>
+        )}
 
         {/* Active Listings Section */}
         <div className="mb-8">
