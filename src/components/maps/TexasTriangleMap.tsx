@@ -249,7 +249,7 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
 
             if (showLinks) {
               return (
-                <Link key={county.id} href={`/${county.id}`}>
+                <Link key={county.id} href={`/${county.id}-county`}>
                   {dot}
                 </Link>
               )
