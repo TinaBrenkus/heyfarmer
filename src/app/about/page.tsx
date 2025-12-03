@@ -23,9 +23,10 @@ export default function AboutPage() {
             About Hey Farmer
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            The story behind connecting Texas Triangle farmers with their communities
+            The story behind connecting the Texas Triangle farmers with their communities
           </p>
         </div>
+{/* Texas Triangle Map Section */}        <div className="bg-white rounded-lg shadow-sm p-8 mb-12">          <div className="flex items-center gap-3 mb-6 justify-center">            <MapPin className="w-8 h-8 text-green-600" />            <h3 className="text-2xl font-bold text-gray-900">Our Coverage Area</h3>          </div>          <p className="text-gray-600 text-center mb-8 max-w-2xl mx-auto">            Hey Farmer serves the Texas Triangle - connecting Dallas-Fort Worth, Houston, San Antonio,            and Austin through 39 counties. Click any county to explore local farmers and listings.          </p>          <TexasTriangleMap />        </div>
 
         {/* Your Story Section */}
         <div className="bg-white rounded-lg shadow-sm p-8 mb-12">
@@ -46,7 +47,7 @@ export default function AboutPage() {
             
             <p className="text-lg leading-relaxed font-semibold">
               My MAIN MISSION for Hey Farmer is to provide a safe and free place for farmers, market gardeners 
-              and backyard growers in Texas Triangle to network with each other. With the added bonus of selling 
+              and backyard growers in the Texas Triangle to network with each other. With the added bonus of selling 
               directly to consumers in their local markets.
             </p>
             
@@ -94,7 +95,7 @@ export default function AboutPage() {
               <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
             </div>
             <p className="text-gray-700 leading-relaxed">
-              To strengthen Texas Triangle communities by connecting local farmers directly with food lovers, 
+              To strengthen the Texas Triangle communities by connecting local farmers directly with food lovers, 
               creating a sustainable ecosystem where farmers thrive and families have access to fresh, 
               locally-grown food.
             </p>
@@ -143,13 +144,12 @@ export default function AboutPage() {
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">Local Community</h4>
               <p className="text-sm text-gray-600">
-                Strengthening bonds within Texas Triangle neighborhoods
+                Strengthening bonds within the Texas Triangle neighborhoods
               </p>
             </div>
           </div>
         </div>
 
-{/* Texas Triangle Map Section */}        <div className="bg-white rounded-lg shadow-sm p-8 mb-12">          <div className="flex items-center gap-3 mb-6 justify-center">            <MapPin className="w-8 h-8 text-green-600" />            <h3 className="text-2xl font-bold text-gray-900">Our Coverage Area</h3>          </div>          <p className="text-gray-600 text-center mb-8 max-w-2xl mx-auto">            Hey Farmer serves the Texas Triangle - connecting Dallas-Fort Worth, Houston, San Antonio,            and Austin through 39 counties. Click any county to explore local farmers and listings.          </p>          <TexasTriangleMap />        </div>
         {/* Call to Action */}
         <div className="text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
