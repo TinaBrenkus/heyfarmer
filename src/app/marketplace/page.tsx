@@ -3,19 +3,16 @@
 export const dynamic = 'force-dynamic'
 import { useEffect, useState, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import Link from 'next/link'
 import {
   Search,
   Filter,
-  X,
-  MapPin
+  X
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { db, Post, PostType, TexasTriangleCounty } from '@/lib/database'
 import Navigation from '@/components/navigation/Navigation'
 import Footer from '@/components/layout/Footer'
 import ListingsGrid from '@/components/marketplace/ListingsGrid'
-import { getCountyDisplayName, getSlugFromCounty } from '@/lib/countyUtils'
 
 interface FilterOptions {
   postType?: PostType | 'all'
@@ -47,7 +44,7 @@ export default function MarketplacePage() {
   ])
   const [showMessage, setShowMessage] = useState(false)
   
-  // Check for farmers-only message and URL county parameter
+  // Check for farmers-only message
   useEffect(() => {
     if (searchParams.get('message') === 'farmers-only') {
       setShowMessage(true)
@@ -56,12 +53,6 @@ export default function MarketplacePage() {
       window.history.replaceState({}, '', newUrl)
       // Auto-hide message after 5 seconds
       setTimeout(() => setShowMessage(false), 5000)
-    }
-
-    // Apply county filter from URL if present
-    const countyParam = searchParams.get('county')
-    if (countyParam) {
-      setActiveFilters(prev => ({ ...prev, county: countyParam as TexasTriangleCounty }))
     }
   }, [searchParams])
 
@@ -78,11 +69,6 @@ export default function MarketplacePage() {
           .maybeSingle() // Use maybeSingle to avoid 406 errors
 
         setProfile(profileData)
-
-        // Auto-filter to user's county if they have one set and no county filter is in URL
-        if (profileData?.county && !searchParams.get('county')) {
-          setActiveFilters(prev => ({ ...prev, county: profileData.county }))
-        }
       } catch (error) {
         console.error('Error fetching profile:', error)
       }
@@ -290,41 +276,6 @@ export default function MarketplacePage() {
             >
               <X className="h-4 w-4 text-blue-600" />
             </button>
-          </div>
-        )}
-
-        {/* Local County Banner - shown when user has a county */}
-        {profile?.county && activeFilters.county === profile.county && (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <div className="flex-shrink-0 p-2 bg-green-100 rounded-full">
-                  <MapPin className="h-5 w-5 text-green-600" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-green-800">
-                    Viewing listings in {getCountyDisplayName(profile.county)}
-                  </h3>
-                  <p className="text-sm text-green-700">
-                    Your local community marketplace
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Link
-                  href={`/${getSlugFromCounty(profile.county)}`}
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
-                >
-                  Visit County Page
-                </Link>
-                <button
-                  onClick={() => setActiveFilters(prev => ({ ...prev, county: 'all' as any }))}
-                  className="px-4 py-2 border border-green-300 text-green-700 rounded-lg text-sm font-medium hover:bg-green-100 transition-colors"
-                >
-                  View All Counties
-                </button>
-              </div>
-            </div>
           </div>
         )}
 

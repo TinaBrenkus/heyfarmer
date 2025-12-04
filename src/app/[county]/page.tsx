@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react'
 import { useParams, useRouter, notFound } from 'next/navigation'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import { MapPin, Users, ShoppingBag, ArrowRight, Store, Map } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
+import CountyListingsMap from '@/components/maps/CountyListingsMap'
 import { supabase } from '@/lib/supabase'
 import {
   getCountyFromSlug,
@@ -16,22 +16,6 @@ import {
   isValidCountySlug
 } from '@/lib/countyUtils'
 import type { TexasTriangleCounty } from '@/lib/database'
-
-// Dynamically import the map component to avoid SSR issues
-const CountyListingsMap = dynamic(
-  () => import('@/components/maps/CountyListingsMap'),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="bg-gray-100 rounded-xl h-[400px] flex items-center justify-center">
-        <div className="text-center text-gray-500">
-          <MapPin className="w-8 h-8 mx-auto mb-2 animate-pulse" />
-          <p>Loading map...</p>
-        </div>
-      </div>
-    )
-  }
-)
 
 interface Listing {
   id: string

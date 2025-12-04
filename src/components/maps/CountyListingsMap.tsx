@@ -1,27 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import dynamic from 'next/dynamic'
-import { MapPin, Package } from 'lucide-react'
+import { useEffect, useState, useRef } from 'react'
+import { MapPin } from 'lucide-react'
 import type { TexasTriangleCounty } from '@/lib/database'
-
-// Dynamically import Leaflet components to avoid SSR issues
-const MapContainer = dynamic(
-  () => import('react-leaflet').then((mod) => mod.MapContainer),
-  { ssr: false }
-)
-const TileLayer = dynamic(
-  () => import('react-leaflet').then((mod) => mod.TileLayer),
-  { ssr: false }
-)
-const Marker = dynamic(
-  () => import('react-leaflet').then((mod) => mod.Marker),
-  { ssr: false }
-)
-const Popup = dynamic(
-  () => import('react-leaflet').then((mod) => mod.Popup),
-  { ssr: false }
-)
 
 // County center coordinates (approximate)
 const COUNTY_CENTERS: Record<TexasTriangleCounty, [number, number]> = {
@@ -96,25 +77,14 @@ interface CountyListingsMapProps {
 }
 
 export default function CountyListingsMap({ county, listings }: CountyListingsMapProps) {
-  const [isMounted, setIsMounted] = useState(false)
-  const [L, setL] = useState<any>(null)
-
-  useEffect(() => {
-    setIsMounted(true)
-    // Import Leaflet on client side
-    import('leaflet').then((leaflet) => {
-      setL(leaflet.default)
-    })
-  }, [])
+  const mapRef = useRef<HTMLDivElement>(null)
+  const [mapInstance, setMapInstance] = useState<any>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   const center = COUNTY_CENTERS[county] || [31.0, -97.0]
 
   // For listings without coordinates, scatter them around the county center
-  const getListingPosition = (listing: Listing, index: number): [number, number] => {
-    if (listing.latitude && listing.longitude) {
-      return [listing.latitude, listing.longitude]
-    }
-    // Create a spiral pattern around the center for listings without coordinates
+  const getListingPosition = (index: number): [number, number] => {
     const angle = (index * 137.5) * (Math.PI / 180) // Golden angle
     const radius = 0.02 + (index * 0.005) // Increasing radius
     return [
@@ -123,103 +93,121 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
     ]
   }
 
-  if (!isMounted || !L) {
-    return (
-      <div className="bg-gray-100 rounded-xl h-[400px] flex items-center justify-center">
-        <div className="text-center text-gray-500">
-          <MapPin className="w-8 h-8 mx-auto mb-2 animate-pulse" />
-          <p>Loading map...</p>
-        </div>
-      </div>
-    )
+  const getMarkerColor = (postType: string) => {
+    switch (postType) {
+      case 'fresh_produce': return '#22c55e'
+      case 'equipment': return '#f97316'
+      case 'plants_seeds': return '#8b5cf6'
+      case 'livestock': return '#ef4444'
+      default: return '#6b7280'
+    }
   }
 
-  // Create custom icon
-  const createIcon = (postType: string) => {
-    const color = postType === 'fresh_produce' ? '#22c55e' :
-                  postType === 'equipment' ? '#f97316' :
-                  postType === 'plants_seeds' ? '#8b5cf6' :
-                  postType === 'livestock' ? '#ef4444' : '#6b7280'
+  useEffect(() => {
+    if (typeof window === 'undefined' || !mapRef.current) return
 
-    return L.divIcon({
-      className: 'custom-marker',
-      html: `<div style="
-        background-color: ${color};
-        width: 32px;
-        height: 32px;
-        border-radius: 50% 50% 50% 0;
-        transform: rotate(-45deg);
-        border: 3px solid white;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      ">
-        <div style="
-          transform: rotate(45deg);
-          color: white;
-          font-size: 14px;
-        ">●</div>
-      </div>`,
-      iconSize: [32, 32],
-      iconAnchor: [16, 32],
-      popupAnchor: [0, -32]
-    })
-  }
+    let map: any = null
+
+    const initMap = async () => {
+      try {
+        const L = (await import('leaflet')).default
+
+        // Check if map already exists
+        if (mapInstance) {
+          mapInstance.remove()
+        }
+
+        // Create map
+        map = L.map(mapRef.current!, {
+          scrollWheelZoom: false,
+        }).setView(center, 10)
+
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map)
+
+        // Add markers for each listing
+        listings.forEach((listing, index) => {
+          const position = listing.latitude && listing.longitude
+            ? [listing.latitude, listing.longitude] as [number, number]
+            : getListingPosition(index)
+
+          const color = getMarkerColor(listing.post_type)
+
+          const icon = L.divIcon({
+            className: 'custom-marker',
+            html: `<div style="
+              background-color: ${color};
+              width: 28px;
+              height: 28px;
+              border-radius: 50% 50% 50% 0;
+              transform: rotate(-45deg);
+              border: 2px solid white;
+              box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            "></div>`,
+            iconSize: [28, 28],
+            iconAnchor: [14, 28],
+            popupAnchor: [0, -28]
+          })
+
+          const marker = L.marker(position, { icon }).addTo(map)
+
+          const imageHtml = (listing.thumbnail_url || listing.images?.[0])
+            ? `<img src="${listing.thumbnail_url || listing.images?.[0]}" alt="${listing.title}" style="width:100%;height:80px;object-fit:cover;border-radius:4px;margin-bottom:8px;" />`
+            : ''
+
+          const priceHtml = listing.price
+            ? `<p style="color:#16a34a;font-weight:600;font-size:13px;">$${listing.price}${listing.unit ? '/' + listing.unit : ''}</p>`
+            : ''
+
+          const sellerInfo = listing.profiles?.farm_name || listing.profiles?.full_name || ''
+          const cityInfo = listing.profiles?.city ? ` • ${listing.profiles.city}` : ''
+
+          marker.bindPopup(`
+            <div style="min-width:180px;max-width:220px;">
+              ${imageHtml}
+              <h3 style="font-weight:600;color:#111;font-size:14px;margin:0 0 4px 0;">${listing.title}</h3>
+              ${priceHtml}
+              <p style="font-size:11px;color:#666;margin:4px 0 0 0;">${sellerInfo}${cityInfo}</p>
+              <a href="/listing/${listing.id}" style="display:inline-block;margin-top:8px;font-size:12px;color:#16a34a;font-weight:500;text-decoration:none;">View Details →</a>
+            </div>
+          `)
+        })
+
+        setMapInstance(map)
+        setIsLoading(false)
+      } catch (error) {
+        console.error('Error initializing map:', error)
+        setIsLoading(false)
+      }
+    }
+
+    initMap()
+
+    return () => {
+      if (map) {
+        map.remove()
+      }
+    }
+  }, [county, listings.length])
 
   return (
     <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-      <MapContainer
-        center={center}
-        zoom={10}
+      <div
+        ref={mapRef}
         style={{ height: '400px', width: '100%' }}
-        scrollWheelZoom={false}
+        className="bg-gray-100"
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {listings.map((listing, index) => {
-          const position = getListingPosition(listing, index)
-          return (
-            <Marker
-              key={listing.id}
-              position={position}
-              icon={createIcon(listing.post_type)}
-            >
-              <Popup>
-                <div className="min-w-[200px]">
-                  {(listing.thumbnail_url || listing.images?.[0]) && (
-                    <img
-                      src={listing.thumbnail_url || listing.images?.[0]}
-                      alt={listing.title}
-                      className="w-full h-24 object-cover rounded mb-2"
-                    />
-                  )}
-                  <h3 className="font-semibold text-gray-900 text-sm">
-                    {listing.title}
-                  </h3>
-                  {listing.price && (
-                    <p className="text-green-600 font-medium text-sm">
-                      ${listing.price}{listing.unit ? `/${listing.unit}` : ''}
-                    </p>
-                  )}
-                  <p className="text-xs text-gray-500 mt-1">
-                    {listing.profiles?.farm_name || listing.profiles?.full_name}
-                    {listing.profiles?.city && ` • ${listing.profiles.city}`}
-                  </p>
-                  <a
-                    href={`/listing/${listing.id}`}
-                    className="inline-block mt-2 text-xs text-green-600 hover:text-green-700 font-medium"
-                  >
-                    View Details →
-                  </a>
-                </div>
-              </Popup>
-            </Marker>
-          )
-        })}
-      </MapContainer>
+        {isLoading && (
+          <div className="h-full flex items-center justify-center">
+            <div className="text-center text-gray-500">
+              <MapPin className="w-8 h-8 mx-auto mb-2 animate-pulse" />
+              <p>Loading map...</p>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Map Legend */}
       <div className="bg-white p-3 border-t border-gray-200">
