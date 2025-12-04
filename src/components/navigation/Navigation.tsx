@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { 
-  Home, 
-  ShoppingCart, 
-  Users, 
-  FileText, 
+import {
+  Home,
+  ShoppingCart,
+  Users,
+  FileText,
   Settings,
   Menu,
   X,
@@ -16,12 +16,14 @@ import {
   Bell,
   MessageCircle,
   HelpCircle,
-  UserCheck
+  UserCheck,
+  MapPin
 } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 import { supabase } from '@/lib/supabase'
-import { UserType } from '@/lib/database'
+import { UserType, TexasTriangleCounty } from '@/lib/database'
 import FarmerBadge from '@/components/badges/FarmerBadge'
+import { getSlugFromCounty, getCountyDisplayName } from '@/lib/countyUtils'
 
 interface Profile {
   id: string
@@ -30,6 +32,7 @@ interface Profile {
   farm_name?: string
   user_type: UserType
   verified?: boolean
+  county?: TexasTriangleCounty
 }
 
 interface NavItem {
@@ -152,14 +155,14 @@ export default function Navigation() {
               {filteredNavItems.map((item) => {
                 const Icon = item.icon
                 const isActive = pathname === item.href
-                
+
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-                      isActive 
-                        ? 'bg-green-50 text-green-700' 
+                      isActive
+                        ? 'bg-green-50 text-green-700'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                     }`}
                   >
@@ -168,6 +171,20 @@ export default function Navigation() {
                   </Link>
                 )
               })}
+              {/* My County Link */}
+              {profile?.county && (
+                <Link
+                  href={`/${getSlugFromCounty(profile.county)}`}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                    pathname.includes('-county')
+                      ? 'bg-green-50 text-green-700'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  <MapPin size={18} />
+                  <span>My County</span>
+                </Link>
+              )}
             </nav>
 
             {/* User Menu */}
@@ -270,15 +287,15 @@ export default function Navigation() {
                 {filteredNavItems.map((item) => {
                   const Icon = item.icon
                   const isActive = pathname === item.href
-                  
+
                   return (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
                       className={`flex items-center gap-3 px-3 py-3 rounded-lg font-medium transition-colors ${
-                        isActive 
-                          ? 'bg-green-50 text-green-700' 
+                        isActive
+                          ? 'bg-green-50 text-green-700'
                           : 'text-gray-700 hover:bg-gray-50'
                       }`}
                     >
@@ -287,6 +304,21 @@ export default function Navigation() {
                     </Link>
                   )
                 })}
+                {/* My County Link */}
+                {profile?.county && (
+                  <Link
+                    href={`/${getSlugFromCounty(profile.county)}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center gap-3 px-3 py-3 rounded-lg font-medium transition-colors ${
+                      pathname.includes('-county')
+                        ? 'bg-green-50 text-green-700'
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <MapPin size={20} />
+                    <span>My County</span>
+                  </Link>
+                )}
               </nav>
 
               {/* Quick Actions */}
@@ -334,7 +366,7 @@ export default function Navigation() {
               {filteredMobileTabItems.map((item) => {
                 const Icon = item.icon
                 const isActive = pathname === item.href
-                
+
                 // Get emoji for each tab
                 const getTabEmoji = (href: string) => {
                   switch (href) {
@@ -346,14 +378,14 @@ export default function Navigation() {
                     default: return ''
                   }
                 }
-                
+
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     className={`flex flex-col items-center justify-center gap-1 py-2 transition-colors ${
-                      isActive 
-                        ? 'text-green-600 bg-green-50' 
+                      isActive
+                        ? 'text-green-600 bg-green-50'
                         : 'text-gray-600 hover:text-gray-800'
                     }`}
                   >
@@ -371,6 +403,29 @@ export default function Navigation() {
                   </Link>
                 )
               })}
+              {/* My County Tab */}
+              {profile?.county && (
+                <Link
+                  href={`/${getSlugFromCounty(profile.county)}`}
+                  className={`flex flex-col items-center justify-center gap-1 py-2 transition-colors ${
+                    pathname.includes('-county')
+                      ? 'text-green-600 bg-green-50'
+                      : 'text-gray-600 hover:text-gray-800'
+                  }`}
+                >
+                  <div className="relative">
+                    <span className="text-lg">📍</span>
+                    {pathname.includes('-county') && (
+                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-green-600 rounded-full"></div>
+                    )}
+                  </div>
+                  <span className={`text-xs font-medium ${
+                    pathname.includes('-county') ? 'text-green-700' : 'text-gray-600'
+                  }`}>
+                    Local
+                  </span>
+                </Link>
+              )}
             </div>
           </div>
         </div>
