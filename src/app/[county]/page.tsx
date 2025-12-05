@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useRouter, notFound } from 'next/navigation'
 import Link from 'next/link'
-import { MapPin, Users, ShoppingBag, ArrowRight, Store, Map } from 'lucide-react'
+import { MapPin, Users, ShoppingBag, Store, Map } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
 import CountyListingsMap from '@/components/maps/CountyListingsMap'
 import { supabase } from '@/lib/supabase'
@@ -79,7 +79,7 @@ export default function CountyPage() {
     setLoading(true)
 
     try {
-      // Fetch listings for this county
+      // Fetch ALL listings for this county (no limit)
       const { data: listingsData, error: listingsError } = await supabase
         .from('posts')
         .select(`
@@ -92,44 +92,24 @@ export default function CountyPage() {
         .eq('status', 'active')
         .eq('visibility', 'public')
         .order('created_at', { ascending: false })
-        .limit(12)
 
       if (!listingsError && listingsData) {
         setListings(listingsData as unknown as Listing[])
+        setListingCount(listingsData.length)
       }
 
-      // Get total listing count
-      const { count: totalListings } = await supabase
-        .from('posts')
-        .select('*', { count: 'exact', head: true })
-        .eq('county', county)
-        .eq('status', 'active')
-        .eq('visibility', 'public')
-
-      setListingCount(totalListings || 0)
-
-      // Fetch farmers in this county
+      // Fetch ALL farmers in this county (no limit)
       const { data: farmersData, error: farmersError } = await supabase
         .from('profiles')
         .select('id, full_name, farm_name, avatar_url, user_type, bio, city')
         .eq('county', county)
         .eq('show_in_directory', true)
         .in('user_type', ['backyard_grower', 'market_gardener', 'production_farmer'])
-        .limit(6)
 
       if (!farmersError && farmersData) {
         setFarmers(farmersData as Farmer[])
+        setFarmerCount(farmersData.length)
       }
-
-      // Get total farmer count
-      const { count: totalFarmers } = await supabase
-        .from('profiles')
-        .select('*', { count: 'exact', head: true })
-        .eq('county', county)
-        .eq('show_in_directory', true)
-        .in('user_type', ['backyard_grower', 'market_gardener', 'production_farmer'])
-
-      setFarmerCount(totalFarmers || 0)
 
     } catch (error) {
       console.error('Error fetching county data:', error)
@@ -207,16 +187,6 @@ export default function CountyPage() {
               </div>
             </div>
           </div>
-
-          <div className="mt-6 pt-6 border-t border-gray-100">
-            <Link
-              href={`/marketplace?county=${countyId}`}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
-            >
-              Browse All {countyName} Listings
-              <ArrowRight size={18} />
-            </Link>
-          </div>
         </div>
 
         {/* Interactive Map Section */}
@@ -234,15 +204,6 @@ export default function CountyPage() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold text-gray-900">Active Listings</h2>
-            {listingCount > 8 && (
-              <Link
-                href={`/marketplace?county=${countyId}`}
-                className="text-green-600 hover:text-green-700 font-medium text-sm flex items-center gap-1"
-              >
-                View all {listingCount} listings
-                <ArrowRight size={16} />
-              </Link>
-            )}
           </div>
 
           {listings.length > 0 ? (
@@ -306,15 +267,6 @@ export default function CountyPage() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold text-gray-900">Local Farmers</h2>
-            {farmerCount > 6 && (
-              <Link
-                href={`/farmers?county=${countyId}`}
-                className="text-green-600 hover:text-green-700 font-medium text-sm flex items-center gap-1"
-              >
-                View all {farmerCount} farmers
-                <ArrowRight size={16} />
-              </Link>
-            )}
           </div>
 
           {farmers.length > 0 ? (

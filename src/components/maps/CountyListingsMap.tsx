@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useId } from 'react'
 import { MapPin } from 'lucide-react'
 import type { TexasTriangleCounty } from '@/lib/database'
 
@@ -77,9 +77,11 @@ interface CountyListingsMapProps {
 }
 
 export default function CountyListingsMap({ county, listings }: CountyListingsMapProps) {
+  const mapId = useId().replace(/:/g, '-')
   const mapRef = useRef<HTMLDivElement>(null)
-  const [mapInstance, setMapInstance] = useState<any>(null)
+  const mapInstanceRef = useRef<any>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   const center = COUNTY_CENTERS[county] || [31.0, -97.0]
 
@@ -104,27 +106,38 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
   }
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !mapRef.current) return
+    // Only run on client
+    if (typeof window === 'undefined') return
 
-    let map: any = null
-
+    // Wait for the DOM element to be available
     const initMap = async () => {
+      // Small delay to ensure DOM is ready
+      await new Promise(resolve => setTimeout(resolve, 100))
+
+      if (!mapRef.current) {
+        console.error('Map container not found')
+        setError('Map container not found')
+        setIsLoading(false)
+        return
+      }
+
       try {
         const L = (await import('leaflet')).default
 
-        // Check if map already exists
-        if (mapInstance) {
-          mapInstance.remove()
+        // Clean up existing map if any
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.remove()
+          mapInstanceRef.current = null
         }
 
         // Create map
-        map = L.map(mapRef.current!, {
+        const map = L.map(mapRef.current, {
           scrollWheelZoom: false,
         }).setView(center, 10)
 
         // Add tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map)
 
         // Add markers for each listing
@@ -175,10 +188,18 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
           `)
         })
 
-        setMapInstance(map)
+        mapInstanceRef.current = map
         setIsLoading(false)
-      } catch (error) {
-        console.error('Error initializing map:', error)
+        setError(null)
+
+        // Force a resize to ensure proper rendering
+        setTimeout(() => {
+          map.invalidateSize()
+        }, 200)
+
+      } catch (err) {
+        console.error('Error initializing map:', err)
+        setError('Failed to load map')
         setIsLoading(false)
       }
     }
@@ -186,8 +207,9 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
     initMap()
 
     return () => {
-      if (map) {
-        map.remove()
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove()
+        mapInstanceRef.current = null
       }
     }
   }, [county, listings.length])
@@ -195,6 +217,7 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
   return (
     <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
       <div
+        id={`map-${mapId}`}
         ref={mapRef}
         style={{ height: '400px', width: '100%' }}
         className="bg-gray-100"
@@ -204,6 +227,13 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
             <div className="text-center text-gray-500">
               <MapPin className="w-8 h-8 mx-auto mb-2 animate-pulse" />
               <p>Loading map...</p>
+            </div>
+          </div>
+        )}
+        {error && (
+          <div className="h-full flex items-center justify-center">
+            <div className="text-center text-red-500">
+              <p>{error}</p>
             </div>
           </div>
         )}
