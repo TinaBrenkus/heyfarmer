@@ -127,6 +127,59 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
 
       {/* Map Container */}
       <div className="relative bg-gradient-to-br from-amber-50 via-green-50 to-blue-50 rounded-xl p-4 md:p-8 overflow-hidden border border-gray-200">
+        {/* Texas State Inset - Shows where the Triangle is */}
+        <div className="absolute top-3 left-3 bg-white/90 rounded-lg shadow-md p-2 border border-gray-200 z-10">
+          <p className="text-[9px] font-semibold text-gray-600 mb-1 text-center">Texas Triangle</p>
+          <svg viewBox="0 0 100 100" className="w-16 h-16 md:w-20 md:h-20">
+            {/* Realistic Texas state outline */}
+            <path
+              d="M 25 5
+                 L 75 5
+                 L 78 8
+                 L 95 25
+                 L 95 35
+                 L 90 45
+                 L 88 55
+                 L 85 65
+                 L 80 75
+                 L 70 85
+                 L 55 92
+                 L 45 95
+                 L 35 92
+                 L 25 88
+                 L 15 80
+                 L 8 70
+                 L 5 55
+                 L 8 40
+                 L 5 30
+                 L 8 20
+                 L 15 10
+                 Z"
+              fill="#e5e7eb"
+              stroke="#9ca3af"
+              strokeWidth="1"
+            />
+            {/* Texas Triangle region highlighted */}
+            <path
+              d="M 55 18 L 82 70 L 22 78 Z"
+              fill="#22c55e"
+              fillOpacity="0.4"
+              stroke="#16a34a"
+              strokeWidth="1.5"
+            />
+            {/* Metro city dots */}
+            <circle cx="55" cy="22" r="3" fill="#3B82F6" /> {/* Dallas */}
+            <circle cx="78" cy="65" r="3" fill="#F97316" /> {/* Houston */}
+            <circle cx="28" cy="72" r="3" fill="#EF4444" /> {/* San Antonio */}
+            <circle cx="38" cy="58" r="2.5" fill="#8B5CF6" /> {/* Austin */}
+          </svg>
+          <div className="flex flex-wrap justify-center gap-1 mt-1">
+            <span className="text-[7px] text-gray-500">39 Counties</span>
+            <span className="text-[7px] text-gray-400">•</span>
+            <span className="text-[7px] text-gray-500">4 Metros</span>
+          </div>
+        </div>
+
         <svg
           viewBox="0 0 100 105"
           className="w-full max-w-2xl mx-auto"
