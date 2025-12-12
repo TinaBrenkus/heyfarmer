@@ -239,18 +239,23 @@ export default function ProfileSettingsPage() {
         updated_at: new Date().toISOString()
       }
 
-      // Here you would update the database
-      console.log('Saving profile:', updateData)
-      
-      // Simulate save delay
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
+      // Update the database
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update(updateData)
+        .eq('id', currentUser.id)
+
+      if (updateError) {
+        throw updateError
+      }
+
       // Success feedback
-      alert('Profile updated successfully! ✅')
-      
-    } catch (error) {
+      alert('Profile updated successfully!')
+
+    } catch (error: any) {
       console.error('Error saving profile:', error)
-      setErrors({ submit: 'Failed to save profile. Please check your connection and try again.' })
+      const errorMessage = error?.message || 'Unknown error occurred'
+      setErrors({ submit: `Failed to save profile: ${errorMessage}` })
     } finally {
       setSaving(false)
     }

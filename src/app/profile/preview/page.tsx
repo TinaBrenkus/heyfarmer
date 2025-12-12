@@ -25,6 +25,7 @@ interface ProfilePreviewData {
   user_type: UserType
   grow_tags: string[]
   avatar_url?: string
+  farm_images?: string[]
   contact_preferences: {
     platform_messages: boolean
     show_phone: boolean
@@ -73,6 +74,7 @@ export default function ProfilePreviewPage() {
         user_type: profileData.user_type || 'backyard_grower',
         grow_tags: profileData.grow_tags || [],
         avatar_url: profileData.avatar_url,
+        farm_images: profileData.farm_images || [],
         contact_preferences: {
           platform_messages: profileData.platform_messages ?? true,
           show_phone: profileData.show_phone ?? false,
@@ -241,6 +243,27 @@ export default function ProfilePreviewPage() {
                     >
                       {tag}
                     </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Farm Gallery */}
+            {profile.farm_images && profile.farm_images.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Farm Gallery</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {profile.farm_images.map((image, index) => (
+                    <div
+                      key={index}
+                      className="aspect-video rounded-lg overflow-hidden bg-gray-100"
+                    >
+                      <img
+                        src={image}
+                        alt={`Farm photo ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
