@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
-import { 
+import {
   ArrowLeft,
   MapPin,
   Star,
@@ -12,7 +12,8 @@ import {
   ExternalLink,
   Package,
   Calendar,
-  CheckCircle
+  CheckCircle,
+  Camera
 } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
 import FarmerBadge from '@/components/badges/FarmerBadge'
@@ -31,6 +32,7 @@ interface Profile {
   user_type: UserType
   grow_tags?: string[]
   avatar_url?: string
+  farm_images?: string[]
   verified?: boolean
   platform_messages?: boolean
   show_phone?: boolean
@@ -405,6 +407,30 @@ export default function PublicProfilePage() {
                     <Linkify text={profile.bio || 'No bio provided yet.'} />
                   </div>
                 </div>
+
+                {/* Farm Gallery */}
+                {profile.farm_images && profile.farm_images.length > 0 && (
+                  <div className="mb-8">
+                    <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                      <Camera size={20} />
+                      Farm Gallery
+                    </h2>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {profile.farm_images.map((image, index) => (
+                        <div
+                          key={index}
+                          className="aspect-video rounded-lg overflow-hidden bg-gray-100 hover:opacity-90 transition-opacity cursor-pointer"
+                        >
+                          <img
+                            src={image}
+                            alt={`${profile.farm_name || profile.full_name} photo ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Current Listings Section */}
                 {listings.length > 0 && (
