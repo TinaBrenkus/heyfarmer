@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "leaflet/dist/leaflet.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,8 +11,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: "Hey Farmer - Texas Triangle Farming Marketplace",
   description: "Connect with local farmers, backyard growers, and market gardeners in Texas Triangle. Buy fresh, local produce directly from the source.",

@@ -53,9 +53,7 @@ export default function DashboardClient() {
   
   useEffect(() => {
     // Check if tour should be shown via URL parameter
-    console.log('Checking URL params for tour:', searchParams.get('tour'))
     if (searchParams.get('tour') === 'true') {
-      console.log('URL parameter tour=true detected, setting showTour to true')
       setShowTour(true)
     }
   }, [searchParams])
@@ -90,7 +88,6 @@ export default function DashboardClient() {
       // Profile doesn't exist or couldn't be fetched
       if (!profileData) {
         // Profile doesn't exist, create it from auth metadata
-        console.log('Profile not found, creating new profile...')
         const { data: { user: authUser } } = await supabase.auth.getUser()
         if (authUser) {
           const newProfile = {
@@ -115,7 +112,6 @@ export default function DashboardClient() {
           if (createError) {
             // Check if profile already exists (race condition or 409 conflict)
             if (createError.code === '23505' || createError.code === '409' || createError.message?.includes('duplicate')) {
-              console.log('Profile already exists, using default profile data...')
               // Use the profile data we tried to create as it should match what's in the database
               setProfile({
                 id: authUser.id,
@@ -131,7 +127,6 @@ export default function DashboardClient() {
                 created_at: new Date().toISOString()
               })
               // Show tour for new users (conflict means profile was just created)
-              console.log('Setting showTour to true for new user (409 conflict)')
               setShowTour(true)
               return
             }
@@ -154,10 +149,8 @@ export default function DashboardClient() {
           }
           
           if (createdProfile) {
-            console.log('Profile created successfully:', createdProfile)
             setProfile(createdProfile)
             // Show tour for new users
-            console.log('Setting showTour to true for newly created profile')
             setShowTour(true)
           }
         }
@@ -736,10 +729,8 @@ ${profile?.full_name}`
       </button>
       
       {/* Tour Modal */}
-      {console.log('Render check - showTour:', showTour, 'profile exists:', !!profile, 'condition met:', showTour && profile)}
       {showTour && profile && (
         <>
-          {console.log('Rendering WelcomeTour, showTour:', showTour, 'profile:', profile)}
           <WelcomeTour
             userType={profile.user_type}
             onComplete={() => {

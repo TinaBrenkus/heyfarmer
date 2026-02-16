@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { ArrowLeft, Shield, Lock, Eye, Database } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'

@@ -133,7 +133,6 @@ export default function PublicProfilePage() {
         return
       }
 
-      console.log('Fetched listings for profile:', profileId, 'Count:', data?.length, 'Data:', data)
       setListings(data || [])
     } catch (error) {
       console.error('Error fetching listings:', error)

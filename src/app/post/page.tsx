@@ -1,6 +1,5 @@
 'use client'
 
-export const dynamic = 'force-dynamic'
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { 
@@ -283,9 +282,6 @@ export default function CreatePostPage() {
   }
 
   const handleSubmit = async () => {
-    // Here you would typically validate and submit to the database
-    console.log('Submitting post:', formData)
-    
     // For now, just redirect back to dashboard
     router.push('/dashboard?newPost=true')
   }
@@ -908,7 +904,7 @@ export default function CreatePostPage() {
                 
                 <div className="flex gap-3">
                   <button
-                    onClick={() => console.log('Preview:', formData)}
+                    onClick={() => {}}
                     className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     Preview Post

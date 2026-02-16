@@ -32,7 +32,6 @@ export default function ResetPasswordPage() {
 
       if (type === 'recovery' && accessToken) {
         // This is a password recovery link - establish the session
-        console.log('Recovery link detected, establishing session...')
 
         if (refreshToken) {
           // We have both tokens, set the session
@@ -45,7 +44,6 @@ export default function ResetPasswordPage() {
             console.error('Session error:', sessionError)
             setError('Invalid or expired reset link. Please request a new password reset.')
           } else {
-            console.log('Session established successfully')
             setIsValidSession(true)
             // Clear the hash from URL for security
             window.history.replaceState(null, '', window.location.pathname)
@@ -58,7 +56,6 @@ export default function ResetPasswordPage() {
         // No recovery token - check if there's already a session (page refresh after verification)
         const { data: { session } } = await supabase.auth.getSession()
         if (session) {
-          console.log('Existing session found')
           setIsValidSession(true)
         } else {
           setError('Invalid or expired reset link. Please request a new password reset.')

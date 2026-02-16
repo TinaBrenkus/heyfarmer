@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useId } from 'react'
 import { MapPin } from 'lucide-react'
 import type { TexasTriangleCounty } from '@/lib/database'
+import 'leaflet/dist/leaflet.css'
 
 // County center coordinates (approximate)
 const COUNTY_CENTERS: Record<TexasTriangleCounty, [number, number]> = {

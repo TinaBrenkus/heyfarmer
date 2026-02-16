@@ -1,6 +1,5 @@
 'use client'
 
-export const dynamic = 'force-dynamic'
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { 
@@ -143,13 +142,6 @@ export default function NewMessagePage() {
     if (!validateForm()) {
       return
     }
-
-    // Here you would typically send the message to the database
-    console.log('Sending message:', {
-      recipient: selectedUser,
-      subject,
-      message
-    })
 
     // For now, just redirect to messages
     router.push('/messages')
