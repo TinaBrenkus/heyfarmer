@@ -7,7 +7,7 @@ import { supabase } from '@/lib/supabase'
 interface MultiImageUploadProps {
   currentImages?: string[]
   onImagesUpdated: (urls: string[]) => void
-  bucket: 'listing-images' | 'profile-images'
+  bucket: 'listing-images' | 'profile-images' | 'directory-farm-images'
   maxImages?: number
   maxSizeMB?: number
 }

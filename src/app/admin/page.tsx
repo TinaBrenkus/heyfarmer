@@ -55,7 +55,7 @@ export default function AdminPage() {
 
     // For now, check if user email contains 'admin' or is the project owner
     // In production, you'd want proper admin role management
-    const isAdmin = user.email?.includes('admin') || user.email === 'tina@example.com'
+    const isAdmin = user.email?.includes('admin') || user.email === 'admin@heyfarmer.farm'
     
     if (!isAdmin) {
       router.push('/dashboard')

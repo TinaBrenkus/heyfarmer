@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react'
 import { useParams, useRouter, notFound } from 'next/navigation'
 import Link from 'next/link'
-import { MapPin, Users, ShoppingBag, Store, Map } from 'lucide-react'
+import { MapPin, Users, ShoppingBag, Store, Map, Tractor } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
+import DirectoryFarmCard from '@/components/directory/DirectoryFarmCard'
 import CountyListingsMap from '@/components/maps/CountyListingsMap'
 import { supabase } from '@/lib/supabase'
+import { db, DirectoryFarm } from '@/lib/database'
 import {
   getCountyFromSlug,
   getCountyDisplayName,
@@ -57,6 +59,7 @@ export default function CountyPage() {
   const [countyId, setCountyId] = useState<TexasTriangleCounty | null>(null)
   const [listings, setListings] = useState<Listing[]>([])
   const [farmers, setFarmers] = useState<Farmer[]>([])
+  const [directoryFarms, setDirectoryFarms] = useState<DirectoryFarm[]>([])
   const [listingCount, setListingCount] = useState(0)
   const [farmerCount, setFarmerCount] = useState(0)
 
@@ -109,6 +112,14 @@ export default function CountyPage() {
       if (!farmersError && farmersData) {
         setFarmers(farmersData as Farmer[])
         setFarmerCount(farmersData.length)
+      }
+
+      // Fetch directory farms (published/unclaimed only)
+      try {
+        const dirFarms = await db.directoryFarms.listByCounty(county)
+        setDirectoryFarms(dirFarms)
+      } catch (dirError) {
+        console.error('Error fetching directory farms:', dirError)
       }
 
     } catch (error) {
@@ -174,9 +185,9 @@ export default function CountyPage() {
               <div className="text-center px-4 py-2 bg-green-50 rounded-lg">
                 <div className="flex items-center justify-center gap-1 text-green-600 mb-1">
                   <Users size={18} />
-                  <span className="text-2xl font-bold">{farmerCount}</span>
+                  <span className="text-2xl font-bold">{farmerCount + directoryFarms.length}</span>
                 </div>
-                <span className="text-sm text-gray-600">Local Farmers</span>
+                <span className="text-sm text-gray-600">Local Farms</span>
               </div>
               <div className="text-center px-4 py-2 bg-orange-50 rounded-lg">
                 <div className="flex items-center justify-center gap-1 text-orange-600 mb-1">
@@ -262,6 +273,29 @@ export default function CountyPage() {
             </div>
           )}
         </div>
+
+        {/* Featured Farms (from Directory) */}
+        {directoryFarms.length > 0 && (
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Tractor size={20} className="text-green-600" />
+                <h2 className="text-xl font-bold text-gray-900">Featured Farms</h2>
+              </div>
+              <Link
+                href="/directory"
+                className="text-sm text-green-600 hover:text-green-700 font-medium"
+              >
+                View All
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {directoryFarms.map(farm => (
+                <DirectoryFarmCard key={farm.id} farm={farm} variant="grid" />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Local Farmers Section */}
         <div className="mb-8">

@@ -7,7 +7,7 @@ import { supabase } from '@/lib/supabase'
 interface ImageUploadProps {
   currentImage?: string
   onImageUploaded: (url: string) => void
-  bucket: 'listing-images' | 'profile-images'
+  bucket: 'listing-images' | 'profile-images' | 'directory-farm-images'
   maxSizeMB?: number
   aspectRatio?: string
 }

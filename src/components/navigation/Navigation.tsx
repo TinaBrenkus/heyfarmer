@@ -17,7 +17,8 @@ import {
   MessageCircle,
   HelpCircle,
   UserCheck,
-  MapPin
+  MapPin,
+  BookOpen
 } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 import { supabase } from '@/lib/supabase'
@@ -46,6 +47,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: 'Home', href: '/dashboard', icon: Home },
   { label: 'Market', href: '/marketplace', icon: ShoppingCart },
+  { label: 'Directory', href: '/directory', icon: BookOpen },
   { label: 'Farmers', href: '/farmers', icon: UserCheck },
   { label: 'Network', href: '/network', icon: Users },
   { label: 'Posts', href: '/post', icon: FileText, farmerOnly: true },
@@ -62,6 +64,7 @@ const mobileTabItems: NavItem[] = [
 const fullNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/dashboard', icon: Home },
   { label: 'Marketplace', href: '/marketplace', icon: ShoppingCart },
+  { label: 'Directory', href: '/directory', icon: BookOpen },
   { label: 'Messages', href: '/messages', icon: MessageCircle },
   { label: 'Network', href: '/network', icon: Users }
 ]

@@ -98,6 +98,54 @@ export interface Message {
   read_at?: string
 }
 
+export type DirectoryFarmStatus = 'draft' | 'published' | 'claimed' | 'removed'
+export type DirectoryFarmType = 'backyard_grower' | 'market_gardener' | 'production_farmer' | 'ranch' | 'orchard' | 'vineyard' | 'apiary' | 'nursery' | 'other'
+export type ClaimRequestStatus = 'pending' | 'approved' | 'rejected'
+
+export interface DirectoryFarm {
+  id: string
+  name: string
+  slug: string
+  tagline?: string
+  description?: string
+  county: TexasTriangleCounty
+  city?: string
+  zip_code?: string
+  address?: string
+  products: string[]
+  farm_type: DirectoryFarmType
+  specialties: string[]
+  website_url?: string
+  facebook_url?: string
+  instagram_url?: string
+  phone?: string
+  email?: string
+  cover_image_url?: string
+  additional_images: string[]
+  data_source?: string
+  source_url?: string
+  admin_notes?: string
+  status: DirectoryFarmStatus
+  claimed_by?: string
+  claimed_at?: string
+  meta_title?: string
+  meta_description?: string
+  view_count: number
+  created_at: string
+  updated_at: string
+}
+
+export interface DirectoryClaimRequest {
+  id: string
+  directory_farm_id: string
+  user_id: string
+  status: ClaimRequestStatus
+  message?: string
+  admin_notes?: string
+  reviewed_at?: string
+  created_at: string
+}
+
 // Database helper functions
 export const db = {
   // Profile functions
@@ -405,7 +453,7 @@ export const db = {
         })
         .select()
         .single()
-      
+
       if (error) {
         if (error.code === '23505') { // Unique constraint violation
           throw new Error('Email already registered on waitlist')
@@ -413,6 +461,220 @@ export const db = {
         throw error
       }
       return data
+    }
+  },
+
+  // Directory farms functions
+  directoryFarms: {
+    async list(filters?: {
+      status?: DirectoryFarmStatus
+      county?: TexasTriangleCounty
+      farm_type?: DirectoryFarmType
+      search?: string
+    }) {
+      let query = supabase
+        .from('directory_farms')
+        .select('*')
+        .order('created_at', { ascending: false })
+
+      if (filters?.status) {
+        query = query.eq('status', filters.status)
+      }
+      if (filters?.county) {
+        query = query.eq('county', filters.county)
+      }
+      if (filters?.farm_type) {
+        query = query.eq('farm_type', filters.farm_type)
+      }
+      if (filters?.search) {
+        query = query.or(`name.ilike.%${filters.search}%,city.ilike.%${filters.search}%,description.ilike.%${filters.search}%`)
+      }
+
+      const { data, error } = await query
+      if (error) throw error
+      return data as DirectoryFarm[]
+    },
+
+    async listPublished(filters?: {
+      county?: TexasTriangleCounty
+      farm_type?: DirectoryFarmType
+      search?: string
+    }) {
+      let query = supabase
+        .from('directory_farms')
+        .select('*')
+        .in('status', ['published', 'claimed'])
+        .order('name', { ascending: true })
+
+      if (filters?.county) {
+        query = query.eq('county', filters.county)
+      }
+      if (filters?.farm_type) {
+        query = query.eq('farm_type', filters.farm_type)
+      }
+      if (filters?.search) {
+        query = query.or(`name.ilike.%${filters.search}%,city.ilike.%${filters.search}%,description.ilike.%${filters.search}%`)
+      }
+
+      const { data, error } = await query
+      if (error) throw error
+      return data as DirectoryFarm[]
+    },
+
+    async get(slug: string) {
+      const { data, error } = await supabase
+        .from('directory_farms')
+        .select('*')
+        .eq('slug', slug)
+        .single()
+
+      if (error) throw error
+      return data as DirectoryFarm
+    },
+
+    async getById(id: string) {
+      const { data, error } = await supabase
+        .from('directory_farms')
+        .select('*')
+        .eq('id', id)
+        .single()
+
+      if (error) throw error
+      return data as DirectoryFarm
+    },
+
+    async create(farm: Omit<DirectoryFarm, 'id' | 'created_at' | 'updated_at' | 'view_count'>) {
+      const { data, error } = await supabase
+        .from('directory_farms')
+        .insert(farm)
+        .select()
+        .single()
+
+      if (error) throw error
+      return data as DirectoryFarm
+    },
+
+    async update(id: string, updates: Partial<DirectoryFarm>) {
+      const { data, error } = await supabase
+        .from('directory_farms')
+        .update(updates)
+        .eq('id', id)
+        .select()
+        .single()
+
+      if (error) throw error
+      return data as DirectoryFarm
+    },
+
+    async delete(id: string) {
+      const { error } = await supabase
+        .from('directory_farms')
+        .delete()
+        .eq('id', id)
+
+      if (error) throw error
+    },
+
+    async listByCounty(county: TexasTriangleCounty) {
+      const { data, error } = await supabase
+        .from('directory_farms')
+        .select('*')
+        .eq('county', county)
+        .eq('status', 'published')
+        .order('name', { ascending: true })
+
+      if (error) throw error
+      return data as DirectoryFarm[]
+    },
+
+    async search(query: string) {
+      const { data, error } = await supabase
+        .from('directory_farms')
+        .select('*')
+        .in('status', ['published', 'claimed'])
+        .or(`name.ilike.%${query}%,city.ilike.%${query}%,description.ilike.%${query}%,products.cs.{${query}}`)
+        .order('name', { ascending: true })
+
+      if (error) throw error
+      return data as DirectoryFarm[]
+    },
+
+    async incrementViewCount(id: string) {
+      const { error } = await supabase.rpc('increment_directory_farm_views', { farm_id: id })
+      if (error) throw error
+    },
+
+    // Claim request functions
+    async submitClaimRequest(farmId: string, message?: string) {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) throw new Error('Not authenticated')
+
+      const { data, error } = await supabase
+        .from('directory_claim_requests')
+        .insert({
+          directory_farm_id: farmId,
+          user_id: user.id,
+          message
+        })
+        .select()
+        .single()
+
+      if (error) throw error
+      return data as DirectoryClaimRequest
+    },
+
+    async listClaimRequests(status?: ClaimRequestStatus) {
+      let query = supabase
+        .from('directory_claim_requests')
+        .select(`
+          *,
+          directory_farms (id, name, slug, county),
+          profiles (id, full_name, email, farm_name)
+        `)
+        .order('created_at', { ascending: false })
+
+      if (status) {
+        query = query.eq('status', status)
+      }
+
+      const { data, error } = await query
+      if (error) throw error
+      return data
+    },
+
+    async approveClaim(requestId: string, farmId: string, userId: string) {
+      // Update claim request
+      const { error: requestError } = await supabase
+        .from('directory_claim_requests')
+        .update({ status: 'approved', reviewed_at: new Date().toISOString() })
+        .eq('id', requestId)
+
+      if (requestError) throw requestError
+
+      // Update farm status
+      const { error: farmError } = await supabase
+        .from('directory_farms')
+        .update({
+          status: 'claimed',
+          claimed_by: userId,
+          claimed_at: new Date().toISOString()
+        })
+        .eq('id', farmId)
+
+      if (farmError) throw farmError
+    },
+
+    async rejectClaim(requestId: string, adminNotes?: string) {
+      const { error } = await supabase
+        .from('directory_claim_requests')
+        .update({
+          status: 'rejected',
+          admin_notes: adminNotes,
+          reviewed_at: new Date().toISOString()
+        })
+        .eq('id', requestId)
+
+      if (error) throw error
     }
   }
 }

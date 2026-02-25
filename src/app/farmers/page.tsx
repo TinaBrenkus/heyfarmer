@@ -17,8 +17,10 @@ import {
 import Navigation from '@/components/navigation/Navigation'
 import FarmLogo from '@/components/icons/FarmLogo'
 import FarmerBadge from '@/components/badges/FarmerBadge'
+import DirectoryFarmCard from '@/components/directory/DirectoryFarmCard'
 import { supabase } from '@/lib/supabase'
-import { UserType } from '@/lib/database'
+import { db, DirectoryFarm, UserType } from '@/lib/database'
+import { ALL_COUNTY_IDS, COUNTY_DATA } from '@/lib/countyUtils'
 
 interface FarmerProfile {
   id: string
@@ -50,12 +52,11 @@ export default function FarmersPage() {
   const [selectedUserType, setSelectedUserType] = useState('')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [showFilters, setShowFilters] = useState(false)
+  const [directoryFarms, setDirectoryFarms] = useState<DirectoryFarm[]>([])
+  const [filteredDirectoryFarms, setFilteredDirectoryFarms] = useState<DirectoryFarm[]>([])
   const [currentUser, setCurrentUser] = useState<any>(null)
 
-  const counties = [
-    'collin', 'dallas', 'denton', 'tarrant', 'wise', 'parker', 
-    'jack', 'grayson', 'hunt', 'kaufman', 'rockwall'
-  ]
+  const counties = ALL_COUNTY_IDS
 
   const userTypes = [
     { key: 'backyard_grower', label: 'Backyard Grower' },
@@ -66,11 +67,13 @@ export default function FarmersPage() {
   useEffect(() => {
     checkCurrentUser()
     fetchFarmers()
+    fetchDirectoryFarms()
   }, [])
 
   useEffect(() => {
     filterFarmers()
-  }, [farmers, searchQuery, selectedCounty, selectedUserType])
+    filterDirectoryFarms()
+  }, [farmers, directoryFarms, searchQuery, selectedCounty, selectedUserType])
 
   const checkCurrentUser = async () => {
     const { data: { user } } = await supabase.auth.getUser()
@@ -127,6 +130,35 @@ export default function FarmersPage() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const fetchDirectoryFarms = async () => {
+    try {
+      const data = await db.directoryFarms.listPublished()
+      // Only show unclaimed directory farms (published status)
+      setDirectoryFarms(data.filter(f => f.status === 'published'))
+    } catch (error) {
+      console.error('Error fetching directory farms:', error)
+    }
+  }
+
+  const filterDirectoryFarms = () => {
+    let filtered = directoryFarms
+
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase()
+      filtered = filtered.filter(farm =>
+        farm.name.toLowerCase().includes(q) ||
+        farm.city?.toLowerCase().includes(q) ||
+        farm.products.some(p => p.toLowerCase().includes(q))
+      )
+    }
+
+    if (selectedCounty) {
+      filtered = filtered.filter(farm => farm.county === selectedCounty)
+    }
+
+    setFilteredDirectoryFarms(filtered)
   }
 
   const filterFarmers = () => {
@@ -188,20 +220,7 @@ export default function FarmersPage() {
   }
 
   const getCountyDisplayName = (county: string) => {
-    const counties = {
-      'collin': 'Collin County',
-      'dallas': 'Dallas County', 
-      'denton': 'Denton County',
-      'tarrant': 'Tarrant County',
-      'wise': 'Wise County',
-      'parker': 'Parker County',
-      'jack': 'Jack County',
-      'grayson': 'Grayson County',
-      'hunt': 'Hunt County',
-      'kaufman': 'Kaufman County',
-      'rockwall': 'Rockwall County'
-    }
-    return counties[county as keyof typeof counties] || county.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' County'
+    return COUNTY_DATA[county as keyof typeof COUNTY_DATA]?.displayName || county.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' County'
   }
 
   if (loading) {
@@ -346,12 +365,36 @@ export default function FarmersPage() {
         <div className="flex justify-between items-center mb-6">
           <p className="text-gray-600">
             <Users size={16} className="inline mr-2" />
-            {filteredFarmers.length} {filteredFarmers.length === 1 ? 'farmer' : 'farmers'} found
+            {filteredFarmers.length + filteredDirectoryFarms.length} {(filteredFarmers.length + filteredDirectoryFarms.length) === 1 ? 'farm' : 'farms'} found
           </p>
         </div>
 
-        {/* Farmers Grid/List */}
-        {filteredFarmers.length === 0 ? (
+        {/* Directory Farms Section */}
+        {filteredDirectoryFarms.length > 0 && (
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold text-gray-900">Featured Farms</h2>
+              <Link
+                href="/directory"
+                className="text-sm text-green-600 hover:text-green-700 font-medium"
+              >
+                View Full Directory
+              </Link>
+            </div>
+            <div className={
+              viewMode === 'grid'
+                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+                : 'space-y-4'
+            }>
+              {filteredDirectoryFarms.map(farm => (
+                <DirectoryFarmCard key={farm.id} farm={farm} variant={viewMode} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Registered Farmers Grid/List */}
+        {filteredFarmers.length === 0 && filteredDirectoryFarms.length === 0 ? (
           <div className="text-center py-12">
             <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
               <Users size={32} className="text-gray-400" />
@@ -359,7 +402,7 @@ export default function FarmersPage() {
             <h3 className="text-lg font-medium text-gray-900 mb-2">No farmers found</h3>
             <p className="text-gray-600">Try adjusting your search or filters above</p>
           </div>
-        ) : (
+        ) : filteredFarmers.length === 0 ? null : (
           <div className={
             viewMode === 'grid' 
               ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'

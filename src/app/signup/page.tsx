@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { User, Tractor, ShoppingCart, Eye, EyeOff } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 import { supabase } from '@/lib/supabase'
-import { UserType, TexasTriangleCounty } from '@/lib/database'
+import { db, UserType, TexasTriangleCounty } from '@/lib/database'
 import { WelcomeTour } from '@/components/onboarding/QuickTour'
 
 const counties: { value: TexasTriangleCounty; label: string }[] = [
@@ -86,7 +86,17 @@ const userTypes: { value: UserType; label: string; description: string; icon: an
 ]
 
 export default function SignupPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+      <SignupContent />
+    </Suspense>
+  )
+}
+
+function SignupContent() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const claimSlug = searchParams.get('claim')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [showPassword, setShowPassword] = useState(false)
@@ -109,6 +119,25 @@ export default function SignupPage() {
   })
   const [step, setStep] = useState(1) // 1: User Type, 2: Account, 3: Profile
   const [showTour, setShowTour] = useState(false)
+
+  // Pre-fill from claim context
+  useEffect(() => {
+    if (claimSlug) {
+      db.directoryFarms.get(claimSlug).then(farm => {
+        if (farm) {
+          setFormData(prev => ({
+            ...prev,
+            farmName: farm.name || prev.farmName,
+            county: farm.county || prev.county,
+            city: farm.city || prev.city,
+            userType: (farm.farm_type === 'backyard_grower' || farm.farm_type === 'market_gardener' || farm.farm_type === 'production_farmer')
+              ? farm.farm_type as UserType
+              : 'production_farmer',
+          }))
+        }
+      }).catch(() => {})
+    }
+  }, [claimSlug])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -227,6 +256,11 @@ export default function SignupPage() {
       }
 
       if (authData.user) {
+        // If claiming a farm, redirect to claim page instead
+        if (claimSlug) {
+          router.push(`/claim/${claimSlug}`)
+          return
+        }
         // Success - show tour then redirect to dashboard
         setShowTour(true)
       }
@@ -272,6 +306,13 @@ export default function SignupPage() {
     <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #E8F5E8, #F8F9FA, #E8F5E8)' }}>
       <div className="w-full max-w-2xl mx-4">
         <div className="bg-white rounded-lg shadow-lg p-8">
+          {/* Claim Context Banner */}
+          {claimSlug && (
+            <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-700 text-center">
+              Sign up to claim your farm listing on Hey Farmer
+            </div>
+          )}
+
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
