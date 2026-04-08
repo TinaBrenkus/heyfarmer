@@ -11,7 +11,6 @@ import {
   MapPin,
   Sprout,
   Heart,
-  Star,
   Handshake
 } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
@@ -113,29 +112,6 @@ const benefits = [
   }
 ]
 
-const testimonials = [
-  {
-    name: "Sarah Johnson",
-    farm: "Sunshine Acres",
-    userType: "Market Gardener",
-    quote: "Hey Farmer helped me connect with 50+ local families who now buy my vegetables weekly. I've doubled my income from direct sales!",
-    location: "Denton County"
-  },
-  {
-    name: "Mike Thompson", 
-    farm: "Thompson Family Farm",
-    userType: "Production Farmer",
-    quote: "The platform made it so easy to sell our pastured eggs and meat directly to customers. No more worrying about farmers market setup!",
-    location: "Collin County"
-  },
-  {
-    name: "Lisa Chen",
-    farm: "Green Thumb Gardens",
-    userType: "Backyard Grower",
-    quote: "I never thought my backyard garden could generate income. Now I sell my extra herbs and tomatoes to neighbors through Hey Farmer!",
-    location: "Dallas County"
-  }
-]
 
 export default function AboutPage() {
   const [expandedStep, setExpandedStep] = useState<number | null>(null)
@@ -225,7 +201,7 @@ export default function AboutPage() {
               Why Farmers Choose Hey Farmer
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Join hundreds of Texas Triangle farmers who are building stronger, more profitable farming businesses.
+              Built for the full spectrum of Texas growers.
             </p>
           </div>
 
@@ -246,40 +222,18 @@ export default function AboutPage() {
 
         {/* Testimonials */}
         <div className="mb-12">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Success Stories
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Hear from local farmers who are thriving with Hey Farmer.
+          <div className="text-center py-10 bg-green-50 rounded-lg border border-green-100">
+            <Sprout className="w-10 h-10 text-green-600 mx-auto mb-4" />
+            <p className="text-xl text-gray-800 max-w-2xl mx-auto mb-6 px-4">
+              HeyFarmer is just getting started. Be one of the first farmers to build your profile and help shape what this becomes.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm p-6">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-4 italic">
-                  "{testimonial.quote}"
-                </p>
-                <div className="border-t border-gray-100 pt-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                      <span className="text-lg">👨‍🌾</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                      <p className="text-sm text-gray-600">{testimonial.farm}</p>
-                      <p className="text-xs text-gray-500">{testimonial.location} • {testimonial.userType}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <Link
+              href="/founding-farmers"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors"
+            >
+              Become a Founding Farmer
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
 
