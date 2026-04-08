@@ -1,178 +1,204 @@
 import Link from 'next/link'
-import { ArrowRight, Heart, Users, Sprout, MapPin } from 'lucide-react'
+import { ArrowRight, Heart, MapPin, Users, Sprout, Handshake } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
-import FarmLogo from '@/components/icons/FarmLogo'
-import TexasTriangleMap from '@/components/maps/TexasTriangleMap'
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
       <Navigation />
-      
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-6">
-            <Link href="/" className="inline-block p-4 rounded-xl shadow-lg bg-green-600 hover:bg-green-700 transition-colors transform hover:scale-105">
-              <FarmLogo size={48} className="text-white" />
-            </Link>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            About Hey Farmer
+
+      {/* Hero Section */}
+      <section className="bg-green-700 text-white py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            Real food. Real farmers. Real Texas.
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            The story behind connecting the Texas Triangle farmers with their communities
+          <p className="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto leading-relaxed mb-4">
+            HeyFarmer is a free marketplace and private community connecting Texas Triangle farmers, market gardeners, and backyard growers directly with the people who want what they grow.
           </p>
-        </div>
-{/* Texas Triangle Map Section */}        <div className="bg-white rounded-lg shadow-sm p-8 mb-12">          <div className="flex items-center gap-3 mb-6 justify-center">            <MapPin className="w-8 h-8 text-green-600" />            <h3 className="text-2xl font-bold text-gray-900">Our Coverage Area</h3>          </div>          <p className="text-gray-600 text-center mb-8 max-w-2xl mx-auto">            Hey Farmer serves the Texas Triangle - connecting Dallas-Fort Worth, Houston, San Antonio,            and Austin through 39 counties. Click any county to explore local farmers and listings.          </p>          <TexasTriangleMap />        </div>
-
-        {/* Your Story Section */}
-        <div className="bg-white rounded-lg shadow-sm p-8 mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <Heart className="w-8 h-8 text-red-500" />
-            <h2 className="text-3xl font-bold text-gray-900">My Story</h2>
-          </div>
-          
-          <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
-            <p className="text-lg leading-relaxed">
-              Hey y'all, I'm Tina Brenkus and I'm a landowner in Wise County, TX and the founder of Hey Farmer.
-            </p>
-            
-            <p className="text-lg leading-relaxed">
-              I'm gardening on generational land, reviving the original garden my grandmother started in 1950. 
-              And I'm providing land for my neighbors to grow and raise beautiful and healthy cattle.
-            </p>
-            
-            <p className="text-lg leading-relaxed font-semibold">
-              My MAIN MISSION for Hey Farmer is to provide a safe and free place for farmers, market gardeners 
-              and backyard growers in the Texas Triangle to network with each other. With the added bonus of selling 
-              directly to consumers in their local markets.
-            </p>
-            
-            <p className="text-lg leading-relaxed">
-              I wanted a community platform like Craigslist that makes it easy and free to promote and sell for farmers.
-            </p>
-            
-            <p className="text-lg leading-relaxed">
-              I also wanted a private network, that is NOT Facebook, where farmers can share surplus, advice, 
-              loan or rent equipment, help with harvests, trade and teach.
-            </p>
-            
-            <p className="text-lg leading-relaxed">
-              Selfishly I wanted to meet more people in my community because I know I'll be a better gardener 
-              and business owner. I hope you'll agree.
-            </p>
-            
-            <p className="text-lg leading-relaxed italic">
-              The nature of growing food, raising animals and gardening is communal.
-            </p>
-            
-            <p className="text-lg leading-relaxed">
-              What starts as a backyard project becomes a half acre food operation, turned market garden and 
-              potentially a full grown farm.
-            </p>
-            
-            <p className="text-lg leading-relaxed">
-              I want to hear from you. Feel free to send me a message, ask questions or point out pain points 
-              with the platform.
-            </p>
-            
-            <p className="text-lg leading-relaxed font-semibold">
-              And please tell your friends, family, fellow farmers and customers to join Hey Farmer.
-            </p>
-          </div>
-        </div>
-
-        {/* Mission & Vision Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg" style={{ backgroundColor: '#2E7D32' }}>
-                <Sprout className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
-            </div>
-            <p className="text-gray-700 leading-relaxed">
-              To strengthen the Texas Triangle communities by connecting local farmers directly with food lovers, 
-              creating a sustainable ecosystem where farmers thrive and families have access to fresh, 
-              locally-grown food.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg" style={{ backgroundColor: '#1976D2' }}>
-                <Users className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900">Our Vision</h3>
-            </div>
-            <p className="text-gray-700 leading-relaxed">
-              A Texas Triangle where every community has direct access to local farmers, where small-scale 
-              agriculture flourishes, and where the connection between grower and consumer strengthens 
-              our local food system.
-            </p>
-          </div>
-        </div>
-
-        {/* Values Section */}
-        <div className="bg-white rounded-lg shadow-sm p-8 mb-12">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">What We Believe In</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 p-4 rounded-full" style={{ backgroundColor: '#FFA726' }}>
-                <span className="text-2xl">🤝</span>
-              </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Fair Relationships</h4>
-              <p className="text-sm text-gray-600">
-                Direct connections that benefit both farmers and consumers
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 p-4 rounded-full" style={{ backgroundColor: '#2E7D32' }}>
-                <span className="text-2xl">🌱</span>
-              </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Sustainable Growth</h4>
-              <p className="text-sm text-gray-600">
-                Supporting practices that nurture our land and communities
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 p-4 rounded-full" style={{ backgroundColor: '#1976D2' }}>
-                <span className="text-2xl">🏡</span>
-              </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Local Community</h4>
-              <p className="text-sm text-gray-600">
-                Strengthening bonds within the Texas Triangle neighborhoods
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Ready to Join Our Community?
-          </h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Whether you're a farmer looking to connect with local customers or a food lover seeking fresh, 
-            local produce, Hey Farmer is here to bring our community together.
+          <p className="text-lg text-green-200 max-w-2xl mx-auto mb-8">
+            No middlemen. No commissions. No algorithm deciding who gets seen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
+            <Link
               href="/signup"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-green-700 rounded-lg font-bold text-lg hover:bg-green-50 transition-colors"
             >
-              Join the Community
+              Join as a Farmer
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link 
-              href="/how-it-works"
-              className="inline-flex items-center gap-2 px-8 py-3 border-2 border-orange-400 text-orange-600 rounded-lg font-semibold hover:bg-orange-50 transition-colors"
+            <Link
+              href="/marketplace"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white rounded-lg font-bold text-lg hover:bg-green-600 transition-colors"
             >
-              Learn How It Works
+              Find Local Food
             </Link>
           </div>
         </div>
+      </section>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        {/* What HeyFarmer Is */}
+        <section className="bg-white rounded-lg shadow-sm p-8 md:p-10 mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            What HeyFarmer Is
+          </h2>
+          <p className="text-lg text-green-700 font-semibold mb-6">
+            A marketplace built for the way Texas actually farms.
+          </p>
+          <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
+            <p>
+              Most local food platforms are built for coasts and cities. HeyFarmer was built for the Texas Triangle — the 39-county region connecting Dallas-Fort Worth, Houston, San Antonio, and Austin — where farming looks like a half-acre market garden behind a ranch house, a backyard flock of hens, a cattle operation on generational land, or a high tunnel full of tomatoes coming in hot in April.
+            </p>
+            <p>
+              We built HeyFarmer because that food deserves to be found. And those farmers deserve a place that works the way they do — simple, direct, and free.
+            </p>
+          </div>
+
+          {/* Three audience blocks */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            <div className="bg-green-50 rounded-lg p-6 border border-green-100">
+              <div className="flex items-center gap-2 mb-3">
+                <Sprout className="w-6 h-6 text-green-600" />
+                <h3 className="font-bold text-gray-900">For Farmers & Growers</h3>
+              </div>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                List your products, connect with buyers in your county, and join a private network where you can share surplus, swap advice, borrow equipment, trade seeds, and find help at harvest. No fees. No commissions. No corporate platform taking a cut of every transaction.
+              </p>
+            </div>
+            <div className="bg-orange-50 rounded-lg p-6 border border-orange-100">
+              <div className="flex items-center gap-2 mb-3">
+                <Users className="w-6 h-6 text-orange-500" />
+                <h3 className="font-bold text-gray-900">For Food Lovers & Families</h3>
+              </div>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Find farmers, market gardeners, and backyard growers in your area. Buy directly. Know exactly where your food comes from and who grew it. Skip the middleman and keep your food dollars in your community.
+              </p>
+            </div>
+            <div className="bg-blue-50 rounded-lg p-6 border border-blue-100">
+              <div className="flex items-center gap-2 mb-3">
+                <Handshake className="w-6 h-6 text-blue-600" />
+                <h3 className="font-bold text-gray-900">For Partners & Organizations</h3>
+              </div>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                HeyFarmer serves one of the fastest-growing agricultural regions in the country. We&apos;re building the infrastructure that connects local food supply with local demand across 39 Texas counties — and we&apos;re looking for partners who share that mission.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* The Numbers */}
+        <section className="bg-green-700 text-white rounded-lg shadow-sm p-8 md:p-10 mb-12">
+          <h2 className="text-2xl font-bold text-center mb-2">The Texas Triangle by the numbers.</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-8">
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold mb-2">39</div>
+              <div className="text-green-200 text-sm">Counties covered across the Texas Triangle</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold mb-2">4</div>
+              <div className="text-green-200 text-sm">Major metros: DFW, Houston, San Antonio, Austin</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold mb-2">M+</div>
+              <div className="text-green-200 text-sm">Families within driving distance of local farms</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold mb-2">Free</div>
+              <div className="text-green-200 text-sm">Forever — for farmers, gardeners, and growers</div>
+            </div>
+          </div>
+        </section>
+
+        {/* What We Believe */}
+        <section className="bg-white rounded-lg shadow-sm p-8 md:p-10 mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">What We Believe</h2>
+          <p className="text-lg text-green-700 font-semibold mb-6">
+            What we&apos;re building toward.
+          </p>
+          <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
+            <p>
+              The distance between a farmer and the family who wants their food shouldn&apos;t be a logistics problem. It should be a conversation.
+            </p>
+            <p>
+              We believe small-scale agriculture is one of the most important things happening in Texas right now — and that the people doing it deserve better tools, better connections, and a community that understands the work.
+            </p>
+            <p>
+              We believe in direct relationships. Fair exchanges. And the idea that what starts as a backyard garden can become something that feeds a whole neighborhood.
+            </p>
+            <p className="font-semibold text-gray-900">
+              HeyFarmer exists to make that easier.
+            </p>
+          </div>
+        </section>
+
+        {/* Founder Section */}
+        <section className="bg-white rounded-lg shadow-sm p-8 md:p-10 mb-12">
+          <div className="flex items-center gap-3 mb-6">
+            <Heart className="w-8 h-8 text-red-500" />
+            <h2 className="text-3xl font-bold text-gray-900">Why I built this.</h2>
+          </div>
+          <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
+            <p>
+              Hey y&apos;all — I&apos;m Tina Brenkus, founder of HeyFarmer and a landowner in Wise County, Texas.
+            </p>
+            <p>
+              I&apos;m reviving the garden my grandmother started on this land in 1950. I&apos;m working with the NRCS to get high tunnels up for a market garden. I provide land for my neighbors to run cattle. I know firsthand what it&apos;s like to have good food growing and no easy way to get it to the people who want it.
+            </p>
+            <p>
+              I wanted a platform that felt like a community — not a corporation. Somewhere farmers could list what they grow, find buyers nearby, and connect with other growers without paying a fee or fighting an algorithm.
+            </p>
+            <p>
+              I also wanted a private network — not Facebook, not a public forum — where farmers could share surplus, ask real questions, loan equipment, and help each other out the way Texas neighbors actually do.
+            </p>
+            <p className="font-semibold text-gray-900">
+              HeyFarmer is that place. It&apos;s free. It&apos;s built for Texas. And it&apos;s just getting started.
+            </p>
+            <p className="italic text-gray-600">
+              — Tina Brenkus, Wise County TX
+            </p>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="bg-green-50 border-2 border-green-200 rounded-lg p-8 md:p-10 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Ready to be part of it?
+          </h2>
+          <div className="max-w-2xl mx-auto space-y-4 text-gray-700 mb-8">
+            <p>
+              <strong>Farmers and growers</strong> — join as a founding farmer. We&apos;ll help you build your profile and get your listings live. Free forever.
+            </p>
+            <p>
+              <strong>Food lovers</strong> — sign up for early access and be the first to know when farmers in your county join the platform.
+            </p>
+            <p>
+              <strong>Partners and organizations</strong> — reach out directly. We&apos;d love to talk.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/signup"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-green-600 text-white rounded-lg font-bold text-lg hover:bg-green-700 transition-colors"
+            >
+              Join as a Founding Farmer
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+            <Link
+              href="/signup"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 border-2 border-orange-400 text-orange-600 rounded-lg font-semibold hover:bg-orange-50 transition-colors"
+            >
+              Get Early Access
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 border-2 border-blue-400 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+            >
+              Partner With Us
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   )
