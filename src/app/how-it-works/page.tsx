@@ -194,6 +194,88 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* How Food Lovers Use Hey Farmer */}
+        <div className="mb-12">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              How Food Lovers Use Hey Farmer
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Find real food from real farmers in your community — it starts with a simple browse.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">🔍</span>
+                </div>
+                <div>
+                  <span className="text-sm font-semibold text-orange-600 bg-orange-100 px-3 py-1 rounded-full">
+                    Step 1
+                  </span>
+                  <h3 className="text-xl font-semibold text-gray-900 mt-2">Browse Local Farms</h3>
+                </div>
+              </div>
+              <p className="text-gray-600">
+                Find farmers, market gardeners, and growers in your county — no sign up required.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">🥬</span>
+                </div>
+                <div>
+                  <span className="text-sm font-semibold text-orange-600 bg-orange-100 px-3 py-1 rounded-full">
+                    Step 2
+                  </span>
+                  <h3 className="text-xl font-semibold text-gray-900 mt-2">See What&apos;s Available</h3>
+                </div>
+              </div>
+              <p className="text-gray-600">
+                Browse listings updated directly by farmers when they have product ready.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">💬</span>
+                </div>
+                <div>
+                  <span className="text-sm font-semibold text-orange-600 bg-orange-100 px-3 py-1 rounded-full">
+                    Step 3
+                  </span>
+                  <h3 className="text-xl font-semibold text-gray-900 mt-2">Connect Directly</h3>
+                </div>
+              </div>
+              <p className="text-gray-600">
+                Create a free account to reach out to farmers and arrange pickup, delivery, or farm visits.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">❤️</span>
+                </div>
+                <div>
+                  <span className="text-sm font-semibold text-orange-600 bg-orange-100 px-3 py-1 rounded-full">
+                    Step 4
+                  </span>
+                  <h3 className="text-xl font-semibold text-gray-900 mt-2">Build a Relationship</h3>
+                </div>
+              </div>
+              <p className="text-gray-600">
+                Become a regular customer and know exactly where your food comes from and who grew it.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Benefits Grid */}
         <div className="mb-12">
           <div className="text-center mb-10">
@@ -240,25 +322,30 @@ export default function AboutPage() {
         {/* Call to Action */}
         <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-lg shadow-lg p-8 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">
-            Ready to Grow Your Farming Business?
+            Ready to be part of what&apos;s growing?
           </h2>
-          <p className="text-xl mb-6 opacity-90">
-            Join the Hey Farmer community and start selling directly to local customers today.
+          <p className="text-xl mb-8 opacity-90">
+            Founding farmers join free and help shape the platform from day one.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
+            <Link
+              href="/farmers"
+              className="inline-flex items-center gap-2 px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors"
+            >
+              Browse Farmers
+            </Link>
+            <Link
               href="/signup"
               className="inline-flex items-center gap-2 px-8 py-3 bg-white text-green-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
-              Get Started as a Farmer
+              Get Started
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link 
-              href="/marketplace"
+            <Link
+              href="/founding-farmers"
               className="inline-flex items-center gap-2 px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors"
             >
-              Browse the Marketplace
-              <ShoppingCart className="w-5 h-5" />
+              Become a Founding Farmer
             </Link>
           </div>
         </div>
