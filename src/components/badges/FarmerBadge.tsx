@@ -1,6 +1,7 @@
 import React from 'react'
-import { Home, Leaf, Tractor, Star, ShoppingCart } from 'lucide-react'
+import { Home, Leaf, Star } from 'lucide-react'
 import { UserType } from '@/lib/database'
+import { House, Plant, ShoppingCart, Sparkle, Tractor } from '@phosphor-icons/react'
 
 interface FarmerBadgeProps {
   userType: UserType
@@ -16,28 +17,28 @@ const badgeConfig = {
     label: 'Food Lover',
     bgColor: '#E3F2FD',
     iconColor: '#1976D2',
-    emoji: '🛒'
+    iconName: 'ShoppingCart'
   },
   backyard_grower: {
     icon: Home,
     label: 'Backyard Grower',
     bgColor: '#E8F5E9',
     iconColor: '#2E7D32',
-    emoji: '🏡'
+    iconName: 'House'
   },
   market_gardener: {
     icon: Leaf,
     label: 'Market Gardener',
     bgColor: '#FFF3E0',
     iconColor: '#F57C00',
-    emoji: '🌱'
+    iconName: 'Plant'
   },
   production_farmer: {
     icon: Tractor,
     label: 'Production Farm',
     bgColor: '#E3F2FD',
     iconColor: '#1565C0',
-    emoji: '🚜'
+    iconName: 'Tractor'
   }
 }
 
@@ -113,8 +114,8 @@ export function FarmerBadgeCompact({ userType, verified = false }: { userType: U
   
   return (
     <span className="inline-flex items-center gap-1">
-      <span className="text-base">{config.emoji}</span>
-      {verified && <span className="text-xs">✨</span>}
+      <span className="text-base">{config.iconName && <PhosphorIcon name={config.iconName} size={16} />}</span>
+      {verified && <Sparkle size={24} weight="regular" />}
     </span>
   )
 }

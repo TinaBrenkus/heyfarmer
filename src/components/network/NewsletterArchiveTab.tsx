@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Search, Calendar, Mail, ChevronRight, ExternalLink } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { EnvelopeSimple } from '@phosphor-icons/react'
 
 interface Newsletter {
   id: string
@@ -159,7 +160,7 @@ export default function NewsletterArchiveTab() {
       {filteredNewsletters.length === 0 ? (
         /* Empty State */
         <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-          <div className="text-6xl mb-4">📧</div>
+          <div className="text-6xl mb-4"></div>
           <h3 className="text-2xl font-semibold text-gray-900 mb-2">
             {searchQuery ? 'No Newsletters Found' : 'No Newsletters Yet'}
           </h3>

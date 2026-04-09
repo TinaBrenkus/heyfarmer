@@ -3,28 +3,13 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import {
-  Home,
-  ShoppingCart,
-  Users,
-  FileText,
-  Settings,
-  Menu,
-  X,
-  LogOut,
-  Plus,
-  Bell,
-  MessageCircle,
-  HelpCircle,
-  UserCheck,
-  MapPin,
-  BookOpen
-} from 'lucide-react'
+import { Home, Users, FileText, Settings, Menu, X, LogOut, Plus, Bell, MessageCircle, HelpCircle, UserCheck, MapPin, BookOpen } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 import { supabase } from '@/lib/supabase'
 import { UserType, TexasTriangleCounty } from '@/lib/database'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import { getSlugFromCounty, getCountyDisplayName } from '@/lib/countyUtils'
+import { ChatCircle, House, MapPinLine, NotePencil, Person, ShoppingCart, Sparkle, UsersThree } from '@phosphor-icons/react'
 
 interface Profile {
   id: string
@@ -228,10 +213,10 @@ export default function Navigation() {
             <div className="safe-area-pb">
               <div className="grid grid-cols-4 h-16">
                 {[
-                  { label: 'Home', href: '/', emoji: '🏠' },
-                  { label: 'Farmers', href: '/farmers', emoji: '🧑‍🌾' },
-                  { label: 'Market', href: '/marketplace', emoji: '🛒' },
-                  { label: 'Join', href: '/signup', emoji: '✨' },
+                  { label: 'Home', href: '/', iconName: 'House' },
+                  { label: 'Farmers', href: '/farmers', iconName: 'Person' },
+                  { label: 'Market', href: '/marketplace', iconName: 'ShoppingCart' },
+                  { label: 'Join', href: '/signup', iconName: 'Sparkle' },
                 ].map((item) => {
                   const isActive = pathname === item.href
                   return (
@@ -487,11 +472,11 @@ export default function Navigation() {
                 // Get emoji for each tab
                 const getTabEmoji = (href: string) => {
                   switch (href) {
-                    case '/dashboard': return '🏠'
-                    case '/marketplace': return '🛒'
-                    case '/messages': return '💬'
-                    case '/network': return '👥'
-                    case '/post': return '📝'
+                    case '/dashboard': return ''
+                    case '/marketplace': return ''
+                    case '/messages': return ''
+                    case '/network': return ''
+                    case '/post': return ''
                     default: return ''
                   }
                 }
@@ -531,7 +516,7 @@ export default function Navigation() {
                   }`}
                 >
                   <div className="relative">
-                    <span className="text-lg">📍</span>
+                    <MapPinLine size={24} weight="regular" />
                     {pathname.includes('-county') && (
                       <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-green-600 rounded-full"></div>
                     )}

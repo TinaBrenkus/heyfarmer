@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ExternalLink, Search, Plus } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { BookOpen, Buildings, Handshake, Microphone, Wrench } from '@phosphor-icons/react'
 
 interface Resource {
   id: string
@@ -26,12 +27,12 @@ export default function ResourceLibraryTab({ isAdmin = false, onAddResource }: R
   const [searchQuery, setSearchQuery] = useState('')
 
   const categories = [
-    { id: 'all', label: 'All', icon: '📚' },
-    { id: 'podcasts', label: 'Podcasts', icon: '🎙️' },
-    { id: 'government', label: 'Government', icon: '🏛️' },
-    { id: 'tools', label: 'Tools', icon: '🛠️' },
-    { id: 'education', label: 'Education', icon: '📖' },
-    { id: 'organizations', label: 'Organizations', icon: '🤝' }
+    { id: 'all', label: 'All', icon: 'BookOpen' },
+    { id: 'podcasts', label: 'Podcasts', icon: 'Microphone' },
+    { id: 'government', label: 'Government', icon: 'Buildings' },
+    { id: 'tools', label: 'Tools', icon: 'Wrench' },
+    { id: 'education', label: 'Education', icon: 'BookOpen' },
+    { id: 'organizations', label: 'Organizations', icon: 'Handshake' }
   ]
 
   useEffect(() => {
@@ -159,7 +160,7 @@ export default function ResourceLibraryTab({ isAdmin = false, onAddResource }: R
       {filteredResources.length === 0 ? (
         /* Empty State */
         <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-          <div className="text-6xl mb-4">📚</div>
+          <div className="text-6xl mb-4"></div>
           <h3 className="text-2xl font-semibold text-gray-900 mb-2">
             {searchQuery ? 'No Resources Found' : 'No Resources Yet'}
           </h3>

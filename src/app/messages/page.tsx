@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase'
 import Navigation from '@/components/navigation/Navigation'
 import FarmLogo from '@/components/icons/FarmLogo'
 import FarmerBadge from '@/components/badges/FarmerBadge'
+import { ChatCircle, HandWaving } from '@phosphor-icons/react'
 
 interface Profile {
   id: string
@@ -404,7 +405,7 @@ export default function MessagesPage() {
               <div className="overflow-y-auto h-full">
                 {filteredConversations.length === 0 ? (
                   <div className="p-4 text-center text-gray-500">
-                    <div className="text-4xl mb-2">💬</div>
+                    <div className="text-4xl mb-2"></div>
                     <p>No conversations yet</p>
                     <p className="text-sm">Start messaging from the marketplace!</p>
                   </div>
@@ -548,7 +549,7 @@ export default function MessagesPage() {
                       </div>
                     ) : messages.length === 0 ? (
                       <div className="text-center text-gray-500 py-8">
-                        <div className="text-4xl mb-2">👋</div>
+                        <div className="text-4xl mb-2"></div>
                         <p>Start your conversation!</p>
                       </div>
                     ) : (
@@ -601,7 +602,7 @@ export default function MessagesPage() {
               ) : (
                 <div className="flex-1 flex items-center justify-center text-gray-500">
                   <div className="text-center">
-                    <div className="text-6xl mb-4">💬</div>
+                    <div className="text-6xl mb-4"></div>
                     <h3 className="text-lg font-medium mb-2">Select a conversation</h3>
                     <p>Choose a conversation from the list to start messaging</p>
                   </div>

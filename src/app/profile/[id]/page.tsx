@@ -21,6 +21,7 @@ import ListingCard from '@/components/marketplace/ListingCard'
 import Linkify from '@/components/common/Linkify'
 import { supabase } from '@/lib/supabase'
 import { UserType, Post } from '@/lib/database'
+import { SmileySad, User } from '@phosphor-icons/react'
 
 interface Profile {
   id: string
@@ -239,7 +240,7 @@ export default function PublicProfilePage() {
         <Navigation />
         <div className="flex items-center justify-center pt-20">
           <div className="text-center">
-            <div className="text-6xl mb-4">😞</div>
+            <div className="text-6xl mb-4"></div>
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
               {error || 'Profile not found'}
             </h2>
@@ -300,7 +301,7 @@ export default function PublicProfilePage() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <span className="text-3xl">👤</span>
+                      <User size={24} weight="regular" />
                     )}
                   </div>
 

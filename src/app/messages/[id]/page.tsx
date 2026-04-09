@@ -16,6 +16,7 @@ import Navigation from '@/components/navigation/Navigation'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import { supabase } from '@/lib/supabase'
 import { UserType } from '@/lib/database'
+import { ChatCircle, MapPinLine } from '@phosphor-icons/react'
 
 interface ChatMessage {
   id: string
@@ -253,7 +254,7 @@ export default function ConversationPage() {
                   <div className="max-w-md">
                     <div className="flex items-center gap-2 mb-2 justify-end">
                       <span className="text-sm font-medium text-gray-700">{message.sender.name}</span>
-                      <span className="text-lg">💬</span>
+                      <ChatCircle size={24} weight="regular" />
                     </div>
                     <div className="bg-gray-100 text-gray-900 px-4 py-3 rounded-lg rounded-tr-sm">
                       <p className="text-sm">{message.content}</p>
@@ -269,7 +270,7 @@ export default function ConversationPage() {
                   <div className="max-w-md">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-sm font-medium text-gray-700">{message.sender.name} (You)</span>
-                      <span className="text-lg">💬</span>
+                      <ChatCircle size={24} weight="regular" />
                     </div>
                     <div className="bg-blue-500 text-white px-4 py-3 rounded-lg rounded-tl-sm">
                       <p className="text-sm">{message.content}</p>
@@ -315,7 +316,7 @@ export default function ConversationPage() {
             </button>
             
             <button className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors text-sm">
-              <span className="text-base">📍</span>
+              <MapPinLine size={24} weight="regular" />
               <span>Share Location</span>
             </button>
             

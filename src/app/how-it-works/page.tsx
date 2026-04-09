@@ -2,26 +2,17 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { 
-  ArrowRight,
-  CheckCircle,
-  Users,
-  ShoppingCart,
-  MessageCircle,
-  MapPin,
-  Sprout,
-  Heart,
-  Handshake
-} from 'lucide-react'
+import { ArrowRight, CheckCircle, Users, ShoppingCart, MessageCircle, MapPin, Sprout } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
 import FarmLogo from '@/components/icons/FarmLogo'
+import { ChatCircle, Clock, CurrencyDollar, DeviceMobile, Globe, Handshake, Heart, MagnifyingGlass, Person, Plant, Target, TrendUp } from '@phosphor-icons/react'
 
 const steps = [
   {
     step: 1,
     title: "Create Your Profile",
     description: "Tell Texas Triangle about your farm, what you grow, and your farming practices",
-    icon: "👨‍🌾",
+    icon: 'Person',
     details: [
       "Share your story and farming philosophy",
       "List what you grow (vegetables, fruits, herbs, livestock)",
@@ -33,7 +24,7 @@ const steps = [
     step: 2,
     title: "List Your Products",
     description: "Post what you have available for sale directly to local food lovers",
-    icon: "🥕",
+    icon: 'Plant',
     details: [
       "Create listings for fresh produce, eggs, meat, or value-added products",
       "Set your own prices and quantities",
@@ -45,7 +36,7 @@ const steps = [
     step: 3,
     title: "Connect with Customers",
     description: "Build direct relationships with people who value fresh, local food",
-    icon: "🤝",
+    icon: 'Handshake',
     details: [
       "Receive messages from interested buyers",
       "Answer questions about your products and practices",
@@ -57,7 +48,7 @@ const steps = [
     step: 4,
     title: "Network with Other Farmers",
     description: "Share knowledge, resources, and support with the farming community",
-    icon: "🌱",
+    icon: 'Plant',
     details: [
       "Connect with other growers in Texas Triangle",
       "Share equipment, seeds, and resources",
@@ -69,7 +60,7 @@ const steps = [
     step: 5,
     title: "Grow Your Business",
     description: "Build a sustainable, profitable farming operation with direct sales",
-    icon: "📈",
+    icon: 'TrendUp',
     details: [
       "Eliminate middleman fees - keep more profit",
       "Build relationships that lead to repeat customers",
@@ -81,32 +72,32 @@ const steps = [
 
 const benefits = [
   {
-    icon: "💰",
+    icon: 'CurrencyDollar',
     title: "Higher Profits",
     description: "Sell directly to consumers and keep 100% of your sale price"
   },
   {
-    icon: "🎯",
+    icon: 'Target',
     title: "Target Local Market",
     description: "Reach customers within 30 miles who want fresh, local food"
   },
   {
-    icon: "⏰",
+    icon: 'Clock',
     title: "Flexible Selling",
     description: "List products when ready, update inventory anytime"
   },
   {
-    icon: "🤝",
+    icon: 'Handshake',
     title: "Build Relationships",
     description: "Create lasting connections with customers who value your work"
   },
   {
-    icon: "📱",
+    icon: 'DeviceMobile',
     title: "Easy to Use",
     description: "Simple platform designed specifically for farmers"
   },
   {
-    icon: "🌍",
+    icon: 'Globe',
     title: "Support Local Food",
     description: "Be part of the growing local food movement in Texas Triangle"
   }
@@ -209,7 +200,7 @@ export default function AboutPage() {
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl">🔍</span>
+                  <MagnifyingGlass size={24} weight="regular" />
                 </div>
                 <div>
                   <span className="text-sm font-semibold text-orange-600 bg-orange-100 px-3 py-1 rounded-full">
@@ -226,7 +217,7 @@ export default function AboutPage() {
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl">🥬</span>
+                  <Plant size={24} weight="regular" />
                 </div>
                 <div>
                   <span className="text-sm font-semibold text-orange-600 bg-orange-100 px-3 py-1 rounded-full">
@@ -243,7 +234,7 @@ export default function AboutPage() {
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl">💬</span>
+                  <ChatCircle size={24} weight="regular" />
                 </div>
                 <div>
                   <span className="text-sm font-semibold text-orange-600 bg-orange-100 px-3 py-1 rounded-full">
@@ -260,7 +251,7 @@ export default function AboutPage() {
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl">❤️</span>
+                  <Heart size={24} weight="regular" />
                 </div>
                 <div>
                   <span className="text-sm font-semibold text-orange-600 bg-orange-100 px-3 py-1 rounded-full">

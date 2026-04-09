@@ -20,6 +20,7 @@ import Navigation from '@/components/navigation/Navigation'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import { supabase } from '@/lib/supabase'
 import { UserType } from '@/lib/database'
+import { Bug, ChatCircle, CloudSun, CurrencyDollar, Handshake, Plant, Wrench } from '@phosphor-icons/react'
 
 interface Reply {
   id: string
@@ -251,13 +252,13 @@ Photos attached show my current setup and the blossom end rot issues I've been d
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case 'growing-tips': return '🌱'
-      case 'equipment': return '🔧'
-      case 'pest-control': return '🐛'
-      case 'marketing': return '💰'
-      case 'weather': return '🌦️'
-      case 'resource-sharing': return '🤝'
-      default: return '💬'
+      case 'growing-tips': return ''
+      case 'equipment': return ''
+      case 'pest-control': return ''
+      case 'marketing': return ''
+      case 'weather': return ''
+      case 'resource-sharing': return ''
+      default: return ''
     }
   }
 

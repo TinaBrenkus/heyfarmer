@@ -13,6 +13,7 @@ import {
 import Navigation from '@/components/navigation/Navigation'
 import { supabase } from '@/lib/supabase'
 import { UserType } from '@/lib/database'
+import { Bug, ChatCircle, CloudSun, CurrencyDollar, Handshake, Plant, Wrench } from '@phosphor-icons/react'
 
 interface FormData {
   title: string
@@ -63,12 +64,12 @@ export default function NewDiscussionPage() {
   }
 
   const categories = [
-    { id: 'growing-tips', name: 'Growing Tips', icon: '🌱', description: 'Share gardening and farming techniques' },
-    { id: 'equipment', name: 'Equipment', icon: '🔧', description: 'Tools, machinery, and equipment discussions' },
-    { id: 'pest-control', name: 'Pest Control', icon: '🐛', description: 'Natural and organic pest management' },
-    { id: 'marketing', name: 'Marketing', icon: '💰', description: 'Selling strategies and business advice' },
-    { id: 'weather', name: 'Weather', icon: '🌦️', description: 'Weather concerns and seasonal planning' },
-    { id: 'resource-sharing', name: 'Resource Sharing', icon: '🤝', description: 'Share tools, seeds, and resources' }
+    { id: 'growing-tips', name: 'Growing Tips', icon: 'Plant', description: 'Share gardening and farming techniques' },
+    { id: 'equipment', name: 'Equipment', icon: 'Wrench', description: 'Tools, machinery, and equipment discussions' },
+    { id: 'pest-control', name: 'Pest Control', icon: 'Bug', description: 'Natural and organic pest management' },
+    { id: 'marketing', name: 'Marketing', icon: 'CurrencyDollar', description: 'Selling strategies and business advice' },
+    { id: 'weather', name: 'Weather', icon: 'CloudSun', description: 'Weather concerns and seasonal planning' },
+    { id: 'resource-sharing', name: 'Resource Sharing', icon: 'Handshake', description: 'Share tools, seeds, and resources' }
   ]
 
   const validateForm = () => {
@@ -141,7 +142,7 @@ export default function NewDiscussionPage() {
 
   const getCategoryIcon = (categoryId: string) => {
     const category = categories.find(c => c.id === categoryId)
-    return category?.icon || '💬'
+    return category?.icon || ''
   }
 
   if (loading) {
@@ -171,7 +172,7 @@ export default function NewDiscussionPage() {
           </button>
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <span className="text-4xl">💬</span>
+              <ChatCircle size={24} weight="regular" />
               Start a Discussion
             </h1>
             <p className="text-gray-600">Share knowledge and connect with fellow farmers</p>

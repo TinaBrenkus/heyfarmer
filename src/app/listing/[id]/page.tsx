@@ -8,6 +8,7 @@ import FarmerBadge from '@/components/badges/FarmerBadge'
 import Linkify from '@/components/common/Linkify'
 import { supabase } from '@/lib/supabase'
 import { Post } from '@/lib/database'
+import { SmileySad } from '@phosphor-icons/react'
 
 export default function ListingDetailPage() {
   const router = useRouter()
@@ -108,7 +109,7 @@ export default function ListingDetailPage() {
         <Navigation />
         <div className="flex items-center justify-center pt-20">
           <div className="text-center">
-            <div className="text-6xl mb-4">😞</div>
+            <div className="text-6xl mb-4"></div>
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
               {error || 'Listing not found'}
             </h2>

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { ArrowLeft, Save, Plus } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
 import { supabase } from '@/lib/supabase'
+import { BookOpen, Buildings, Handshake, Microphone, Wrench } from '@phosphor-icons/react'
 
 export default function NewResourcePage() {
   const router = useRouter()
@@ -18,17 +19,17 @@ export default function NewResourcePage() {
     description: '',
     url: '',
     category: 'podcasts',
-    icon: '🎙️',
+    icon: 'Microphone',
     isFeatured: false,
     displayOrder: 0
   })
 
   const categories = [
-    { value: 'podcasts', label: 'Podcasts & Media', defaultIcon: '🎙️' },
-    { value: 'government', label: 'Government Resources', defaultIcon: '🏛️' },
-    { value: 'tools', label: 'Tools & Calculators', defaultIcon: '🛠️' },
-    { value: 'education', label: 'Education & Learning', defaultIcon: '📖' },
-    { value: 'organizations', label: 'Organizations', defaultIcon: '🤝' }
+    { value: 'podcasts', label: 'Podcasts & Media', defaultIcon: '' },
+    { value: 'government', label: 'Government Resources', defaultIcon: '' },
+    { value: 'tools', label: 'Tools & Calculators', defaultIcon: '' },
+    { value: 'education', label: 'Education & Learning', defaultIcon: '' },
+    { value: 'organizations', label: 'Organizations', defaultIcon: '' }
   ]
 
   useEffect(() => {
@@ -66,7 +67,7 @@ export default function NewResourcePage() {
     setFormData({
       ...formData,
       category,
-      icon: selectedCategory?.defaultIcon || '📚'
+      icon: selectedCategory?.defaultIcon || ''
     })
   }
 
@@ -212,7 +213,7 @@ export default function NewResourcePage() {
                 type="text"
                 value={formData.icon}
                 onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                placeholder="🎙️"
+                placeholder=""
                 maxLength={2}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-2xl"
               />
@@ -277,10 +278,10 @@ export default function NewResourcePage() {
         <div className="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h3 className="font-semibold text-blue-900 mb-3">Example Resources to Add:</h3>
           <div className="space-y-2 text-sm text-blue-800">
-            <p>🎙️ <strong>Podcasts:</strong> Soil Sisters, No-Till Market Garden, Farm Small Farm Smart</p>
-            <p>🏛️ <strong>Government:</strong> USDA Programs, Texas Dept of Agriculture, NRCS Texas</p>
-            <p>🛠️ <strong>Tools:</strong> Johnny's Seed Calculator, NOAA Weather, Square Foot Garden Planner</p>
-            <p>📖 <strong>Education:</strong> Texas A&M AgriLife Extension, ATTRA, Rodale Institute</p>
+            <p><strong>Podcasts:</strong> Soil Sisters, No-Till Market Garden, Farm Small Farm Smart</p>
+            <p><strong>Government:</strong> USDA Programs, Texas Dept of Agriculture, NRCS Texas</p>
+            <p><strong>Tools:</strong> Johnny's Seed Calculator, NOAA Weather, Square Foot Garden Planner</p>
+            <p><strong>Education:</strong> Texas A&M AgriLife Extension, ATTRA, Rodale Institute</p>
           </div>
         </div>
       </main>

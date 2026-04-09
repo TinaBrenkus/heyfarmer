@@ -10,6 +10,7 @@ import FromTheFieldTab from '@/components/network/FromTheFieldTab'
 import ResourceLibraryTab from '@/components/network/ResourceLibraryTab'
 import NewsletterArchiveTab from '@/components/network/NewsletterArchiveTab'
 import { supabase } from '@/lib/supabase'
+import { UsersThree } from '@phosphor-icons/react'
 
 export default function FarmerNetworkPage() {
   const router = useRouter()
@@ -136,7 +137,7 @@ export default function FarmerNetworkPage() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
-              <span className="text-4xl">👥</span>
+              <UsersThree size={24} weight="regular" />
               {isFarmer ? 'Farmer Network' : 'Hey Farmer Network'}
             </h1>
             <p className="text-gray-600">

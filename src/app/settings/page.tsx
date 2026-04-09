@@ -19,6 +19,7 @@ import ImageUpload from '@/components/common/ImageUpload'
 import MultiImageUpload from '@/components/common/MultiImageUpload'
 import { supabase } from '@/lib/supabase'
 import { UserType, TexasTriangleCounty } from '@/lib/database'
+import { Egg, House, Leaf, Lightbulb, Lock, MagnifyingGlass, Plant, Star } from '@phosphor-icons/react'
 
 interface ProfileData {
   full_name: string
@@ -271,8 +272,8 @@ export default function ProfileSettingsPage() {
   ]
 
   const commonTags = [
-    '🥚 Eggs', '🍅 Tomatoes', '🌿 Herbs', '🥒 Cucumbers', 
-    '🥕 Carrots', '🌶️ Peppers', '🥬 Lettuce', '🧄 Garlic',
+    'Eggs', 'Tomatoes', 'Herbs', '🥒 Cucumbers', 
+    'Carrots', '🌶️ Peppers', 'Lettuce', '🧄 Garlic',
     '🥔 Potatoes', '🌽 Corn', '🫛 Beans', '🥦 Broccoli'
   ]
 
@@ -335,7 +336,7 @@ export default function ProfileSettingsPage() {
             {/* Farm Gallery */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">
-                🏡 Farm Gallery (up to 5 photos)
+                Farm Gallery (up to 5 photos)
               </label>
               <MultiImageUpload
                 currentImages={profileData.farm_images || []}
@@ -643,7 +644,7 @@ export default function ProfileSettingsPage() {
             {/* Privacy Settings */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">
-                🔒 Privacy Settings:
+                Privacy Settings:
               </label>
               <div className="space-y-4">
                 <div className="p-4 border border-gray-200 rounded-lg">
@@ -687,7 +688,7 @@ export default function ProfileSettingsPage() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium text-gray-900">Allow customer reviews</span>
-                        <span className="text-lg">{profileData.privacy_settings.allow_reviews ? '⭐' : '❌'}</span>
+                        <span className="text-lg">{profileData.privacy_settings.allow_reviews ? '' : '❌'}</span>
                       </div>
                       <p className="text-xs text-gray-500">Customers can leave reviews and ratings on your profile</p>
                     </div>
@@ -711,7 +712,7 @@ export default function ProfileSettingsPage() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium text-gray-900">Include in search results</span>
-                        <span className="text-lg">{profileData.privacy_settings.include_in_search ? '🔍' : '🚫'}</span>
+                        <span className="text-lg">{profileData.privacy_settings.include_in_search ? '' : '🚫'}</span>
                       </div>
                       <p className="text-xs text-gray-500">Your profile appears when customers search for products or farmers</p>
                     </div>
@@ -721,7 +722,7 @@ export default function ProfileSettingsPage() {
               
               <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                 <div className="flex items-start gap-2">
-                  <span className="text-lg">💡</span>
+                  <Lightbulb size={24} weight="regular" />
                   <div>
                     <p className="text-sm font-medium text-blue-900">Privacy Tip</p>
                     <p className="text-xs text-blue-700">

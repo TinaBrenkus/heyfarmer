@@ -12,6 +12,7 @@ import { db, Post, PostType, TexasTriangleCounty } from '@/lib/database'
 import Navigation from '@/components/navigation/Navigation'
 import Footer from '@/components/layout/Footer'
 import ListingsGrid from '@/components/marketplace/ListingsGrid'
+import { Egg, Leaf, Plant, Sparkle, Wrench } from '@phosphor-icons/react'
 
 interface FilterOptions {
   postType?: PostType | 'all'
@@ -34,12 +35,12 @@ export default function MarketplacePage() {
   const [activeFilters, setActiveFilters] = useState<FilterOptions>({})
   const [popularSearches] = useState(['Fresh Eggs', 'Tomatoes', 'Herbs', 'Seasonal Produce', 'Equipment'])
   const [quickFilters] = useState([
-    { id: 'eggs', label: '🥚 Eggs', searchTerm: 'eggs' },
-    { id: 'tomatoes', label: '🍅 Tomatoes', searchTerm: 'tomatoes' },
-    { id: 'equipment', label: '🔧 Equipment', searchTerm: 'equipment' },
-    { id: 'herbs', label: '🌿 Herbs', searchTerm: 'herbs' },
+    { id: 'eggs', label: 'Eggs', searchTerm: 'eggs' },
+    { id: 'tomatoes', label: 'Tomatoes', searchTerm: 'tomatoes' },
+    { id: 'equipment', label: 'Equipment', searchTerm: 'equipment' },
+    { id: 'herbs', label: 'Herbs', searchTerm: 'herbs' },
     { id: 'seasonal', label: '🍂 Seasonal', searchTerm: 'seasonal' },
-    { id: 'organic', label: '✨ Organic', searchTerm: 'organic' }
+    { id: 'organic', label: 'Organic', searchTerm: 'organic' }
   ])
   const [showMessage, setShowMessage] = useState(false)
   

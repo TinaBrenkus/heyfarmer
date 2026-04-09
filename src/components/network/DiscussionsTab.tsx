@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import { UserType } from '@/lib/database'
+import { Bug, ChatCircle, CloudSun, CurrencyDollar, Handshake, Plant, Wrench } from '@phosphor-icons/react'
 
 interface Discussion {
   id: string
@@ -43,13 +44,13 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
   const [selectedCategory, setSelectedCategory] = useState('all')
 
   const categories = [
-    { id: 'all', name: 'All Discussions', icon: '💬', count: isDemoMode ? 47 : 0 },
-    { id: 'growing-tips', name: 'Growing Tips', icon: '🌱', count: isDemoMode ? 12 : 0 },
-    { id: 'equipment', name: 'Equipment', icon: '🔧', count: isDemoMode ? 8 : 0 },
-    { id: 'pest-control', name: 'Pest Control', icon: '🐛', count: isDemoMode ? 6 : 0 },
-    { id: 'marketing', name: 'Marketing', icon: '💰', count: isDemoMode ? 9 : 0 },
-    { id: 'weather', name: 'Weather', icon: '🌦️', count: isDemoMode ? 5 : 0 },
-    { id: 'resource-sharing', name: 'Resource Sharing', icon: '🤝', count: isDemoMode ? 7 : 0 }
+    { id: 'all', name: 'All Discussions', icon: 'ChatCircle', count: isDemoMode ? 47 : 0 },
+    { id: 'growing-tips', name: 'Growing Tips', icon: 'Plant', count: isDemoMode ? 12 : 0 },
+    { id: 'equipment', name: 'Equipment', icon: 'Wrench', count: isDemoMode ? 8 : 0 },
+    { id: 'pest-control', name: 'Pest Control', icon: 'Bug', count: isDemoMode ? 6 : 0 },
+    { id: 'marketing', name: 'Marketing', icon: 'CurrencyDollar', count: isDemoMode ? 9 : 0 },
+    { id: 'weather', name: 'Weather', icon: 'CloudSun', count: isDemoMode ? 5 : 0 },
+    { id: 'resource-sharing', name: 'Resource Sharing', icon: 'Handshake', count: isDemoMode ? 7 : 0 }
   ]
 
   const hotTopics: Discussion[] = [
@@ -136,7 +137,7 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
 
   const getCategoryIcon = (categoryId: string) => {
     const category = categories.find(c => c.id === categoryId)
-    return category?.icon || '💬'
+    return category?.icon || ''
   }
 
   const formatLastActivity = (timeStr: string) => {
@@ -311,7 +312,7 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
         ) : (
           /* Empty State - Live Mode */
           <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-            <div className="text-6xl mb-4">💬</div>
+            <div className="text-6xl mb-4"></div>
             <h2 className="text-2xl font-semibold text-gray-900 mb-2">
               Start the Conversation
             </h2>

@@ -2,26 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { 
-  ArrowLeft,
-  ShoppingCart,
-  Handshake,
-  MessageCircle,
-  Wrench,
-  HelpCircle,
-  Search,
-  Plus,
-  Camera,
-  MapPin,
-  DollarSign,
-  Calendar,
-  Users,
-  AlertCircle
-} from 'lucide-react'
+import { ArrowLeft, Handshake, MessageCircle, HelpCircle, Search, Plus, Camera, MapPin, DollarSign, Calendar, Users, AlertCircle } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import { supabase } from '@/lib/supabase'
 import { UserType, TexasTriangleCounty } from '@/lib/database'
+import { ChatCircle, CheckCircle, Egg, Globe, Plant, ShoppingCart, Tractor, UsersThree, Wrench } from '@phosphor-icons/react'
 
 interface PostType {
   id: string
@@ -142,7 +128,7 @@ export default function CreatePostPage() {
       id: 'for-sale',
       title: 'For Sale',
       icon: ShoppingCart,
-      emoji: '🛒',
+      iconName: 'ShoppingCart',
       description: 'Sell produce, products, or goods',
       visibility: 'public',
       color: '#059669',
@@ -162,7 +148,7 @@ export default function CreatePostPage() {
       id: 'equipment',
       title: 'Equipment',
       icon: Wrench,
-      emoji: '🔧',
+      iconName: 'Wrench',
       description: 'Rent or lend farming tools',
       visibility: 'public',
       color: '#EA580C',
@@ -172,7 +158,7 @@ export default function CreatePostPage() {
       id: 'discussion',
       title: 'Discussion',
       icon: MessageCircle,
-      emoji: '💬',
+      iconName: 'ChatCircle',
       description: 'Start a conversation',
       visibility: 'farmers-only',
       color: '#7C3AED',
@@ -406,7 +392,7 @@ export default function CreatePostPage() {
                         <span className="font-medium text-gray-900">{type.title}</span>
                         {type.visibility === 'farmers-only' && (
                           <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full">
-                            👥 Farmers
+                            Farmers
                           </span>
                         )}
                       </div>
@@ -432,19 +418,19 @@ export default function CreatePostPage() {
               <h3 className="font-medium text-gray-900 mb-4">Popular templates:</h3>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="flex items-center gap-2 text-gray-600">
-                  <span>🥚</span>
+                  <Egg size={24} weight="regular" />
                   <span>Fresh eggs available</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
-                  <span>🥕</span>
+                  <Plant size={24} weight="regular" />
                   <span>Seasonal produce for sale</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
-                  <span>🚜</span>
+                  <Tractor size={24} weight="regular" />
                   <span>Equipment rental</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
-                  <span>🌱</span>
+                  <Plant size={24} weight="regular" />
                   <span>Surplus to share</span>
                 </div>
               </div>
@@ -792,7 +778,7 @@ export default function CreatePostPage() {
                         className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
                       />
                       <label htmlFor="availableNow" className="text-sm font-medium text-gray-700">
-                        ✅ Available now
+                        Available now
                       </label>
                     </div>
                     
@@ -823,7 +809,7 @@ export default function CreatePostPage() {
                         className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
                       />
                       <div>
-                        <div className="font-medium text-gray-900">🌍 Everyone (Public marketplace)</div>
+                        <div className="font-medium text-gray-900">Everyone (Public marketplace)</div>
                         <div className="text-sm text-gray-600">Visible to all users including consumers</div>
                       </div>
                     </label>
@@ -838,7 +824,7 @@ export default function CreatePostPage() {
                         className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
                       />
                       <div>
-                        <div className="font-medium text-gray-900">👥 Farmers only (Private network)</div>
+                        <div className="font-medium text-gray-900">Farmers only (Private network)</div>
                         <div className="text-sm text-gray-600">Only visible to other farmers</div>
                       </div>
                     </label>

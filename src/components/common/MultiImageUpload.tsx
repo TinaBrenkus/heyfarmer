@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Upload, X, Image as ImageIcon } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { Lightbulb } from '@phosphor-icons/react'
 
 interface MultiImageUploadProps {
   currentImages?: string[]
@@ -211,7 +212,7 @@ export default function MultiImageUpload({
 
       {images.length > 0 && (
         <p className="text-xs text-gray-500">
-          💡 Tip: The first image will be used as the main photo. Drag images to reorder.
+          Tip: The first image will be used as the main photo. Drag images to reorder.
         </p>
       )}
     </div>

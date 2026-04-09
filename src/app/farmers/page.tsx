@@ -21,6 +21,7 @@ import DirectoryFarmCard from '@/components/directory/DirectoryFarmCard'
 import { supabase } from '@/lib/supabase'
 import { db, DirectoryFarm, UserType } from '@/lib/database'
 import { ALL_COUNTY_IDS, COUNTY_DATA } from '@/lib/countyUtils'
+import { Person } from '@phosphor-icons/react'
 
 interface FarmerProfile {
   id: string
@@ -245,7 +246,7 @@ export default function FarmersPage() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-4xl">🧑‍🌾</span>
+            <Person size={24} weight="regular" />
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Texas Triangle Farmers</h1>
               <p className="text-gray-600">Discover local farmers and growers in your area</p>

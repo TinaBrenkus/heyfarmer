@@ -3,11 +3,12 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { User, Tractor, ShoppingCart, Eye, EyeOff } from 'lucide-react'
+import { User, Eye, EyeOff } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 import { supabase } from '@/lib/supabase'
 import { db, UserType, TexasTriangleCounty } from '@/lib/database'
 import { WelcomeTour } from '@/components/onboarding/QuickTour'
+import { Flower, House, Leaf, Lightbulb, Plant, ShoppingCart, Tractor } from '@phosphor-icons/react'
 
 const counties: { value: TexasTriangleCounty; label: string }[] = [
   // Dallas-Fort Worth Metro
@@ -276,10 +277,10 @@ function SignupContent() {
   const isFarmer = formData.userType !== 'consumer'
 
   const growTypes = [
-    { id: 'vegetables', label: 'Vegetables', emoji: '🥕' },
+    { id: 'vegetables', label: 'Vegetables', iconName: 'Plant' },
     { id: 'fruits', label: 'Fruits', emoji: '🍎' },
-    { id: 'herbs', label: 'Herbs', emoji: '🌿' },
-    { id: 'flowers', label: 'Flowers', emoji: '🌸' },
+    { id: 'herbs', label: 'Herbs', iconName: 'Leaf' },
+    { id: 'flowers', label: 'Flowers', iconName: 'Flower' },
     { id: 'livestock', label: 'Livestock', emoji: '🐄' },
     { id: 'other', label: 'Other', emoji: '🌾' }
   ]
@@ -373,7 +374,7 @@ function SignupContent() {
                         }`}
                       >
                         <div className="flex items-start gap-3">
-                          <div className="text-2xl">{type.value === 'backyard_grower' ? '🏡' : type.value === 'market_gardener' ? '🌱' : type.value === 'production_farmer' ? '🚜' : '🛒'}</div>
+                          <div className="text-2xl">{type.value === 'backyard_grower' ? '' : type.value === 'market_gardener' ? '' : type.value === 'production_farmer' ? '' : ''}</div>
                           <div>
                             <div className="font-medium text-gray-900 text-lg">{type.label}</div>
                             <div className="text-sm text-gray-500 mt-1">{type.description}</div>
@@ -616,7 +617,7 @@ function SignupContent() {
                 {/* Note about profile photo */}
                 <div className="p-3 rounded-lg bg-blue-50 border border-blue-200">
                   <p className="text-sm text-blue-700">
-                    💡 You can add a profile photo after creating your account in your profile settings.
+                    You can add a profile photo after creating your account in your profile settings.
                   </p>
                 </div>
               </div>

@@ -2,19 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { 
-  X, 
-  ArrowRight, 
-  ShoppingCart, 
-  Users, 
-  Wrench, 
-  MessageCircle,
-  Plus,
-  Search,
-  MapPin,
-  Calendar
-} from 'lucide-react'
+import { X, ArrowRight, Users, MessageCircle, Plus, Search, MapPin, Calendar } from 'lucide-react'
 import { UserType } from '@/lib/database'
+import { CalendarBlank, ChatCircle, Confetti, MagnifyingGlass, MapPinLine, ShoppingCart, Sparkle, UsersThree, Wrench } from '@phosphor-icons/react'
 
 interface QuickTourProps {
   userType: UserType
@@ -239,7 +229,7 @@ export default function QuickTour({ userType, onComplete, onSkip }: QuickTourPro
             <X size={20} />
           </button>
           
-          <div className="text-4xl mb-4">🎉</div>
+          <div className="text-4xl mb-4"></div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             You're In!
           </h2>
@@ -333,7 +323,7 @@ export function WelcomeTour({ userType, onComplete, onSkip }: QuickTourProps) {
             <X size={20} />
           </button>
           
-          <div className="text-4xl mb-4">🎉</div>
+          <div className="text-4xl mb-4"></div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             You're In!
           </h2>
@@ -349,14 +339,14 @@ export function WelcomeTour({ userType, onComplete, onSkip }: QuickTourProps) {
             return (
               <div key={index} className="flex items-start gap-3">
                 <div className="text-xl">{
-                  step.icon === ShoppingCart ? '🛒' :
-                  step.icon === Users ? '👥' :
-                  step.icon === Wrench ? '🔧' :
-                  step.icon === MessageCircle ? '💬' :
+                  step.icon === ShoppingCart ? '' :
+                  step.icon === Users ? '' :
+                  step.icon === Wrench ? '' :
+                  step.icon === MessageCircle ? '' :
                   step.icon === Plus ? '➕' :
-                  step.icon === Search ? '🔍' :
-                  step.icon === MapPin ? '📍' :
-                  step.icon === Calendar ? '📅' : '✨'
+                  step.icon === Search ? '' :
+                  step.icon === MapPin ? '' :
+                  step.icon === Calendar ? '' : ''
                 }</div>
                 <div className="flex-1">
                   <h4 className="font-medium text-gray-900">{step.title}</h4>

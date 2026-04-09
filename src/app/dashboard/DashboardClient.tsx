@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { User, Settings, LogOut, Plus, MapPin, Users, Calendar, ShoppingCart, Tractor, MessageCircle, HelpCircle } from 'lucide-react'
+import { Settings, LogOut, Plus, MapPin, Users, Calendar, ShoppingCart, Tractor, MessageCircle, HelpCircle } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 import { supabase } from '@/lib/supabase'
 import { UserType } from '@/lib/database'
@@ -10,6 +10,7 @@ import FarmerBadge from '@/components/badges/FarmerBadge'
 import Navigation from '@/components/navigation/Navigation'
 import QuickTour, { WelcomeTour } from '@/components/onboarding/QuickTour'
 import { useWeather } from '@/hooks/useWeather'
+import { ChartBar, HandWaving, Lightbulb, Target, TrendUp, User } from '@phosphor-icons/react'
 
 interface Profile {
   id: string
@@ -319,7 +320,7 @@ ${profile?.full_name}`
         <div className="bg-white rounded-lg shadow-sm p-4 md:p-6 mb-4 md:mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="text-2xl">👋</div>
+              <div className="text-2xl"></div>
               <div>
                 <h2 className="text-xl md:text-2xl font-bold text-gray-900">
                   Good {new Date().getHours() < 12 ? 'morning' : new Date().getHours() < 18 ? 'afternoon' : 'evening'}, {profile.full_name.split(' ')[0]}!
@@ -375,7 +376,7 @@ ${profile?.full_name}`
         {(profile.bio || profile.avatar_url) && (
           <div className="bg-white rounded-lg shadow-sm p-4 md:p-6 mb-4 md:mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <span className="text-xl">👤</span>
+              <User size={24} weight="regular" />
               Your Profile
             </h3>
             <div className="flex items-start gap-4">
@@ -409,7 +410,7 @@ ${profile?.full_name}`
           {/* Activity Card */}
           <div className="bg-white rounded-lg shadow-sm p-4">
             <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-              <span className="text-xl">📊</span>
+              <ChartBar size={24} weight="regular" />
               Quick Stats
             </h3>
             <div className="grid grid-cols-2 gap-3">
@@ -430,7 +431,7 @@ ${profile?.full_name}`
           <div className="bg-white rounded-lg shadow-sm p-4">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                <span className="text-xl">🚀</span>
+                <TrendUp size={24} weight="regular" />
                 Get Started
               </h3>
             </div>
@@ -512,7 +513,7 @@ ${profile?.full_name}`
           {/* Activity Stats */}
           <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <span className="text-xl">📊</span>
+              <ChartBar size={24} weight="regular" />
               Quick Stats
             </h3>
             <div className="grid grid-cols-2 gap-4">
@@ -534,7 +535,7 @@ ${profile?.full_name}`
             {!isFarmer && (
               <div className="mt-4 p-3 bg-orange-50 border border-orange-200 rounded-lg">
                 <p className="text-sm text-orange-800">
-                  💡 <strong>Tip:</strong> Browse the marketplace to find fresh local produce from farmers near you!
+                  <strong>Tip:</strong> Browse the marketplace to find fresh local produce from farmers near you!
                 </p>
               </div>
             )}
@@ -647,7 +648,7 @@ ${profile?.full_name}`
                 onClick={() => setShowTour(true)}
                 className="flex items-center gap-3 p-4 bg-green-50 hover:bg-green-100 rounded-lg border border-green-200 transition-colors group"
               >
-                <span className="text-xl">🎯</span>
+                <Target size={24} weight="regular" />
                 <div className="text-left">
                   <p className="font-medium text-gray-900 group-hover:text-green-700">Show Welcome Tour</p>
                   <p className="text-sm text-gray-600">Review the basics</p>

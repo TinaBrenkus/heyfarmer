@@ -15,6 +15,7 @@ import Navigation from '@/components/navigation/Navigation'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import { supabase } from '@/lib/supabase'
 import { UserType } from '@/lib/database'
+import { CheckCircle, User } from '@phosphor-icons/react'
 
 interface ProfilePreviewData {
   full_name: string
@@ -171,7 +172,7 @@ export default function ProfilePreviewPage() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <span className="text-3xl">👤</span>
+                  <User size={24} weight="regular" />
                 )}
               </div>
 
@@ -298,19 +299,19 @@ export default function ProfilePreviewPage() {
                   <h4 className="font-medium text-blue-900 mb-2">Profile Visibility</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex items-center gap-2">
-                      <span className={profile.privacy_settings.show_in_marketplace ? '✅' : '❌'}></span>
+                      <span className={profile.privacy_settings.show_in_marketplace ? '' : '❌'}></span>
                       <span className="text-blue-700">
                         {profile.privacy_settings.show_in_marketplace ? 'Visible in marketplace' : 'Hidden from marketplace'}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className={profile.privacy_settings.include_in_search ? '✅' : '❌'}></span>
+                      <span className={profile.privacy_settings.include_in_search ? '' : '❌'}></span>
                       <span className="text-blue-700">
                         {profile.privacy_settings.include_in_search ? 'Appears in search results' : 'Hidden from search'}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className={profile.privacy_settings.allow_reviews ? '✅' : '❌'}></span>
+                      <span className={profile.privacy_settings.allow_reviews ? '' : '❌'}></span>
                       <span className="text-blue-700">
                         {profile.privacy_settings.allow_reviews ? 'Reviews enabled' : 'Reviews disabled'}
                       </span>
