@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Heart, MapPin, User, Calendar, Package, DollarSign, Truck, MessageCircle, Edit } from 'lucide-react'
 import { Post, UserType } from '@/lib/database'
 import FarmLogo from '@/components/icons/FarmLogo'
+import TomatoMark from '@/components/icons/TomatoMark'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import Linkify from '@/components/common/Linkify'
 
@@ -187,7 +188,7 @@ export default function ListingCard({
                     className="w-8 h-8 rounded-full object-cover"
                   />
                 ) : (
-                  <FarmLogo size={16} className="text-soil-400" />
+                  <TomatoMark size={16} className="text-soil-400" />
                 )}
               </div>
               <div className="flex-1 min-w-0">
@@ -214,7 +215,7 @@ export default function ListingCard({
           ) : (
             <div className="flex items-center gap-2 flex-1 min-w-0">
               <div className="w-8 h-8 rounded-full bg-soil-100 flex items-center justify-center">
-                <FarmLogo size={16} className="text-soil-400" />
+                <TomatoMark size={16} className="text-soil-400" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-soil-400 truncate">

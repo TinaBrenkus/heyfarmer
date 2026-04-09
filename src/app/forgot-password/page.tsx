@@ -47,9 +47,7 @@ export default function ForgotPasswordPage() {
             {/* Header */}
             <div className="text-center mb-8">
               <div className="flex justify-center mb-4">
-                <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#4A5E35' }}>
-                  <FarmLogo size={32} className="text-white" />
-                </div>
+                <FarmLogo size={80} />
               </div>
               <h1 className="text-3xl font-bold text-soil-800 mb-2">
                 Check Your Email
@@ -102,9 +100,7 @@ export default function ForgotPasswordPage() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#4A5E35' }}>
-                <FarmLogo size={32} className="text-white" />
-              </div>
+              <FarmLogo size={80} />
             </div>
             <h1 className="text-3xl font-bold text-soil-800 mb-2">
               Forgot Password?

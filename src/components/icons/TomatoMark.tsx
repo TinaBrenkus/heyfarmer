@@ -1,24 +1,22 @@
 import React from 'react'
 import Image from 'next/image'
 
-interface FarmLogoProps {
+interface TomatoMarkProps {
   size?: number
   className?: string
 }
 
-const FarmLogo: React.FC<FarmLogoProps> = ({ size = 24, className = "" }) => {
-  // The wordmark is roughly 1:1 aspect ratio (stacked text)
+const TomatoMark: React.FC<TomatoMarkProps> = ({ size = 24, className = "" }) => {
   return (
     <Image
-      src="/images/heyfarmer-logo.png"
+      src="/images/favicon-tomato.png"
       alt="Hey Farmer"
       width={size}
       height={size}
       className={className}
       style={{ objectFit: 'contain' }}
-      priority
     />
   )
 }
 
-export default FarmLogo
+export default TomatoMark

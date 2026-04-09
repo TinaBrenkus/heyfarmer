@@ -8,6 +8,7 @@ import {
   ChevronDown, ArrowLeft, ExternalLink, CheckCircle, XCircle, Clock
 } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
+import TomatoMark from '@/components/icons/TomatoMark'
 import ImageUpload from '@/components/common/ImageUpload'
 import MultiImageUpload from '@/components/common/MultiImageUpload'
 import { supabase } from '@/lib/supabase'
@@ -296,9 +297,7 @@ export default function AdminDirectoryPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
-                <FarmLogo size={24} className="text-white" />
-              </div>
+              <TomatoMark size={28} />
               <div>
                 <h1 className="text-xl font-bold text-soil-800">Farm Directory Admin</h1>
                 <p className="text-xs text-soil-400">Manage directory listings</p>

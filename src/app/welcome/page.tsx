@@ -14,6 +14,7 @@ import {
   CheckCircle
 } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
+import TomatoMark from '@/components/icons/TomatoMark'
 import { supabase } from '@/lib/supabase'
 
 export default function WelcomePage() {
@@ -107,9 +108,7 @@ export default function WelcomePage() {
           {/* Logo and Title */}
           <div className="text-center mb-12 animate-fade-in">
             <div className="inline-flex items-center justify-center p-4 bg-white rounded-2xl shadow-lg mb-6">
-              <div className="p-3 rounded-xl" style={{ backgroundColor: '#4A5E35' }}>
-                <FarmLogo size={48} className="text-white" />
-              </div>
+              <FarmLogo size={120} />
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold text-soil-800 mb-4">
@@ -286,9 +285,7 @@ export default function WelcomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
-                <FarmLogo size={20} className="text-white" />
-              </div>
+              <TomatoMark size={24} />
               <span className="text-soil-500">© 2024 Hey Farmer Texas Triangle</span>
             </div>
             <div className="flex gap-6">

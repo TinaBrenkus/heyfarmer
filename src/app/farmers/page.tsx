@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
 import FarmLogo from '@/components/icons/FarmLogo'
+import TomatoMark from '@/components/icons/TomatoMark'
 import FarmerBadge from '@/components/badges/FarmerBadge'
 import DirectoryFarmCard from '@/components/directory/DirectoryFarmCard'
 import { supabase } from '@/lib/supabase'
@@ -423,7 +424,7 @@ export default function FarmersPage() {
                             className="w-16 h-16 rounded-full object-cover"
                           />
                         ) : (
-                          <FarmLogo size={24} className="text-soil-400" />
+                          <TomatoMark size={24} className="text-soil-400" />
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
@@ -504,7 +505,7 @@ export default function FarmersPage() {
                             className="w-12 h-12 rounded-full object-cover"
                           />
                         ) : (
-                          <FarmLogo size={20} className="text-soil-400" />
+                          <TomatoMark size={20} className="text-soil-400" />
                         )}
                       </div>
                       

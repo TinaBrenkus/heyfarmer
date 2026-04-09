@@ -42,9 +42,7 @@ export default function LoginForm() {
     <div className="max-w-md mx-auto p-6">
       <div className="bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
-          <div className="inline-flex p-3 rounded-full mb-4" style={{ backgroundColor: '#F0EDE4' }}>
-            <FarmLogo className="h-8 w-8" style={{ color: '#4A5E35' }} />
-          </div>
+          <div className="mb-4"><FarmLogo size={64} /></div>
           <h2 className="text-3xl font-bold text-soil-800 mb-2">Welcome Back</h2>
           <p className="text-soil-500">Log in to Hey Farmer</p>
         </div>

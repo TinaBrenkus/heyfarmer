@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Users, Mail, MapPin, Filter, Download, Calendar, User, Tractor, ShoppingCart } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
+import TomatoMark from '@/components/icons/TomatoMark'
 import { supabase } from '@/lib/supabase'
 import { UserType, TexasTriangleCounty } from '@/lib/database'
 
@@ -185,9 +186,7 @@ export default function AdminPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <div className="p-2 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
-                <FarmLogo size={24} className="text-white" />
-              </div>
+              <TomatoMark size={28} />
               <h1 className="ml-3 text-xl font-bold text-soil-800">
                 Hey <span style={{ color: '#4A5E35' }}>Farmer</span> Admin
               </h1>

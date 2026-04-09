@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { Home, Users, FileText, Settings, Menu, X, LogOut, Plus, Bell, MessageCircle, HelpCircle, UserCheck, MapPin, BookOpen } from 'lucide-react'
-import FarmLogo from '@/components/icons/FarmLogo'
+import TomatoMark from '@/components/icons/TomatoMark'
 import { supabase } from '@/lib/supabase'
 import { UserType, TexasTriangleCounty } from '@/lib/database'
 import FarmerBadge from '@/components/badges/FarmerBadge'
@@ -128,9 +128,7 @@ export default function Navigation() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <Link href="/" className="flex items-center space-x-3">
-                <div className="p-2 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
-                  <FarmLogo size={28} className="text-white" />
-                </div>
+                <TomatoMark size={32} />
                 <div>
                   <h1 className="text-xl font-bold text-soil-800">Hey Farmer</h1>
                   <p className="text-xs" style={{ color: '#4A5E35' }}>Texas Triangle</p>
@@ -186,9 +184,7 @@ export default function Navigation() {
           <header className="bg-white shadow-sm border-b border-warm-border sticky top-0 z-50">
             <div className="flex justify-between items-center h-14 px-4">
               <Link href="/" className="flex items-center gap-2">
-                <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
-                  <FarmLogo size={20} className="text-white" />
-                </div>
+                <TomatoMark size={24} />
                 <h1 className="text-lg font-bold text-soil-800">Hey Farmer</h1>
               </Link>
               <div className="flex items-center gap-2">
@@ -254,9 +250,7 @@ export default function Navigation() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link href="/dashboard" className="flex items-center space-x-3">
-              <div className="p-2 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
-                <FarmLogo size={28} className="text-white" />
-              </div>
+              <TomatoMark size={32} />
               <div>
                 <h1 className="text-xl font-bold text-soil-800">Hey Farmer</h1>
                 <p className="text-xs" style={{ color: '#4A5E35' }}>Texas Triangle</p>
@@ -348,9 +342,7 @@ export default function Navigation() {
         <header className="bg-white shadow-sm border-b border-warm-border sticky top-0 z-50">
           <div className="flex justify-between items-center h-14 px-4">
             <Link href="/dashboard" className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
-                <FarmLogo size={20} className="text-white" />
-              </div>
+              <TomatoMark size={24} />
               <h1 className="text-lg font-bold text-soil-800">Hey Farmer</h1>
             </Link>
 

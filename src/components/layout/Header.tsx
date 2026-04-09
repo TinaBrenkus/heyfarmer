@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { User, LogOut, Settings } from 'lucide-react'
-import FarmLogo from '@/components/icons/FarmLogo'
+import TomatoMark from '@/components/icons/TomatoMark'
 import { supabase } from '@/lib/supabase'
 
 export default function Header() {
@@ -61,9 +61,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="p-2 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
-              <FarmLogo size={28} className="text-white" />
-            </div>
+            <TomatoMark size={32} />
             <div>
               <h1 className="text-xl font-bold text-soil-800">Hey Farmer</h1>
               <p className="text-xs" style={{ color: '#4A5E35' }}>Texas Triangle</p>
