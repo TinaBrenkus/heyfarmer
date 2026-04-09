@@ -142,7 +142,7 @@ export default function PublicProfilePage() {
 
   const handleContact = async () => {
     if (!currentUser) {
-      router.push('/login?redirect=' + encodeURIComponent(`/profile/${profileId}`))
+      router.push('/signup?redirect=' + encodeURIComponent(`/profile/${profileId}`) + '&message=' + encodeURIComponent('Create a free account to connect with this farmer'))
       return
     }
 
@@ -175,7 +175,7 @@ export default function PublicProfilePage() {
 
   const handleListingContact = async (listing: Post) => {
     if (!currentUser) {
-      router.push('/login?redirect=' + encodeURIComponent(`/profile/${profileId}`))
+      router.push('/signup?redirect=' + encodeURIComponent(`/profile/${profileId}`) + '&message=' + encodeURIComponent('Create a free account to connect with this farmer'))
       return
     }
 

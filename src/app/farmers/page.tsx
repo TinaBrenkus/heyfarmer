@@ -192,7 +192,7 @@ export default function FarmersPage() {
 
   const handleContact = async (farmer: FarmerProfile) => {
     if (!currentUser) {
-      router.push('/login?redirect=' + encodeURIComponent('/farmers'))
+      router.push('/signup?redirect=' + encodeURIComponent('/farmers') + '&message=' + encodeURIComponent('Create a free account to connect with this farmer'))
       return
     }
 

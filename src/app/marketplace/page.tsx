@@ -225,7 +225,7 @@ export default function MarketplacePage() {
 
   const handleContact = async (listing: Post) => {
     if (!user) {
-      router.push('/login?redirect=/marketplace')
+      router.push('/signup?redirect=/marketplace&message=' + encodeURIComponent('Create a free account to connect with this farmer'))
       return
     }
 
@@ -240,7 +240,7 @@ export default function MarketplacePage() {
 
   const handleSave = async (listing: Post) => {
     if (!user) {
-      router.push('/login?redirect=/marketplace')
+      router.push('/signup?redirect=/marketplace&message=' + encodeURIComponent('Create a free account to connect with this farmer'))
       return
     }
 

@@ -134,11 +134,136 @@ export default function Navigation() {
     return true
   })
 
-  if (!user) return null
+  // Public navigation for logged-out visitors
+  if (!user) {
+    return (
+      <>
+        {/* Desktop Public Navigation */}
+        <header className="hidden md:block bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <Link href="/" className="flex items-center space-x-3">
+                <div className="p-2 rounded-lg" style={{ backgroundColor: '#2E7D32' }}>
+                  <FarmLogo size={28} className="text-white" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-gray-900">Hey Farmer</h1>
+                  <p className="text-xs" style={{ color: '#2E7D32' }}>Texas Triangle</p>
+                </div>
+              </Link>
+
+              <nav className="flex items-center space-x-1">
+                {[
+                  { label: 'Farmers', href: '/farmers', icon: UserCheck },
+                  { label: 'Marketplace', href: '/marketplace', icon: ShoppingCart },
+                  { label: 'Directory', href: '/directory', icon: BookOpen },
+                  { label: 'About', href: '/about', icon: Users },
+                ].map((item) => {
+                  const Icon = item.icon
+                  const isActive = pathname === item.href
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                        isActive
+                          ? 'bg-green-50 text-green-700'
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      }`}
+                    >
+                      <Icon size={18} />
+                      <span>{item.label}</span>
+                    </Link>
+                  )
+                })}
+              </nav>
+
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/login"
+                  className="px-4 py-2 text-gray-700 font-medium hover:text-gray-900 transition-colors"
+                >
+                  Log In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                >
+                  Sign Up Free
+                </Link>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* Mobile Public Navigation */}
+        <div className="md:hidden">
+          <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+            <div className="flex justify-between items-center h-14 px-4">
+              <Link href="/" className="flex items-center gap-2">
+                <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#2E7D32' }}>
+                  <FarmLogo size={20} className="text-white" />
+                </div>
+                <h1 className="text-lg font-bold text-gray-900">Hey Farmer</h1>
+              </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/login"
+                  className="px-3 py-1.5 text-sm text-gray-700 font-medium hover:text-gray-900"
+                >
+                  Log In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="px-3 py-1.5 text-sm bg-green-600 text-white rounded-lg font-medium hover:bg-green-700"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            </div>
+          </header>
+
+          {/* Mobile Bottom Tab Bar - Public */}
+          <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 shadow-lg">
+            <div className="safe-area-pb">
+              <div className="grid grid-cols-4 h-16">
+                {[
+                  { label: 'Home', href: '/', emoji: '🏠' },
+                  { label: 'Farmers', href: '/farmers', emoji: '🧑‍🌾' },
+                  { label: 'Market', href: '/marketplace', emoji: '🛒' },
+                  { label: 'Join', href: '/signup', emoji: '✨' },
+                ].map((item) => {
+                  const isActive = pathname === item.href
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex flex-col items-center justify-center gap-1 py-2 transition-colors ${
+                        isActive
+                          ? 'text-green-600 bg-green-50'
+                          : 'text-gray-600 hover:text-gray-800'
+                      }`}
+                    >
+                      <span className="text-lg">{item.emoji}</span>
+                      <span className={`text-xs font-medium ${
+                        isActive ? 'text-green-700' : 'text-gray-600'
+                      }`}>
+                        {item.label}
+                      </span>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
 
   return (
     <>
-      {/* Desktop Navigation */}
+      {/* Desktop Navigation - Authenticated */}
       <header className="hidden md:block bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -203,17 +328,6 @@ export default function Navigation() {
                 </Link>
               )}
 
-              {/* Messages icon removed - already in main nav */}
-
-              {/* Tour/Help - Hidden for MVP */}
-              {/* <button 
-                onClick={() => router.push('/dashboard?tour=true')}
-                className="relative p-2 text-gray-600 hover:text-gray-900"
-                title="Take Tour"
-              >
-                <HelpCircle size={20} />
-              </button> */}
-
               {/* User Profile */}
               <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
                 {profile && (
@@ -222,7 +336,7 @@ export default function Navigation() {
                       <p className="text-sm font-medium text-gray-900">{profile.full_name}</p>
                       <p className="text-xs text-gray-500">{profile.farm_name || profile.email}</p>
                     </div>
-                    <FarmerBadge 
+                    <FarmerBadge
                       userType={profile.user_type}
                       verified={profile.verified}
                       size="sm"
@@ -230,7 +344,7 @@ export default function Navigation() {
                     />
                   </>
                 )}
-                <button 
+                <button
                   onClick={handleSignOut}
                   className="p-2 text-gray-600 hover:text-gray-900"
                   title="Sign Out"

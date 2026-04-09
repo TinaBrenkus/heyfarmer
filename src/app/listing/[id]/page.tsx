@@ -68,7 +68,7 @@ export default function ListingDetailPage() {
 
   const handleContact = async () => {
     if (!currentUser) {
-      router.push('/login?redirect=' + encodeURIComponent(`/listing/${listingId}`))
+      router.push('/signup?redirect=' + encodeURIComponent(`/listing/${listingId}`) + '&message=' + encodeURIComponent('Create a free account to connect with this farmer'))
       return
     }
 
