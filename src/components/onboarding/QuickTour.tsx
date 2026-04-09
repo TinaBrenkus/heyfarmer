@@ -221,19 +221,19 @@ export default function QuickTour({ userType, onComplete, onSkip }: QuickTourPro
         }`}
       >
         {/* Header */}
-        <div className="relative p-6 text-center border-b border-gray-100">
+        <div className="relative p-6 text-center border-b border-warm-border">
           <button
             onClick={skipTour}
-            className="absolute top-4 right-4 p-1 text-gray-400 hover:text-gray-600 transition-colors"
+            className="absolute top-4 right-4 p-1 text-soil-400 hover:text-soil-500 transition-colors"
           >
             <X size={20} />
           </button>
           
           <div className="text-4xl mb-4"></div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl font-bold text-soil-800 mb-2">
             You're In!
           </h2>
-          <p className="text-gray-600">
+          <p className="text-soil-500">
             Here's what you can do:
           </p>
         </div>
@@ -241,14 +241,14 @@ export default function QuickTour({ userType, onComplete, onSkip }: QuickTourPro
         {/* Current Step */}
         <div className="p-6">
           <div className="flex items-start gap-4 mb-6">
-            <div className="p-3 rounded-lg bg-green-50">
-              <Icon className="h-6 w-6 text-green-600" />
+            <div className="p-3 rounded-lg bg-farm-green-50">
+              <Icon className="h-6 w-6 text-farm-green-800" />
             </div>
             <div className="flex-1">
-              <h3 className="font-semibold text-gray-900 mb-2">
+              <h3 className="font-semibold text-soil-800 mb-2">
                 {currentStepData.title}
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-soil-500 text-sm leading-relaxed">
                 {currentStepData.description}
               </p>
             </div>
@@ -258,7 +258,7 @@ export default function QuickTour({ userType, onComplete, onSkip }: QuickTourPro
           {currentStepData.action && (
             <button
               onClick={handleAction}
-              className="w-full mb-4 py-3 px-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+              className="w-full mb-4 py-3 px-4 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors flex items-center justify-center gap-2"
             >
               {currentStepData.action}
               <ArrowRight size={16} />
@@ -274,7 +274,7 @@ export default function QuickTour({ userType, onComplete, onSkip }: QuickTourPro
               <div
                 key={index}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  index <= currentStep ? 'bg-green-600' : 'bg-gray-200'
+                  index <= currentStep ? 'bg-farm-green-800' : 'bg-soil-200'
                 }`}
               />
             ))}
@@ -284,13 +284,13 @@ export default function QuickTour({ userType, onComplete, onSkip }: QuickTourPro
           <div className="flex gap-3">
             <button
               onClick={skipTour}
-              className="flex-1 py-2 px-4 text-gray-600 hover:text-gray-800 transition-colors"
+              className="flex-1 py-2 px-4 text-soil-500 hover:text-soil-800 transition-colors"
             >
               Skip Tour
             </button>
             <button
               onClick={nextStep}
-              className="flex-1 py-2 px-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+              className="flex-1 py-2 px-4 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors flex items-center justify-center gap-2"
             >
               {currentStep === steps.length - 1 ? 'Get Started' : 'Next'}
               <ArrowRight size={16} />
@@ -298,7 +298,7 @@ export default function QuickTour({ userType, onComplete, onSkip }: QuickTourPro
           </div>
 
           {/* Step Counter */}
-          <div className="text-center mt-4 text-sm text-gray-500">
+          <div className="text-center mt-4 text-sm text-soil-400">
             Step {currentStep + 1} of {steps.length} • ~2 min
           </div>
         </div>
@@ -315,19 +315,19 @@ export function WelcomeTour({ userType, onComplete, onSkip }: QuickTourProps) {
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-4">
       <div className="bg-white rounded-lg shadow-2xl max-w-lg w-full">
         {/* Header */}
-        <div className="relative p-6 text-center border-b border-gray-100">
+        <div className="relative p-6 text-center border-b border-warm-border">
           <button
             onClick={onSkip}
-            className="absolute top-4 right-4 p-1 text-gray-400 hover:text-gray-600 transition-colors"
+            className="absolute top-4 right-4 p-1 text-soil-400 hover:text-soil-500 transition-colors"
           >
             <X size={20} />
           </button>
           
           <div className="text-4xl mb-4"></div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl font-bold text-soil-800 mb-2">
             You're In!
           </h2>
-          <p className="text-gray-600">
+          <p className="text-soil-500">
             Here's what you can do:
           </p>
         </div>
@@ -349,8 +349,8 @@ export function WelcomeTour({ userType, onComplete, onSkip }: QuickTourProps) {
                   step.icon === Calendar ? '' : ''
                 }</div>
                 <div className="flex-1">
-                  <h4 className="font-medium text-gray-900">{step.title}</h4>
-                  <p className="text-sm text-gray-600">{step.description}</p>
+                  <h4 className="font-medium text-soil-800">{step.title}</h4>
+                  <p className="text-sm text-soil-500">{step.description}</p>
                 </div>
               </div>
             )
@@ -361,7 +361,7 @@ export function WelcomeTour({ userType, onComplete, onSkip }: QuickTourProps) {
         <div className="px-6 pb-6">
           <button
             onClick={onComplete}
-            className="w-full py-3 px-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+            className="w-full py-3 px-4 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors flex items-center justify-center gap-2"
           >
             Get Started
             <ArrowRight size={16} />

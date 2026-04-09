@@ -88,7 +88,7 @@ const userTypes: { value: UserType; label: string; description: string; icon: an
 
 export default function SignupPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin"></div></div>}>
       <SignupContent />
     </Suspense>
   )
@@ -304,12 +304,12 @@ function SignupContent() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #E8F5E8, #F8F9FA, #E8F5E8)' }}>
+    <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #F0EDE4, #FAF7F0, #F0EDE4)' }}>
       <div className="w-full max-w-2xl mx-4">
         <div className="bg-white rounded-lg shadow-lg p-8">
           {/* Claim Context Banner */}
           {claimSlug && (
-            <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-700 text-center">
+            <div className="mb-4 p-3 bg-farm-green-50 border border-warm-border rounded-lg text-sm text-farm-green-800 text-center">
               Sign up to claim your farm listing on Hey Farmer
             </div>
           )}
@@ -317,14 +317,14 @@ function SignupContent() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#2E7D32' }}>
+              <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#4A5E35' }}>
                 <FarmLogo size={32} className="text-white" />
               </div>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-soil-800 mb-2">
               {step === 1 ? 'What describes you?' : step === 2 ? 'Create Account' : 'Set Up Your Profile'}
             </h1>
-            <p className="text-gray-600">
+            <p className="text-soil-500">
               {step === 1 ? 'Choose your role in the community' : step === 2 ? 'Account credentials' : 'Tell us about yourself'}
             </p>
           </div>
@@ -337,8 +337,8 @@ function SignupContent() {
                   <div 
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
                       stepNum <= step 
-                        ? 'bg-green-600 text-white' 
-                        : 'bg-gray-200 text-gray-600'
+                        ? 'bg-farm-green-800 text-white' 
+                        : 'bg-soil-200 text-soil-500'
                     }`}
                   >
                     {stepNum}
@@ -346,7 +346,7 @@ function SignupContent() {
                   {stepNum < 3 && (
                     <div 
                       className={`w-8 h-1 ${
-                        stepNum < step ? 'bg-green-600' : 'bg-gray-200'
+                        stepNum < step ? 'bg-farm-green-800' : 'bg-soil-200'
                       }`}
                     />
                   )}
@@ -369,15 +369,15 @@ function SignupContent() {
                         onClick={() => setFormData(prev => ({ ...prev, userType: type.value }))}
                         className={`p-6 rounded-lg border-2 text-left transition-all ${
                           formData.userType === type.value
-                            ? 'border-green-500 bg-green-50'
-                            : 'border-gray-200 hover:border-gray-300'
+                            ? 'border-farm-green-500 bg-farm-green-50'
+                            : 'border-warm-border hover:border-warm-border'
                         }`}
                       >
                         <div className="flex items-start gap-3">
                           <div className="text-2xl">{type.value === 'backyard_grower' ? '' : type.value === 'market_gardener' ? '' : type.value === 'production_farmer' ? '' : ''}</div>
                           <div>
-                            <div className="font-medium text-gray-900 text-lg">{type.label}</div>
-                            <div className="text-sm text-gray-500 mt-1">{type.description}</div>
+                            <div className="font-medium text-soil-800 text-lg">{type.label}</div>
+                            <div className="text-sm text-soil-400 mt-1">{type.description}</div>
                           </div>
                         </div>
                       </button>
@@ -392,7 +392,7 @@ function SignupContent() {
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="fullName" className="block text-sm font-medium text-soil-700 mb-1">
                       Full Name *
                     </label>
                     <input
@@ -401,13 +401,13 @@ function SignupContent() {
                       type="text"
                       value={formData.fullName}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       required
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="email" className="block text-sm font-medium text-soil-700 mb-1">
                       Email *
                     </label>
                     <input
@@ -416,7 +416,7 @@ function SignupContent() {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -424,7 +424,7 @@ function SignupContent() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="password" className="block text-sm font-medium text-soil-700 mb-1">
                       Password *
                     </label>
                     <div className="relative">
@@ -434,14 +434,14 @@ function SignupContent() {
                         type={showPassword ? "text" : "password"}
                         value={formData.password}
                         onChange={handleInputChange}
-                        className="w-full px-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="w-full px-4 pr-12 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                         required
                         minLength={6}
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-soil-400 hover:text-soil-500 transition-colors"
                         aria-label={showPassword ? "Hide password" : "Show password"}
                       >
                         {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
@@ -450,7 +450,7 @@ function SignupContent() {
                   </div>
 
                   <div>
-                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-soil-700 mb-1">
                       Confirm Password *
                     </label>
                     <div className="relative">
@@ -460,13 +460,13 @@ function SignupContent() {
                         type={showConfirmPassword ? "text" : "password"}
                         value={formData.confirmPassword}
                         onChange={handleInputChange}
-                        className="w-full px-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="w-full px-4 pr-12 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                         required
                       />
                       <button
                         type="button"
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-soil-400 hover:text-soil-500 transition-colors"
                         aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                       >
                         {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
@@ -483,7 +483,7 @@ function SignupContent() {
                 {/* Farm/Garden Name */}
                 {isFarmer && (
                   <div>
-                    <label htmlFor="farmName" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="farmName" className="block text-sm font-medium text-soil-700 mb-1">
                       Farm/Garden Name
                     </label>
                     <input
@@ -493,7 +493,7 @@ function SignupContent() {
                       value={formData.farmName}
                       onChange={handleInputChange}
                       placeholder="Smith Family Farm"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                     />
                   </div>
                 )}
@@ -501,7 +501,7 @@ function SignupContent() {
                 {/* Location */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="county" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="county" className="block text-sm font-medium text-soil-700 mb-1">
                       County *
                     </label>
                     <select
@@ -509,7 +509,7 @@ function SignupContent() {
                       name="county"
                       value={formData.county}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       required
                     >
                       {counties.map((c) => (
@@ -521,7 +521,7 @@ function SignupContent() {
                   </div>
 
                   <div>
-                    <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="city" className="block text-sm font-medium text-soil-700 mb-1">
                       City/Town {isFarmer && '*'}
                     </label>
                     <input
@@ -531,7 +531,7 @@ function SignupContent() {
                       value={formData.city}
                       onChange={handleInputChange}
                       placeholder="Decatur"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       required={isFarmer}
                     />
                   </div>
@@ -539,7 +539,7 @@ function SignupContent() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="zip" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="zip" className="block text-sm font-medium text-soil-700 mb-1">
                       ZIP Code {isFarmer && '*'}
                     </label>
                     <input
@@ -551,13 +551,13 @@ function SignupContent() {
                       placeholder="76234"
                       pattern="[0-9]{5}"
                       maxLength={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       required={isFarmer}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="phone" className="block text-sm font-medium text-soil-700 mb-1">
                       Phone Number
                     </label>
                     <input
@@ -567,7 +567,7 @@ function SignupContent() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="(940) 555-1234"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                     />
                   </div>
                 </div>
@@ -575,7 +575,7 @@ function SignupContent() {
                 {/* What do you grow? */}
                 {isFarmer && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                    <label className="block text-sm font-medium text-soil-700 mb-3">
                       What do you grow? (Select all that apply)
                     </label>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -586,8 +586,8 @@ function SignupContent() {
                           onClick={() => handleGrowTypeToggle(type.id)}
                           className={`p-3 rounded-lg border-2 text-center transition-all ${
                             formData.growTypes.includes(type.id)
-                              ? 'border-green-500 bg-green-50'
-                              : 'border-gray-200 hover:border-gray-300'
+                              ? 'border-farm-green-500 bg-farm-green-50'
+                              : 'border-warm-border hover:border-warm-border'
                           }`}
                         >
                           <div className="text-2xl mb-1">{type.emoji}</div>
@@ -600,7 +600,7 @@ function SignupContent() {
 
                 {/* Bio */}
                 <div>
-                  <label htmlFor="bio" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="bio" className="block text-sm font-medium text-soil-700 mb-1">
                     Tell us about yourself
                   </label>
                   <textarea
@@ -610,13 +610,13 @@ function SignupContent() {
                     value={formData.bio}
                     onChange={handleInputChange}
                     placeholder={isFarmer ? "Describe your farm, growing practices, or what makes your operation special..." : "Tell us about your interest in local farming and what you're looking for..."}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent resize-none"
                   />
                 </div>
 
                 {/* Note about profile photo */}
-                <div className="p-3 rounded-lg bg-blue-50 border border-blue-200">
-                  <p className="text-sm text-blue-700">
+                <div className="p-3 rounded-lg bg-terra-50 border border-terra-200">
+                  <p className="text-sm text-terra-700">
                     You can add a profile photo after creating your account in your profile settings.
                   </p>
                 </div>
@@ -636,7 +636,7 @@ function SignupContent() {
                 <button
                   type="button"
                   onClick={prevStep}
-                  className="flex-1 py-3 px-4 border border-gray-300 rounded-lg font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                  className="flex-1 py-3 px-4 border border-warm-border rounded-lg font-semibold text-soil-700 hover:bg-soil-50 transition-colors"
                 >
                   Previous
                 </button>
@@ -645,7 +645,7 @@ function SignupContent() {
                 type="submit"
                 disabled={loading}
                 className="flex-1 py-3 px-4 rounded-lg font-semibold text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
-                style={{ backgroundColor: loading ? '#94a3b8' : '#2E7D32' }}
+                style={{ backgroundColor: loading ? '#A09E90' : '#4A5E35' }}
               >
                 {loading ? (
                   <>
@@ -662,9 +662,9 @@ function SignupContent() {
 
             {/* Login Link */}
             <div className="text-center">
-              <p className="text-gray-600">
+              <p className="text-soil-500">
                 Already have an account?{' '}
-                <Link href="/login" className="font-medium hover:underline" style={{ color: '#2E7D32' }}>
+                <Link href="/login" className="font-medium hover:underline" style={{ color: '#4A5E35' }}>
                   Log in
                 </Link>
               </p>

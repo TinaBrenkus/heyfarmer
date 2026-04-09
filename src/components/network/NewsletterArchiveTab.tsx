@@ -100,8 +100,8 @@ export default function NewsletterArchiveTab() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading newsletters...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading newsletters...</p>
         </div>
       </div>
     )
@@ -112,14 +112,14 @@ export default function NewsletterArchiveTab() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Newsletter Archive</h2>
-          <p className="text-gray-600">Weekly insights delivered to your inbox</p>
+          <h2 className="text-2xl font-bold text-soil-800 mb-2">Newsletter Archive</h2>
+          <p className="text-soil-500">Weekly insights delivered to your inbox</p>
         </div>
         <a
           href="https://heyfarmer.beehiiv.com/subscribe"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors whitespace-nowrap w-fit"
+          className="flex items-center gap-2 px-6 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors whitespace-nowrap w-fit"
         >
           <Mail size={18} />
           Subscribe to Newsletter
@@ -129,13 +129,13 @@ export default function NewsletterArchiveTab() {
       {/* Search Bar */}
       <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
         <div className="relative">
-          <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+          <Search className="absolute left-3 top-3 h-5 w-5 text-soil-400" />
           <input
             type="text"
             placeholder="Search newsletters..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
           />
         </div>
       </div>
@@ -148,8 +148,8 @@ export default function NewsletterArchiveTab() {
             onClick={() => setSelectedFilter(filter.id)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               selectedFilter === filter.id
-                ? 'bg-green-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-farm-green-800 text-white'
+                : 'bg-soil-100 text-soil-700 hover:bg-soil-200'
             }`}
           >
             {filter.label}
@@ -161,10 +161,10 @@ export default function NewsletterArchiveTab() {
         /* Empty State */
         <div className="bg-white rounded-lg shadow-sm p-12 text-center">
           <div className="text-6xl mb-4"></div>
-          <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+          <h3 className="text-2xl font-semibold text-soil-800 mb-2">
             {searchQuery ? 'No Newsletters Found' : 'No Newsletters Yet'}
           </h3>
-          <p className="text-gray-600 mb-6 max-w-md mx-auto">
+          <p className="text-soil-500 mb-6 max-w-md mx-auto">
             {searchQuery
               ? `No newsletters match "${searchQuery}". Try a different search term.`
               : "Be the first to know! Subscribe to our newsletter for weekly farming insights, resources, and community updates."}
@@ -173,7 +173,7 @@ export default function NewsletterArchiveTab() {
             href="https://heyfarmer.beehiiv.com/subscribe"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
           >
             <Mail size={20} />
             Subscribe Now
@@ -192,14 +192,14 @@ export default function NewsletterArchiveTab() {
                 <div className="flex-1 min-w-0">
                   {/* Header */}
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="flex items-center justify-center w-10 h-10 bg-green-100 text-green-700 rounded-lg font-bold text-sm">
+                    <div className="flex items-center justify-center w-10 h-10 bg-farm-green-100 text-farm-green-800 rounded-lg font-bold text-sm">
                       #{newsletter.issue_number}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-gray-900 group-hover:text-green-600 transition-colors">
+                      <h3 className="font-semibold text-soil-800 group-hover:text-farm-green-800 transition-colors">
                         {newsletter.title}
                       </h3>
-                      <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
+                      <div className="flex items-center gap-2 text-sm text-soil-400 mt-1">
                         <Calendar size={14} />
                         <span>{formatDate(newsletter.published_date)}</span>
                         {newsletter.view_count > 0 && (
@@ -215,8 +215,8 @@ export default function NewsletterArchiveTab() {
                   {/* Preview Bullets */}
                   <ul className="space-y-2 mb-4">
                     {newsletter.preview_bullets.map((bullet, index) => (
-                      <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
-                        <span className="text-green-600 mt-0.5">•</span>
+                      <li key={index} className="flex items-start gap-2 text-sm text-soil-500">
+                        <span className="text-farm-green-800 mt-0.5">•</span>
                         <span>{bullet}</span>
                       </li>
                     ))}
@@ -228,7 +228,7 @@ export default function NewsletterArchiveTab() {
                       {newsletter.tags.map((tag, index) => (
                         <span
                           key={index}
-                          className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded"
+                          className="text-xs bg-soil-100 text-soil-500 px-2 py-1 rounded"
                         >
                           {tag}
                         </span>
@@ -240,9 +240,9 @@ export default function NewsletterArchiveTab() {
                 {/* Arrow/External Link */}
                 <div className="flex-shrink-0">
                   {newsletter.beehiiv_url ? (
-                    <ExternalLink className="h-5 w-5 text-gray-400 group-hover:text-green-600 transition-colors" />
+                    <ExternalLink className="h-5 w-5 text-soil-400 group-hover:text-farm-green-800 transition-colors" />
                   ) : (
-                    <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-green-600 transition-colors" />
+                    <ChevronRight className="h-5 w-5 text-soil-400 group-hover:text-farm-green-800 transition-colors" />
                   )}
                 </div>
               </div>
@@ -252,7 +252,7 @@ export default function NewsletterArchiveTab() {
           {/* Load More (if needed) */}
           {filteredNewsletters.length >= 20 && (
             <div className="text-center pt-4">
-              <button className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors">
+              <button className="px-6 py-3 bg-soil-100 text-soil-700 rounded-lg font-medium hover:bg-soil-200 transition-colors">
                 Load More Newsletters
               </button>
             </div>

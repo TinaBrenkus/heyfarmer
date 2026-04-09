@@ -121,8 +121,8 @@ export default function ProfilePreviewPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading profile preview...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading profile preview...</p>
         </div>
       </div>
     )
@@ -131,13 +131,13 @@ export default function ProfilePreviewPage() {
   if (!profile) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-600">Profile not found</p>
+        <p className="text-soil-500">Profile not found</p>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
       <Navigation />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -145,23 +145,23 @@ export default function ProfilePreviewPage() {
         <div className="flex items-center gap-4 mb-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="flex items-center gap-2 text-soil-500 hover:text-soil-800 transition-colors"
           >
             <ArrowLeft size={20} />
             Back to Settings
           </button>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+            <h1 className="text-3xl font-bold text-soil-800 flex items-center gap-3">
               <span className="text-4xl">👁️</span>
               Profile Preview
             </h1>
-            <p className="text-gray-600">This is how customers see your public profile</p>
+            <p className="text-soil-500">This is how customers see your public profile</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-lg shadow-sm border border-warm-border overflow-hidden">
           {/* Hero Section */}
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8">
+          <div className="bg-gradient-to-r from-farm-green-50 to-blue-50 p-8">
             <div className="flex items-start gap-6">
               {/* Profile Photo */}
               <div className="w-24 h-24 rounded-full bg-white border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
@@ -179,7 +179,7 @@ export default function ProfilePreviewPage() {
               {/* Profile Info */}
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <h2 className="text-2xl font-bold text-gray-900">{profile.full_name}</h2>
+                  <h2 className="text-2xl font-bold text-soil-800">{profile.full_name}</h2>
                   <FarmerBadge 
                     userType={profile.user_type}
                     verified={profile.verified}
@@ -188,10 +188,10 @@ export default function ProfilePreviewPage() {
                 </div>
 
                 {profile.farm_name && (
-                  <p className="text-lg text-gray-700 mb-2">{profile.farm_name}</p>
+                  <p className="text-lg text-soil-700 mb-2">{profile.farm_name}</p>
                 )}
 
-                <div className="flex items-center gap-2 text-gray-600 mb-4">
+                <div className="flex items-center gap-2 text-soil-500 mb-4">
                   <MapPin size={16} />
                   <span>
                     {profile.city ? `${profile.city}, ` : ''}{getCountyDisplayName(profile.county)}, Texas
@@ -201,21 +201,21 @@ export default function ProfilePreviewPage() {
                 {/* Contact Buttons */}
                 <div className="flex items-center gap-3">
                   {profile.contact_preferences.platform_messages && (
-                    <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors">
+                    <button className="flex items-center gap-2 px-4 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors">
                       <MessageCircle size={16} />
                       Message
                     </button>
                   )}
                   
                   {profile.contact_preferences.show_phone && profile.phone && (
-                    <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                    <button className="flex items-center gap-2 px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors">
                       <Phone size={16} />
                       Call
                     </button>
                   )}
                   
                   {profile.contact_preferences.show_email && (
-                    <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                    <button className="flex items-center gap-2 px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors">
                       <Mail size={16} />
                       Email
                     </button>
@@ -228,19 +228,19 @@ export default function ProfilePreviewPage() {
           <div className="p-8">
             {/* About Section */}
             <div className="mb-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">About</h3>
-              <p className="text-gray-700 leading-relaxed">{profile.bio}</p>
+              <h3 className="text-lg font-semibold text-soil-800 mb-4">About</h3>
+              <p className="text-soil-700 leading-relaxed">{profile.bio}</p>
             </div>
 
             {/* What I Grow */}
             {profile.grow_tags.length > 0 && (
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">What I Grow</h3>
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">What I Grow</h3>
                 <div className="flex flex-wrap gap-2">
                   {profile.grow_tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium"
+                      className="inline-flex items-center px-3 py-1 bg-farm-green-100 text-farm-green-900 rounded-full text-sm font-medium"
                     >
                       {tag}
                     </span>
@@ -252,12 +252,12 @@ export default function ProfilePreviewPage() {
             {/* Farm Gallery */}
             {profile.farm_images && profile.farm_images.length > 0 && (
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Farm Gallery</h3>
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">Farm Gallery</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {profile.farm_images.map((image, index) => (
                     <div
                       key={index}
-                      className="aspect-video rounded-lg overflow-hidden bg-gray-100"
+                      className="aspect-video rounded-lg overflow-hidden bg-soil-100"
                     >
                       <img
                         src={image}
@@ -274,17 +274,17 @@ export default function ProfilePreviewPage() {
             {profile.privacy_settings.allow_reviews && (
               <div className="mb-8">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900">Customer Reviews</h3>
+                  <h3 className="text-lg font-semibold text-soil-800">Customer Reviews</h3>
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} size={16} className="text-yellow-400 fill-current" />
                     ))}
-                    <span className="text-sm text-gray-600 ml-2">4.8 (12 reviews)</span>
+                    <span className="text-sm text-soil-500 ml-2">4.8 (12 reviews)</span>
                   </div>
                 </div>
                 
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-gray-600 text-center py-4">
+                <div className="bg-soil-50 rounded-lg p-4">
+                  <p className="text-soil-500 text-center py-4">
                     No reviews yet. Be the first to leave a review after purchasing from this farmer!
                   </p>
                 </div>
@@ -292,7 +292,7 @@ export default function ProfilePreviewPage() {
             )}
 
             {/* Marketplace Visibility Status */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-terra-50 border border-terra-200 rounded-lg p-4">
               <div className="flex items-start gap-3">
                 <span className="text-lg">ℹ️</span>
                 <div>
@@ -300,19 +300,19 @@ export default function ProfilePreviewPage() {
                   <div className="space-y-1 text-sm">
                     <div className="flex items-center gap-2">
                       <span className={profile.privacy_settings.show_in_marketplace ? '' : '❌'}></span>
-                      <span className="text-blue-700">
+                      <span className="text-terra-700">
                         {profile.privacy_settings.show_in_marketplace ? 'Visible in marketplace' : 'Hidden from marketplace'}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className={profile.privacy_settings.include_in_search ? '' : '❌'}></span>
-                      <span className="text-blue-700">
+                      <span className="text-terra-700">
                         {profile.privacy_settings.include_in_search ? 'Appears in search results' : 'Hidden from search'}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className={profile.privacy_settings.allow_reviews ? '' : '❌'}></span>
-                      <span className="text-blue-700">
+                      <span className="text-terra-700">
                         {profile.privacy_settings.allow_reviews ? 'Reviews enabled' : 'Reviews disabled'}
                       </span>
                     </div>
@@ -327,7 +327,7 @@ export default function ProfilePreviewPage() {
         <div className="mt-8 text-center">
           <button
             onClick={() => router.push('/settings')}
-            className="flex items-center gap-2 mx-auto px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+            className="flex items-center gap-2 mx-auto px-6 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
           >
             <Edit size={18} />
             Edit Profile Settings

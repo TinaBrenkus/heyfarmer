@@ -117,16 +117,16 @@ export default function ResetPasswordPage() {
 
   if (!isValidSession && error) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #E8F5E8, #F8F9FA, #E8F5E8)' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #F0EDE4, #FAF7F0, #F0EDE4)' }}>
         <div className="w-full max-w-md mx-4">
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="text-center mb-8">
               <div className="flex justify-center mb-4">
-                <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#2E7D32' }}>
+                <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#4A5E35' }}>
                   <FarmLogo size={32} className="text-white" />
                 </div>
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl font-bold text-soil-800 mb-2">
                 Link Expired
               </h1>
             </div>
@@ -138,7 +138,7 @@ export default function ResetPasswordPage() {
             <Link
               href="/forgot-password"
               className="block w-full py-3 px-4 rounded-lg font-semibold text-white text-center transition-colors"
-              style={{ backgroundColor: '#1976D2' }}
+              style={{ backgroundColor: '#C4622D' }}
             >
               Request New Reset Link
             </Link>
@@ -150,34 +150,34 @@ export default function ResetPasswordPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #E8F5E8, #F8F9FA, #E8F5E8)' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #F0EDE4, #FAF7F0, #F0EDE4)' }}>
         <div className="w-full max-w-md mx-4">
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="text-center mb-8">
               <div className="flex justify-center mb-4">
-                <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#2E7D32' }}>
+                <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#4A5E35' }}>
                   <FarmLogo size={32} className="text-white" />
                 </div>
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl font-bold text-soil-800 mb-2">
                 Password Reset!
               </h1>
             </div>
 
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-              <p className="text-green-800 text-center">
+            <div className="bg-farm-green-50 border border-warm-border rounded-lg p-4 mb-6">
+              <p className="text-farm-green-900 text-center">
                 Your password has been successfully reset.
               </p>
             </div>
 
-            <p className="text-gray-600 text-center mb-6">
+            <p className="text-soil-500 text-center mb-6">
               Redirecting you to login...
             </p>
 
             <Link
               href="/login"
               className="block w-full py-3 px-4 rounded-lg font-semibold text-white text-center transition-colors"
-              style={{ backgroundColor: '#1976D2' }}
+              style={{ backgroundColor: '#C4622D' }}
             >
               Go to Login
             </Link>
@@ -188,20 +188,20 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #E8F5E8, #F8F9FA, #E8F5E8)' }}>
+    <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #F0EDE4, #FAF7F0, #F0EDE4)' }}>
       <div className="w-full max-w-md mx-4">
         <div className="bg-white rounded-lg shadow-lg p-8">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#2E7D32' }}>
+              <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#4A5E35' }}>
                 <FarmLogo size={32} className="text-white" />
               </div>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-soil-800 mb-2">
               Reset Your Password
             </h1>
-            <p className="text-gray-600">
+            <p className="text-soil-500">
               Enter your new password below
             </p>
           </div>
@@ -209,18 +209,18 @@ export default function ResetPasswordPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* New Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-soil-700 mb-1">
                 New Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-soil-400" />
                 <input
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-12 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Enter new password"
                   required
                   minLength={6}
@@ -228,7 +228,7 @@ export default function ResetPasswordPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-soil-400 hover:text-soil-500 transition-colors"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
@@ -238,25 +238,25 @@ export default function ResetPasswordPage() {
 
             {/* Confirm Password */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-soil-700 mb-1">
                 Confirm New Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-soil-400" />
                 <input
                   id="confirmPassword"
                   name="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-12 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Confirm new password"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-soil-400 hover:text-soil-500 transition-colors"
                   aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                 >
                   {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
@@ -276,7 +276,7 @@ export default function ResetPasswordPage() {
               type="submit"
               disabled={loading}
               className="w-full py-3 px-4 rounded-lg font-semibold text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
-              style={{ backgroundColor: loading ? '#94a3b8' : '#1976D2' }}
+              style={{ backgroundColor: loading ? '#A09E90' : '#C4622D' }}
             >
               {loading ? (
                 <>

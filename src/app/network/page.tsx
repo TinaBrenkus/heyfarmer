@@ -121,33 +121,33 @@ export default function FarmerNetworkPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading network...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading network...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
       <Navigation />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
+            <h1 className="text-3xl font-bold text-soil-800 mb-2 flex items-center gap-3">
               <UsersThree size={24} weight="regular" />
               {isFarmer ? 'Farmer Network' : 'Hey Farmer Network'}
             </h1>
-            <p className="text-gray-600">
+            <p className="text-soil-500">
               {isFarmer ? 'Connect, share knowledge, and grow together' : 'Resources, stories, and insights for food lovers'}
             </p>
           </div>
           {activeTab === 'discussions' && isFarmer && (
             <button
               onClick={() => router.push('/network/new-discussion')}
-              className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
             >
               <Plus size={20} />
               New Discussion

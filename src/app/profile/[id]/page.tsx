@@ -222,12 +222,12 @@ export default function PublicProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-soil-50">
         <Navigation />
         <div className="flex items-center justify-center pt-20">
           <div className="text-center">
-            <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading profile...</p>
+            <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-soil-500">Loading profile...</p>
           </div>
         </div>
       </div>
@@ -236,20 +236,20 @@ export default function PublicProfilePage() {
 
   if (error || !profile) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-soil-50">
         <Navigation />
         <div className="flex items-center justify-center pt-20">
           <div className="text-center">
             <div className="text-6xl mb-4"></div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            <h2 className="text-xl font-semibold text-soil-800 mb-2">
               {error || 'Profile not found'}
             </h2>
-            <p className="text-gray-600 mb-4">
+            <p className="text-soil-500 mb-4">
               This profile may be private or no longer exist.
             </p>
             <button
               onClick={() => router.push('/marketplace')}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 transition-colors"
             >
               <ArrowLeft size={16} />
               Back to Marketplace
@@ -263,7 +263,7 @@ export default function PublicProfilePage() {
   const isOwnProfile = currentUser?.id === profile.id
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
       <Navigation />
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -271,14 +271,14 @@ export default function PublicProfilePage() {
         <div className="flex items-center gap-4 mb-6">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="flex items-center gap-2 text-soil-500 hover:text-soil-800 transition-colors"
           >
             <ArrowLeft size={20} />
             Back
           </button>
           
           {isOwnProfile && (
-            <div className="flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+            <div className="flex items-center gap-2 px-3 py-1 bg-terra-100 text-terra-700 rounded-full text-sm">
               <CheckCircle size={16} />
               This is your profile
             </div>
@@ -288,9 +288,9 @@ export default function PublicProfilePage() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Profile Card */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <div className="bg-white rounded-lg shadow-sm border border-warm-border overflow-hidden">
               {/* Hero Section */}
-              <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8">
+              <div className="bg-gradient-to-r from-farm-green-50 to-blue-50 p-8">
                 <div className="flex items-start gap-6">
                   {/* Profile Photo */}
                   <div className="w-24 h-24 rounded-full bg-white border-4 border-white shadow-lg flex items-center justify-center overflow-hidden flex-shrink-0">
@@ -308,7 +308,7 @@ export default function PublicProfilePage() {
                   {/* Profile Info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2">
-                      <h1 className="text-2xl font-bold text-gray-900 truncate">{profile.full_name}</h1>
+                      <h1 className="text-2xl font-bold text-soil-800 truncate">{profile.full_name}</h1>
                       <FarmerBadge 
                         userType={profile.user_type}
                         verified={profile.verified}
@@ -317,10 +317,10 @@ export default function PublicProfilePage() {
                     </div>
 
                     {profile.farm_name && (
-                      <p className="text-lg text-gray-700 mb-2">{profile.farm_name}</p>
+                      <p className="text-lg text-soil-700 mb-2">{profile.farm_name}</p>
                     )}
 
-                    <div className="flex items-center gap-2 text-gray-600 mb-4">
+                    <div className="flex items-center gap-2 text-soil-500 mb-4">
                       <MapPin size={16} />
                       <span>
                         {profile.city ? `${profile.city}, ` : ''}{getCountyDisplayName(profile.county)}, Texas
@@ -332,7 +332,7 @@ export default function PublicProfilePage() {
                       {profile.platform_messages && !isOwnProfile && (
                         <button 
                           onClick={handleContact}
-                          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                          className="flex items-center gap-2 px-4 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
                         >
                           <MessageCircle size={16} />
                           Message
@@ -342,7 +342,7 @@ export default function PublicProfilePage() {
                       {profile.show_phone && profile.phone && (
                         <a
                           href={`tel:${profile.phone}`}
-                          className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                          className="flex items-center gap-2 px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors"
                         >
                           <Phone size={16} />
                           Call
@@ -352,7 +352,7 @@ export default function PublicProfilePage() {
                       {profile.show_email && profile.email && (
                         <a
                           href={`mailto:${profile.email}`}
-                          className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                          className="flex items-center gap-2 px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors"
                         >
                           <Mail size={16} />
                           Email
@@ -362,7 +362,7 @@ export default function PublicProfilePage() {
                       {isOwnProfile && (
                         <button
                           onClick={() => router.push('/settings')}
-                          className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                          className="flex items-center gap-2 px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors"
                         >
                           <ExternalLink size={16} />
                           Edit Profile
@@ -376,19 +376,19 @@ export default function PublicProfilePage() {
               <div className="p-8">
                 {/* Showcase Section - What I Always Sell */}
                 {profile.grow_tags && profile.grow_tags.length > 0 && (
-                  <div className="mb-8 bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 border-2 border-green-200">
+                  <div className="mb-8 bg-gradient-to-br from-farm-green-50 to-blue-50 rounded-xl p-6 border-2 border-warm-border">
                     <div className="flex items-center gap-2 mb-4">
-                      <Package size={24} className="text-green-600" />
-                      <h2 className="text-xl font-bold text-gray-900">What I Grow & Sell</h2>
+                      <Package size={24} className="text-farm-green-800" />
+                      <h2 className="text-xl font-bold text-soil-800">What I Grow & Sell</h2>
                     </div>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-soil-500 text-sm mb-4">
                       These are the products I typically have available throughout the growing season
                     </p>
                     <div className="flex flex-wrap gap-3">
                       {profile.grow_tags.map((tag, index) => (
                         <span
                           key={index}
-                          className="inline-flex items-center px-4 py-2 bg-white border-2 border-green-300 text-green-800 rounded-lg text-base font-semibold shadow-sm"
+                          className="inline-flex items-center px-4 py-2 bg-white border-2 border-farm-green-300 text-farm-green-900 rounded-lg text-base font-semibold shadow-sm"
                         >
                           {tag}
                         </span>
@@ -399,11 +399,11 @@ export default function PublicProfilePage() {
 
                 {/* About Section */}
                 <div className="mb-8">
-                  <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h2 className="text-lg font-semibold text-soil-800 mb-4 flex items-center gap-2">
                     <MessageCircle size={20} />
                     About {profile.farm_name || profile.full_name}
                   </h2>
-                  <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+                  <div className="text-soil-700 leading-relaxed whitespace-pre-wrap">
                     <Linkify text={profile.bio || 'No bio provided yet.'} />
                   </div>
                 </div>
@@ -411,7 +411,7 @@ export default function PublicProfilePage() {
                 {/* Farm Gallery */}
                 {profile.farm_images && profile.farm_images.length > 0 && (
                   <div className="mb-8">
-                    <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <h2 className="text-lg font-semibold text-soil-800 mb-4 flex items-center gap-2">
                       <Camera size={20} />
                       Farm Gallery
                     </h2>
@@ -419,7 +419,7 @@ export default function PublicProfilePage() {
                       {profile.farm_images.map((image, index) => (
                         <div
                           key={index}
-                          className="aspect-video rounded-lg overflow-hidden bg-gray-100 hover:opacity-90 transition-opacity cursor-pointer"
+                          className="aspect-video rounded-lg overflow-hidden bg-soil-100 hover:opacity-90 transition-opacity cursor-pointer"
                         >
                           <img
                             src={image}
@@ -437,24 +437,24 @@ export default function PublicProfilePage() {
                   <div className="mb-8">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                          <Calendar size={20} className="text-blue-600" />
+                        <h2 className="text-lg font-semibold text-soil-800 flex items-center gap-2">
+                          <Calendar size={20} className="text-terra-600" />
                           Available Right Now
                         </h2>
-                        <p className="text-sm text-gray-600 mt-1">Current listings from this farmer</p>
+                        <p className="text-sm text-soil-500 mt-1">Current listings from this farmer</p>
                       </div>
                       <button
                         onClick={() => router.push(`/marketplace?farmer=${profile.id}`)}
-                        className="text-sm text-green-600 hover:text-green-700 font-medium"
+                        className="text-sm text-farm-green-800 hover:text-farm-green-800 font-medium"
                       >
                         View All →
                       </button>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {listings.slice(0, 4).map((listing) => (
-                        <div key={listing.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div key={listing.id} className="border border-warm-border rounded-lg p-4 hover:shadow-md transition-shadow">
                           <div className="flex items-start gap-3">
-                            <div className="w-20 h-20 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+                            <div className="w-20 h-20 rounded-lg bg-soil-100 flex items-center justify-center flex-shrink-0">
                               {listing.thumbnail_url ? (
                                 <img
                                   src={listing.thumbnail_url}
@@ -462,18 +462,18 @@ export default function PublicProfilePage() {
                                   className="w-full h-full object-cover rounded-lg"
                                 />
                               ) : (
-                                <Package size={24} className="text-gray-400" />
+                                <Package size={24} className="text-soil-400" />
                               )}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h3 className="font-semibold text-gray-900 mb-1">{listing.title}</h3>
-                              <p className="text-green-600 font-bold text-lg mb-2">
+                              <h3 className="font-semibold text-soil-800 mb-1">{listing.title}</h3>
+                              <p className="text-farm-green-800 font-bold text-lg mb-2">
                                 ${listing.price || 'Price on request'}
                                 {listing.unit && `/${listing.unit}`}
                               </p>
                               
                               {listing.quantity_available && (
-                                <p className="text-xs text-gray-500 mb-2">
+                                <p className="text-xs text-soil-400 mb-2">
                                   {listing.quantity_available} available
                                 </p>
                               )}
@@ -483,13 +483,13 @@ export default function PublicProfilePage() {
                                   <>
                                     <button
                                       onClick={() => router.push(`/sell/${listing.id}`)}
-                                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                                      className="px-4 py-2 bg-terra-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
                                     >
                                       Edit
                                     </button>
                                     <button
                                       onClick={() => router.push(`/listing/${listing.id}`)}
-                                      className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
+                                      className="px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors text-sm font-medium"
                                     >
                                       View Listing
                                     </button>
@@ -498,13 +498,13 @@ export default function PublicProfilePage() {
                                   <>
                                     <button
                                       onClick={() => handleListingContact(listing)}
-                                      className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                                      className="px-4 py-2 bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 transition-colors text-sm font-medium"
                                     >
                                       Buy Now
                                     </button>
                                     <button
                                       onClick={() => handleListingContact(listing)}
-                                      className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
+                                      className="px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors text-sm font-medium"
                                     >
                                       Ask Question
                                     </button>
@@ -520,7 +520,7 @@ export default function PublicProfilePage() {
                 )}
 
                 {/* Member Since */}
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <div className="flex items-center gap-2 text-sm text-soil-400">
                   <Calendar size={16} />
                   <span>Member since {new Date(profile.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</span>
                 </div>
@@ -531,16 +531,16 @@ export default function PublicProfilePage() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Current Listings */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="bg-white rounded-lg shadow-sm border border-warm-border p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                <h2 className="text-lg font-semibold text-soil-800 flex items-center gap-2">
                   <Package size={20} />
                   Current Listings
                 </h2>
                 {listings.length > 0 && (
                   <button
                     onClick={() => router.push(`/marketplace?farmer=${profile.id}`)}
-                    className="text-sm text-green-600 hover:text-green-700 font-medium"
+                    className="text-sm text-farm-green-800 hover:text-farm-green-800 font-medium"
                   >
                     View All →
                   </button>
@@ -548,13 +548,13 @@ export default function PublicProfilePage() {
               </div>
 
               {listings.length === 0 ? (
-                <div className="text-center py-6 text-gray-500">
+                <div className="text-center py-6 text-soil-400">
                   <Package size={32} className="mx-auto mb-3 text-gray-300" />
                   <p className="text-sm">No active listings</p>
                   {isOwnProfile && (
                     <button
                       onClick={() => router.push('/sell')}
-                      className="mt-2 text-green-600 hover:text-green-700 text-sm font-medium"
+                      className="mt-2 text-farm-green-800 hover:text-farm-green-800 text-sm font-medium"
                     >
                       Create your first listing →
                     </button>
@@ -563,9 +563,9 @@ export default function PublicProfilePage() {
               ) : (
                 <div className="space-y-4">
                   {listings.slice(0, 3).map((listing) => (
-                    <div key={listing.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                    <div key={listing.id} className="border border-warm-border rounded-lg p-4 hover:shadow-sm transition-shadow">
                       <div className="flex items-start gap-3">
-                        <div className="w-16 h-16 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+                        <div className="w-16 h-16 rounded-lg bg-soil-100 flex items-center justify-center flex-shrink-0">
                           {listing.thumbnail_url ? (
                             <img
                               src={listing.thumbnail_url}
@@ -573,19 +573,19 @@ export default function PublicProfilePage() {
                               className="w-full h-full object-cover rounded-lg"
                             />
                           ) : (
-                            <Package size={20} className="text-gray-400" />
+                            <Package size={20} className="text-soil-400" />
                           )}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-gray-900 text-sm mb-1">{listing.title}</h3>
-                          <p className="text-green-600 font-bold text-base mb-2">
+                          <h3 className="font-medium text-soil-800 text-sm mb-1">{listing.title}</h3>
+                          <p className="text-farm-green-800 font-bold text-base mb-2">
                             ${listing.price || 'Price on request'}
                             {listing.unit && `/${listing.unit}`}
                           </p>
                           
                           {/* Quantity and availability */}
                           {listing.quantity_available && (
-                            <p className="text-xs text-gray-500 mb-2">
+                            <p className="text-xs text-soil-400 mb-2">
                               {listing.quantity_available} available
                               {listing.available_until && (
                                 <span> • Until {new Date(listing.available_until).toLocaleDateString()}</span>
@@ -594,7 +594,7 @@ export default function PublicProfilePage() {
                           )}
 
                           {/* Delivery options */}
-                          <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
+                          <div className="flex items-center gap-3 text-xs text-soil-400 mb-3">
                             {listing.pickup_available && (
                               <span className="flex items-center gap-1">
                                 <Package size={10} />
@@ -613,13 +613,13 @@ export default function PublicProfilePage() {
                             <div className="flex gap-2">
                               <button
                                 onClick={() => router.push(`/sell/${listing.id}`)}
-                                className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xs font-medium"
+                                className="flex-1 px-3 py-2 bg-terra-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xs font-medium"
                               >
                                 Edit
                               </button>
                               <button
                                 onClick={() => router.push(`/listing/${listing.id}`)}
-                                className="px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-xs font-medium"
+                                className="px-3 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors text-xs font-medium"
                               >
                                 View
                               </button>
@@ -628,13 +628,13 @@ export default function PublicProfilePage() {
                             <div className="flex gap-2">
                               <button
                                 onClick={() => handleListingContact(listing)}
-                                className="flex-1 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-xs font-medium"
+                                className="flex-1 px-3 py-2 bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 transition-colors text-xs font-medium"
                               >
                                 Buy Now
                               </button>
                               <button
                                 onClick={() => handleListingContact(listing)}
-                                className="px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-xs font-medium"
+                                className="px-3 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors text-xs font-medium"
                               >
                                 Ask Question
                               </button>
@@ -650,16 +650,16 @@ export default function PublicProfilePage() {
 
             {/* Reviews Section (placeholder) */}
             {profile.allow_reviews && (
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-lg shadow-sm border border-warm-border p-6">
+                <h2 className="text-lg font-semibold text-soil-800 mb-4 flex items-center gap-2">
                   <Star size={20} />
                   Reviews
                 </h2>
                 
-                <div className="text-center py-6 text-gray-500">
+                <div className="text-center py-6 text-soil-400">
                   <Star size={32} className="mx-auto mb-3 text-gray-300" />
                   <p className="text-sm">No reviews yet</p>
-                  <p className="text-xs text-gray-400 mt-1">
+                  <p className="text-xs text-soil-400 mt-1">
                     Reviews will appear here after purchases
                   </p>
                 </div>

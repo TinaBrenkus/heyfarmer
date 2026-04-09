@@ -73,7 +73,7 @@ a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid #059669;
+  outline: 2px solid #4A5E35;
   outline-offset: 2px;
 }
 
@@ -153,6 +153,6 @@ textarea {
   }
   
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: #A09E90;
   }
 }

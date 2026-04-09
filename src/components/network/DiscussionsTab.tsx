@@ -151,20 +151,20 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
         {/* Search */}
         <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
           <div className="relative">
-            <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+            <Search className="absolute left-3 top-3 h-5 w-5 text-soil-400" />
             <input
               type="text"
               placeholder="Search discussions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             />
           </div>
         </div>
 
         {/* Categories */}
         <div className="bg-white rounded-lg shadow-sm p-4">
-          <h3 className="font-semibold text-gray-900 mb-4">Categories</h3>
+          <h3 className="font-semibold text-soil-800 mb-4">Categories</h3>
           <div className="space-y-2">
             {categories.map((category) => (
               <button
@@ -172,15 +172,15 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
                 onClick={() => setSelectedCategory(category.id)}
                 className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-colors ${
                   selectedCategory === category.id
-                    ? 'bg-green-50 text-green-700 border border-green-200'
-                    : 'hover:bg-gray-50 text-gray-700'
+                    ? 'bg-farm-green-50 text-farm-green-800 border border-warm-border'
+                    : 'hover:bg-soil-50 text-soil-700'
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <span className="text-lg">{category.icon}</span>
                   <span className="font-medium">{category.name}</span>
                 </div>
-                <span className="text-sm bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                <span className="text-sm bg-soil-100 text-soil-500 px-2 py-1 rounded">
                   {category.count}
                 </span>
               </button>
@@ -196,28 +196,28 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
             {/* Hot Topics - Demo Mode Only */}
             <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
               <div className="flex items-center gap-2 mb-4">
-                <TrendingUp className="h-5 w-5 text-orange-500" />
-                <h2 className="text-lg font-semibold text-gray-900">Hot Topics</h2>
-                <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">Trending</span>
+                <TrendingUp className="h-5 w-5 text-terra-500" />
+                <h2 className="text-lg font-semibold text-soil-800">Hot Topics</h2>
+                <span className="text-xs bg-terra-100 text-terra-700 px-2 py-1 rounded">Trending</span>
               </div>
               <div className="space-y-3">
                 {hotTopics.map((discussion) => (
                   <div
                     key={discussion.id}
-                    className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
+                    className="flex items-start gap-3 p-3 hover:bg-soil-50 rounded-lg cursor-pointer transition-colors"
                     onClick={() => router.push(`/network/discussion/${discussion.id}`)}
                   >
                     <span className="text-lg">{getCategoryIcon(discussion.category)}</span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start gap-2 mb-1">
-                        <h4 className="font-medium text-gray-900 line-clamp-2 flex-1">
+                        <h4 className="font-medium text-soil-800 line-clamp-2 flex-1">
                           {discussion.title}
                         </h4>
                         {discussion.has_photos && (
-                          <Camera className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                          <Camera className="h-4 w-4 text-soil-400 flex-shrink-0 mt-0.5" />
                         )}
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 text-xs text-soil-400">
                         <FarmerBadge
                           userType={discussion.author.user_type}
                           verified={discussion.author.verified}
@@ -240,13 +240,13 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
 
             {/* Recent Discussions - Demo Mode Only */}
             <div className="bg-white rounded-lg shadow-sm">
-              <div className="flex items-center justify-between p-6 border-b border-gray-100">
+              <div className="flex items-center justify-between p-6 border-b border-warm-border">
                 <div className="flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-gray-500" />
-                  <h2 className="text-lg font-semibold text-gray-900">Recent Discussions</h2>
+                  <Clock className="h-5 w-5 text-soil-400" />
+                  <h2 className="text-lg font-semibold text-soil-800">Recent Discussions</h2>
                 </div>
                 <select
-                  className="text-sm border border-gray-300 rounded-lg px-3 py-1 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="text-sm border border-warm-border rounded-lg px-3 py-1 focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   defaultValue="recent"
                 >
                   <option value="recent">Most Recent</option>
@@ -259,20 +259,20 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
                 {recentDiscussions.map((discussion) => (
                   <div
                     key={discussion.id}
-                    className="flex items-start gap-4 p-6 hover:bg-gray-50 cursor-pointer transition-colors"
+                    className="flex items-start gap-4 p-6 hover:bg-soil-50 cursor-pointer transition-colors"
                     onClick={() => router.push(`/network/discussion/${discussion.id}`)}
                   >
                     <span className="text-xl">{getCategoryIcon(discussion.category)}</span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start gap-2 mb-2">
                         {discussion.is_pinned && (
-                          <Pin className="h-4 w-4 text-green-600 flex-shrink-0 mt-1" />
+                          <Pin className="h-4 w-4 text-farm-green-800 flex-shrink-0 mt-1" />
                         )}
-                        <h3 className="font-medium text-gray-900 line-clamp-2 flex-1 hover:text-green-600 transition-colors">
+                        <h3 className="font-medium text-soil-800 line-clamp-2 flex-1 hover:text-farm-green-800 transition-colors">
                           {discussion.title}
                         </h3>
                       </div>
-                      <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
+                      <div className="flex items-center gap-3 text-sm text-soil-400 mb-3">
                         <div className="flex items-center gap-2">
                           <FarmerBadge
                             userType={discussion.author.user_type}
@@ -285,7 +285,7 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
                         <span>•</span>
                         <span>Last reply {formatLastActivity(discussion.last_activity)}</span>
                       </div>
-                      <div className="flex items-center gap-4 text-xs text-gray-400">
+                      <div className="flex items-center gap-4 text-xs text-soil-400">
                         <div className="flex items-center gap-1">
                           <MessageCircle size={12} />
                           <span>{discussion.replies} replies</span>
@@ -296,14 +296,14 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
                         </div>
                       </div>
                     </div>
-                    <ArrowRight className="h-4 w-4 text-gray-400 flex-shrink-0 mt-1" />
+                    <ArrowRight className="h-4 w-4 text-soil-400 flex-shrink-0 mt-1" />
                   </div>
                 ))}
               </div>
 
               {/* Load More */}
-              <div className="p-6 border-t border-gray-100 text-center">
-                <button className="text-green-600 hover:text-green-700 font-medium text-sm">
+              <div className="p-6 border-t border-warm-border text-center">
+                <button className="text-farm-green-800 hover:text-farm-green-800 font-medium text-sm">
                   Load More Discussions
                 </button>
               </div>
@@ -313,15 +313,15 @@ export default function DiscussionsTab({ isDemoMode = false }: DiscussionsTabPro
           /* Empty State - Live Mode */
           <div className="bg-white rounded-lg shadow-sm p-12 text-center">
             <div className="text-6xl mb-4"></div>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+            <h2 className="text-2xl font-semibold text-soil-800 mb-2">
               Start the Conversation
             </h2>
-            <p className="text-gray-600 mb-6 max-w-md mx-auto">
+            <p className="text-soil-500 mb-6 max-w-md mx-auto">
               Be the first to create a discussion! Share tips, ask questions, or connect with fellow farmers in the network.
             </p>
             <button
               onClick={() => router.push('/network/new-discussion')}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
             >
               <Plus size={20} />
               Create First Discussion

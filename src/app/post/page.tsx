@@ -131,8 +131,8 @@ export default function CreatePostPage() {
       iconName: 'ShoppingCart',
       description: 'Sell produce, products, or goods',
       visibility: 'public',
-      color: '#059669',
-      bgColor: '#D1FAE5'
+      color: '#4A5E35',
+      bgColor: '#E8E4D8'
     },
     {
       id: 'help-needed',
@@ -280,15 +280,15 @@ export default function CreatePostPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
       <Navigation />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
@@ -296,13 +296,13 @@ export default function CreatePostPage() {
         <div className="md:hidden flex items-center gap-3 mb-6">
           <button
             onClick={() => currentStep === 1 ? router.back() : setCurrentStep(currentStep - 1)}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="flex items-center gap-2 text-soil-500 hover:text-soil-800 transition-colors"
           >
             <ArrowLeft size={20} />
             <span>{currentStep === 1 ? 'Back' : 'Previous'}</span>
           </button>
           <div className="flex-1 text-center">
-            <h1 className="text-lg font-bold text-gray-900">
+            <h1 className="text-lg font-bold text-soil-800">
               {currentStep === 1 && 'What to post?'}
               {currentStep === 2 && 'Choose template'}
               {currentStep === 3 && 'Quick Details'}
@@ -314,17 +314,17 @@ export default function CreatePostPage() {
         <div className="hidden md:flex items-center gap-4 mb-8">
           <button
             onClick={() => currentStep === 1 ? router.back() : setCurrentStep(currentStep - 1)}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="flex items-center gap-2 text-soil-500 hover:text-soil-800 transition-colors"
           >
             <ArrowLeft size={20} />
             {currentStep === 1 ? 'Back' : 'Previous'}
           </button>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+            <h1 className="text-3xl font-bold text-soil-800 flex items-center gap-3">
               <span className="text-4xl">➕</span>
               Create New Post
             </h1>
-            <p className="text-gray-600">
+            <p className="text-soil-500">
               {currentStep === 1 && 'Choose what type of post you want to create'}
               {currentStep === 2 && 'Select a template or start from scratch'}
               {currentStep === 3 && 'Fill in your post details'}
@@ -336,7 +336,7 @@ export default function CreatePostPage() {
         <div className="md:hidden flex items-center justify-center gap-2 mb-6">
           {[1, 2, 3].map((step) => (
             <div key={step} className={`w-2 h-2 rounded-full ${
-              step <= currentStep ? 'bg-green-600' : 'bg-gray-300'
+              step <= currentStep ? 'bg-farm-green-800' : 'bg-gray-300'
             }`} />
           ))}
         </div>
@@ -347,14 +347,14 @@ export default function CreatePostPage() {
             <div key={step} className="flex items-center">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                 step <= currentStep
-                  ? 'bg-green-600 text-white'
-                  : 'bg-gray-200 text-gray-500'
+                  ? 'bg-farm-green-800 text-white'
+                  : 'bg-soil-200 text-soil-400'
               }`}>
                 {step}
               </div>
               {step < 3 && (
                 <div className={`w-16 h-1 mx-2 ${
-                  step < currentStep ? 'bg-green-600' : 'bg-gray-200'
+                  step < currentStep ? 'bg-farm-green-800' : 'bg-soil-200'
                 }`} />
               )}
             </div>
@@ -363,11 +363,11 @@ export default function CreatePostPage() {
 
         {/* Step 1: Post Type Selection */}
         {currentStep === 1 && (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6">
+          <div className="bg-white rounded-lg shadow-sm border border-warm-border p-4 md:p-6">
             {/* Mobile Header */}
             <div className="text-center mb-6 md:text-left">
-              <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">What to post?</h2>
-              <p className="text-sm text-gray-600">Choose the type of post you want to create</p>
+              <h2 className="text-lg md:text-xl font-semibold text-soil-800 mb-2">What to post?</h2>
+              <p className="text-sm text-soil-500">Choose the type of post you want to create</p>
             </div>
             
             {/* Mobile-First Radio List */}
@@ -375,7 +375,7 @@ export default function CreatePostPage() {
               {postTypes.map((type) => (
                 <label
                   key={type.id}
-                  className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-colors cursor-pointer"
+                  className="flex items-center gap-4 p-4 rounded-lg border border-warm-border hover:border-farm-green-300 hover:bg-farm-green-50 transition-colors cursor-pointer"
                 >
                   <input
                     type="radio"
@@ -383,20 +383,20 @@ export default function CreatePostPage() {
                     value={type.id}
                     checked={selectedPostType === type.id}
                     onChange={(e) => setSelectedPostType(e.target.value)}
-                    className="w-5 h-5 text-green-600 border-gray-300 focus:ring-green-500"
+                    className="w-5 h-5 text-farm-green-800 border-warm-border focus:ring-farm-green-500"
                   />
                   <div className="flex items-center gap-3 flex-1">
                     <span className="text-xl">{type.emoji}</span>
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-medium text-gray-900">{type.title}</span>
+                        <span className="font-medium text-soil-800">{type.title}</span>
                         {type.visibility === 'farmers-only' && (
-                          <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full">
+                          <span className="text-xs bg-terra-100 text-terra-700 px-2 py-1 rounded-full">
                             Farmers
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-gray-600 hidden md:block">{type.description}</p>
+                      <p className="text-sm text-soil-500 hidden md:block">{type.description}</p>
                     </div>
                   </div>
                 </label>
@@ -407,29 +407,29 @@ export default function CreatePostPage() {
             <button
               onClick={() => selectedPostType && handlePostTypeSelect(selectedPostType)}
               disabled={!selectedPostType}
-              className="w-full py-3 px-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="w-full py-3 px-4 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
             >
               <span>Continue</span>
               <ArrowLeft className="h-4 w-4 rotate-180" />
             </button>
 
             {/* Popular Templates (Hidden on Mobile) */}
-            <div className="hidden md:block border-t border-gray-100 pt-6 mt-6">
-              <h3 className="font-medium text-gray-900 mb-4">Popular templates:</h3>
+            <div className="hidden md:block border-t border-warm-border pt-6 mt-6">
+              <h3 className="font-medium text-soil-800 mb-4">Popular templates:</h3>
               <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="flex items-center gap-2 text-gray-600">
+                <div className="flex items-center gap-2 text-soil-500">
                   <Egg size={24} weight="regular" />
                   <span>Fresh eggs available</span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-600">
+                <div className="flex items-center gap-2 text-soil-500">
                   <Plant size={24} weight="regular" />
                   <span>Seasonal produce for sale</span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-600">
+                <div className="flex items-center gap-2 text-soil-500">
                   <Tractor size={24} weight="regular" />
                   <span>Equipment rental</span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-600">
+                <div className="flex items-center gap-2 text-soil-500">
                   <Plant size={24} weight="regular" />
                   <span>Surplus to share</span>
                 </div>
@@ -440,41 +440,41 @@ export default function CreatePostPage() {
 
         {/* Step 2: Template Selection */}
         {currentStep === 2 && selectedPostType && (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-white rounded-lg shadow-sm border border-warm-border p-6">
             <div className="flex items-center gap-3 mb-6">
               <span className="text-2xl">{getSelectedPostType()?.emoji}</span>
-              <h2 className="text-xl font-semibold text-gray-900">{getSelectedPostType()?.title}</h2>
+              <h2 className="text-xl font-semibold text-soil-800">{getSelectedPostType()?.title}</h2>
             </div>
 
             <div className="mb-6">
-              <h3 className="font-medium text-gray-900 mb-4">Choose a template to get started faster:</h3>
+              <h3 className="font-medium text-soil-800 mb-4">Choose a template to get started faster:</h3>
               <div className="space-y-3">
                 {templates[selectedPostType]?.map((template) => (
                   <button
                     key={template.id}
                     onClick={() => handleTemplateSelect(template.id)}
-                    className="w-full p-4 rounded-lg border border-gray-200 hover:border-gray-300 text-left transition-colors group"
+                    className="w-full p-4 rounded-lg border border-warm-border hover:border-warm-border text-left transition-colors group"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h4 className="font-medium text-gray-900 group-hover:text-green-600 transition-colors">
+                        <h4 className="font-medium text-soil-800 group-hover:text-farm-green-800 transition-colors">
                           {template.title}
                         </h4>
-                        <p className="text-sm text-gray-600 mt-1">{template.description}</p>
+                        <p className="text-sm text-soil-500 mt-1">{template.description}</p>
                         <div className="flex items-center gap-3 mt-2">
                           {template.category && (
-                            <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                            <span className="text-xs bg-soil-100 text-soil-500 px-2 py-1 rounded">
                               {template.category}
                             </span>
                           )}
                           {template.price && (
-                            <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                            <span className="text-xs bg-farm-green-100 text-farm-green-800 px-2 py-1 rounded">
                               {template.price}
                             </span>
                           )}
                         </div>
                       </div>
-                      <div className="text-gray-400 group-hover:text-gray-600 transition-colors">
+                      <div className="text-soil-400 group-hover:text-soil-500 transition-colors">
                         <ArrowLeft className="h-4 w-4 rotate-180" />
                       </div>
                     </div>
@@ -483,16 +483,16 @@ export default function CreatePostPage() {
               </div>
             </div>
 
-            <div className="border-t border-gray-100 pt-6">
+            <div className="border-t border-warm-border pt-6">
               <button
                 onClick={handleCreateCustom}
-                className="w-full p-4 rounded-lg border-2 border-dashed border-gray-300 hover:border-green-500 text-center transition-colors group"
+                className="w-full p-4 rounded-lg border-2 border-dashed border-warm-border hover:border-farm-green-500 text-center transition-colors group"
               >
-                <div className="flex items-center justify-center gap-2 text-gray-600 group-hover:text-green-600">
+                <div className="flex items-center justify-center gap-2 text-soil-500 group-hover:text-farm-green-800">
                   <Plus size={20} />
                   <span className="font-medium">Start from scratch</span>
                 </div>
-                <p className="text-sm text-gray-500 mt-1">Create a custom post with your own content</p>
+                <p className="text-sm text-soil-400 mt-1">Create a custom post with your own content</p>
               </button>
             </div>
           </div>
@@ -502,19 +502,19 @@ export default function CreatePostPage() {
         {currentStep === 3 && selectedPostType && (
           <div className="space-y-4 md:space-y-6">
             {/* Mobile Quick Form */}
-            <div className="md:hidden bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+            <div className="md:hidden bg-white rounded-lg shadow-sm border border-warm-border p-4">
               <div className="text-center mb-6">
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <span className="text-2xl">{getSelectedPostType()?.emoji}</span>
-                  <h2 className="text-lg font-semibold text-gray-900">Quick Details</h2>
+                  <h2 className="text-lg font-semibold text-soil-800">Quick Details</h2>
                 </div>
-                <p className="text-sm text-gray-600">Add the basics to get started</p>
+                <p className="text-sm text-soil-500">Add the basics to get started</p>
               </div>
 
               <div className="space-y-4">
                 {/* Item Name */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-soil-700 mb-2">
                     Item <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -522,32 +522,32 @@ export default function CreatePostPage() {
                     value={formData.title}
                     onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
                     placeholder="e.g., Fresh Eggs, Tomatoes, Tractor"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-lg"
+                    className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent text-lg"
                   />
                 </div>
 
                 {/* Price (only for for-sale and equipment) */}
                 {(selectedPostType === 'for-sale' || selectedPostType === 'equipment') && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-soil-700 mb-2">
                       Price <span className="text-red-500">*</span>
                     </label>
                     <div className="flex items-center gap-2">
                       <div className="flex flex-1">
-                        <span className="inline-flex items-center px-3 border border-r-0 border-gray-300 bg-gray-50 text-gray-500 rounded-l-lg text-lg">$</span>
+                        <span className="inline-flex items-center px-3 border border-r-0 border-warm-border bg-soil-50 text-soil-400 rounded-l-lg text-lg">$</span>
                         <input
                           type="number"
                           step="0.01"
                           value={formData.price}
                           onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
                           placeholder="4.00"
-                          className="flex-1 p-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-lg"
+                          className="flex-1 p-3 border border-warm-border rounded-r-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent text-lg"
                         />
                       </div>
                       <select
                         value={formData.priceUnit}
                         onChange={(e) => setFormData(prev => ({ ...prev, priceUnit: e.target.value }))}
-                        className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-600"
+                        className="p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent text-soil-500"
                       >
                         <option value="each">each</option>
                         <option value="dozen">dozen</option>
@@ -561,10 +561,10 @@ export default function CreatePostPage() {
 
                 {/* Photo Upload */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-soil-700 mb-2">
                     📷 Add Photo
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-500 transition-colors">
+                  <div className="border-2 border-dashed border-warm-border rounded-lg p-6 text-center hover:border-farm-green-500 transition-colors">
                     {formData.photos.length > 0 ? (
                       <div className="space-y-3">
                         <div className="flex items-center justify-center">
@@ -590,9 +590,9 @@ export default function CreatePostPage() {
                           className="hidden"
                         />
                         <div className="flex flex-col items-center">
-                          <Camera className="h-8 w-8 text-gray-400 mb-2" />
-                          <span className="text-sm font-medium text-gray-600">Add Photo</span>
-                          <span className="text-xs text-gray-500">Tap to upload</span>
+                          <Camera className="h-8 w-8 text-soil-400 mb-2" />
+                          <span className="text-sm font-medium text-soil-500">Add Photo</span>
+                          <span className="text-xs text-soil-400">Tap to upload</span>
                         </div>
                       </label>
                     )}
@@ -603,7 +603,7 @@ export default function CreatePostPage() {
                 <button
                   onClick={() => setCurrentStep(4)}
                   disabled={!formData.title.trim() || (selectedPostType === 'for-sale' && !formData.price)}
-                  className="w-full py-3 px-4 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+                  className="w-full py-3 px-4 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
                 >
                   <span>Next</span>
                   <ArrowLeft className="h-4 w-4 rotate-180" />
@@ -612,15 +612,15 @@ export default function CreatePostPage() {
             </div>
 
             {/* Desktop Form Header */}
-            <div className="hidden md:block bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="hidden md:block bg-white rounded-lg shadow-sm border border-warm-border p-6">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">{getSelectedPostType()?.emoji}</span>
-                <h2 className="text-xl font-semibold text-gray-900">{getSelectedPostType()?.title}</h2>
+                <h2 className="text-xl font-semibold text-soil-800">{getSelectedPostType()?.title}</h2>
               </div>
               
               {selectedTemplate !== 'custom' && selectedTemplate !== 'mobile-quick' && (
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <p className="text-sm text-blue-700">
+                <div className="bg-terra-50 border border-terra-200 rounded-lg p-4">
+                  <p className="text-sm text-terra-700">
                     <strong>Template:</strong> {templates[selectedPostType]?.find(t => t.id === selectedTemplate)?.title}
                   </p>
                 </div>
@@ -628,11 +628,11 @@ export default function CreatePostPage() {
             </div>
 
             {/* Desktop Main Form */}
-            <div className="hidden md:block bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="hidden md:block bg-white rounded-lg shadow-sm border border-warm-border p-6">
               <div className="space-y-6">
                 {/* Title */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-soil-700 mb-2">
                     Title <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -640,7 +640,7 @@ export default function CreatePostPage() {
                     value={formData.title}
                     onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
                     placeholder="Give your post a clear, descriptive title"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   />
                 </div>
 
@@ -648,11 +648,11 @@ export default function CreatePostPage() {
                 {(selectedPostType === 'for-sale' || selectedPostType === 'equipment') && (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                      <label className="block text-sm font-medium text-soil-700 mb-2">Category</label>
                       <select
                         value={formData.category}
                         onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       >
                         <option value="">Select category</option>
                         {selectedPostType === 'for-sale' ? (
@@ -676,25 +676,25 @@ export default function CreatePostPage() {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
+                      <label className="block text-sm font-medium text-soil-700 mb-2">Price</label>
                       <div className="flex">
-                        <span className="inline-flex items-center px-3 border border-r-0 border-gray-300 bg-gray-50 text-gray-500 rounded-l-lg">$</span>
+                        <span className="inline-flex items-center px-3 border border-r-0 border-warm-border bg-soil-50 text-soil-400 rounded-l-lg">$</span>
                         <input
                           type="number"
                           step="0.01"
                           value={formData.price}
                           onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
-                          className="flex-1 p-3 border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                          className="flex-1 p-3 border border-warm-border focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                         />
                       </div>
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Per</label>
+                      <label className="block text-sm font-medium text-soil-700 mb-2">Per</label>
                       <select
                         value={formData.priceUnit}
                         onChange={(e) => setFormData(prev => ({ ...prev, priceUnit: e.target.value }))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       >
                         <option value="each">each</option>
                         <option value="dozen">dozen</option>
@@ -710,7 +710,7 @@ export default function CreatePostPage() {
 
                 {/* Description */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-soil-700 mb-2">
                     Description <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -718,13 +718,13 @@ export default function CreatePostPage() {
                     onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                     rows={4}
                     placeholder="Provide details about your post. Include important information like condition, availability, location, etc."
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                    className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent resize-none"
                   />
                 </div>
 
                 {/* Photos */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-soil-700 mb-2">
                     📷 Add Photos ({formData.photos.length}/5 photos)
                   </label>
                   
@@ -750,8 +750,8 @@ export default function CreatePostPage() {
                   )}
                   
                   {formData.photos.length < 5 && (
-                    <label className="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center gap-2 text-gray-600">
+                    <label className="flex flex-col items-center justify-center w-full h-24 border-2 border-warm-border border-dashed rounded-lg cursor-pointer hover:bg-soil-50 transition-colors">
+                      <div className="flex items-center gap-2 text-soil-500">
                         <Camera size={20} />
                         <span className="text-sm">Click to upload photos</span>
                       </div>
@@ -775,21 +775,21 @@ export default function CreatePostPage() {
                         id="availableNow"
                         checked={formData.availableNow}
                         onChange={(e) => setFormData(prev => ({ ...prev, availableNow: e.target.checked }))}
-                        className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                        className="w-4 h-4 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500"
                       />
-                      <label htmlFor="availableNow" className="text-sm font-medium text-gray-700">
+                      <label htmlFor="availableNow" className="text-sm font-medium text-soil-700">
                         Available now
                       </label>
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Pickup Information</label>
+                      <label className="block text-sm font-medium text-soil-700 mb-2">Pickup Information</label>
                       <input
                         type="text"
                         value={formData.pickupInfo}
                         onChange={(e) => setFormData(prev => ({ ...prev, pickupInfo: e.target.value }))}
                         placeholder="e.g., Tuesday & Friday 8am-6pm, or by appointment"
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       />
                     </div>
                   </div>
@@ -797,35 +797,35 @@ export default function CreatePostPage() {
 
                 {/* Visibility */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">Who can see this?</label>
+                  <label className="block text-sm font-medium text-soil-700 mb-3">Who can see this?</label>
                   <div className="space-y-3">
-                    <label className="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <label className="flex items-center gap-3 p-3 border border-warm-border rounded-lg cursor-pointer hover:bg-soil-50">
                       <input
                         type="radio"
                         name="visibility"
                         value="public"
                         checked={formData.visibility === 'public'}
                         onChange={(e) => setFormData(prev => ({ ...prev, visibility: e.target.value as 'public' | 'farmers-only' }))}
-                        className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
+                        className="w-4 h-4 text-farm-green-800 border-warm-border focus:ring-farm-green-500"
                       />
                       <div>
-                        <div className="font-medium text-gray-900">Everyone (Public marketplace)</div>
-                        <div className="text-sm text-gray-600">Visible to all users including consumers</div>
+                        <div className="font-medium text-soil-800">Everyone (Public marketplace)</div>
+                        <div className="text-sm text-soil-500">Visible to all users including consumers</div>
                       </div>
                     </label>
                     
-                    <label className="flex items-center gap-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <label className="flex items-center gap-3 p-3 border border-warm-border rounded-lg cursor-pointer hover:bg-soil-50">
                       <input
                         type="radio"
                         name="visibility"
                         value="farmers-only"
                         checked={formData.visibility === 'farmers-only'}
                         onChange={(e) => setFormData(prev => ({ ...prev, visibility: e.target.value as 'public' | 'farmers-only' }))}
-                        className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
+                        className="w-4 h-4 text-farm-green-800 border-warm-border focus:ring-farm-green-500"
                       />
                       <div>
-                        <div className="font-medium text-gray-900">Farmers only (Private network)</div>
-                        <div className="text-sm text-gray-600">Only visible to other farmers</div>
+                        <div className="font-medium text-soil-800">Farmers only (Private network)</div>
+                        <div className="text-sm text-soil-500">Only visible to other farmers</div>
                       </div>
                     </label>
                   </div>
@@ -833,7 +833,7 @@ export default function CreatePostPage() {
 
                 {/* Contact Methods */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">Contact method:</label>
+                  <label className="block text-sm font-medium text-soil-700 mb-3">Contact method:</label>
                   <div className="flex flex-wrap gap-4">
                     <label className="flex items-center gap-2">
                       <input
@@ -843,9 +843,9 @@ export default function CreatePostPage() {
                           ...prev,
                           contactMethods: { ...prev.contactMethods, platform: e.target.checked }
                         }))}
-                        className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                        className="w-4 h-4 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500"
                       />
-                      <span className="text-sm text-gray-700">Platform messages</span>
+                      <span className="text-sm text-soil-700">Platform messages</span>
                     </label>
                     
                     <label className="flex items-center gap-2">
@@ -856,9 +856,9 @@ export default function CreatePostPage() {
                           ...prev,
                           contactMethods: { ...prev.contactMethods, phone: e.target.checked }
                         }))}
-                        className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                        className="w-4 h-4 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500"
                       />
-                      <span className="text-sm text-gray-700">Phone</span>
+                      <span className="text-sm text-soil-700">Phone</span>
                     </label>
                     
                     <label className="flex items-center gap-2">
@@ -869,9 +869,9 @@ export default function CreatePostPage() {
                           ...prev,
                           contactMethods: { ...prev.contactMethods, email: e.target.checked }
                         }))}
-                        className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                        className="w-4 h-4 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500"
                       />
-                      <span className="text-sm text-gray-700">Email</span>
+                      <span className="text-sm text-soil-700">Email</span>
                     </label>
                   </div>
                 </div>
@@ -879,11 +879,11 @@ export default function CreatePostPage() {
             </div>
 
             {/* Actions */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="bg-white rounded-lg shadow-sm border border-warm-border p-6">
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => setCurrentStep(2)}
-                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors"
                 >
                   Back to Templates
                 </button>
@@ -891,13 +891,13 @@ export default function CreatePostPage() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => {}}
-                    className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="px-6 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors"
                   >
                     Preview Post
                   </button>
                   <button
                     onClick={handleSubmit}
-                    className="px-6 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                    className="px-6 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
                   >
                     Publish Now
                   </button>

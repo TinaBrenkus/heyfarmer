@@ -266,8 +266,8 @@ Photos attached show my current setup and the blossom end rot issues I've been d
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading discussion...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading discussion...</p>
         </div>
       </div>
     )
@@ -277,41 +277,41 @@ Photos attached show my current setup and the blossom end rot issues I've been d
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-600">Discussion not found</p>
+          <p className="text-soil-500">Discussion not found</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
       <Navigation />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
+          className="flex items-center gap-2 text-soil-500 hover:text-soil-800 mb-6 transition-colors"
         >
           <ArrowLeft size={20} />
           Back to Network
         </button>
 
         {/* Main Discussion */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-warm-border mb-6">
           {/* Header */}
-          <div className="p-6 border-b border-gray-100">
+          <div className="p-6 border-b border-warm-border">
             <div className="flex items-start gap-4">
               <span className="text-2xl">{getCategoryIcon(discussion.category)}</span>
               <div className="flex-1">
                 <div className="flex items-start justify-between mb-3">
-                  <h1 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
-                    {discussion.is_pinned && <Pin className="h-4 w-4 text-green-600" />}
+                  <h1 className="text-xl font-semibold text-soil-800 flex items-center gap-2">
+                    {discussion.is_pinned && <Pin className="h-4 w-4 text-farm-green-800" />}
                     {discussion.title}
                   </h1>
                 </div>
                 
-                <div className="flex items-center gap-3 text-sm text-gray-500 mb-4">
+                <div className="flex items-center gap-3 text-sm text-soil-400 mb-4">
                   <div className="flex items-center gap-2">
                     <FarmerBadge 
                       userType={discussion.author.user_type}
@@ -333,7 +333,7 @@ Photos attached show my current setup and the blossom end rot issues I've been d
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 text-xs text-gray-400">
+                <div className="flex items-center gap-4 text-xs text-soil-400">
                   <span>{discussion.views} views</span>
                   <span>{discussion.replies} replies</span>
                   <span>{discussion.likes} likes</span>
@@ -345,14 +345,14 @@ Photos attached show my current setup and the blossom end rot issues I've been d
           {/* Content */}
           <div className="p-6">
             <div className="prose max-w-none mb-6">
-              <p className="text-gray-700 whitespace-pre-line">{discussion.content}</p>
+              <p className="text-soil-700 whitespace-pre-line">{discussion.content}</p>
             </div>
 
             {/* Photos */}
             {discussion.photos && discussion.photos.length > 0 && (
               <div className="grid grid-cols-2 gap-3 mb-6">
                 {discussion.photos.map((photo, index) => (
-                  <div key={index} className="rounded-lg overflow-hidden bg-gray-100">
+                  <div key={index} className="rounded-lg overflow-hidden bg-soil-100">
                     <img 
                       src={photo} 
                       alt={`Photo ${index + 1}`}
@@ -364,25 +364,25 @@ Photos attached show my current setup and the blossom end rot issues I've been d
             )}
 
             {/* Actions */}
-            <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+            <div className="flex items-center gap-4 pt-4 border-t border-warm-border">
               <button
                 onClick={() => handleLike(discussion.id)}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${
                   discussion.has_liked 
                     ? 'bg-red-50 text-red-600' 
-                    : 'hover:bg-gray-50 text-gray-600'
+                    : 'hover:bg-soil-50 text-soil-500'
                 }`}
               >
                 <Heart size={16} className={discussion.has_liked ? 'fill-current' : ''} />
                 <span>{discussion.likes}</span>
               </button>
               
-              <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-600 transition-colors">
+              <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-soil-50 text-soil-500 transition-colors">
                 <Reply size={16} />
                 <span>Reply</span>
               </button>
               
-              <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-600 transition-colors">
+              <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-soil-50 text-soil-500 transition-colors">
                 <Share2 size={16} />
                 <span>Share</span>
               </button>
@@ -391,23 +391,23 @@ Photos attached show my current setup and the blossom end rot issues I've been d
         </div>
 
         {/* Reply Form */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h3 className="font-semibold text-gray-900 mb-4">Add Your Reply</h3>
+        <div className="bg-white rounded-lg shadow-sm border border-warm-border p-6 mb-6">
+          <h3 className="font-semibold text-soil-800 mb-4">Add Your Reply</h3>
           <textarea
             value={newReply}
             onChange={(e) => setNewReply(e.target.value)}
             placeholder="Share your thoughts, experiences, or ask follow-up questions..."
-            className="w-full h-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+            className="w-full h-32 p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent resize-none"
           />
           <div className="flex items-center justify-between mt-4">
-            <button className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-gray-800 transition-colors">
+            <button className="flex items-center gap-2 px-3 py-2 text-soil-500 hover:text-soil-800 transition-colors">
               <Camera size={16} />
               <span>Add Photo</span>
             </button>
             <button
               onClick={() => handleReply()}
               disabled={!newReply.trim()}
-              className="px-6 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-6 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Post Reply
             </button>
@@ -416,13 +416,13 @@ Photos attached show my current setup and the blossom end rot issues I've been d
 
         {/* Replies */}
         <div className="space-y-4">
-          <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+          <h3 className="font-semibold text-soil-800 flex items-center gap-2">
             <MessageCircle size={18} />
             {discussion.replies} Replies
           </h3>
 
           {replies.map((reply) => (
-            <div key={reply.id} className="bg-white rounded-lg shadow-sm border border-gray-200">
+            <div key={reply.id} className="bg-white rounded-lg shadow-sm border border-warm-border">
               <div className="p-6">
                 {/* Reply Header */}
                 <div className="flex items-start justify-between mb-3">
@@ -434,21 +434,21 @@ Photos attached show my current setup and the blossom end rot issues I've been d
                         size="xs"
                         showLabel={false}
                       />
-                      <span className="font-medium text-gray-900">{reply.author.name}</span>
+                      <span className="font-medium text-soil-800">{reply.author.name}</span>
                     </div>
-                    <span className="text-gray-400">•</span>
-                    <div className="flex items-center gap-1 text-gray-500">
+                    <span className="text-soil-400">•</span>
+                    <div className="flex items-center gap-1 text-soil-400">
                       <MapPin size={12} />
                       <span>{reply.author.location}</span>
                     </div>
-                    <span className="text-gray-400">•</span>
-                    <span className="text-gray-500">{formatTimeAgo(reply.created_at)}</span>
+                    <span className="text-soil-400">•</span>
+                    <span className="text-soil-400">{formatTimeAgo(reply.created_at)}</span>
                   </div>
                   
                   {reply.replies && reply.replies.length > 0 && (
                     <button
                       onClick={() => toggleCollapse(reply.id)}
-                      className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 transition-colors"
+                      className="flex items-center gap-1 text-xs text-soil-400 hover:text-soil-700 transition-colors"
                     >
                       {reply.is_collapsed ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
                       {reply.replies.length} replies
@@ -458,7 +458,7 @@ Photos attached show my current setup and the blossom end rot issues I've been d
 
                 {/* Reply Content */}
                 <div className="mb-4">
-                  <p className="text-gray-700">{reply.content}</p>
+                  <p className="text-soil-700">{reply.content}</p>
                 </div>
 
                 {/* Reply Photos */}
@@ -479,7 +479,7 @@ Photos attached show my current setup and the blossom end rot issues I've been d
                     className={`flex items-center gap-2 px-2 py-1 rounded transition-colors ${
                       reply.has_liked 
                         ? 'text-red-600' 
-                        : 'text-gray-500 hover:text-gray-700'
+                        : 'text-soil-400 hover:text-soil-700'
                     }`}
                   >
                     <ThumbsUp size={14} className={reply.has_liked ? 'fill-current' : ''} />
@@ -488,7 +488,7 @@ Photos attached show my current setup and the blossom end rot issues I've been d
                   
                   <button
                     onClick={() => handleReply(reply.id)}
-                    className="flex items-center gap-2 px-2 py-1 rounded text-gray-500 hover:text-gray-700 transition-colors"
+                    className="flex items-center gap-2 px-2 py-1 rounded text-soil-400 hover:text-soil-700 transition-colors"
                   >
                     <Reply size={14} />
                     <span>Reply</span>
@@ -497,9 +497,9 @@ Photos attached show my current setup and the blossom end rot issues I've been d
 
                 {/* Nested Replies */}
                 {reply.replies && reply.replies.length > 0 && !reply.is_collapsed && (
-                  <div className="mt-4 pl-6 border-l-2 border-gray-100 space-y-4">
+                  <div className="mt-4 pl-6 border-l-2 border-warm-border space-y-4">
                     {reply.replies.map((nestedReply) => (
-                      <div key={nestedReply.id} className="bg-gray-50 rounded-lg p-4">
+                      <div key={nestedReply.id} className="bg-soil-50 rounded-lg p-4">
                         <div className="flex items-center gap-3 text-sm mb-2">
                           <div className="flex items-center gap-2">
                             <FarmerBadge 
@@ -508,19 +508,19 @@ Photos attached show my current setup and the blossom end rot issues I've been d
                               size="xs"
                               showLabel={false}
                             />
-                            <span className="font-medium text-gray-900">{nestedReply.author.name}</span>
+                            <span className="font-medium text-soil-800">{nestedReply.author.name}</span>
                           </div>
-                          <span className="text-gray-400">•</span>
-                          <span className="text-gray-500">{formatTimeAgo(nestedReply.created_at)}</span>
+                          <span className="text-soil-400">•</span>
+                          <span className="text-soil-400">{formatTimeAgo(nestedReply.created_at)}</span>
                         </div>
-                        <p className="text-gray-700 mb-3">{nestedReply.content}</p>
+                        <p className="text-soil-700 mb-3">{nestedReply.content}</p>
                         <div className="flex items-center gap-4 text-sm">
                           <button
                             onClick={() => handleLike(nestedReply.id, true)}
                             className={`flex items-center gap-2 px-2 py-1 rounded transition-colors ${
                               nestedReply.has_liked 
                                 ? 'text-red-600' 
-                                : 'text-gray-500 hover:text-gray-700'
+                                : 'text-soil-400 hover:text-soil-700'
                             }`}
                           >
                             <ThumbsUp size={14} className={nestedReply.has_liked ? 'fill-current' : ''} />

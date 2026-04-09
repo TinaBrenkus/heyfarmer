@@ -282,38 +282,38 @@ export default function AdminDirectoryPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading directory admin...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading directory admin...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-soil-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg" style={{ backgroundColor: '#2E7D32' }}>
+              <div className="p-2 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
                 <FarmLogo size={24} className="text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Farm Directory Admin</h1>
-                <p className="text-xs text-gray-500">Manage directory listings</p>
+                <h1 className="text-xl font-bold text-soil-800">Farm Directory Admin</h1>
+                <p className="text-xs text-soil-400">Manage directory listings</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Link
                 href="/admin"
-                className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors text-sm"
+                className="px-4 py-2 text-soil-700 hover:text-soil-800 transition-colors text-sm"
               >
                 Waitlist Admin
               </Link>
               <Link
                 href="/dashboard"
-                className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors text-sm"
+                className="px-4 py-2 text-soil-700 hover:text-soil-800 transition-colors text-sm"
               >
                 Dashboard
               </Link>
@@ -325,7 +325,7 @@ export default function AdminDirectoryPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Success/Error Messages */}
         {successMessage && (
-          <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm flex items-center gap-2">
+          <div className="mb-4 p-3 bg-farm-green-50 border border-warm-border rounded-lg text-farm-green-800 text-sm flex items-center gap-2">
             <CheckCircle size={16} />
             {successMessage}
           </div>
@@ -341,23 +341,23 @@ export default function AdminDirectoryPage() {
         {/* Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           <div className="bg-white rounded-lg shadow-sm p-4">
-            <p className="text-sm text-gray-500">Total Farms</p>
-            <p className="text-2xl font-bold text-gray-900">{totalFarms}</p>
+            <p className="text-sm text-soil-400">Total Farms</p>
+            <p className="text-2xl font-bold text-soil-800">{totalFarms}</p>
           </div>
           <div className="bg-white rounded-lg shadow-sm p-4">
-            <p className="text-sm text-gray-500">Published</p>
-            <p className="text-2xl font-bold text-green-600">{publishedCount}</p>
+            <p className="text-sm text-soil-400">Published</p>
+            <p className="text-2xl font-bold text-farm-green-800">{publishedCount}</p>
           </div>
           <div className="bg-white rounded-lg shadow-sm p-4">
-            <p className="text-sm text-gray-500">Claimed</p>
-            <p className="text-2xl font-bold text-blue-600">{claimedCount}</p>
+            <p className="text-sm text-soil-400">Claimed</p>
+            <p className="text-2xl font-bold text-terra-600">{claimedCount}</p>
           </div>
           <button
             onClick={() => setView('claims')}
             className="bg-white rounded-lg shadow-sm p-4 text-left hover:shadow-md transition-shadow"
           >
-            <p className="text-sm text-gray-500">Pending Claims</p>
-            <p className="text-2xl font-bold text-orange-600">{pendingClaims}</p>
+            <p className="text-sm text-soil-400">Pending Claims</p>
+            <p className="text-2xl font-bold text-terra-600">{pendingClaims}</p>
           </button>
         </div>
 
@@ -366,7 +366,7 @@ export default function AdminDirectoryPage() {
           <button
             onClick={() => setView('list')}
             className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-              view === 'list' ? 'bg-green-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'
+              view === 'list' ? 'bg-farm-green-800 text-white' : 'bg-white text-soil-700 hover:bg-soil-50'
             }`}
           >
             Farm List
@@ -374,7 +374,7 @@ export default function AdminDirectoryPage() {
           <button
             onClick={() => setView('claims')}
             className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-              view === 'claims' ? 'bg-green-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'
+              view === 'claims' ? 'bg-farm-green-800 text-white' : 'bg-white text-soil-700 hover:bg-soil-50'
             }`}
           >
             Claim Requests {pendingClaims > 0 && `(${pendingClaims})`}
@@ -388,20 +388,20 @@ export default function AdminDirectoryPage() {
             <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
               <div className="flex flex-wrap items-center gap-4">
                 <div className="relative flex-1 min-w-[200px]">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-soil-400 h-4 w-4" />
                   <input
                     type="text"
                     placeholder="Search farms..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 border border-warm-border rounded-lg text-sm focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   />
                 </div>
 
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                  className="px-3 py-2 border border-warm-border rounded-lg text-sm"
                 >
                   <option value="all">All Statuses</option>
                   <option value="draft">Draft</option>
@@ -413,7 +413,7 @@ export default function AdminDirectoryPage() {
                 <select
                   value={countyFilter}
                   onChange={(e) => setCountyFilter(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                  className="px-3 py-2 border border-warm-border rounded-lg text-sm"
                 >
                   <option value="all">All Counties</option>
                   {ALL_COUNTY_IDS.map(id => (
@@ -423,7 +423,7 @@ export default function AdminDirectoryPage() {
 
                 <button
                   onClick={handleNewFarm}
-                  className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg font-medium text-sm hover:bg-green-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-farm-green-800 text-white rounded-lg font-medium text-sm hover:bg-farm-green-800 transition-colors"
                 >
                   <Plus size={16} />
                   Add New Farm
@@ -435,31 +435,31 @@ export default function AdminDirectoryPage() {
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
+                  <thead className="bg-soil-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">County</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Products</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Views</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-soil-400 uppercase">Name</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-soil-400 uppercase">County</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-soil-400 uppercase">Status</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-soil-400 uppercase">Type</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-soil-400 uppercase">Products</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-soil-400 uppercase">Views</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-soil-400 uppercase">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
                     {filteredFarms.map((farm) => {
                       const statusInfo = getStatusInfo(farm.status)
                       return (
-                        <tr key={farm.id} className="hover:bg-gray-50">
+                        <tr key={farm.id} className="hover:bg-soil-50">
                           <td className="px-6 py-4">
                             <div>
-                              <p className="font-medium text-gray-900">{farm.name}</p>
+                              <p className="font-medium text-soil-800">{farm.name}</p>
                               {farm.city && (
-                                <p className="text-sm text-gray-500">{farm.city}</p>
+                                <p className="text-sm text-soil-400">{farm.city}</p>
                               )}
                             </div>
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-600">
+                          <td className="px-6 py-4 text-sm text-soil-500">
                             {COUNTY_DATA[farm.county]?.displayName || farm.county}
                           </td>
                           <td className="px-6 py-4">
@@ -467,24 +467,24 @@ export default function AdminDirectoryPage() {
                               {statusInfo.label}
                             </span>
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-600 capitalize">
+                          <td className="px-6 py-4 text-sm text-soil-500 capitalize">
                             {farm.farm_type.replace('_', ' ')}
                           </td>
                           <td className="px-6 py-4">
                             <div className="flex flex-wrap gap-1">
                               {farm.products.slice(0, 3).map((p, i) => (
-                                <span key={i} className="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs">
+                                <span key={i} className="px-2 py-0.5 bg-farm-green-100 text-farm-green-800 rounded text-xs">
                                   {p}
                                 </span>
                               ))}
                               {farm.products.length > 3 && (
-                                <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs">
+                                <span className="px-2 py-0.5 bg-soil-100 text-soil-500 rounded text-xs">
                                   +{farm.products.length - 3}
                                 </span>
                               )}
                             </div>
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-600">
+                          <td className="px-6 py-4 text-sm text-soil-500">
                             {farm.view_count}
                           </td>
                           <td className="px-6 py-4 text-right">
@@ -493,7 +493,7 @@ export default function AdminDirectoryPage() {
                                 <Link
                                   href={`/farm/${farm.slug}`}
                                   target="_blank"
-                                  className="p-1.5 text-gray-400 hover:text-blue-600 transition-colors"
+                                  className="p-1.5 text-soil-400 hover:text-terra-600 transition-colors"
                                   title="Preview"
                                 >
                                   <Eye size={16} />
@@ -501,14 +501,14 @@ export default function AdminDirectoryPage() {
                               )}
                               <button
                                 onClick={() => handleEditFarm(farm)}
-                                className="p-1.5 text-gray-400 hover:text-green-600 transition-colors"
+                                className="p-1.5 text-soil-400 hover:text-farm-green-800 transition-colors"
                                 title="Edit"
                               >
                                 <Edit2 size={16} />
                               </button>
                               <button
                                 onClick={() => handleDeleteFarm(farm.id)}
-                                className="p-1.5 text-gray-400 hover:text-red-600 transition-colors"
+                                className="p-1.5 text-soil-400 hover:text-red-600 transition-colors"
                                 title="Delete"
                               >
                                 <Trash2 size={16} />
@@ -525,10 +525,10 @@ export default function AdminDirectoryPage() {
               {filteredFarms.length === 0 && (
                 <div className="text-center py-12">
                   <FarmLogo size={48} className="mx-auto text-gray-300 mb-4" />
-                  <p className="text-gray-500 mb-4">No farms found</p>
+                  <p className="text-soil-400 mb-4">No farms found</p>
                   <button
                     onClick={handleNewFarm}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium text-sm hover:bg-green-700"
+                    className="px-4 py-2 bg-farm-green-800 text-white rounded-lg font-medium text-sm hover:bg-farm-green-800"
                   >
                     Add Your First Farm
                   </button>
@@ -543,50 +543,50 @@ export default function AdminDirectoryPage() {
           <div className="max-w-4xl">
             <button
               onClick={() => setView('list')}
-              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 text-sm"
+              className="flex items-center gap-2 text-soil-500 hover:text-soil-800 mb-6 text-sm"
             >
               <ArrowLeft size={16} />
               Back to List
             </button>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-soil-800 mb-6">
               {editingFarm ? `Edit: ${editingFarm.name}` : 'Add New Farm'}
             </h2>
 
             <div className="space-y-8">
               {/* Section 1: Farm Identity */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Farm Identity</h3>
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">Farm Identity</h3>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Farm Name *</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Farm Name *</label>
                     <input
                       type="text"
                       value={formData.name || ''}
                       onChange={(e) => handleNameChange(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="Smith Family Farm"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-soil-700 mb-1">
                       URL Slug *
-                      <span className="font-normal text-gray-400 ml-2">heyfarmer.farm/farm/{formData.slug || '...'}</span>
+                      <span className="font-normal text-soil-400 ml-2">heyfarmer.farm/farm/{formData.slug || '...'}</span>
                     </label>
                     <input
                       type="text"
                       value={formData.slug || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Tagline</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Tagline</label>
                     <input
                       type="text"
                       value={formData.tagline || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, tagline: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="Fresh produce from our family to yours"
                     />
                   </div>
@@ -595,29 +595,29 @@ export default function AdminDirectoryPage() {
 
               {/* Section 2: The Story */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">The Story</h3>
-                <p className="text-sm text-gray-500 mb-3">
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">The Story</h3>
+                <p className="text-sm text-soil-400 mb-3">
                   Write a mini feature story about this farm. What makes them special? Their history? What they grow and why?
                 </p>
                 <textarea
                   value={formData.description || ''}
                   onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                   rows={8}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-y"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent resize-y"
                   placeholder="Tell the farm's story here..."
                 />
               </div>
 
               {/* Section 3: Location */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Location</h3>
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">Location</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">County *</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">County *</label>
                     <select
                       value={formData.county || 'wise'}
                       onChange={(e) => setFormData(prev => ({ ...prev, county: e.target.value as TexasTriangleCounty }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                     >
                       {ALL_COUNTY_IDS.map(id => (
                         <option key={id} value={id}>{COUNTY_DATA[id].displayName}</option>
@@ -625,33 +625,33 @@ export default function AdminDirectoryPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">City</label>
                     <input
                       type="text"
                       value={formData.city || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="Decatur"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">ZIP Code</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">ZIP Code</label>
                     <input
                       type="text"
                       value={formData.zip_code || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, zip_code: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="76234"
                       maxLength={5}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Street Address</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Street Address</label>
                     <input
                       type="text"
                       value={formData.address || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="123 Farm Road"
                     />
                   </div>
@@ -660,14 +660,14 @@ export default function AdminDirectoryPage() {
 
               {/* Section 4: What They Offer */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">What They Offer</h3>
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">What They Offer</h3>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Farm Type</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Farm Type</label>
                     <select
                       value={formData.farm_type || 'other'}
                       onChange={(e) => setFormData(prev => ({ ...prev, farm_type: e.target.value as DirectoryFarmType }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                     >
                       {getFarmTypeOptions().map(opt => (
                         <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -676,20 +676,20 @@ export default function AdminDirectoryPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Products</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Products</label>
                     <div className="flex gap-2 mb-2">
                       <input
                         type="text"
                         value={productInput}
                         onChange={(e) => setProductInput(e.target.value)}
                         onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addProduct() } }}
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="flex-1 px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                         placeholder="Type a product and press Enter"
                       />
                       <button
                         type="button"
                         onClick={addProduct}
-                        className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700"
+                        className="px-4 py-2 bg-farm-green-800 text-white rounded-lg text-sm hover:bg-farm-green-800"
                       >
                         Add
                       </button>
@@ -698,7 +698,7 @@ export default function AdminDirectoryPage() {
                       {formData.products?.map((product, i) => (
                         <span
                           key={i}
-                          className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm"
+                          className="inline-flex items-center gap-1 px-3 py-1 bg-farm-green-100 text-farm-green-800 rounded-full text-sm"
                         >
                           {product}
                           <button type="button" onClick={() => removeProduct(product)} className="hover:text-red-600">
@@ -710,20 +710,20 @@ export default function AdminDirectoryPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Specialties</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Specialties</label>
                     <div className="flex gap-2 mb-2">
                       <input
                         type="text"
                         value={specialtyInput}
                         onChange={(e) => setSpecialtyInput(e.target.value)}
                         onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addSpecialty() } }}
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="flex-1 px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                         placeholder="e.g., Organic, Heirloom varieties, U-Pick"
                       />
                       <button
                         type="button"
                         onClick={addSpecialty}
-                        className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700"
+                        className="px-4 py-2 bg-farm-green-800 text-white rounded-lg text-sm hover:bg-farm-green-800"
                       >
                         Add
                       </button>
@@ -732,7 +732,7 @@ export default function AdminDirectoryPage() {
                       {formData.specialties?.map((s, i) => (
                         <span
                           key={i}
-                          className="inline-flex items-center gap-1 px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm"
+                          className="inline-flex items-center gap-1 px-3 py-1 bg-terra-100 text-terra-700 rounded-full text-sm"
                         >
                           {s}
                           <button type="button" onClick={() => removeSpecialty(s)} className="hover:text-red-600">
@@ -747,55 +747,55 @@ export default function AdminDirectoryPage() {
 
               {/* Section 5: Contact */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact</h3>
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">Contact</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Website URL</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Website URL</label>
                     <input
                       type="url"
                       value={formData.website_url || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, website_url: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="https://..."
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Facebook URL</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Facebook URL</label>
                     <input
                       type="url"
                       value={formData.facebook_url || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, facebook_url: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="https://facebook.com/..."
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Instagram URL</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Instagram URL</label>
                     <input
                       type="url"
                       value={formData.instagram_url || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, instagram_url: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="https://instagram.com/..."
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Phone</label>
                     <input
                       type="tel"
                       value={formData.phone || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="(940) 555-1234"
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Email</label>
                     <input
                       type="email"
                       value={formData.email || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="farm@example.com"
                     />
                   </div>
@@ -804,10 +804,10 @@ export default function AdminDirectoryPage() {
 
               {/* Section 6: Media */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Media</h3>
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">Media</h3>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Cover Image</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-2">Cover Image</label>
                     <ImageUpload
                       currentImage={formData.cover_image_url}
                       onImageUploaded={(url) => setFormData(prev => ({ ...prev, cover_image_url: url }))}
@@ -815,7 +815,7 @@ export default function AdminDirectoryPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Additional Images</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-2">Additional Images</label>
                     <MultiImageUpload
                       currentImages={formData.additional_images || []}
                       onImagesUpdated={(urls) => setFormData(prev => ({ ...prev, additional_images: urls }))}
@@ -828,14 +828,14 @@ export default function AdminDirectoryPage() {
 
               {/* Section 7: Data Source */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Data Source</h3>
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">Data Source</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Source</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Source</label>
                     <select
                       value={formData.data_source || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, data_source: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                     >
                       <option value="">Select a source...</option>
                       {getDataSourceOptions().map(opt => (
@@ -844,22 +844,22 @@ export default function AdminDirectoryPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Source URL</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Source URL</label>
                     <input
                       type="url"
                       value={formData.source_url || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, source_url: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="https://..."
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Admin Notes</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Admin Notes</label>
                     <textarea
                       value={formData.admin_notes || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, admin_notes: e.target.value }))}
                       rows={3}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-y"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent resize-y"
                       placeholder="Internal notes about this listing..."
                     />
                   </div>
@@ -868,36 +868,36 @@ export default function AdminDirectoryPage() {
 
               {/* Section 8: SEO */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">SEO</h3>
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">SEO</h3>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Meta Title</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Meta Title</label>
                     <input
                       type="text"
                       value={formData.meta_title || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, meta_title: e.target.value }))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="Auto-filled from name"
                     />
-                    <p className="text-xs text-gray-400 mt-1">{(formData.meta_title || '').length}/60 characters</p>
+                    <p className="text-xs text-soil-400 mt-1">{(formData.meta_title || '').length}/60 characters</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Meta Description</label>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">Meta Description</label>
                     <textarea
                       value={formData.meta_description || ''}
                       onChange={(e) => setFormData(prev => ({ ...prev, meta_description: e.target.value }))}
                       rows={2}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-y"
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent resize-y"
                       placeholder="Auto-filled from description"
                     />
-                    <p className="text-xs text-gray-400 mt-1">{(formData.meta_description || '').length}/160 characters</p>
+                    <p className="text-xs text-soil-400 mt-1">{(formData.meta_description || '').length}/160 characters</p>
                   </div>
                 </div>
               </div>
 
               {/* Section 9: Status */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Status</h3>
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">Status</h3>
                 <div className="flex gap-3">
                   {(['draft', 'published', 'removed'] as DirectoryFarmStatus[]).map(status => {
                     const info = getStatusInfo(status)
@@ -909,7 +909,7 @@ export default function AdminDirectoryPage() {
                         className={`px-4 py-2 rounded-lg font-medium text-sm border-2 transition-colors ${
                           formData.status === status
                             ? `${info.bgColor} ${info.color} border-current`
-                            : 'border-gray-200 text-gray-500 hover:border-gray-300'
+                            : 'border-warm-border text-soil-400 hover:border-warm-border'
                         }`}
                       >
                         {info.label}
@@ -924,7 +924,7 @@ export default function AdminDirectoryPage() {
                 <button
                   onClick={handleSave}
                   disabled={saving}
-                  className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors disabled:opacity-50"
+                  className="flex items-center gap-2 px-6 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors disabled:opacity-50"
                 >
                   {saving ? (
                     <>
@@ -940,7 +940,7 @@ export default function AdminDirectoryPage() {
                 </button>
                 <button
                   onClick={() => setView('list')}
-                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                  className="px-6 py-3 border border-warm-border text-soil-700 rounded-lg font-medium hover:bg-soil-50 transition-colors"
                 >
                   Cancel
                 </button>
@@ -953,7 +953,7 @@ export default function AdminDirectoryPage() {
         {view === 'claims' && (
           <div className="bg-white rounded-lg shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-lg font-semibold text-soil-800">
                 Claim Requests ({claimRequests.length})
               </h3>
             </div>
@@ -961,7 +961,7 @@ export default function AdminDirectoryPage() {
             {claimRequests.length === 0 ? (
               <div className="text-center py-12">
                 <Clock size={48} className="mx-auto text-gray-300 mb-4" />
-                <p className="text-gray-500">No claim requests yet</p>
+                <p className="text-soil-400">No claim requests yet</p>
               </div>
             ) : (
               <div className="divide-y divide-gray-200">
@@ -969,20 +969,20 @@ export default function AdminDirectoryPage() {
                   <div key={request.id} className="p-6">
                     <div className="flex items-start justify-between">
                       <div>
-                        <p className="font-medium text-gray-900">
+                        <p className="font-medium text-soil-800">
                           {request.profiles?.full_name || 'Unknown User'}
-                          <span className="text-gray-500 font-normal ml-2">
+                          <span className="text-soil-400 font-normal ml-2">
                             ({request.profiles?.email})
                           </span>
                         </p>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <p className="text-sm text-soil-500 mt-1">
                           Wants to claim: <span className="font-medium">{request.directory_farms?.name}</span>
-                          <span className="text-gray-400 ml-2">({request.directory_farms?.county})</span>
+                          <span className="text-soil-400 ml-2">({request.directory_farms?.county})</span>
                         </p>
                         {request.message && (
-                          <p className="text-sm text-gray-500 mt-2 italic">"{request.message}"</p>
+                          <p className="text-sm text-soil-400 mt-2 italic">"{request.message}"</p>
                         )}
-                        <p className="text-xs text-gray-400 mt-2">
+                        <p className="text-xs text-soil-400 mt-2">
                           Submitted {new Date(request.created_at).toLocaleDateString()}
                         </p>
                       </div>
@@ -992,7 +992,7 @@ export default function AdminDirectoryPage() {
                           <>
                             <button
                               onClick={() => handleApproveClaim(request)}
-                              className="flex items-center gap-1 px-3 py-1.5 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700"
+                              className="flex items-center gap-1 px-3 py-1.5 bg-farm-green-800 text-white rounded-lg text-sm font-medium hover:bg-farm-green-800"
                             >
                               <CheckCircle size={14} />
                               Approve
@@ -1007,7 +1007,7 @@ export default function AdminDirectoryPage() {
                           </>
                         ) : (
                           <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                            request.status === 'approved' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                            request.status === 'approved' ? 'bg-farm-green-100 text-farm-green-800' : 'bg-red-100 text-red-700'
                           }`}>
                             {request.status}
                           </span>

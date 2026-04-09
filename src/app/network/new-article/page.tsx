@@ -117,15 +117,15 @@ export default function NewArticlePage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-soil-50">
       <Navigation />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -133,20 +133,20 @@ export default function NewArticlePage() {
         <div className="mb-8">
           <button
             onClick={() => router.push('/network#from-the-field')}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+            className="flex items-center gap-2 text-soil-500 hover:text-soil-800 mb-4"
           >
             <ArrowLeft size={20} />
             Back to Network
           </button>
-          <h1 className="text-3xl font-bold text-gray-900">Create New Article</h1>
-          <p className="text-gray-600 mt-2">Share your farming insights and stories with the community</p>
+          <h1 className="text-3xl font-bold text-soil-800">Create New Article</h1>
+          <p className="text-soil-500 mt-2">Share your farming insights and stories with the community</p>
         </div>
 
         {/* Form */}
         <form onSubmit={(e) => handleSubmit(e, false)} className="space-y-6">
           {/* Title */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-soil-700 mb-2">
               Article Title *
             </label>
             <input
@@ -155,21 +155,21 @@ export default function NewArticlePage() {
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="e.g., 5 Lessons from My First Farmers Market Season"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             />
           </div>
 
           {/* Category & Featured Image */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-soil-700 mb-2">
                 Category *
               </label>
               <select
                 required
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               >
                 {categories.map(cat => (
                   <option key={cat.value} value={cat.value}>{cat.label}</option>
@@ -178,7 +178,7 @@ export default function NewArticlePage() {
             </div>
 
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-soil-700 mb-2">
                 Featured Image URL (optional)
               </label>
               <input
@@ -186,14 +186,14 @@ export default function NewArticlePage() {
                 value={formData.featuredImageUrl}
                 onChange={(e) => setFormData({ ...formData, featuredImageUrl: e.target.value })}
                 placeholder="https://example.com/image.jpg"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               />
             </div>
           </div>
 
           {/* Excerpt */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-soil-700 mb-2">
               Excerpt (Preview Text) *
             </label>
             <textarea
@@ -203,16 +203,16 @@ export default function NewArticlePage() {
               placeholder="Write a compelling 150-character preview..."
               rows={2}
               maxLength={200}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             />
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-soil-400 mt-1">
               {formData.excerpt.length}/200 characters
             </p>
           </div>
 
           {/* Content */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-soil-700 mb-2">
               Article Content *
             </label>
             <textarea
@@ -221,9 +221,9 @@ export default function NewArticlePage() {
               onChange={(e) => setFormData({ ...formData, content: e.target.value })}
               placeholder="Write your article content here... You can use markdown formatting."
               rows={15}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent font-mono text-sm"
+              className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent font-mono text-sm"
             />
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-soil-400 mt-2">
               Supports markdown formatting (headings, lists, bold, italic, links, etc.)
             </p>
           </div>
@@ -235,11 +235,11 @@ export default function NewArticlePage() {
                 type="checkbox"
                 checked={formData.isFeatured}
                 onChange={(e) => setFormData({ ...formData, isFeatured: e.target.checked })}
-                className="w-5 h-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                className="w-5 h-5 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500"
               />
               <div>
-                <span className="font-medium text-gray-900">Featured Article</span>
-                <p className="text-sm text-gray-600">Show this article in the featured section</p>
+                <span className="font-medium text-soil-800">Featured Article</span>
+                <p className="text-sm text-soil-500">Show this article in the featured section</p>
               </div>
             </label>
           </div>
@@ -249,7 +249,7 @@ export default function NewArticlePage() {
             <button
               type="button"
               onClick={() => router.push('/network#from-the-field')}
-              className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+              className="px-6 py-3 bg-soil-100 text-soil-700 rounded-lg font-medium hover:bg-soil-200 transition-colors"
             >
               Cancel
             </button>
@@ -265,7 +265,7 @@ export default function NewArticlePage() {
               type="button"
               onClick={(e) => handleSubmit(e, true)}
               disabled={saving}
-              className="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center gap-2 justify-center"
+              className="px-6 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors disabled:opacity-50 flex items-center gap-2 justify-center"
             >
               <Eye size={20} />
               {saving ? 'Publishing...' : 'Publish Now'}

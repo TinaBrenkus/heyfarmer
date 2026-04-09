@@ -179,8 +179,8 @@ export default function ConversationPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading conversation...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading conversation...</p>
         </div>
       </div>
     )
@@ -189,23 +189,23 @@ export default function ConversationPage() {
   if (!conversation) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-600">Conversation not found</p>
+        <p className="text-soil-500">Conversation not found</p>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-soil-50">
       <Navigation />
 
       <div className="max-w-4xl mx-auto bg-white shadow-sm">
         {/* Conversation Header */}
-        <div className="border-b border-gray-200 p-4">
+        <div className="border-b border-warm-border p-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => router.back()}
-                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+                className="flex items-center gap-2 text-soil-500 hover:text-soil-800 transition-colors"
               >
                 <ArrowLeft size={20} />
                 <span className="font-medium">Messages</span>
@@ -219,16 +219,16 @@ export default function ConversationPage() {
                   showLabel={false}
                 />
                 <div>
-                  <h2 className="font-semibold text-gray-900 text-lg">{conversation.participant.name}</h2>
+                  <h2 className="font-semibold text-soil-800 text-lg">{conversation.participant.name}</h2>
                   {conversation.participant.location && (
-                    <p className="text-sm text-gray-500">{conversation.participant.location}</p>
+                    <p className="text-sm text-soil-400">{conversation.participant.location}</p>
                   )}
                 </div>
               </div>
             </div>
 
             <button 
-              className="flex items-center gap-2 px-3 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors text-sm"
+              className="flex items-center gap-2 px-3 py-2 text-terra-600 hover:bg-terra-50 rounded-lg transition-colors text-sm"
               onClick={() => {}}
             >
               <Info size={16} />
@@ -238,7 +238,7 @@ export default function ConversationPage() {
 
           {/* Subject Line */}
           <div className="mb-4">
-            <h3 className="text-lg font-medium text-gray-900">
+            <h3 className="text-lg font-medium text-soil-800">
               Re: {conversation.context.title}
             </h3>
           </div>
@@ -253,13 +253,13 @@ export default function ConversationPage() {
                 <div className="flex justify-end">
                   <div className="max-w-md">
                     <div className="flex items-center gap-2 mb-2 justify-end">
-                      <span className="text-sm font-medium text-gray-700">{message.sender.name}</span>
+                      <span className="text-sm font-medium text-soil-700">{message.sender.name}</span>
                       <ChatCircle size={24} weight="regular" />
                     </div>
-                    <div className="bg-gray-100 text-gray-900 px-4 py-3 rounded-lg rounded-tr-sm">
+                    <div className="bg-soil-100 text-soil-800 px-4 py-3 rounded-lg rounded-tr-sm">
                       <p className="text-sm">{message.content}</p>
                     </div>
-                    <p className="text-xs text-gray-500 text-right mt-1">
+                    <p className="text-xs text-soil-400 text-right mt-1">
                       {formatTimestamp(message.timestamp)}
                     </p>
                   </div>
@@ -269,13 +269,13 @@ export default function ConversationPage() {
                 <div className="flex justify-start">
                   <div className="max-w-md">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-sm font-medium text-gray-700">{message.sender.name} (You)</span>
+                      <span className="text-sm font-medium text-soil-700">{message.sender.name} (You)</span>
                       <ChatCircle size={24} weight="regular" />
                     </div>
                     <div className="bg-blue-500 text-white px-4 py-3 rounded-lg rounded-tl-sm">
                       <p className="text-sm">{message.content}</p>
                     </div>
-                    <p className="text-xs text-gray-500 text-left mt-1">
+                    <p className="text-xs text-soil-400 text-left mt-1">
                       {formatTimestamp(message.timestamp)}
                     </p>
                   </div>
@@ -286,10 +286,10 @@ export default function ConversationPage() {
         </div>
 
         {/* Message Input */}
-        <div className="border-t border-gray-200 p-4 space-y-4">
+        <div className="border-t border-warm-border p-4 space-y-4">
           {/* Main Input */}
           <div className="flex items-center gap-3">
-            <div className="flex-1 flex items-center gap-2 border border-gray-300 rounded-lg p-3 focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-200">
+            <div className="flex-1 flex items-center gap-2 border border-warm-border rounded-lg p-3 focus-within:border-farm-green-500 focus-within:ring-2 focus-within:ring-green-200">
               <input
                 type="text"
                 value={newMessage}
@@ -301,7 +301,7 @@ export default function ConversationPage() {
               <button
                 onClick={handleSendMessage}
                 disabled={!newMessage.trim()}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
+                className="px-4 py-2 bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
               >
                 Send
               </button>
@@ -310,17 +310,17 @@ export default function ConversationPage() {
 
           {/* Action Buttons */}
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors text-sm">
+            <button className="flex items-center gap-2 px-3 py-2 text-soil-500 hover:text-soil-800 hover:bg-soil-100 rounded-lg transition-colors text-sm">
               <Paperclip size={16} />
               <span>Attach</span>
             </button>
             
-            <button className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors text-sm">
+            <button className="flex items-center gap-2 px-3 py-2 text-soil-500 hover:text-soil-800 hover:bg-soil-100 rounded-lg transition-colors text-sm">
               <MapPinLine size={24} weight="regular" />
               <span>Share Location</span>
             </button>
             
-            <button className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors text-sm">
+            <button className="flex items-center gap-2 px-3 py-2 text-soil-500 hover:text-soil-800 hover:bg-soil-100 rounded-lg transition-colors text-sm">
               <Phone size={16} />
               <span>Call</span>
             </button>

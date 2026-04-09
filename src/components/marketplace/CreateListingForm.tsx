@@ -210,11 +210,11 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">{isEditMode ? 'Edit Listing' : 'Create New Listing'}</h2>
+        <h2 className="text-2xl font-bold text-soil-800">{isEditMode ? 'Edit Listing' : 'Create New Listing'}</h2>
         {onCancel && (
           <button
             onClick={onCancel}
-            className="text-gray-500 hover:text-gray-700"
+            className="text-soil-400 hover:text-soil-700"
           >
             ×
           </button>
@@ -225,7 +225,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
         {/* Basic Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="md:col-span-2">
-            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="title" className="block text-sm font-medium text-soil-700 mb-1">
               Title *
             </label>
             <input
@@ -235,13 +235,13 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
               required
               value={formData.title}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               placeholder="Fresh organic tomatoes, John Deere tractor, etc."
             />
           </div>
 
           <div>
-            <label htmlFor="post_type" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="post_type" className="block text-sm font-medium text-soil-700 mb-1">
               Type *
             </label>
             <select
@@ -250,7 +250,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
               required
               value={formData.post_type}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             >
               <option value="produce">Produce</option>
               <option value="equipment">Equipment</option>
@@ -259,7 +259,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
           </div>
 
           <div>
-            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="category" className="block text-sm font-medium text-soil-700 mb-1">
               Category
             </label>
             <select
@@ -267,7 +267,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
               name="category"
               value={formData.category}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             >
               <option value="">Select category</option>
               {categories.map((cat) => (
@@ -281,7 +281,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
 
         {/* Description */}
         <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="description" className="block text-sm font-medium text-soil-700 mb-1">
             Description *
           </label>
           <textarea
@@ -291,14 +291,14 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
             rows={4}
             value={formData.description}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             placeholder="Describe your item, growing methods, condition, etc."
           />
         </div>
 
         {/* Image Upload */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-soil-700 mb-2">
             Listing Images (up to 5)
           </label>
           <MultiImageUpload
@@ -308,14 +308,14 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
             maxImages={5}
             maxSizeMB={5}
           />
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-soil-400 mt-1">
             Upload photos of your products, farm, or growing areas. The first image will be the main photo.
           </p>
         </div>
 
         {/* Multi-Product Toggle */}
         {formData.post_type === 'produce' && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-terra-50 border border-terra-200 rounded-lg p-4">
             <label className="flex items-center cursor-pointer">
               <input
                 type="checkbox"
@@ -326,11 +326,11 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
                     setProducts([{ name: '', price: undefined, unit: '', quantity_available: undefined }])
                   }
                 }}
-                className="rounded border-gray-300 text-green-600 focus:ring-green-500 mr-3"
+                className="rounded border-warm-border text-farm-green-800 focus:ring-farm-green-500 mr-3"
               />
               <div>
-                <span className="font-medium text-gray-900">Multiple Products</span>
-                <p className="text-sm text-gray-600 mt-1">
+                <span className="font-medium text-soil-800">Multiple Products</span>
+                <p className="text-sm text-soil-500 mt-1">
                   List multiple items in one listing (e.g., tomatoes, kale, and flowers)
                 </p>
               </div>
@@ -342,11 +342,11 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
         {isMultiProduct ? (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-medium text-gray-900">Products</h3>
+              <h3 className="text-lg font-medium text-soil-800">Products</h3>
               <button
                 type="button"
                 onClick={addProduct}
-                className="flex items-center gap-2 px-3 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                className="flex items-center gap-2 px-3 py-2 text-sm bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 transition-colors"
               >
                 <Plus size={16} />
                 Add Product
@@ -354,9 +354,9 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
             </div>
 
             {products.map((product, index) => (
-              <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <div key={index} className="bg-soil-50 border border-warm-border rounded-lg p-4">
                 <div className="flex items-start justify-between mb-3">
-                  <h4 className="text-sm font-medium text-gray-700">Product {index + 1}</h4>
+                  <h4 className="text-sm font-medium text-soil-700">Product {index + 1}</h4>
                   {products.length > 1 && (
                     <button
                       type="button"
@@ -370,7 +370,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-soil-700 mb-1">
                       Product Name *
                     </label>
                     <input
@@ -378,13 +378,13 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
                       required={isMultiProduct}
                       value={product.name}
                       onChange={(e) => updateProduct(index, 'name', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="e.g., Tomatoes, Kale, etc."
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-soil-700 mb-1">
                       Price ($)
                     </label>
                     <input
@@ -393,26 +393,26 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
                       min="0"
                       value={product.price ?? ''}
                       onChange={(e) => updateProduct(index, 'price', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="0.00"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-soil-700 mb-1">
                       Unit
                     </label>
                     <input
                       type="text"
                       value={product.unit ?? ''}
                       onChange={(e) => updateProduct(index, 'unit', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="lb, bunch"
                     />
                   </div>
 
                   <div className="md:col-span-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-soil-700 mb-1">
                       Quantity Available
                     </label>
                     <input
@@ -420,7 +420,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
                       min="0"
                       value={product.quantity_available ?? ''}
                       onChange={(e) => updateProduct(index, 'quantity_available', e.target.value)}
-                      className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full max-w-xs px-3 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       placeholder="100"
                     />
                   </div>
@@ -432,7 +432,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
           /* Single Product - Price and Quantity */
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="price" className="block text-sm font-medium text-soil-700 mb-1">
               Price ($)
             </label>
             <input
@@ -443,13 +443,13 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
               min="0"
               value={formData.price}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               placeholder="0.00"
             />
           </div>
 
           <div>
-            <label htmlFor="unit" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="unit" className="block text-sm font-medium text-soil-700 mb-1">
               Unit
             </label>
             <input
@@ -458,13 +458,13 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
               type="text"
               value={formData.unit}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               placeholder="lb, bunch, each, etc."
             />
           </div>
 
           <div>
-            <label htmlFor="quantity_available" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="quantity_available" className="block text-sm font-medium text-soil-700 mb-1">
               Quantity Available
             </label>
             <input
@@ -474,7 +474,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
               min="0"
               value={formData.quantity_available}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               placeholder="100"
             />
           </div>
@@ -485,7 +485,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
         {isEquipment && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label htmlFor="condition" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="condition" className="block text-sm font-medium text-soil-700 mb-1">
                 Condition
               </label>
               <select
@@ -493,7 +493,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
                 name="condition"
                 value={formData.condition}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               >
                 <option value="">Select condition</option>
                 <option value="new">New</option>
@@ -505,7 +505,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
             </div>
 
             <div>
-              <label htmlFor="brand" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="brand" className="block text-sm font-medium text-soil-700 mb-1">
                 Brand
               </label>
               <input
@@ -514,13 +514,13 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
                 type="text"
                 value={formData.brand}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 placeholder="John Deere, Kubota, etc."
               />
             </div>
 
             <div>
-              <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="year" className="block text-sm font-medium text-soil-700 mb-1">
                 Year
               </label>
               <input
@@ -531,7 +531,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
                 max={new Date().getFullYear()}
                 value={formData.year}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 placeholder="2020"
               />
             </div>
@@ -541,7 +541,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
         {/* Availability */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="available_from" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="available_from" className="block text-sm font-medium text-soil-700 mb-1">
               Available From
             </label>
             <input
@@ -550,12 +550,12 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
               type="date"
               value={formData.available_from}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             />
           </div>
 
           <div>
-            <label htmlFor="available_until" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="available_until" className="block text-sm font-medium text-soil-700 mb-1">
               Available Until
             </label>
             <input
@@ -564,7 +564,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
               type="date"
               value={formData.available_until}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             />
           </div>
         </div>
@@ -572,7 +572,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
         {/* Location */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="county" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="county" className="block text-sm font-medium text-soil-700 mb-1">
               County *
             </label>
             <select
@@ -581,7 +581,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
               required
               value={formData.county}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             >
               {counties.map((county) => (
                 <option key={county.value} value={county.value}>
@@ -592,7 +592,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
           </div>
 
           <div>
-            <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="city" className="block text-sm font-medium text-soil-700 mb-1">
               City
             </label>
             <input
@@ -601,7 +601,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
               type="text"
               value={formData.city}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               placeholder="Dallas, Plano, etc."
             />
           </div>
@@ -609,7 +609,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
 
         {/* Delivery Options */}
         <div className="space-y-4">
-          <h3 className="text-lg font-medium text-gray-900">Delivery Options</h3>
+          <h3 className="text-lg font-medium text-soil-800">Delivery Options</h3>
           
           <div className="flex items-center gap-4">
             <label className="flex items-center">
@@ -618,9 +618,9 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
                 name="pickup_available"
                 checked={formData.pickup_available}
                 onChange={handleInputChange}
-                className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                className="rounded border-warm-border text-farm-green-800 focus:ring-farm-green-500"
               />
-              <span className="ml-2 text-sm text-gray-700">Pickup available</span>
+              <span className="ml-2 text-sm text-soil-700">Pickup available</span>
             </label>
 
             <label className="flex items-center">
@@ -629,15 +629,15 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
                 name="delivery_available"
                 checked={formData.delivery_available}
                 onChange={handleInputChange}
-                className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                className="rounded border-warm-border text-farm-green-800 focus:ring-farm-green-500"
               />
-              <span className="ml-2 text-sm text-gray-700">Delivery available</span>
+              <span className="ml-2 text-sm text-soil-700">Delivery available</span>
             </label>
           </div>
 
           {formData.delivery_available && (
             <div>
-              <label htmlFor="delivery_radius_miles" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="delivery_radius_miles" className="block text-sm font-medium text-soil-700 mb-1">
                 Delivery Radius (miles)
               </label>
               <input
@@ -647,7 +647,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
                 min="1"
                 value={formData.delivery_radius_miles}
                 onChange={handleInputChange}
-                className="w-full max-w-xs px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full max-w-xs px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 placeholder="10"
               />
             </div>
@@ -656,7 +656,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
 
         {/* Tags */}
         <div>
-          <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="tags" className="block text-sm font-medium text-soil-700 mb-1">
             Tags
           </label>
           <input
@@ -665,15 +665,15 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
             type="text"
             value={formData.tags}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             placeholder="organic, heirloom, pesticide-free (comma separated)"
           />
-          <p className="text-xs text-gray-500 mt-1">Separate tags with commas</p>
+          <p className="text-xs text-soil-400 mt-1">Separate tags with commas</p>
         </div>
 
         {/* Visibility */}
         <div>
-          <label htmlFor="visibility" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="visibility" className="block text-sm font-medium text-soil-700 mb-1">
             Visibility
           </label>
           <select
@@ -681,7 +681,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
             name="visibility"
             value={formData.visibility}
             onChange={handleInputChange}
-            className="w-full max-w-xs px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="w-full max-w-xs px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
           >
             <option value="public">Public (visible to everyone)</option>
             <option value="farmers_only">Farmers only</option>
@@ -701,7 +701,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
             type="submit"
             disabled={loading}
             className="flex-1 py-3 px-4 rounded-lg font-medium text-white transition-colors disabled:opacity-50"
-            style={{ backgroundColor: loading ? '#94a3b8' : '#2E7D32' }}
+            style={{ backgroundColor: loading ? '#A09E90' : '#4A5E35' }}
           >
             {loading ? (isEditMode ? 'Updating...' : 'Creating...') : (isEditMode ? 'Update Listing' : 'Create Listing')}
           </button>
@@ -710,7 +710,7 @@ export default function CreateListingForm({ existingListing, onSuccess, onCancel
             <button
               type="button"
               onClick={onCancel}
-              className="px-6 py-3 rounded-lg font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 transition-colors"
+              className="px-6 py-3 rounded-lg font-medium text-soil-700 bg-soil-100 hover:bg-soil-200 transition-colors"
             >
               Cancel
             </button>

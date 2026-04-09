@@ -140,12 +140,12 @@ export default function CountyPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-soil-50">
         <Navigation />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
-            <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading county information...</p>
+            <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-soil-500">Loading county information...</p>
           </div>
         </div>
       </div>
@@ -161,7 +161,7 @@ export default function CountyPage() {
   const neighbors = getNeighboringCounties(countyId)
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
       <Navigation />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -169,32 +169,32 @@ export default function CountyPage() {
         <div className="bg-white rounded-xl shadow-sm p-8 mb-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <div className="flex items-center gap-2 text-green-600 mb-2">
+              <div className="flex items-center gap-2 text-farm-green-800 mb-2">
                 <MapPin size={20} />
                 <span className="text-sm font-medium">{metro}</span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-bold text-soil-800 mb-2">
                 {countyName}, Texas
               </h1>
-              <p className="text-gray-600">
+              <p className="text-soil-500">
                 Fresh local produce and farm products from your neighbors
               </p>
             </div>
 
             <div className="flex gap-4 mt-6 md:mt-0">
-              <div className="text-center px-4 py-2 bg-green-50 rounded-lg">
-                <div className="flex items-center justify-center gap-1 text-green-600 mb-1">
+              <div className="text-center px-4 py-2 bg-farm-green-50 rounded-lg">
+                <div className="flex items-center justify-center gap-1 text-farm-green-800 mb-1">
                   <Users size={18} />
                   <span className="text-2xl font-bold">{farmerCount + directoryFarms.length}</span>
                 </div>
-                <span className="text-sm text-gray-600">Local Farms</span>
+                <span className="text-sm text-soil-500">Local Farms</span>
               </div>
-              <div className="text-center px-4 py-2 bg-orange-50 rounded-lg">
-                <div className="flex items-center justify-center gap-1 text-orange-600 mb-1">
+              <div className="text-center px-4 py-2 bg-terra-50 rounded-lg">
+                <div className="flex items-center justify-center gap-1 text-terra-600 mb-1">
                   <ShoppingBag size={18} />
                   <span className="text-2xl font-bold">{listingCount}</span>
                 </div>
-                <span className="text-sm text-gray-600">Active Listings</span>
+                <span className="text-sm text-soil-500">Active Listings</span>
               </div>
             </div>
           </div>
@@ -204,8 +204,8 @@ export default function CountyPage() {
         {listings.length > 0 && (
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-4">
-              <Map size={20} className="text-green-600" />
-              <h2 className="text-xl font-bold text-gray-900">Listings Map</h2>
+              <Map size={20} className="text-farm-green-800" />
+              <h2 className="text-xl font-bold text-soil-800">Listings Map</h2>
             </div>
             <CountyListingsMap county={countyId} listings={listings} />
           </div>
@@ -214,7 +214,7 @@ export default function CountyPage() {
         {/* Active Listings Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-gray-900">Active Listings</h2>
+            <h2 className="text-xl font-bold text-soil-800">Active Listings</h2>
           </div>
 
           {listings.length > 0 ? (
@@ -225,7 +225,7 @@ export default function CountyPage() {
                   href={`/listing/${listing.id}`}
                   className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow"
                 >
-                  <div className="aspect-[4/3] bg-gray-100 relative">
+                  <div className="aspect-[4/3] bg-soil-100 relative">
                     {listing.thumbnail_url || listing.images?.[0] ? (
                       <img
                         src={listing.thumbnail_url || listing.images?.[0]}
@@ -233,24 +233,24 @@ export default function CountyPage() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      <div className="w-full h-full flex items-center justify-center text-soil-400">
                         <Store size={32} />
                       </div>
                     )}
-                    <span className="absolute top-2 left-2 px-2 py-1 bg-white/90 rounded text-xs font-medium text-gray-700 capitalize">
+                    <span className="absolute top-2 left-2 px-2 py-1 bg-white/90 rounded text-xs font-medium text-soil-700 capitalize">
                       {listing.post_type}
                     </span>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-gray-900 mb-1 line-clamp-1">
+                    <h3 className="font-semibold text-soil-800 mb-1 line-clamp-1">
                       {listing.title}
                     </h3>
                     {listing.price && (
-                      <p className="text-green-600 font-medium">
+                      <p className="text-farm-green-800 font-medium">
                         ${listing.price}{listing.unit ? `/${listing.unit}` : ''}
                       </p>
                     )}
-                    <p className="text-sm text-gray-500 mt-1">
+                    <p className="text-sm text-soil-400 mt-1">
                       by {listing.profiles?.farm_name || listing.profiles?.full_name}
                     </p>
                   </div>
@@ -260,13 +260,13 @@ export default function CountyPage() {
           ) : (
             <div className="bg-white rounded-lg shadow-sm p-8 text-center">
               <Store size={48} className="mx-auto text-gray-300 mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No listings yet</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="text-lg font-medium text-soil-800 mb-2">No listings yet</h3>
+              <p className="text-soil-500 mb-4">
                 Be the first to list your products in {countyName}!
               </p>
               <Link
                 href="/sell"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
               >
                 Create a Listing
               </Link>
@@ -279,12 +279,12 @@ export default function CountyPage() {
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <Tractor size={20} className="text-green-600" />
-                <h2 className="text-xl font-bold text-gray-900">Featured Farms</h2>
+                <Tractor size={20} className="text-farm-green-800" />
+                <h2 className="text-xl font-bold text-soil-800">Featured Farms</h2>
               </div>
               <Link
                 href="/directory"
-                className="text-sm text-green-600 hover:text-green-700 font-medium"
+                className="text-sm text-farm-green-800 hover:text-farm-green-800 font-medium"
               >
                 View All
               </Link>
@@ -300,7 +300,7 @@ export default function CountyPage() {
         {/* Local Farmers Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-gray-900">Local Farmers</h2>
+            <h2 className="text-xl font-bold text-soil-800">Local Farmers</h2>
           </div>
 
           {farmers.length > 0 ? (
@@ -311,7 +311,7 @@ export default function CountyPage() {
                   href={`/profile/${farmer.id}`}
                   className="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow flex items-start gap-4"
                 >
-                  <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <div className="w-14 h-14 rounded-full bg-farm-green-100 flex items-center justify-center flex-shrink-0">
                     {farmer.avatar_url ? (
                       <img
                         src={farmer.avatar_url}
@@ -319,20 +319,20 @@ export default function CountyPage() {
                         className="w-full h-full rounded-full object-cover"
                       />
                     ) : (
-                      <span className="text-xl font-bold text-green-600">
+                      <span className="text-xl font-bold text-farm-green-800">
                         {farmer.full_name.charAt(0).toUpperCase()}
                       </span>
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-gray-900 truncate">
+                    <h3 className="font-semibold text-soil-800 truncate">
                       {farmer.farm_name || farmer.full_name}
                     </h3>
-                    <p className="text-sm text-green-600">
+                    <p className="text-sm text-farm-green-800">
                       {getUserTypeLabel(farmer.user_type)}
                     </p>
                     {farmer.city && (
-                      <p className="text-sm text-gray-500 mt-1">{farmer.city}</p>
+                      <p className="text-sm text-soil-400 mt-1">{farmer.city}</p>
                     )}
                   </div>
                 </Link>
@@ -341,13 +341,13 @@ export default function CountyPage() {
           ) : (
             <div className="bg-white rounded-lg shadow-sm p-8 text-center">
               <Users size={48} className="mx-auto text-gray-300 mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No farmers listed yet</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="text-lg font-medium text-soil-800 mb-2">No farmers listed yet</h3>
+              <p className="text-soil-500 mb-4">
                 Are you a farmer in {countyName}? Join our community!
               </p>
               <Link
                 href="/signup"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
               >
                 Sign Up as a Farmer
               </Link>
@@ -358,13 +358,13 @@ export default function CountyPage() {
         {/* Nearby Counties Section */}
         {neighbors.length > 0 && (
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Nearby Counties</h2>
+            <h2 className="text-xl font-bold text-soil-800 mb-4">Nearby Counties</h2>
             <div className="flex flex-wrap gap-3">
               {neighbors.map((neighborId) => (
                 <Link
                   key={neighborId}
                   href={`/${getSlugFromCounty(neighborId)}`}
-                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 font-medium transition-colors"
+                  className="px-4 py-2 bg-soil-100 hover:bg-soil-200 rounded-lg text-soil-700 font-medium transition-colors"
                 >
                   {getCountyDisplayName(neighborId)}
                 </Link>

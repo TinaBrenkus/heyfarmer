@@ -56,32 +56,32 @@ export default function Header() {
     router.push('/')
   }
   return (
-    <header className="bg-white shadow-sm border-b border-green-100 sticky top-0 z-50" style={{ backgroundColor: '#F8F9FA' }}>
+    <header className="bg-white shadow-sm border-b border-warm-border sticky top-0 z-50" style={{ backgroundColor: '#FAF7F0' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="p-2 rounded-lg" style={{ backgroundColor: '#2E7D32' }}>
+            <div className="p-2 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
               <FarmLogo size={28} className="text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Hey Farmer</h1>
-              <p className="text-xs" style={{ color: '#2E7D32' }}>Texas Triangle</p>
+              <h1 className="text-xl font-bold text-soil-800">Hey Farmer</h1>
+              <p className="text-xs" style={{ color: '#4A5E35' }}>Texas Triangle</p>
             </div>
           </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/marketplace" className="text-gray-600 hover:text-green-700 font-medium transition-colors">
+            <Link href="/marketplace" className="text-soil-500 hover:text-farm-green-800 font-medium transition-colors">
               Marketplace
             </Link>
             {user && profile && profile.user_type !== 'consumer' && (
-              <Link href="/sell" className="text-gray-600 hover:text-green-700 font-medium transition-colors">
+              <Link href="/sell" className="text-soil-500 hover:text-farm-green-800 font-medium transition-colors">
                 Sell
               </Link>
             )}
             {user && (
-              <Link href="/dashboard" className="text-gray-600 hover:text-green-700 font-medium transition-colors">
+              <Link href="/dashboard" className="text-soil-500 hover:text-farm-green-800 font-medium transition-colors">
                 Dashboard
               </Link>
             )}
@@ -93,7 +93,7 @@ export default function Header() {
               <div className="flex items-center space-x-4">
                 {/* Profile Photo */}
                 <Link href="/profile" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                  <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-soil-200 flex items-center justify-center">
                     {profile?.avatar_url ? (
                       <Image
                         src={profile.avatar_url}
@@ -103,10 +103,10 @@ export default function Header() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <User className="w-5 h-5 text-gray-500" />
+                      <User className="w-5 h-5 text-soil-400" />
                     )}
                   </div>
-                  <span className="text-gray-600 text-sm font-medium hidden md:block">
+                  <span className="text-soil-500 text-sm font-medium hidden md:block">
                     {profile?.full_name || 'User'}
                   </span>
                 </Link>
@@ -114,7 +114,7 @@ export default function Header() {
                 {/* Settings */}
                 <Link
                   href="/profile"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-soil-500 hover:text-soil-800 transition-colors"
                   title="Profile Settings"
                 >
                   <Settings className="h-5 w-5" />
@@ -123,7 +123,7 @@ export default function Header() {
                 {/* Sign Out */}
                 <button
                   onClick={handleSignOut}
-                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                  className="flex items-center gap-2 text-soil-500 hover:text-soil-800 font-medium transition-colors"
                 >
                   <LogOut className="h-4 w-4" />
                   <span className="hidden md:inline">Sign Out</span>
@@ -133,14 +133,14 @@ export default function Header() {
               <>
                 <Link
                   href="/login"
-                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                  className="text-soil-500 hover:text-soil-800 font-medium transition-colors"
                 >
                   Log In
                 </Link>
                 <Link
                   href="/signup"
                   className="text-white px-4 py-2 rounded-lg font-medium transition-colors hover:opacity-90"
-                  style={{ backgroundColor: '#1976D2' }}
+                  style={{ backgroundColor: '#C4622D' }}
                 >
                   Sign Up
                 </Link>

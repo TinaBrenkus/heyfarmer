@@ -95,7 +95,7 @@ export default function ImageUpload({
       {preview ? (
         <div className="relative">
           <div
-            className="rounded-lg overflow-hidden border-2 border-gray-200"
+            className="rounded-lg overflow-hidden border-2 border-warm-border"
             style={{ aspectRatio }}
           >
             <img
@@ -115,19 +115,19 @@ export default function ImageUpload({
       ) : (
         <label className="block">
           <div
-            className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-green-500 hover:bg-green-50 transition-colors"
+            className="border-2 border-dashed border-warm-border rounded-lg p-8 text-center cursor-pointer hover:border-farm-green-500 hover:bg-farm-green-50 transition-colors"
             style={{ aspectRatio }}
           >
             {uploading ? (
               <div className="flex flex-col items-center justify-center h-full">
-                <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mb-2"></div>
-                <p className="text-sm text-gray-600">Uploading...</p>
+                <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mb-2"></div>
+                <p className="text-sm text-soil-500">Uploading...</p>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center h-full">
-                <Upload className="h-12 w-12 text-gray-400 mb-2" />
-                <p className="text-sm font-medium text-gray-900 mb-1">Click to upload image</p>
-                <p className="text-xs text-gray-500">PNG, JPG up to {maxSizeMB}MB</p>
+                <Upload className="h-12 w-12 text-soil-400 mb-2" />
+                <p className="text-sm font-medium text-soil-800 mb-1">Click to upload image</p>
+                <p className="text-xs text-soil-400">PNG, JPG up to {maxSizeMB}MB</p>
               </div>
             )}
           </div>

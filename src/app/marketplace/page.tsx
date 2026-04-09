@@ -254,27 +254,27 @@ export default function MarketplacePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-soil-50">
       <Navigation />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Farmers Only Message */}
         {showMessage && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 flex items-center gap-3">
+          <div className="bg-terra-50 border border-terra-200 rounded-lg p-4 mb-6 flex items-center gap-3">
             <div className="flex-shrink-0">
               <span className="text-2xl">ℹ️</span>
             </div>
             <div className="flex-1">
-              <h3 className="text-sm font-medium text-blue-800">Posting is for farmers only</h3>
-              <p className="text-sm text-blue-700 mt-1">
+              <h3 className="text-sm font-medium text-terra-800">Posting is for farmers only</h3>
+              <p className="text-sm text-terra-700 mt-1">
                 Only registered farmers can create posts. Browse the marketplace below to discover fresh, local products!
               </p>
             </div>
             <button
               onClick={() => setShowMessage(false)}
-              className="flex-shrink-0 p-1 hover:bg-blue-100 rounded transition-colors"
+              className="flex-shrink-0 p-1 hover:bg-terra-100 rounded transition-colors"
             >
-              <X className="h-4 w-4 text-blue-600" />
+              <X className="h-4 w-4 text-terra-600" />
             </button>
           </div>
         )}
@@ -287,7 +287,7 @@ export default function MarketplacePage() {
               <div className="flex gap-2">
                 <div className="relative flex-1">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Search className="h-5 w-5 text-gray-400" />
+                    <Search className="h-5 w-5 text-soil-400" />
                   </div>
                   <input
                     type="text"
@@ -297,7 +297,7 @@ export default function MarketplacePage() {
                     onKeyPress={(e) => e.key === 'Enter' && handleSearch(searchQuery)}
                     onFocus={() => setShowSuggestions(true)}
                     onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-lg"
+                    className="w-full pl-10 pr-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent text-lg"
                   />
                   {searchQuery && (
                     <button
@@ -307,13 +307,13 @@ export default function MarketplacePage() {
                       }}
                       className="absolute inset-y-0 right-0 pr-3 flex items-center"
                     >
-                      <X className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                      <X className="h-5 w-5 text-soil-400 hover:text-soil-500" />
                     </button>
                   )}
                 </div>
                 <button
                   onClick={() => handleSearch(searchQuery)}
-                  className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                  className="px-6 py-3 bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 transition-colors font-medium"
                 >
                   Search
                 </button>
@@ -321,16 +321,16 @@ export default function MarketplacePage() {
 
               {/* Search Suggestions Dropdown */}
               {showSuggestions && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-warm-border rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
                   {searchQuery.trim() === '' && (
-                    <div className="p-3 border-b border-gray-100">
-                      <h4 className="text-sm font-medium text-gray-700 mb-2">Popular Searches</h4>
+                    <div className="p-3 border-b border-warm-border">
+                      <h4 className="text-sm font-medium text-soil-700 mb-2">Popular Searches</h4>
                       <div className="flex flex-wrap gap-2">
                         {popularSearches.map((search) => (
                           <button
                             key={search}
                             onClick={() => handleQuickFilter(search)}
-                            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors"
+                            className="px-3 py-1 bg-soil-100 text-soil-700 rounded-full text-sm hover:bg-soil-200 transition-colors"
                           >
                             {search}
                           </button>
@@ -343,10 +343,10 @@ export default function MarketplacePage() {
                     <button
                       key={index}
                       onClick={() => handleQuickFilter(suggestion)}
-                      className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors flex items-center gap-3"
+                      className="w-full px-4 py-3 text-left hover:bg-soil-50 transition-colors flex items-center gap-3"
                     >
-                      <Search className="h-4 w-4 text-gray-400" />
-                      <span className="text-gray-900">{suggestion}</span>
+                      <Search className="h-4 w-4 text-soil-400" />
+                      <span className="text-soil-800">{suggestion}</span>
                     </button>
                   ))}
                 </div>
@@ -356,12 +356,12 @@ export default function MarketplacePage() {
             {/* Advanced Filters Button */}
             <button
               onClick={() => setShowAdvancedFilters(true)}
-              className="flex items-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-2 px-4 py-3 border border-warm-border rounded-lg hover:bg-soil-50 transition-colors"
             >
-              <Filter className="h-5 w-5 text-gray-500" />
-              <span className="text-gray-700">Filters</span>
+              <Filter className="h-5 w-5 text-soil-400" />
+              <span className="text-soil-700">Filters</span>
               {Object.keys(activeFilters).length > 0 && (
-                <span className="bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                <span className="bg-farm-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                   {Object.keys(activeFilters).length}
                 </span>
               )}
@@ -369,13 +369,13 @@ export default function MarketplacePage() {
           </div>
 
           {/* Quick Filter Tags */}
-          <div className="flex flex-wrap items-center gap-3 mt-4 pt-4 border-t border-gray-100">
-            <span className="text-sm text-gray-600">Quick filters:</span>
+          <div className="flex flex-wrap items-center gap-3 mt-4 pt-4 border-t border-warm-border">
+            <span className="text-sm text-soil-500">Quick filters:</span>
             {quickFilters.map((filter) => (
               <button
                 key={filter.id}
                 onClick={() => handleQuickFilter(filter.searchTerm)}
-                className="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-green-100 hover:text-green-700 transition-colors"
+                className="px-3 py-2 bg-soil-100 text-soil-700 rounded-lg text-sm hover:bg-farm-green-100 hover:text-farm-green-800 transition-colors"
               >
                 {filter.label}
               </button>
@@ -384,7 +384,7 @@ export default function MarketplacePage() {
             {(searchQuery || Object.keys(activeFilters).length > 0) && (
               <button
                 onClick={clearAllFilters}
-                className="px-3 py-2 text-gray-600 hover:text-gray-800 text-sm flex items-center gap-1"
+                className="px-3 py-2 text-soil-500 hover:text-soil-800 text-sm flex items-center gap-1"
               >
                 <X className="h-4 w-4" />
                 Clear all
@@ -395,10 +395,10 @@ export default function MarketplacePage() {
 
         {/* Results Header */}
         <div className="mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl font-bold text-soil-800 mb-2">
             {searchQuery ? `Results for "${searchQuery}"` : 'Texas Triangle Marketplace'}
           </h2>
-          <p className="text-gray-600">
+          <p className="text-soil-500">
             {filteredListings.length} {filteredListings.length === 1 ? 'listing' : 'listings'} found
           </p>
         </div>
@@ -406,7 +406,7 @@ export default function MarketplacePage() {
         {/* Listings Grid */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="animate-pulse-gentle text-gray-500">
+            <div className="animate-pulse-gentle text-soil-400">
               Loading listings...
             </div>
           </div>
@@ -425,13 +425,13 @@ export default function MarketplacePage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end md:items-center justify-center p-4">
           <div className="bg-white rounded-t-xl md:rounded-xl w-full md:max-w-2xl max-h-[90vh] overflow-y-auto animate-slide-up">
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900">Advanced Filters</h3>
+            <div className="flex items-center justify-between p-6 border-b border-warm-border">
+              <h3 className="text-xl font-semibold text-soil-800">Advanced Filters</h3>
               <button
                 onClick={() => setShowAdvancedFilters(false)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-2 hover:bg-soil-100 rounded-lg transition-colors"
               >
-                <X className="h-5 w-5 text-gray-500" />
+                <X className="h-5 w-5 text-soil-400" />
               </button>
             </div>
 
@@ -439,7 +439,7 @@ export default function MarketplacePage() {
             <div className="p-6 space-y-6">
               {/* Post Type */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">Type</label>
+                <label className="block text-sm font-medium text-soil-700 mb-3">Type</label>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {[
                     { value: 'all', label: 'All Types' },
@@ -454,8 +454,8 @@ export default function MarketplacePage() {
                       onClick={() => setActiveFilters({ ...activeFilters, postType: type.value as any })}
                       className={`p-3 border rounded-lg text-sm transition-colors ${
                         activeFilters.postType === type.value
-                          ? 'border-green-500 bg-green-50 text-green-700'
-                          : 'border-gray-300 hover:border-gray-400'
+                          ? 'border-farm-green-500 bg-farm-green-50 text-farm-green-800'
+                          : 'border-warm-border hover:border-gray-400'
                       }`}
                     >
                       {type.label}
@@ -466,11 +466,11 @@ export default function MarketplacePage() {
 
               {/* Location */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">County</label>
+                <label className="block text-sm font-medium text-soil-700 mb-3">County</label>
                 <select
                   value={activeFilters.county || 'all'}
                   onChange={(e) => setActiveFilters({ ...activeFilters, county: e.target.value as any })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 >
                   <option value="all">All Counties</option>
                   <optgroup label="Dallas-Fort Worth Metro">
@@ -529,7 +529,7 @@ export default function MarketplacePage() {
 
               {/* Price Range */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">Price Range</label>
+                <label className="block text-sm font-medium text-soil-700 mb-3">Price Range</label>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {[
                     { value: 'all', label: 'Any Price' },
@@ -542,8 +542,8 @@ export default function MarketplacePage() {
                       onClick={() => setActiveFilters({ ...activeFilters, priceRange: range.value as any })}
                       className={`p-3 border rounded-lg text-sm transition-colors ${
                         activeFilters.priceRange === range.value
-                          ? 'border-green-500 bg-green-50 text-green-700'
-                          : 'border-gray-300 hover:border-gray-400'
+                          ? 'border-farm-green-500 bg-farm-green-50 text-farm-green-800'
+                          : 'border-warm-border hover:border-gray-400'
                       }`}
                     >
                       {range.label}
@@ -554,7 +554,7 @@ export default function MarketplacePage() {
 
               {/* Availability */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">Availability</label>
+                <label className="block text-sm font-medium text-soil-700 mb-3">Availability</label>
                 <div className="grid grid-cols-3 gap-3">
                   {[
                     { value: 'all', label: 'Any Method' },
@@ -566,8 +566,8 @@ export default function MarketplacePage() {
                       onClick={() => setActiveFilters({ ...activeFilters, availability: availability.value as any })}
                       className={`p-3 border rounded-lg text-sm transition-colors ${
                         activeFilters.availability === availability.value
-                          ? 'border-green-500 bg-green-50 text-green-700'
-                          : 'border-gray-300 hover:border-gray-400'
+                          ? 'border-farm-green-500 bg-farm-green-50 text-farm-green-800'
+                          : 'border-warm-border hover:border-gray-400'
                       }`}
                     >
                       {availability.label}
@@ -578,20 +578,20 @@ export default function MarketplacePage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="flex gap-3 p-6 border-t border-gray-200">
+            <div className="flex gap-3 p-6 border-t border-warm-border">
               <button
                 onClick={() => {
                   setActiveFilters({})
                   setSearchQuery('')
                   setFilteredListings(listings)
                 }}
-                className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex-1 px-4 py-3 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors"
               >
                 Clear All
               </button>
               <button
                 onClick={() => handleAdvancedFilter(activeFilters)}
-                className="flex-1 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                className="flex-1 px-4 py-3 bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 transition-colors"
               >
                 Apply Filters
               </button>

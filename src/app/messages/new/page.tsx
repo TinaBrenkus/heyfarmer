@@ -151,15 +151,15 @@ export default function NewMessagePage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
       <Navigation />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -167,30 +167,30 @@ export default function NewMessagePage() {
         <div className="flex items-center gap-4 mb-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="flex items-center gap-2 text-soil-500 hover:text-soil-800 transition-colors"
           >
             <ArrowLeft size={20} />
             Back
           </button>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+            <h1 className="text-3xl font-bold text-soil-800 flex items-center gap-3">
               <span className="text-4xl">✉️</span>
               New Message
             </h1>
-            <p className="text-gray-600">Send a message to another farmer or customer</p>
+            <p className="text-soil-500">Send a message to another farmer or customer</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-sm border border-warm-border p-6">
           <div className="space-y-6">
             {/* Recipient Selection */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-soil-700 mb-2">
                 To <span className="text-red-500">*</span>
               </label>
               
               {selectedUser ? (
-                <div className="flex items-center justify-between p-3 border border-gray-300 rounded-lg bg-gray-50">
+                <div className="flex items-center justify-between p-3 border border-warm-border rounded-lg bg-soil-50">
                   <div className="flex items-center gap-3">
                     <FarmerBadge 
                       userType={selectedUser.user_type}
@@ -199,16 +199,16 @@ export default function NewMessagePage() {
                       showLabel={false}
                     />
                     <div>
-                      <p className="font-medium text-gray-900">{selectedUser.name}</p>
+                      <p className="font-medium text-soil-800">{selectedUser.name}</p>
                       {selectedUser.farm_name && (
-                        <p className="text-sm text-gray-500">{selectedUser.farm_name}</p>
+                        <p className="text-sm text-soil-400">{selectedUser.farm_name}</p>
                       )}
-                      <p className="text-xs text-gray-500">{selectedUser.location}</p>
+                      <p className="text-xs text-soil-400">{selectedUser.location}</p>
                     </div>
                   </div>
                   <button
                     onClick={() => setSelectedUser(null)}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                    className="text-soil-400 hover:text-soil-500 transition-colors"
                   >
                     ×
                   </button>
@@ -216,23 +216,23 @@ export default function NewMessagePage() {
               ) : (
                 <div>
                   <div className="relative mb-3">
-                    <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                    <Search className="absolute left-3 top-3 h-5 w-5 text-soil-400" />
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Search for farmers and customers..."
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full pl-10 pr-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                     />
                   </div>
 
                   {filteredUsers.length > 0 && (
-                    <div className="border border-gray-200 rounded-lg max-h-60 overflow-y-auto">
+                    <div className="border border-warm-border rounded-lg max-h-60 overflow-y-auto">
                       {filteredUsers.map((user) => (
                         <button
                           key={user.id}
                           onClick={() => setSelectedUser(user)}
-                          className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors text-left border-b border-gray-100 last:border-b-0"
+                          className="w-full flex items-center gap-3 p-3 hover:bg-soil-50 transition-colors text-left border-b border-warm-border last:border-b-0"
                         >
                           <FarmerBadge 
                             userType={user.user_type}
@@ -241,11 +241,11 @@ export default function NewMessagePage() {
                             showLabel={false}
                           />
                           <div className="flex-1">
-                            <p className="font-medium text-gray-900">{user.name}</p>
+                            <p className="font-medium text-soil-800">{user.name}</p>
                             {user.farm_name && (
-                              <p className="text-sm text-gray-500">{user.farm_name}</p>
+                              <p className="text-sm text-soil-400">{user.farm_name}</p>
                             )}
-                            <p className="text-xs text-gray-500">{user.location}</p>
+                            <p className="text-xs text-soil-400">{user.location}</p>
                           </div>
                         </button>
                       ))}
@@ -264,7 +264,7 @@ export default function NewMessagePage() {
 
             {/* Subject */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-soil-700 mb-2">
                 Subject <span className="text-red-500">*</span>
               </label>
               <input
@@ -272,8 +272,8 @@ export default function NewMessagePage() {
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 placeholder="What's this message about?"
-                className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent ${
-                  errors.subject ? 'border-red-300' : 'border-gray-300'
+                className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent ${
+                  errors.subject ? 'border-red-300' : 'border-warm-border'
                 }`}
               />
               {errors.subject && (
@@ -286,7 +286,7 @@ export default function NewMessagePage() {
 
             {/* Message */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-soil-700 mb-2">
                 Message <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -294,8 +294,8 @@ export default function NewMessagePage() {
                 onChange={(e) => setMessage(e.target.value)}
                 rows={6}
                 placeholder="Type your message here..."
-                className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none ${
-                  errors.message ? 'border-red-300' : 'border-gray-300'
+                className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent resize-none ${
+                  errors.message ? 'border-red-300' : 'border-warm-border'
                 }`}
               />
               {errors.message && (
@@ -305,10 +305,10 @@ export default function NewMessagePage() {
                 </div>
               )}
               <div className="flex justify-between items-center mt-2">
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-soil-400">
                   Be respectful and clear in your communication
                 </p>
-                <span className="text-xs text-gray-400">
+                <span className="text-xs text-soil-400">
                   {message.length} characters
                 </span>
               </div>
@@ -316,17 +316,17 @@ export default function NewMessagePage() {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+          <div className="flex items-center justify-between mt-8 pt-6 border-t border-warm-border">
             <button
               onClick={() => router.back()}
-              className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              className="px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors"
             >
               Cancel
             </button>
             
             <button
               onClick={handleSendMessage}
-              className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+              className="flex items-center gap-2 px-6 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
             >
               <Send size={18} />
               Send Message

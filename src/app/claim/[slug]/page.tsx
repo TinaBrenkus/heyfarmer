@@ -83,12 +83,12 @@ export default function ClaimFarmPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-soil-50">
         <Navigation />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
-            <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading...</p>
+            <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-soil-500">Loading...</p>
           </div>
         </div>
       </div>
@@ -102,30 +102,30 @@ export default function ClaimFarmPage() {
   // Success state
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-soil-50">
         <Navigation />
         <div className="max-w-xl mx-auto px-4 py-16">
           <div className="bg-white rounded-xl shadow-sm p-8 text-center">
-            <div className="p-4 bg-green-100 rounded-full inline-block mb-6">
-              <CheckCircle className="h-12 w-12 text-green-600" />
+            <div className="p-4 bg-farm-green-100 rounded-full inline-block mb-6">
+              <CheckCircle className="h-12 w-12 text-farm-green-800" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-3">
+            <h1 className="text-2xl font-bold text-soil-800 mb-3">
               Claim Request Submitted!
             </h1>
-            <p className="text-gray-600 mb-6">
+            <p className="text-soil-500 mb-6">
               We&apos;ve received your request to claim <span className="font-medium">{farm.name}</span>.
               We&apos;ll review it shortly and let you know when it&apos;s approved.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href={`/farm/${farm.slug}`}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                className="px-4 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
               >
                 View Farm Page
               </Link>
               <Link
                 href="/dashboard"
-                className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                className="px-4 py-2 border border-warm-border text-soil-700 rounded-lg font-medium hover:bg-soil-50 transition-colors"
               >
                 Go to Dashboard
               </Link>
@@ -137,14 +137,14 @@ export default function ClaimFarmPage() {
   }
 
   return (
-    <div className="min-h-screen pb-20 md:pb-0" style={{ background: 'linear-gradient(to bottom right, #E8F5E8, #F8F9FA, #E8F5E8)' }}>
+    <div className="min-h-screen pb-20 md:pb-0" style={{ background: 'linear-gradient(to bottom right, #F0EDE4, #FAF7F0, #F0EDE4)' }}>
       <Navigation />
 
       <div className="max-w-xl mx-auto px-4 py-8">
         {/* Farm Preview Card */}
         <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-6">
           {farm.cover_image_url && (
-            <div className="aspect-[3/1] bg-gray-100">
+            <div className="aspect-[3/1] bg-soil-100">
               <img
                 src={farm.cover_image_url}
                 alt={farm.name}
@@ -153,14 +153,14 @@ export default function ClaimFarmPage() {
             </div>
           )}
           <div className="p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-1">{farm.name}</h2>
+            <h2 className="text-xl font-bold text-soil-800 mb-1">{farm.name}</h2>
             {farm.tagline && (
-              <p className="text-gray-600 mb-2">{farm.tagline}</p>
+              <p className="text-soil-500 mb-2">{farm.tagline}</p>
             )}
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center gap-2 text-sm text-soil-400">
               <MapPin size={14} />
               <span>{farm.city ? `${farm.city}, ` : ''}{countyName}, TX</span>
-              <span className="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs font-medium">
+              <span className="px-2 py-0.5 bg-farm-green-100 text-farm-green-800 rounded text-xs font-medium">
                 {getFarmTypeLabel(farm.farm_type)}
               </span>
             </div>
@@ -170,16 +170,16 @@ export default function ClaimFarmPage() {
         {/* Claim Section */}
         <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-green-100 rounded-full">
-              <Heart className="h-5 w-5 text-green-600" />
+            <div className="p-2 bg-farm-green-100 rounded-full">
+              <Heart className="h-5 w-5 text-farm-green-800" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-bold text-soil-800">
               Claim Your Farm
             </h1>
           </div>
 
-          <p className="text-gray-600 mb-6">
-            We featured <span className="font-medium text-green-700">{farm.name}</span> in
+          <p className="text-soil-500 mb-6">
+            We featured <span className="font-medium text-farm-green-800">{farm.name}</span> in
             our directory because we think you&apos;re doing great work. Claiming your listing lets
             you manage your page, update your information, and connect with local buyers.
           </p>
@@ -187,20 +187,20 @@ export default function ClaimFarmPage() {
           {!user ? (
             // Not logged in
             <div className="space-y-4">
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-soil-400 mb-4">
                 Sign up or log in to claim this farm listing.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   href={`/signup?claim=${slug}`}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
                 >
                   Sign Up to Claim
                   <ArrowRight size={16} />
                 </Link>
                 <Link
                   href={`/login?redirect=${encodeURIComponent(`/claim/${slug}`)}`}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-warm-border text-soil-700 rounded-lg font-medium hover:bg-soil-50 transition-colors"
                 >
                   Log In to Claim
                 </Link>
@@ -210,14 +210,14 @@ export default function ClaimFarmPage() {
             // Logged in - show claim form
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-soil-700 mb-1">
                   Message (optional)
                 </label>
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   rows={3}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-y"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent resize-y"
                   placeholder="Tell us how you're connected to this farm..."
                 />
               </div>
@@ -231,7 +231,7 @@ export default function ClaimFarmPage() {
               <button
                 onClick={handleClaim}
                 disabled={submitting}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors disabled:opacity-50"
               >
                 {submitting ? (
                   <>
@@ -246,7 +246,7 @@ export default function ClaimFarmPage() {
                 )}
               </button>
 
-              <p className="text-xs text-gray-400 text-center">
+              <p className="text-xs text-soil-400 text-center">
                 Your claim will be reviewed by our team. We&apos;ll notify you once it&apos;s approved.
               </p>
             </div>

@@ -372,39 +372,39 @@ export default function MessagesPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading messages...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading messages...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
       <Navigation />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-lg shadow-sm border border-warm-border overflow-hidden">
           <div className="flex h-[600px]">
             {/* Conversations List */}
-            <div className={`w-full md:w-1/3 border-r border-gray-200 ${selectedConversation ? 'hidden md:block' : ''}`}>
-              <div className="p-4 border-b border-gray-200">
-                <h1 className="text-xl font-semibold text-gray-900 mb-4">Messages</h1>
+            <div className={`w-full md:w-1/3 border-r border-warm-border ${selectedConversation ? 'hidden md:block' : ''}`}>
+              <div className="p-4 border-b border-warm-border">
+                <h1 className="text-xl font-semibold text-soil-800 mb-4">Messages</h1>
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-soil-400 h-4 w-4" />
                   <input
                     type="text"
                     placeholder="Search conversations..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   />
                 </div>
               </div>
               
               <div className="overflow-y-auto h-full">
                 {filteredConversations.length === 0 ? (
-                  <div className="p-4 text-center text-gray-500">
+                  <div className="p-4 text-center text-soil-400">
                     <div className="text-4xl mb-2"></div>
                     <p>No conversations yet</p>
                     <p className="text-sm">Start messaging from the marketplace!</p>
@@ -414,12 +414,12 @@ export default function MessagesPage() {
                     <div
                       key={conversation.id}
                       onClick={() => setSelectedConversation(conversation)}
-                      className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors ${
-                        selectedConversation?.id === conversation.id ? 'bg-green-50 border-green-200' : ''
+                      className={`p-4 border-b border-warm-border cursor-pointer hover:bg-soil-50 transition-colors ${
+                        selectedConversation?.id === conversation.id ? 'bg-farm-green-50 border-warm-border' : ''
                       }`}
                     >
                       <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-soil-100 flex items-center justify-center flex-shrink-0">
                           {conversation.profiles.avatar_url ? (
                             <img
                               src={conversation.profiles.avatar_url}
@@ -427,7 +427,7 @@ export default function MessagesPage() {
                               className="w-10 h-10 rounded-full object-cover"
                             />
                           ) : (
-                            <FarmLogo size={20} className="text-gray-400" />
+                            <FarmLogo size={20} className="text-soil-400" />
                           )}
                         </div>
                         
@@ -436,7 +436,7 @@ export default function MessagesPage() {
                             <div className="flex items-center gap-2">
                               <Link
                                 href={`/profile/${conversation.profiles.id}`}
-                                className="font-medium text-gray-900 hover:text-green-600 transition-colors truncate"
+                                className="font-medium text-soil-800 hover:text-farm-green-800 transition-colors truncate"
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 {conversation.profiles.farm_name || conversation.profiles.full_name}
@@ -449,18 +449,18 @@ export default function MessagesPage() {
                               />
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="text-xs text-gray-500">
+                              <span className="text-xs text-soil-400">
                                 {formatTime(conversation.last_message_at)}
                               </span>
                               {conversation.unread_count > 0 && (
-                                <span className="bg-green-500 text-white text-xs rounded-full px-2 py-1 min-w-[20px] text-center">
+                                <span className="bg-farm-green-500 text-white text-xs rounded-full px-2 py-1 min-w-[20px] text-center">
                                   {conversation.unread_count}
                                 </span>
                               )}
                             </div>
                           </div>
                           
-                          <p className="text-sm text-gray-600 truncate mt-1">
+                          <p className="text-sm text-soil-500 truncate mt-1">
                             {conversation.last_message || 'No messages yet'}
                           </p>
                         </div>
@@ -476,17 +476,17 @@ export default function MessagesPage() {
               {selectedConversation ? (
                 <>
                   {/* Chat Header */}
-                  <div className="p-4 border-b border-gray-200 bg-white">
+                  <div className="p-4 border-b border-warm-border bg-white">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <button
                           onClick={() => setSelectedConversation(null)}
-                          className="md:hidden p-2 hover:bg-gray-100 rounded-lg"
+                          className="md:hidden p-2 hover:bg-soil-100 rounded-lg"
                         >
                           <ArrowLeft size={20} />
                         </button>
                         
-                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-full bg-soil-100 flex items-center justify-center">
                           {selectedConversation.profiles.avatar_url ? (
                             <img
                               src={selectedConversation.profiles.avatar_url}
@@ -494,7 +494,7 @@ export default function MessagesPage() {
                               className="w-10 h-10 rounded-full object-cover"
                             />
                           ) : (
-                            <FarmLogo size={20} className="text-gray-400" />
+                            <FarmLogo size={20} className="text-soil-400" />
                           )}
                         </div>
                         
@@ -502,7 +502,7 @@ export default function MessagesPage() {
                           <div className="flex items-center gap-2">
                             <Link
                               href={`/profile/${selectedConversation.profiles.id}`}
-                              className="font-semibold text-gray-900 hover:text-green-600 transition-colors"
+                              className="font-semibold text-soil-800 hover:text-farm-green-800 transition-colors"
                             >
                               {selectedConversation.profiles.farm_name || selectedConversation.profiles.full_name}
                             </Link>
@@ -513,7 +513,7 @@ export default function MessagesPage() {
                               showLabel={false}
                             />
                           </div>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-soil-400">
                             {selectedConversation.profiles.user_type.replace('_', ' ')}
                           </p>
                         </div>
@@ -522,20 +522,20 @@ export default function MessagesPage() {
                       <div className="flex items-center gap-2">
                         <Link
                           href={`/profile/${selectedConversation.profiles.id}`}
-                          className="p-2 hover:bg-gray-100 rounded-lg flex items-center gap-1 text-sm text-gray-600 hover:text-green-600 transition-colors"
+                          className="p-2 hover:bg-soil-100 rounded-lg flex items-center gap-1 text-sm text-soil-500 hover:text-farm-green-800 transition-colors"
                           title="View Profile"
                         >
                           <ExternalLink size={16} />
                           <span className="hidden sm:inline">Profile</span>
                         </Link>
-                        <button className="p-2 hover:bg-gray-100 rounded-lg">
-                          <Phone size={18} className="text-gray-600" />
+                        <button className="p-2 hover:bg-soil-100 rounded-lg">
+                          <Phone size={18} className="text-soil-500" />
                         </button>
-                        <button className="p-2 hover:bg-gray-100 rounded-lg">
-                          <Video size={18} className="text-gray-600" />
+                        <button className="p-2 hover:bg-soil-100 rounded-lg">
+                          <Video size={18} className="text-soil-500" />
                         </button>
-                        <button className="p-2 hover:bg-gray-100 rounded-lg">
-                          <MoreVertical size={18} className="text-gray-600" />
+                        <button className="p-2 hover:bg-soil-100 rounded-lg">
+                          <MoreVertical size={18} className="text-soil-500" />
                         </button>
                       </div>
                     </div>
@@ -545,10 +545,10 @@ export default function MessagesPage() {
                   <div className="flex-1 overflow-y-auto p-4 space-y-4">
                     {loadingMessages ? (
                       <div className="flex justify-center">
-                        <div className="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+                        <div className="w-6 h-6 border-2 border-farm-green-500 border-t-transparent rounded-full animate-spin"></div>
                       </div>
                     ) : messages.length === 0 ? (
-                      <div className="text-center text-gray-500 py-8">
+                      <div className="text-center text-soil-400 py-8">
                         <div className="text-4xl mb-2"></div>
                         <p>Start your conversation!</p>
                       </div>
@@ -561,13 +561,13 @@ export default function MessagesPage() {
                           <div
                             className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                               message.sender_id === user?.id
-                                ? 'bg-green-500 text-white'
-                                : 'bg-gray-100 text-gray-900'
+                                ? 'bg-farm-green-500 text-white'
+                                : 'bg-soil-100 text-soil-800'
                             }`}
                           >
                             <p className="text-sm">{message.content}</p>
                             <p className={`text-xs mt-1 ${
-                              message.sender_id === user?.id ? 'text-green-100' : 'text-gray-500'
+                              message.sender_id === user?.id ? 'text-farm-green-100' : 'text-soil-400'
                             }`}>
                               {formatTime(message.created_at)}
                             </p>
@@ -579,7 +579,7 @@ export default function MessagesPage() {
                   </div>
 
                   {/* Message Input */}
-                  <div className="p-4 border-t border-gray-200 bg-white">
+                  <div className="p-4 border-t border-warm-border bg-white">
                     <div className="flex items-center gap-2">
                       <input
                         type="text"
@@ -587,12 +587,12 @@ export default function MessagesPage() {
                         onChange={(e) => setNewMessage(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
                         placeholder="Type a message..."
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="flex-1 px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                       />
                       <button
                         onClick={sendMessage}
                         disabled={!newMessage.trim()}
-                        className="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="p-2 bg-farm-green-500 text-white rounded-lg hover:bg-farm-green-800 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <Send size={18} />
                       </button>
@@ -600,7 +600,7 @@ export default function MessagesPage() {
                   </div>
                 </>
               ) : (
-                <div className="flex-1 flex items-center justify-center text-gray-500">
+                <div className="flex-1 flex items-center justify-center text-soil-400">
                   <div className="text-center">
                     <div className="text-6xl mb-4"></div>
                     <h3 className="text-lg font-medium mb-2">Select a conversation</h3>

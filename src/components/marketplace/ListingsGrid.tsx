@@ -38,7 +38,7 @@ export default function ListingsGrid({
         <div className="animate-pulse">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-gray-200 h-80 rounded-lg"></div>
+              <div key={i} className="bg-soil-200 h-80 rounded-lg"></div>
             ))}
           </div>
         </div>
@@ -50,21 +50,21 @@ export default function ListingsGrid({
     <div className="space-y-6">
       {/* View Mode Toggle and Results Count */}
       <div className="flex justify-between items-center">
-        <p className="text-gray-600">
+        <p className="text-soil-500">
           {listings.length} {listings.length === 1 ? 'listing' : 'listings'} found
         </p>
         
-        <div className="flex rounded-lg border border-gray-300 overflow-hidden">
+        <div className="flex rounded-lg border border-warm-border overflow-hidden">
           <button
             onClick={() => setViewMode('grid')}
-            className={`p-2 ${viewMode === 'grid' ? 'bg-green-500 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+            className={`p-2 ${viewMode === 'grid' ? 'bg-farm-green-500 text-white' : 'bg-white text-soil-500 hover:bg-soil-50'}`}
             title="Grid view"
           >
             <Grid size={16} />
           </button>
           <button
             onClick={() => setViewMode('list')}
-            className={`p-2 ${viewMode === 'list' ? 'bg-green-500 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+            className={`p-2 ${viewMode === 'list' ? 'bg-farm-green-500 text-white' : 'bg-white text-soil-500 hover:bg-soil-50'}`}
             title="List view"
           >
             <List size={16} />
@@ -75,11 +75,11 @@ export default function ListingsGrid({
       {/* Listings Grid/List */}
       {listings.length === 0 ? (
         <div className="text-center py-12">
-          <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
-            <Search size={32} className="text-gray-400" />
+          <div className="w-24 h-24 rounded-full bg-soil-100 flex items-center justify-center mx-auto mb-4">
+            <Search size={32} className="text-soil-400" />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No listings found</h3>
-          <p className="text-gray-600">Try adjusting your search or filters above</p>
+          <h3 className="text-lg font-medium text-soil-800 mb-2">No listings found</h3>
+          <p className="text-soil-500">Try adjusting your search or filters above</p>
         </div>
       ) : (
         <div className={

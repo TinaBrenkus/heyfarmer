@@ -113,8 +113,8 @@ export default function EditListingPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading listing...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading listing...</p>
         </div>
       </div>
     )
@@ -122,7 +122,7 @@ export default function EditListingPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-soil-50">
         <Header />
 
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -133,13 +133,13 @@ export default function EditListingPage() {
               </svg>
             </div>
 
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl font-bold text-soil-800 mb-4">
               {error}
             </h1>
 
             <button
               onClick={() => router.push('/dashboard')}
-              className="text-blue-600 hover:text-blue-700 font-medium"
+              className="text-terra-600 hover:text-terra-700 font-medium"
             >
               ← Back to Dashboard
             </button>
@@ -152,7 +152,7 @@ export default function EditListingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-soil-50">
       <Header />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -160,10 +160,10 @@ export default function EditListingPage() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div className="text-center flex-1">
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="text-4xl font-bold text-soil-800 mb-2">
                 Edit Listing
               </h1>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-soil-500">
                 Update your listing details
               </p>
             </div>
@@ -199,17 +199,17 @@ export default function EditListingPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-soil-800">
                   Delete Listing?
                 </h3>
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-sm text-soil-500 mt-1">
                   This action cannot be undone.
                 </p>
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4 mb-6">
-              <p className="text-sm text-gray-700">
+            <div className="bg-soil-50 rounded-lg p-4 mb-6">
+              <p className="text-sm text-soil-700">
                 <strong>{listing?.title}</strong> will be permanently deleted from the marketplace.
               </p>
             </div>
@@ -217,7 +217,7 @@ export default function EditListingPage() {
             <div className="flex gap-3">
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+                className="flex-1 px-4 py-2 bg-soil-100 text-soil-700 rounded-lg font-medium hover:bg-soil-200 transition-colors"
                 disabled={deleting}
               >
                 Cancel

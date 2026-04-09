@@ -281,15 +281,15 @@ export default function ProfileSettingsPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading profile...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading profile...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
       <Navigation />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -297,26 +297,26 @@ export default function ProfileSettingsPage() {
         <div className="flex items-center gap-3 mb-8">
           <span className="text-4xl">⚙️</span>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Profile Settings</h1>
-            <p className="text-gray-600">Manage your public profile and privacy settings</p>
+            <h1 className="text-3xl font-bold text-soil-800">Profile Settings</h1>
+            <p className="text-soil-500">Manage your public profile and privacy settings</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-sm border border-warm-border p-6">
           <div className="space-y-8">
             {/* Section Header */}
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
+              <h2 className="text-xl font-semibold text-soil-800 mb-2">
                 Public Profile (What customers see):
               </h2>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-soil-500">
                 This information will be visible to customers browsing the marketplace
               </p>
             </div>
 
             {/* Profile Photo */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-soil-700 mb-3">
                 📷 Profile Photo
               </label>
               <div className="max-w-md">
@@ -328,14 +328,14 @@ export default function ProfileSettingsPage() {
                   aspectRatio="1/1"
                 />
               </div>
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-soil-400 mt-2">
                 This photo will appear on your profile and listings. Recommended: Square image, at least 400x400 pixels.
               </p>
             </div>
 
             {/* Farm Gallery */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-soil-700 mb-3">
                 Farm Gallery (up to 5 photos)
               </label>
               <MultiImageUpload
@@ -345,7 +345,7 @@ export default function ProfileSettingsPage() {
                 maxImages={5}
                 maxSizeMB={5}
               />
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-soil-400 mt-2">
                 Showcase your farm, barn, garden, homestead, or growing areas. These photos will appear on your public profile.
               </p>
             </div>
@@ -353,15 +353,15 @@ export default function ProfileSettingsPage() {
             {/* Basic Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-soil-700 mb-2">
                   Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   value={profileData.full_name}
                   onChange={(e) => setProfileData(prev => ({ ...prev, full_name: e.target.value }))}
-                  className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent ${
-                    errors.full_name ? 'border-red-300' : 'border-gray-300'
+                  className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent ${
+                    errors.full_name ? 'border-red-300' : 'border-warm-border'
                   }`}
                 />
                 {errors.full_name && (
@@ -373,7 +373,7 @@ export default function ProfileSettingsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-soil-700 mb-2">
                   Farm Name
                 </label>
                 <input
@@ -381,14 +381,14 @@ export default function ProfileSettingsPage() {
                   value={profileData.farm_name}
                   onChange={(e) => setProfileData(prev => ({ ...prev, farm_name: e.target.value }))}
                   placeholder="e.g., Smith Family Garden"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 />
               </div>
             </div>
 
             {/* Bio */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-soil-700 mb-2">
                 Bio <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -396,8 +396,8 @@ export default function ProfileSettingsPage() {
                 onChange={(e) => setProfileData(prev => ({ ...prev, bio: e.target.value }))}
                 rows={4}
                 placeholder="Tell customers about your farm, growing practices, and what makes your products special..."
-                className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none ${
-                  errors.bio ? 'border-red-300' : 'border-gray-300'
+                className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent resize-none ${
+                  errors.bio ? 'border-red-300' : 'border-warm-border'
                 }`}
               />
               {errors.bio && (
@@ -407,15 +407,15 @@ export default function ProfileSettingsPage() {
                 </div>
               )}
               <div className="flex justify-between items-center mt-2">
-                <p className="text-xs text-gray-500">This will be shown on your public profile</p>
-                <span className="text-xs text-gray-400">{profileData.bio.length} characters</span>
+                <p className="text-xs text-soil-400">This will be shown on your public profile</p>
+                <span className="text-xs text-soil-400">{profileData.bio.length} characters</span>
               </div>
             </div>
 
             {/* Contact Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-soil-700 mb-2">
                   Phone Number
                 </label>
                 <input
@@ -423,19 +423,19 @@ export default function ProfileSettingsPage() {
                   value={profileData.phone}
                   onChange={(e) => setProfileData(prev => ({ ...prev, phone: e.target.value }))}
                   placeholder="(555) 123-4567"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-soil-700 mb-2">
                   Email Address
                 </label>
                 <input
                   type="email"
                   value={profileData.email}
                   onChange={(e) => setProfileData(prev => ({ ...prev, email: e.target.value }))}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -443,13 +443,13 @@ export default function ProfileSettingsPage() {
             {/* Location */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Location <span className="text-xs text-gray-500">(Public)</span>
+                <label className="block text-sm font-medium text-soil-700 mb-2">
+                  Location <span className="text-xs text-soil-400">(Public)</span>
                 </label>
                 <select
                   value={profileData.county}
                   onChange={(e) => setProfileData(prev => ({ ...prev, county: e.target.value as TexasTriangleCounty }))}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 >
                   {counties.map(county => (
                     <option key={county.value} value={county.value}>
@@ -460,7 +460,7 @@ export default function ProfileSettingsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-soil-700 mb-2">
                   City/Town
                 </label>
                 <input
@@ -468,30 +468,30 @@ export default function ProfileSettingsPage() {
                   value={profileData.city}
                   onChange={(e) => setProfileData(prev => ({ ...prev, city: e.target.value }))}
                   placeholder="e.g., Decatur"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Exact Address <span className="text-xs text-gray-500">(Private - for pickups only)</span>
+              <label className="block text-sm font-medium text-soil-700 mb-2">
+                Exact Address <span className="text-xs text-soil-400">(Private - for pickups only)</span>
               </label>
               <input
                 type="text"
                 value={profileData.exact_address}
                 onChange={(e) => setProfileData(prev => ({ ...prev, exact_address: e.target.value }))}
                 placeholder="Full address for customer pickups"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-soil-400 mt-1">
                 This will only be shared with customers who purchase from you
               </p>
             </div>
 
             {/* What I Grow */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-soil-700 mb-3">
                 What I Grow
               </label>
               
@@ -501,12 +501,12 @@ export default function ProfileSettingsPage() {
                   {profileData.grow_tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                      className="inline-flex items-center gap-2 px-3 py-1 bg-farm-green-100 text-farm-green-900 rounded-full text-sm"
                     >
                       {tag}
                       <button
                         onClick={() => removeGrowTag(tag)}
-                        className="text-green-600 hover:text-green-800"
+                        className="text-farm-green-800 hover:text-farm-green-900"
                       >
                         <X size={14} />
                       </button>
@@ -526,14 +526,14 @@ export default function ProfileSettingsPage() {
                   }}
                   onKeyPress={(e) => e.key === 'Enter' && addGrowTag()}
                   placeholder="Add what you grow..."
-                  className={`flex-1 p-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent ${
-                    errors.tags ? 'border-red-300' : 'border-gray-300'
+                  className={`flex-1 p-3 border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent ${
+                    errors.tags ? 'border-red-300' : 'border-warm-border'
                   }`}
                 />
                 <button
                   onClick={addGrowTag}
                   disabled={!newTag.trim()}
-                  className="px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="px-4 py-3 bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   <Plus size={16} />
                 </button>
@@ -547,7 +547,7 @@ export default function ProfileSettingsPage() {
               )}
               
               <div className="flex justify-between items-center mb-4">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-soil-500">
                   Tags help customers find what you offer ({profileData.grow_tags.length}/15)
                 </p>
                 {profileData.grow_tags.length > 0 && (
@@ -562,7 +562,7 @@ export default function ProfileSettingsPage() {
 
               {/* Common Tags */}
               <div>
-                <p className="text-sm text-gray-600 mb-2">Common items:</p>
+                <p className="text-sm text-soil-500 mb-2">Common items:</p>
                 <div className="flex flex-wrap gap-2">
                   {commonTags.map((tag) => (
                     <button
@@ -576,7 +576,7 @@ export default function ProfileSettingsPage() {
                         }
                       }}
                       disabled={profileData.grow_tags.includes(tag)}
-                      className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      className="px-3 py-1 text-sm border border-warm-border rounded-full hover:bg-soil-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
                       {tag}
                     </button>
@@ -587,7 +587,7 @@ export default function ProfileSettingsPage() {
 
             {/* Contact Preferences */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-soil-700 mb-3">
                 Contact Preferences:
               </label>
               <div className="space-y-3">
@@ -602,9 +602,9 @@ export default function ProfileSettingsPage() {
                         platform_messages: e.target.checked
                       }
                     }))}
-                    className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                    className="w-4 h-4 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500"
                   />
-                  <span className="text-sm text-gray-700">Platform messages</span>
+                  <span className="text-sm text-soil-700">Platform messages</span>
                 </label>
 
                 <label className="flex items-center gap-3">
@@ -618,9 +618,9 @@ export default function ProfileSettingsPage() {
                         show_phone: e.target.checked
                       }
                     }))}
-                    className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                    className="w-4 h-4 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500"
                   />
-                  <span className="text-sm text-gray-700">Show phone number</span>
+                  <span className="text-sm text-soil-700">Show phone number</span>
                 </label>
 
                 <label className="flex items-center gap-3">
@@ -634,20 +634,20 @@ export default function ProfileSettingsPage() {
                         show_email: e.target.checked
                       }
                     }))}
-                    className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                    className="w-4 h-4 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500"
                   />
-                  <span className="text-sm text-gray-700">Show email address</span>
+                  <span className="text-sm text-soil-700">Show email address</span>
                 </label>
               </div>
             </div>
 
             {/* Privacy Settings */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-soil-700 mb-3">
                 Privacy Settings:
               </label>
               <div className="space-y-4">
-                <div className="p-4 border border-gray-200 rounded-lg">
+                <div className="p-4 border border-warm-border rounded-lg">
                   <label className="flex items-start gap-3">
                     <input
                       type="checkbox"
@@ -659,19 +659,19 @@ export default function ProfileSettingsPage() {
                           show_in_marketplace: e.target.checked
                         }
                       }))}
-                      className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5"
+                      className="w-4 h-4 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500 mt-0.5"
                     />
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gray-900">Show in public marketplace</span>
+                        <span className="text-sm font-medium text-soil-800">Show in public marketplace</span>
                         <span className="text-lg">{profileData.privacy_settings.show_in_marketplace ? '🟢' : '🔴'}</span>
                       </div>
-                      <p className="text-xs text-gray-500">When enabled, customers can discover and contact you through the marketplace</p>
+                      <p className="text-xs text-soil-400">When enabled, customers can discover and contact you through the marketplace</p>
                     </div>
                   </label>
                 </div>
 
-                <div className="p-4 border border-gray-200 rounded-lg">
+                <div className="p-4 border border-warm-border rounded-lg">
                   <label className="flex items-start gap-3">
                     <input
                       type="checkbox"
@@ -683,19 +683,19 @@ export default function ProfileSettingsPage() {
                           allow_reviews: e.target.checked
                         }
                       }))}
-                      className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5"
+                      className="w-4 h-4 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500 mt-0.5"
                     />
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gray-900">Allow customer reviews</span>
+                        <span className="text-sm font-medium text-soil-800">Allow customer reviews</span>
                         <span className="text-lg">{profileData.privacy_settings.allow_reviews ? '' : '❌'}</span>
                       </div>
-                      <p className="text-xs text-gray-500">Customers can leave reviews and ratings on your profile</p>
+                      <p className="text-xs text-soil-400">Customers can leave reviews and ratings on your profile</p>
                     </div>
                   </label>
                 </div>
 
-                <div className="p-4 border border-gray-200 rounded-lg">
+                <div className="p-4 border border-warm-border rounded-lg">
                   <label className="flex items-start gap-3">
                     <input
                       type="checkbox"
@@ -707,25 +707,25 @@ export default function ProfileSettingsPage() {
                           include_in_search: e.target.checked
                         }
                       }))}
-                      className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 mt-0.5"
+                      className="w-4 h-4 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500 mt-0.5"
                     />
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-gray-900">Include in search results</span>
+                        <span className="text-sm font-medium text-soil-800">Include in search results</span>
                         <span className="text-lg">{profileData.privacy_settings.include_in_search ? '' : '🚫'}</span>
                       </div>
-                      <p className="text-xs text-gray-500">Your profile appears when customers search for products or farmers</p>
+                      <p className="text-xs text-soil-400">Your profile appears when customers search for products or farmers</p>
                     </div>
                   </label>
                 </div>
               </div>
               
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <div className="mt-4 p-3 bg-terra-50 border border-terra-200 rounded-lg">
                 <div className="flex items-start gap-2">
                   <Lightbulb size={24} weight="regular" />
                   <div>
                     <p className="text-sm font-medium text-blue-900">Privacy Tip</p>
-                    <p className="text-xs text-blue-700">
+                    <p className="text-xs text-terra-700">
                       You can always update these settings later. Having a public profile helps customers find and trust your products.
                     </p>
                   </div>
@@ -735,10 +735,10 @@ export default function ProfileSettingsPage() {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+          <div className="flex items-center justify-between mt-8 pt-6 border-t border-warm-border">
             <button
               onClick={() => router.push('/profile/preview')}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors"
             >
               <Eye size={16} />
               Preview Public Profile
@@ -747,7 +747,7 @@ export default function ProfileSettingsPage() {
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="flex items-center gap-2 px-6 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {saving ? (
                 <>

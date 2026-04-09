@@ -91,12 +91,12 @@ export default function ListingDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-soil-50">
         <Navigation />
         <div className="flex items-center justify-center pt-20">
           <div className="text-center">
-            <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading listing...</p>
+            <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-soil-500">Loading listing...</p>
           </div>
         </div>
       </div>
@@ -105,17 +105,17 @@ export default function ListingDetailPage() {
 
   if (error || !listing) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-soil-50">
         <Navigation />
         <div className="flex items-center justify-center pt-20">
           <div className="text-center">
             <div className="text-6xl mb-4"></div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            <h2 className="text-xl font-semibold text-soil-800 mb-2">
               {error || 'Listing not found'}
             </h2>
             <button
               onClick={() => router.push('/marketplace')}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors mt-4"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 transition-colors mt-4"
             >
               <ArrowLeft size={16} />
               Back to Marketplace
@@ -128,30 +128,30 @@ export default function ListingDetailPage() {
 
   const getPostTypeColor = (postType: string) => {
     switch (postType) {
-      case 'produce': return '#2E7D32'
-      case 'equipment': return '#1976D2'
-      case 'resource': return '#FFA726'
-      default: return '#2E7D32'
+      case 'produce': return '#4A5E35'
+      case 'equipment': return '#C4622D'
+      case 'resource': return '#6B7F4A'
+      default: return '#4A5E35'
     }
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-soil-50">
       <Navigation />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors mb-6"
+          className="flex items-center gap-2 text-soil-500 hover:text-soil-800 transition-colors mb-6"
         >
           <ArrowLeft size={20} />
           Back
         </button>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-lg shadow-sm border border-warm-border overflow-hidden">
           {/* Header with Image Gallery */}
-          <div className="h-96 bg-gray-100 relative flex items-center justify-center">
+          <div className="h-96 bg-soil-100 relative flex items-center justify-center">
             {images.length > 0 ? (
               <>
                 <img
@@ -204,7 +204,7 @@ export default function ListingDetailPage() {
                 )}
               </>
             ) : (
-              <Package size={64} className="text-gray-400" />
+              <Package size={64} className="text-soil-400" />
             )}
 
             {/* Post Type Badge */}
@@ -220,7 +220,7 @@ export default function ListingDetailPage() {
               <div className="absolute top-4 right-4">
                 <button
                   onClick={() => router.push(`/sell/${listing.id}`)}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  className="px-4 py-2 bg-terra-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
                 >
                   Edit Listing
                 </button>
@@ -231,7 +231,7 @@ export default function ListingDetailPage() {
           <div className="p-8">
             {/* Title and Price */}
             <div className="mb-6">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{listing.title}</h1>
+              <h1 className="text-3xl font-bold text-soil-800 mb-2">{listing.title}</h1>
               {!listing.products && listing.price && (
                 <p className="text-3xl font-bold" style={{ color: getPostTypeColor(listing.post_type) }}>
                   ${listing.price}{listing.unit ? `/${listing.unit}` : ''}
@@ -241,8 +241,8 @@ export default function ListingDetailPage() {
 
             {/* Description */}
             <div className="mb-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">Description</h2>
-              <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+              <h2 className="text-lg font-semibold text-soil-800 mb-2">Description</h2>
+              <div className="text-soil-700 leading-relaxed whitespace-pre-wrap">
                 <Linkify text={listing.description} />
               </div>
             </div>
@@ -250,20 +250,20 @@ export default function ListingDetailPage() {
             {/* Multiple Products */}
             {listing.products && listing.products.length > 0 && (
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-3">Available Products</h2>
+                <h2 className="text-lg font-semibold text-soil-800 mb-3">Available Products</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {listing.products.map((product: any, index: number) => (
-                    <div key={index} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                    <div key={index} className="border border-warm-border rounded-lg p-4 bg-soil-50">
                       <div className="flex items-center justify-between">
-                        <h3 className="font-semibold text-gray-900">{product.name}</h3>
+                        <h3 className="font-semibold text-soil-800">{product.name}</h3>
                         {product.price && (
-                          <span className="text-lg font-bold text-green-600">
+                          <span className="text-lg font-bold text-farm-green-800">
                             ${product.price}{product.unit ? `/${product.unit}` : ''}
                           </span>
                         )}
                       </div>
                       {product.quantity_available && (
-                        <p className="text-sm text-gray-500 mt-1">
+                        <p className="text-sm text-soil-400 mt-1">
                           {product.quantity_available} available
                         </p>
                       )}
@@ -278,11 +278,11 @@ export default function ListingDetailPage() {
               {/* Availability */}
               {(listing.available_from || listing.available_until) && (
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <h3 className="text-sm font-semibold text-soil-800 mb-2 flex items-center gap-2">
                     <Calendar size={16} />
                     Availability
                   </h3>
-                  <div className="text-gray-700 space-y-1">
+                  <div className="text-soil-700 space-y-1">
                     {listing.available_from && (
                       <p>From: {new Date(listing.available_from).toLocaleDateString()}</p>
                     )}
@@ -296,21 +296,21 @@ export default function ListingDetailPage() {
               {/* Quantity */}
               {!listing.products && listing.quantity_available && (
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <h3 className="text-sm font-semibold text-soil-800 mb-2 flex items-center gap-2">
                     <Package size={16} />
                     Quantity
                   </h3>
-                  <p className="text-gray-700">{listing.quantity_available} available</p>
+                  <p className="text-soil-700">{listing.quantity_available} available</p>
                 </div>
               )}
 
               {/* Delivery Options */}
               <div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                <h3 className="text-sm font-semibold text-soil-800 mb-2 flex items-center gap-2">
                   <Truck size={16} />
                   Delivery Options
                 </h3>
-                <div className="text-gray-700 space-y-1">
+                <div className="text-soil-700 space-y-1">
                   {listing.pickup_available && <p>✓ Pickup available</p>}
                   {listing.delivery_available && (
                     <p>✓ Delivery available{listing.delivery_radius_miles && ` (${listing.delivery_radius_miles} miles)`}</p>
@@ -320,11 +320,11 @@ export default function ListingDetailPage() {
 
               {/* Location */}
               <div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                <h3 className="text-sm font-semibold text-soil-800 mb-2 flex items-center gap-2">
                   <MapPin size={16} />
                   Location
                 </h3>
-                <p className="text-gray-700">
+                <p className="text-soil-700">
                   {listing.city && `${listing.city}, `}
                   {listing.county.replace('_', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())} County, Texas
                 </p>
@@ -334,12 +334,12 @@ export default function ListingDetailPage() {
             {/* Tags */}
             {listing.tags && listing.tags.length > 0 && (
               <div className="mb-6">
-                <h3 className="text-sm font-semibold text-gray-900 mb-2">Tags</h3>
+                <h3 className="text-sm font-semibold text-soil-800 mb-2">Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {listing.tags.map((tag: string, index: number) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                      className="px-3 py-1 bg-farm-green-100 text-farm-green-900 rounded-full text-sm"
                     >
                       {tag}
                     </span>
@@ -350,10 +350,10 @@ export default function ListingDetailPage() {
 
             {/* Seller Info */}
             {listing.profiles && (
-              <div className="border-t border-gray-200 pt-6 mt-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">About the Seller</h3>
+              <div className="border-t border-warm-border pt-6 mt-6">
+                <h3 className="text-lg font-semibold text-soil-800 mb-4">About the Seller</h3>
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
+                  <div className="w-16 h-16 rounded-full bg-soil-100 flex items-center justify-center overflow-hidden">
                     {listing.profiles.avatar_url ? (
                       <img
                         src={listing.profiles.avatar_url}
@@ -361,12 +361,12 @@ export default function ListingDetailPage() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <UserIcon size={32} className="text-gray-400" />
+                      <UserIcon size={32} className="text-soil-400" />
                     )}
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h4 className="font-semibold text-gray-900">
+                      <h4 className="font-semibold text-soil-800">
                         {listing.profiles.farm_name || listing.profiles.full_name}
                       </h4>
                       <FarmerBadge
@@ -375,7 +375,7 @@ export default function ListingDetailPage() {
                         size="sm"
                       />
                     </div>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-soil-500">
                       {listing.profiles.city && `${listing.profiles.city}, `}
                       {listing.profiles.county.replace('_', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())} County
                     </p>
@@ -394,7 +394,7 @@ export default function ListingDetailPage() {
                     </button>
                     <button
                       onClick={() => router.push(`/profile/${listing.profiles.id}`)}
-                      className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                      className="px-6 py-3 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors"
                     >
                       View Profile
                     </button>

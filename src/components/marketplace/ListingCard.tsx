@@ -64,20 +64,20 @@ export default function ListingCard({
 
   const getPostTypeColor = (postType: string) => {
     switch (postType) {
-      case 'produce': return '#2E7D32'
-      case 'equipment': return '#1976D2'
-      case 'resource': return '#FFA726'
-      default: return '#2E7D32'
+      case 'produce': return '#4A5E35'
+      case 'equipment': return '#C4622D'
+      case 'resource': return '#6B7F4A'
+      default: return '#4A5E35'
     }
   }
 
   const PostTypeIcon = getPostTypeIcon(listing.post_type)
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-lg shadow-sm border border-warm-border overflow-hidden hover:shadow-md transition-shadow">
       {/* Image placeholder */}
       <div
-        className="h-48 bg-gray-100 relative cursor-pointer"
+        className="h-48 bg-soil-100 relative cursor-pointer"
         onClick={() => router.push(`/listing/${listing.id}`)}
       >
         {listing.thumbnail_url ? (
@@ -90,7 +90,7 @@ export default function ListingCard({
           <div className="w-full h-full flex items-center justify-center">
             <PostTypeIcon 
               size={48} 
-              className="text-gray-400"
+              className="text-soil-400"
             />
           </div>
         )}
@@ -111,7 +111,7 @@ export default function ListingCard({
           >
             <Heart 
               size={16} 
-              className={`${isSaved ? 'text-red-500 fill-current' : 'text-gray-600'}`}
+              className={`${isSaved ? 'text-red-500 fill-current' : 'text-soil-500'}`}
             />
           </button>
         )}
@@ -123,7 +123,7 @@ export default function ListingCard({
           className="flex justify-between items-start mb-2 cursor-pointer"
           onClick={() => router.push(`/listing/${listing.id}`)}
         >
-          <h3 className="font-semibold text-gray-900 flex-1 mr-2 hover:text-green-600 transition-colors">{listing.title}</h3>
+          <h3 className="font-semibold text-soil-800 flex-1 mr-2 hover:text-farm-green-800 transition-colors">{listing.title}</h3>
           {!listing.products && (
             <div className="text-right">
               <p className="font-bold text-lg" style={{ color: getPostTypeColor(listing.post_type) }}>
@@ -134,27 +134,27 @@ export default function ListingCard({
         </div>
 
         {/* Description */}
-        <div className="text-gray-600 text-sm mb-3 line-clamp-2">
+        <div className="text-soil-500 text-sm mb-3 line-clamp-2">
           <Linkify text={listing.description} />
         </div>
 
         {/* Multiple Products List */}
         {listing.products && listing.products.length > 0 && (
           <div className="mb-3 space-y-2">
-            <p className="text-xs font-medium text-gray-700 uppercase">Available Products:</p>
+            <p className="text-xs font-medium text-soil-700 uppercase">Available Products:</p>
             <div className="space-y-1">
               {listing.products.slice(0, 3).map((product, index) => (
-                <div key={index} className="flex items-center justify-between text-sm bg-gray-50 rounded px-2 py-1">
-                  <span className="font-medium text-gray-900">{product.name}</span>
+                <div key={index} className="flex items-center justify-between text-sm bg-soil-50 rounded px-2 py-1">
+                  <span className="font-medium text-soil-800">{product.name}</span>
                   {product.price && (
-                    <span className="text-green-600 font-semibold">
+                    <span className="text-farm-green-800 font-semibold">
                       ${product.price}{product.unit ? `/${product.unit}` : ''}
                     </span>
                   )}
                 </div>
               ))}
               {listing.products.length > 3 && (
-                <p className="text-xs text-gray-500 italic">+{listing.products.length - 3} more</p>
+                <p className="text-xs text-soil-400 italic">+{listing.products.length - 3} more</p>
               )}
             </div>
           </div>
@@ -162,7 +162,7 @@ export default function ListingCard({
 
         {/* Quantity and availability */}
         {!listing.products && listing.quantity_available && (
-          <div className="flex items-center gap-1 text-sm text-gray-500 mb-2">
+          <div className="flex items-center gap-1 text-sm text-soil-400 mb-2">
             <Package size={14} />
             <span>{listing.quantity_available} available</span>
             {listing.available_until && (
@@ -176,10 +176,10 @@ export default function ListingCard({
         )}
 
         {/* Seller info */}
-        <div className="flex items-center gap-2 mb-3 pb-3 border-b border-gray-100">
+        <div className="flex items-center gap-2 mb-3 pb-3 border-b border-warm-border">
           {listing.profiles ? (
             <Link href={`/profile/${listing.profiles.id}`} className="flex items-center gap-2 flex-1 min-w-0 hover:opacity-80 transition-opacity">
-              <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 rounded-full bg-soil-100 flex items-center justify-center flex-shrink-0">
                 {listing.profiles.avatar_url ? (
                   <img 
                     src={listing.profiles.avatar_url} 
@@ -187,12 +187,12 @@ export default function ListingCard({
                     className="w-8 h-8 rounded-full object-cover"
                   />
                 ) : (
-                  <FarmLogo size={16} className="text-gray-400" />
+                  <FarmLogo size={16} className="text-soil-400" />
                 )}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-medium text-gray-900 truncate hover:text-green-600 transition-colors">
+                  <p className="text-sm font-medium text-soil-800 truncate hover:text-farm-green-800 transition-colors">
                     {listing.profiles.farm_name || listing.profiles.full_name}
                   </p>
                   <FarmerBadge
@@ -202,7 +202,7 @@ export default function ListingCard({
                     showLabel={false}
                   />
                 </div>
-                <div className="flex items-center gap-1 text-xs text-gray-500">
+                <div className="flex items-center gap-1 text-xs text-soil-400">
                   <MapPin size={12} />
                   <span>
                     {listing.city && `${listing.city}, `}
@@ -213,14 +213,14 @@ export default function ListingCard({
             </Link>
           ) : (
             <div className="flex items-center gap-2 flex-1 min-w-0">
-              <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
-                <FarmLogo size={16} className="text-gray-400" />
+              <div className="w-8 h-8 rounded-full bg-soil-100 flex items-center justify-center">
+                <FarmLogo size={16} className="text-soil-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-500 truncate">
+                <p className="text-sm font-medium text-soil-400 truncate">
                   Unknown Farmer
                 </p>
-                <div className="flex items-center gap-1 text-xs text-gray-500">
+                <div className="flex items-center gap-1 text-xs text-soil-400">
                   <MapPin size={12} />
                   <span>
                     {listing.city && `${listing.city}, `}
@@ -233,7 +233,7 @@ export default function ListingCard({
         </div>
 
         {/* Delivery options */}
-        <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+        <div className="flex items-center gap-4 text-xs text-soil-400 mb-3">
           {listing.pickup_available && (
             <span className="flex items-center gap-1">
               <MapPin size={12} />
@@ -255,7 +255,7 @@ export default function ListingCard({
             {isOwnListing ? (
               <button
                 onClick={() => router.push(`/sell/${listing.id}`)}
-                className="flex-1 py-2 px-3 rounded-lg font-medium text-white transition-colors flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700"
+                className="flex-1 py-2 px-3 rounded-lg font-medium text-white transition-colors flex items-center justify-center gap-2 bg-terra-600 hover:bg-blue-700"
               >
                 <Edit size={14} />
                 Edit Listing

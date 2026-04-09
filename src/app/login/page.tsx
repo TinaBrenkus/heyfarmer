@@ -55,20 +55,20 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #E8F5E8, #F8F9FA, #E8F5E8)' }}>
+    <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom right, #F0EDE4, #FAF7F0, #F0EDE4)' }}>
       <div className="w-full max-w-md mx-4">
         <div className="bg-white rounded-lg shadow-lg p-8">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#2E7D32' }}>
+              <div className="p-3 rounded-xl shadow-lg" style={{ backgroundColor: '#4A5E35' }}>
                 <FarmLogo size={32} className="text-white" />
               </div>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Welcome to <span style={{ color: '#2E7D32' }}>Hey Farmer</span>
+            <h1 className="text-3xl font-bold text-soil-800 mb-2">
+              Welcome to <span style={{ color: '#4A5E35' }}>Hey Farmer</span>
             </h1>
-            <p className="text-gray-600">
+            <p className="text-soil-500">
               Sign in to your account
             </p>
           </div>
@@ -76,18 +76,18 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-medium text-soil-700 mb-1">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-soil-400" />
                 <input
                   id="email"
                   name="email"
                   type="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="you@example.com"
                   required
                 />
@@ -96,25 +96,25 @@ export default function LoginPage() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-soil-700 mb-1">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-soil-400" />
                 <input
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-12 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Enter your password"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-soil-400 hover:text-soil-500 transition-colors"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
@@ -134,7 +134,7 @@ export default function LoginPage() {
               type="submit"
               disabled={loading}
               className="w-full py-3 px-4 rounded-lg font-semibold text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
-              style={{ backgroundColor: loading ? '#94a3b8' : '#1976D2' }}
+              style={{ backgroundColor: loading ? '#A09E90' : '#C4622D' }}
             >
               {loading ? (
                 <>
@@ -148,16 +148,16 @@ export default function LoginPage() {
 
             {/* Forgot Password */}
             <div className="text-center">
-              <Link href="/forgot-password" className="text-sm font-medium hover:underline" style={{ color: '#1976D2' }}>
+              <Link href="/forgot-password" className="text-sm font-medium hover:underline" style={{ color: '#C4622D' }}>
                 Forgot your password?
               </Link>
             </div>
 
             {/* Signup Link */}
-            <div className="text-center pt-4 border-t border-gray-200">
-              <p className="text-gray-600">
+            <div className="text-center pt-4 border-t border-warm-border">
+              <p className="text-soil-500">
                 Don't have an account?{' '}
-                <Link href="/signup" className="font-medium hover:underline" style={{ color: '#1976D2' }}>
+                <Link href="/signup" className="font-medium hover:underline" style={{ color: '#C4622D' }}>
                   Create one here
                 </Link>
               </p>

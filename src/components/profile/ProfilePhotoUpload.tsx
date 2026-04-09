@@ -152,7 +152,7 @@ export default function ProfilePhotoUpload({
       {/* Photo Preview */}
       <div className="flex items-center gap-6">
         <div className="relative">
-          <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+          <div className="w-32 h-32 rounded-full overflow-hidden bg-soil-100 flex items-center justify-center">
             {preview || photoUrl ? (
               <Image
                 src={preview || photoUrl || ''}
@@ -162,7 +162,7 @@ export default function ProfilePhotoUpload({
                 className="w-full h-full object-cover"
               />
             ) : (
-              <Camera className="w-12 h-12 text-gray-400" />
+              <Camera className="w-12 h-12 text-soil-400" />
             )}
           </div>
 
@@ -174,8 +174,8 @@ export default function ProfilePhotoUpload({
         </div>
 
         <div className="flex-1">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">Profile Photo</h3>
-          <p className="text-sm text-gray-600 mb-4">
+          <h3 className="text-lg font-semibold text-soil-800 mb-2">Profile Photo</h3>
+          <p className="text-sm text-soil-500 mb-4">
             Upload a photo to personalize your profile. Max 5MB.
           </p>
 
@@ -190,7 +190,7 @@ export default function ProfilePhotoUpload({
                 className="hidden"
               />
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-white transition-colors"
-                style={{ backgroundColor: uploading ? '#94a3b8' : '#2E7D32' }}
+                style={{ backgroundColor: uploading ? '#A09E90' : '#4A5E35' }}
               >
                 <Upload className="w-4 h-4" />
                 {photoUrl ? 'Change Photo' : 'Upload Photo'}

@@ -226,12 +226,12 @@ export default function FarmersPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-soil-50">
         <Navigation />
         <div className="flex items-center justify-center pt-20">
           <div className="text-center">
-            <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading farmers...</p>
+            <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-soil-500">Loading farmers...</p>
           </div>
         </div>
       </div>
@@ -239,7 +239,7 @@ export default function FarmersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
       <Navigation />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -248,32 +248,32 @@ export default function FarmersPage() {
           <div className="flex items-center gap-3 mb-4">
             <Person size={24} weight="regular" />
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Texas Triangle Farmers</h1>
-              <p className="text-gray-600">Discover local farmers and growers in your area</p>
+              <h1 className="text-3xl font-bold text-soil-800">Texas Triangle Farmers</h1>
+              <p className="text-soil-500">Discover local farmers and growers in your area</p>
             </div>
           </div>
         </div>
 
         {/* Search and Filters */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-warm-border p-6 mb-6">
           <div className="flex flex-col lg:flex-row gap-4">
             {/* Search Bar */}
             <div className="flex-1">
               <div className="flex gap-2">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-soil-400 h-4 w-4" />
                   <input
                     type="text"
                     placeholder="Search by name, farm, location, or crops..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   />
                 </div>
                 <button
                   onClick={handleSearch}
-                  className="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                  className="px-6 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
                 >
                   Search
                 </button>
@@ -283,7 +283,7 @@ export default function FarmersPage() {
             {/* Filter Toggle */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-2 px-4 py-3 border border-warm-border rounded-lg hover:bg-soil-50 transition-colors"
             >
               <Filter size={16} />
               Filters
@@ -291,17 +291,17 @@ export default function FarmersPage() {
             </button>
 
             {/* View Mode Toggle */}
-            <div className="flex rounded-lg border border-gray-300 overflow-hidden">
+            <div className="flex rounded-lg border border-warm-border overflow-hidden">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-3 ${viewMode === 'grid' ? 'bg-green-500 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                className={`p-3 ${viewMode === 'grid' ? 'bg-farm-green-500 text-white' : 'bg-white text-soil-500 hover:bg-soil-50'}`}
                 title="Grid view"
               >
                 <Grid size={16} />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-3 ${viewMode === 'list' ? 'bg-green-500 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                className={`p-3 ${viewMode === 'list' ? 'bg-farm-green-500 text-white' : 'bg-white text-soil-500 hover:bg-soil-50'}`}
                 title="List view"
               >
                 <List size={16} />
@@ -311,14 +311,14 @@ export default function FarmersPage() {
 
           {/* Advanced Filters */}
           {showFilters && (
-            <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="mt-4 pt-4 border-t border-warm-border">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">County</label>
+                  <label className="block text-sm font-medium text-soil-700 mb-2">County</label>
                   <select
                     value={selectedCounty}
                     onChange={(e) => setSelectedCounty(e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   >
                     <option value="">All Counties</option>
                     {counties.map(county => (
@@ -330,11 +330,11 @@ export default function FarmersPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Farmer Type</label>
+                  <label className="block text-sm font-medium text-soil-700 mb-2">Farmer Type</label>
                   <select
                     value={selectedUserType}
                     onChange={(e) => setSelectedUserType(e.target.value)}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full p-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   >
                     <option value="">All Types</option>
                     {userTypes.map(type => (
@@ -353,7 +353,7 @@ export default function FarmersPage() {
                     setSelectedUserType('')
                     setSearchQuery('')
                   }}
-                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="px-4 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors"
                 >
                   Clear Filters
                 </button>
@@ -364,7 +364,7 @@ export default function FarmersPage() {
 
         {/* Results Count */}
         <div className="flex justify-between items-center mb-6">
-          <p className="text-gray-600">
+          <p className="text-soil-500">
             <Users size={16} className="inline mr-2" />
             {filteredFarmers.length + filteredDirectoryFarms.length} {(filteredFarmers.length + filteredDirectoryFarms.length) === 1 ? 'farm' : 'farms'} found
           </p>
@@ -374,10 +374,10 @@ export default function FarmersPage() {
         {filteredDirectoryFarms.length > 0 && (
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">Featured Farms</h2>
+              <h2 className="text-lg font-semibold text-soil-800">Featured Farms</h2>
               <Link
                 href="/directory"
-                className="text-sm text-green-600 hover:text-green-700 font-medium"
+                className="text-sm text-farm-green-800 hover:text-farm-green-800 font-medium"
               >
                 View Full Directory
               </Link>
@@ -397,11 +397,11 @@ export default function FarmersPage() {
         {/* Registered Farmers Grid/List */}
         {filteredFarmers.length === 0 && filteredDirectoryFarms.length === 0 ? (
           <div className="text-center py-12">
-            <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
-              <Users size={32} className="text-gray-400" />
+            <div className="w-24 h-24 rounded-full bg-soil-100 flex items-center justify-center mx-auto mb-4">
+              <Users size={32} className="text-soil-400" />
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No farmers found</h3>
-            <p className="text-gray-600">Try adjusting your search or filters above</p>
+            <h3 className="text-lg font-medium text-soil-800 mb-2">No farmers found</h3>
+            <p className="text-soil-500">Try adjusting your search or filters above</p>
           </div>
         ) : filteredFarmers.length === 0 ? null : (
           <div className={
@@ -410,12 +410,12 @@ export default function FarmersPage() {
               : 'space-y-4'
           }>
             {filteredFarmers.map((farmer) => (
-              <div key={farmer.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+              <div key={farmer.id} className="bg-white rounded-lg shadow-sm border border-warm-border overflow-hidden hover:shadow-md transition-shadow">
                 {viewMode === 'grid' ? (
                   // Grid Card View
                   <div className="p-6">
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                      <div className="w-16 h-16 rounded-full bg-soil-100 flex items-center justify-center flex-shrink-0">
                         {farmer.avatar_url ? (
                           <img
                             src={farmer.avatar_url}
@@ -423,14 +423,14 @@ export default function FarmersPage() {
                             className="w-16 h-16 rounded-full object-cover"
                           />
                         ) : (
-                          <FarmLogo size={24} className="text-gray-400" />
+                          <FarmLogo size={24} className="text-soil-400" />
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <Link
                             href={`/profile/${farmer.id}`}
-                            className="font-semibold text-gray-900 hover:text-green-600 transition-colors truncate"
+                            className="font-semibold text-soil-800 hover:text-farm-green-800 transition-colors truncate"
                           >
                             {farmer.farm_name || farmer.full_name}
                           </Link>
@@ -441,13 +441,13 @@ export default function FarmersPage() {
                             showLabel={false}
                           />
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-500 mb-2">
+                        <div className="flex items-center gap-1 text-sm text-soil-400 mb-2">
                           <MapPin size={12} />
                           <span>
                             {farmer.city ? `${farmer.city}, ` : ''}{getCountyDisplayName(farmer.county)}, TX
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600 line-clamp-2">
+                        <p className="text-sm text-soil-500 line-clamp-2">
                           {farmer.bio || 'No bio provided yet.'}
                         </p>
                       </div>
@@ -460,13 +460,13 @@ export default function FarmersPage() {
                           {farmer.grow_tags.slice(0, 3).map((tag, index) => (
                             <span
                               key={index}
-                              className="inline-flex items-center px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium"
+                              className="inline-flex items-center px-2 py-1 bg-farm-green-100 text-farm-green-900 rounded-full text-xs font-medium"
                             >
                               {tag}
                             </span>
                           ))}
                           {farmer.grow_tags.length > 3 && (
-                            <span className="inline-flex items-center px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">
+                            <span className="inline-flex items-center px-2 py-1 bg-soil-100 text-soil-500 rounded-full text-xs">
                               +{farmer.grow_tags.length - 3} more
                             </span>
                           )}
@@ -475,17 +475,17 @@ export default function FarmersPage() {
                     )}
 
                     {/* Actions */}
-                    <div className="flex gap-2 pt-4 border-t border-gray-100">
+                    <div className="flex gap-2 pt-4 border-t border-warm-border">
                       <Link
                         href={`/profile/${farmer.id}`}
-                        className="flex-1 px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-center text-sm font-medium"
+                        className="flex-1 px-3 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors text-center text-sm font-medium"
                       >
                         View Profile
                       </Link>
                       {farmer.platform_messages && (
                         <button
                           onClick={() => handleContact(farmer)}
-                          className="flex-1 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                          className="flex-1 px-3 py-2 bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 transition-colors text-sm font-medium"
                         >
                           Message
                         </button>
@@ -496,7 +496,7 @@ export default function FarmersPage() {
                   // List View
                   <div className="p-6">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-soil-100 flex items-center justify-center flex-shrink-0">
                         {farmer.avatar_url ? (
                           <img
                             src={farmer.avatar_url}
@@ -504,7 +504,7 @@ export default function FarmersPage() {
                             className="w-12 h-12 rounded-full object-cover"
                           />
                         ) : (
-                          <FarmLogo size={20} className="text-gray-400" />
+                          <FarmLogo size={20} className="text-soil-400" />
                         )}
                       </div>
                       
@@ -512,7 +512,7 @@ export default function FarmersPage() {
                         <div className="flex items-center gap-2 mb-1">
                           <Link
                             href={`/profile/${farmer.id}`}
-                            className="font-semibold text-gray-900 hover:text-green-600 transition-colors"
+                            className="font-semibold text-soil-800 hover:text-farm-green-800 transition-colors"
                           >
                             {farmer.farm_name || farmer.full_name}
                           </Link>
@@ -523,13 +523,13 @@ export default function FarmersPage() {
                             showLabel={false}
                           />
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-500 mb-2">
+                        <div className="flex items-center gap-1 text-sm text-soil-400 mb-2">
                           <MapPin size={12} />
                           <span>
                             {farmer.city ? `${farmer.city}, ` : ''}{getCountyDisplayName(farmer.county)}, TX
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600 line-clamp-1">
+                        <p className="text-sm text-soil-500 line-clamp-1">
                           {farmer.bio || 'No bio provided yet.'}
                         </p>
                         
@@ -539,7 +539,7 @@ export default function FarmersPage() {
                             {farmer.grow_tags.slice(0, 5).map((tag, index) => (
                               <span
                                 key={index}
-                                className="inline-flex items-center px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium"
+                                className="inline-flex items-center px-2 py-1 bg-farm-green-100 text-farm-green-900 rounded-full text-xs font-medium"
                               >
                                 {tag}
                               </span>
@@ -551,14 +551,14 @@ export default function FarmersPage() {
                       <div className="flex items-center gap-2 flex-shrink-0">
                         <Link
                           href={`/profile/${farmer.id}`}
-                          className="px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
+                          className="px-3 py-2 border border-warm-border text-soil-700 rounded-lg hover:bg-soil-50 transition-colors text-sm font-medium"
                         >
                           View Profile
                         </Link>
                         {farmer.platform_messages && (
                           <button
                             onClick={() => handleContact(farmer)}
-                            className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium flex items-center gap-1"
+                            className="px-3 py-2 bg-farm-green-800 text-white rounded-lg hover:bg-farm-green-800 transition-colors text-sm font-medium flex items-center gap-1"
                           >
                             <MessageCircle size={14} />
                             Message

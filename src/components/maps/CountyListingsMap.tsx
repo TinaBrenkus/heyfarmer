@@ -216,16 +216,16 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
   }, [county, listings.length])
 
   return (
-    <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+    <div className="rounded-xl overflow-hidden border border-warm-border shadow-sm">
       <div
         id={`map-${mapId}`}
         ref={mapRef}
         style={{ height: '400px', width: '100%' }}
-        className="bg-gray-100"
+        className="bg-soil-100"
       >
         {isLoading && (
           <div className="h-full flex items-center justify-center">
-            <div className="text-center text-gray-500">
+            <div className="text-center text-soil-400">
               <MapPin className="w-8 h-8 mx-auto mb-2 animate-pulse" />
               <p>Loading map...</p>
             </div>
@@ -241,15 +241,15 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
       </div>
 
       {/* Map Legend */}
-      <div className="bg-white p-3 border-t border-gray-200">
+      <div className="bg-white p-3 border-t border-warm-border">
         <div className="flex flex-wrap items-center gap-4 text-xs">
-          <span className="text-gray-600 font-medium">Legend:</span>
+          <span className="text-soil-500 font-medium">Legend:</span>
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            <div className="w-3 h-3 rounded-full bg-farm-green-500"></div>
             <span>Fresh Produce</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+            <div className="w-3 h-3 rounded-full bg-terra-500"></div>
             <span>Equipment</span>
           </div>
           <div className="flex items-center gap-1">

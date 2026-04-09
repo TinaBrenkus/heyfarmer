@@ -143,20 +143,20 @@ export default function SignupForm() {
     <div className="max-w-2xl mx-auto p-6">
       <div className="bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
-          <div className="inline-flex p-3 rounded-full mb-4" style={{ backgroundColor: '#E8F5E8' }}>
-            <FarmLogo className="h-8 w-8" style={{ color: '#2E7D32' }} />
+          <div className="inline-flex p-3 rounded-full mb-4" style={{ backgroundColor: '#F0EDE4' }}>
+            <FarmLogo className="h-8 w-8" style={{ color: '#4A5E35' }} />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Join Hey Farmer</h2>
-          <p className="text-gray-600">Connect with Texas Triangle farmers and fresh food</p>
+          <h2 className="text-3xl font-bold text-soil-800 mb-2">Join Hey Farmer</h2>
+          <p className="text-soil-500">Connect with Texas Triangle farmers and fresh food</p>
         </div>
         
         {success ? (
           <div className="text-center py-8">
-            <div className="rounded-lg p-6 mb-6" style={{ backgroundColor: '#E8F5E8' }}>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: '#2E7D32' }}>
+            <div className="rounded-lg p-6 mb-6" style={{ backgroundColor: '#F0EDE4' }}>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: '#4A5E35' }}>
                 Welcome to Hey Farmer!
               </h3>
-              <p className="text-gray-700">
+              <p className="text-soil-700">
                 Please check your email to verify your account.
               </p>
             </div>
@@ -165,7 +165,7 @@ export default function SignupForm() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* User Type Selection */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
+              <label className="block text-sm font-medium text-soil-700 mb-3">
                 I am a...
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -178,17 +178,17 @@ export default function SignupForm() {
                       onClick={() => setFormData({ ...formData, user_type: type.value })}
                       className={`p-4 rounded-lg border-2 text-left transition-all ${
                         formData.user_type === type.value
-                          ? 'border-green-500 bg-green-50'
-                          : 'border-gray-200 hover:border-gray-300'
+                          ? 'border-farm-green-500 bg-farm-green-50'
+                          : 'border-warm-border hover:border-warm-border'
                       }`}
                     >
                       <div className="flex items-start gap-3">
                         <Icon className={`h-5 w-5 mt-0.5 ${
-                          formData.user_type === type.value ? 'text-green-600' : 'text-gray-400'
+                          formData.user_type === type.value ? 'text-farm-green-800' : 'text-soil-400'
                         }`} />
                         <div>
-                          <div className="font-medium text-gray-900">{type.label}</div>
-                          <div className="text-sm text-gray-500">{type.description}</div>
+                          <div className="font-medium text-soil-800">{type.label}</div>
+                          <div className="text-sm text-soil-400">{type.description}</div>
                         </div>
                       </div>
                     </button>
@@ -200,7 +200,7 @@ export default function SignupForm() {
             {/* Basic Info */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="full_name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="full_name" className="block text-sm font-medium text-soil-700 mb-1">
                   Full Name *
                 </label>
                 <input
@@ -209,12 +209,12 @@ export default function SignupForm() {
                   required
                   value={formData.full_name}
                   onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
               
               <div>
-                <label htmlFor="county" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="county" className="block text-sm font-medium text-soil-700 mb-1">
                   County *
                 </label>
                 <select
@@ -222,7 +222,7 @@ export default function SignupForm() {
                   required
                   value={formData.county}
                   onChange={(e) => setFormData({ ...formData, county: e.target.value as TexasTriangleCounty })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   {counties.map((county) => (
                     <option key={county.value} value={county.value}>
@@ -236,7 +236,7 @@ export default function SignupForm() {
             {/* Farm Name (for farmers only) */}
             {isFarmer && (
               <div>
-                <label htmlFor="farm_name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="farm_name" className="block text-sm font-medium text-soil-700 mb-1">
                   Farm/Business Name
                 </label>
                 <input
@@ -244,7 +244,7 @@ export default function SignupForm() {
                   type="text"
                   value={formData.farm_name}
                   onChange={(e) => setFormData({ ...formData, farm_name: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Optional"
                 />
               </div>
@@ -253,7 +253,7 @@ export default function SignupForm() {
             {/* Contact Info */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-soil-700 mb-1">
                   Email *
                 </label>
                 <input
@@ -262,12 +262,12 @@ export default function SignupForm() {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
               
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="phone" className="block text-sm font-medium text-soil-700 mb-1">
                   Phone
                 </label>
                 <input
@@ -275,7 +275,7 @@ export default function SignupForm() {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Optional"
                 />
               </div>
@@ -283,7 +283,7 @@ export default function SignupForm() {
             
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-soil-700 mb-1">
                 Password *
               </label>
               <input
@@ -293,9 +293,9 @@ export default function SignupForm() {
                 minLength={6}
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
-              <p className="text-xs text-gray-500 mt-1">At least 6 characters</p>
+              <p className="text-xs text-soil-400 mt-1">At least 6 characters</p>
             </div>
             
             {/* Error Message */}
@@ -310,7 +310,7 @@ export default function SignupForm() {
               type="submit"
               disabled={loading}
               className="w-full py-3 px-4 rounded-lg font-semibold text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
-              style={{ backgroundColor: loading ? '#94a3b8' : '#1976D2' }}
+              style={{ backgroundColor: loading ? '#A09E90' : '#C4622D' }}
             >
               {loading ? (
                 <>
@@ -322,9 +322,9 @@ export default function SignupForm() {
               )}
             </button>
             
-            <p className="text-center text-sm text-gray-600">
+            <p className="text-center text-sm text-soil-500">
               Already have an account?{' '}
-              <a href="/login" className="font-medium" style={{ color: '#1976D2' }}>
+              <a href="/login" className="font-medium" style={{ color: '#C4622D' }}>
                 Log in
               </a>
             </p>

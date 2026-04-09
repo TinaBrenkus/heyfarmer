@@ -79,7 +79,7 @@ export default function PullToRefresh({
             opacity: refreshProgress
           }}
         >
-          <div className="flex items-center gap-2 text-green-600">
+          <div className="flex items-center gap-2 text-farm-green-800">
             <RefreshCw 
               size={20} 
               className={`${isRefreshing ? 'animate-spin' : ''}`}

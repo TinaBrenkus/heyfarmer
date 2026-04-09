@@ -124,16 +124,16 @@ export default function Navigation() {
     return (
       <>
         {/* Desktop Public Navigation */}
-        <header className="hidden md:block bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <header className="hidden md:block bg-white shadow-sm border-b border-warm-border sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <Link href="/" className="flex items-center space-x-3">
-                <div className="p-2 rounded-lg" style={{ backgroundColor: '#2E7D32' }}>
+                <div className="p-2 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
                   <FarmLogo size={28} className="text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900">Hey Farmer</h1>
-                  <p className="text-xs" style={{ color: '#2E7D32' }}>Texas Triangle</p>
+                  <h1 className="text-xl font-bold text-soil-800">Hey Farmer</h1>
+                  <p className="text-xs" style={{ color: '#4A5E35' }}>Texas Triangle</p>
                 </div>
               </Link>
 
@@ -152,8 +152,8 @@ export default function Navigation() {
                       href={item.href}
                       className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                         isActive
-                          ? 'bg-green-50 text-green-700'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                          ? 'bg-farm-green-50 text-farm-green-800'
+                          : 'text-soil-500 hover:bg-soil-50 hover:text-soil-800'
                       }`}
                     >
                       <Icon size={18} />
@@ -166,13 +166,13 @@ export default function Navigation() {
               <div className="flex items-center gap-3">
                 <Link
                   href="/login"
-                  className="px-4 py-2 text-gray-700 font-medium hover:text-gray-900 transition-colors"
+                  className="px-4 py-2 text-soil-700 font-medium hover:text-soil-800 transition-colors"
                 >
                   Log In
                 </Link>
                 <Link
                   href="/signup"
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                  className="px-4 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
                 >
                   Sign Up Free
                 </Link>
@@ -183,24 +183,24 @@ export default function Navigation() {
 
         {/* Mobile Public Navigation */}
         <div className="md:hidden">
-          <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+          <header className="bg-white shadow-sm border-b border-warm-border sticky top-0 z-50">
             <div className="flex justify-between items-center h-14 px-4">
               <Link href="/" className="flex items-center gap-2">
-                <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#2E7D32' }}>
+                <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
                   <FarmLogo size={20} className="text-white" />
                 </div>
-                <h1 className="text-lg font-bold text-gray-900">Hey Farmer</h1>
+                <h1 className="text-lg font-bold text-soil-800">Hey Farmer</h1>
               </Link>
               <div className="flex items-center gap-2">
                 <Link
                   href="/login"
-                  className="px-3 py-1.5 text-sm text-gray-700 font-medium hover:text-gray-900"
+                  className="px-3 py-1.5 text-sm text-soil-700 font-medium hover:text-soil-800"
                 >
                   Log In
                 </Link>
                 <Link
                   href="/signup"
-                  className="px-3 py-1.5 text-sm bg-green-600 text-white rounded-lg font-medium hover:bg-green-700"
+                  className="px-3 py-1.5 text-sm bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800"
                 >
                   Sign Up
                 </Link>
@@ -209,7 +209,7 @@ export default function Navigation() {
           </header>
 
           {/* Mobile Bottom Tab Bar - Public */}
-          <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 shadow-lg">
+          <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-warm-border z-50 shadow-lg">
             <div className="safe-area-pb">
               <div className="grid grid-cols-4 h-16">
                 {[
@@ -225,13 +225,13 @@ export default function Navigation() {
                       href={item.href}
                       className={`flex flex-col items-center justify-center gap-1 py-2 transition-colors ${
                         isActive
-                          ? 'text-green-600 bg-green-50'
-                          : 'text-gray-600 hover:text-gray-800'
+                          ? 'text-farm-green-800 bg-farm-green-50'
+                          : 'text-soil-500 hover:text-soil-800'
                       }`}
                     >
                       <span className="text-lg">{item.emoji}</span>
                       <span className={`text-xs font-medium ${
-                        isActive ? 'text-green-700' : 'text-gray-600'
+                        isActive ? 'text-farm-green-800' : 'text-soil-500'
                       }`}>
                         {item.label}
                       </span>
@@ -249,17 +249,17 @@ export default function Navigation() {
   return (
     <>
       {/* Desktop Navigation - Authenticated */}
-      <header className="hidden md:block bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+      <header className="hidden md:block bg-white shadow-sm border-b border-warm-border sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link href="/dashboard" className="flex items-center space-x-3">
-              <div className="p-2 rounded-lg" style={{ backgroundColor: '#2E7D32' }}>
+              <div className="p-2 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
                 <FarmLogo size={28} className="text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">Hey Farmer</h1>
-                <p className="text-xs" style={{ color: '#2E7D32' }}>Texas Triangle</p>
+                <h1 className="text-xl font-bold text-soil-800">Hey Farmer</h1>
+                <p className="text-xs" style={{ color: '#4A5E35' }}>Texas Triangle</p>
               </div>
             </Link>
 
@@ -275,8 +275,8 @@ export default function Navigation() {
                     href={item.href}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                       isActive
-                        ? 'bg-green-50 text-green-700'
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                        ? 'bg-farm-green-50 text-farm-green-800'
+                        : 'text-soil-500 hover:bg-soil-50 hover:text-soil-800'
                     }`}
                   >
                     <Icon size={18} />
@@ -290,8 +290,8 @@ export default function Navigation() {
                   href={`/${getSlugFromCounty(profile.county)}`}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                     pathname.includes('-county')
-                      ? 'bg-green-50 text-green-700'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      ? 'bg-farm-green-50 text-farm-green-800'
+                      : 'text-soil-500 hover:bg-soil-50 hover:text-soil-800'
                   }`}
                 >
                   <MapPin size={18} />
@@ -306,7 +306,7 @@ export default function Navigation() {
               {isFarmer && (
                 <Link
                   href="/post"
-                  className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors"
                 >
                   <Plus size={18} />
                   <span>New Post</span>
@@ -314,12 +314,12 @@ export default function Navigation() {
               )}
 
               {/* User Profile */}
-              <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
+              <div className="flex items-center gap-3 pl-4 border-l border-warm-border">
                 {profile && (
                   <>
                     <div className="text-right">
-                      <p className="text-sm font-medium text-gray-900">{profile.full_name}</p>
-                      <p className="text-xs text-gray-500">{profile.farm_name || profile.email}</p>
+                      <p className="text-sm font-medium text-soil-800">{profile.full_name}</p>
+                      <p className="text-xs text-soil-400">{profile.farm_name || profile.email}</p>
                     </div>
                     <FarmerBadge
                       userType={profile.user_type}
@@ -331,7 +331,7 @@ export default function Navigation() {
                 )}
                 <button
                   onClick={handleSignOut}
-                  className="p-2 text-gray-600 hover:text-gray-900"
+                  className="p-2 text-soil-500 hover:text-soil-800"
                   title="Sign Out"
                 >
                   <LogOut size={18} />
@@ -345,19 +345,19 @@ export default function Navigation() {
       {/* Mobile Navigation */}
       <div className="md:hidden">
         {/* Mobile Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <header className="bg-white shadow-sm border-b border-warm-border sticky top-0 z-50">
           <div className="flex justify-between items-center h-14 px-4">
             <Link href="/dashboard" className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#2E7D32' }}>
+              <div className="p-1.5 rounded-lg" style={{ backgroundColor: '#4A5E35' }}>
                 <FarmLogo size={20} className="text-white" />
               </div>
-              <h1 className="text-lg font-bold text-gray-900">Hey Farmer</h1>
+              <h1 className="text-lg font-bold text-soil-800">Hey Farmer</h1>
             </Link>
 
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-gray-600"
+                className="p-2 text-soil-500"
               >
                 {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
@@ -371,10 +371,10 @@ export default function Navigation() {
             <div className="p-4">
               {/* User Info */}
               {profile && (
-                <div className="flex items-center gap-3 pb-4 mb-4 border-b border-gray-200">
+                <div className="flex items-center gap-3 pb-4 mb-4 border-b border-warm-border">
                   <div className="flex-1">
-                    <p className="font-medium text-gray-900">{profile.full_name}</p>
-                    <p className="text-sm text-gray-500">{profile.farm_name || profile.email}</p>
+                    <p className="font-medium text-soil-800">{profile.full_name}</p>
+                    <p className="text-sm text-soil-400">{profile.farm_name || profile.email}</p>
                   </div>
                   <FarmerBadge 
                     userType={profile.user_type}
@@ -397,8 +397,8 @@ export default function Navigation() {
                       onClick={() => setMobileMenuOpen(false)}
                       className={`flex items-center gap-3 px-3 py-3 rounded-lg font-medium transition-colors ${
                         isActive
-                          ? 'bg-green-50 text-green-700'
-                          : 'text-gray-700 hover:bg-gray-50'
+                          ? 'bg-farm-green-50 text-farm-green-800'
+                          : 'text-soil-700 hover:bg-soil-50'
                       }`}
                     >
                       <Icon size={20} />
@@ -413,8 +413,8 @@ export default function Navigation() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex items-center gap-3 px-3 py-3 rounded-lg font-medium transition-colors ${
                       pathname.includes('-county')
-                        ? 'bg-green-50 text-green-700'
-                        : 'text-gray-700 hover:bg-gray-50'
+                        ? 'bg-farm-green-50 text-farm-green-800'
+                        : 'text-soil-700 hover:bg-soil-50'
                     }`}
                   >
                     <MapPin size={20} />
@@ -425,11 +425,11 @@ export default function Navigation() {
 
               {/* Quick Actions */}
               {isFarmer && (
-                <div className="mt-4 pt-4 border-t border-gray-200">
+                <div className="mt-4 pt-4 border-t border-warm-border">
                   <Link
                     href="/post"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-green-600 text-white rounded-lg font-medium"
+                    className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-farm-green-800 text-white rounded-lg font-medium"
                   >
                     <Plus size={20} />
                     <span>Create New Post</span>
@@ -443,7 +443,7 @@ export default function Navigation() {
                   router.push('/dashboard?tour=true')
                   setMobileMenuOpen(false)
                 }}
-                className="flex items-center gap-3 w-full px-3 py-3 mt-4 text-green-600 hover:bg-green-50 rounded-lg font-medium"
+                className="flex items-center gap-3 w-full px-3 py-3 mt-4 text-farm-green-800 hover:bg-farm-green-50 rounded-lg font-medium"
               >
                 <HelpCircle size={20} />
                 <span>Take Tour</span>
@@ -462,7 +462,7 @@ export default function Navigation() {
         )}
 
         {/* Bottom Tab Bar */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 shadow-lg">
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-warm-border z-50 shadow-lg">
           <div className="safe-area-pb">
             <div className="grid grid-cols-5 h-16">
               {filteredMobileTabItems.map((item) => {
@@ -487,18 +487,18 @@ export default function Navigation() {
                     href={item.href}
                     className={`flex flex-col items-center justify-center gap-1 py-2 transition-colors ${
                       isActive
-                        ? 'text-green-600 bg-green-50'
-                        : 'text-gray-600 hover:text-gray-800'
+                        ? 'text-farm-green-800 bg-farm-green-50'
+                        : 'text-soil-500 hover:text-soil-800'
                     }`}
                   >
                     <div className="relative">
                       <span className="text-lg">{getTabEmoji(item.href)}</span>
                       {isActive && (
-                        <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-green-600 rounded-full"></div>
+                        <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-farm-green-800 rounded-full"></div>
                       )}
                     </div>
                     <span className={`text-xs font-medium ${
-                      isActive ? 'text-green-700' : 'text-gray-600'
+                      isActive ? 'text-farm-green-800' : 'text-soil-500'
                     }`}>
                       {item.label}
                     </span>
@@ -511,18 +511,18 @@ export default function Navigation() {
                   href={`/${getSlugFromCounty(profile.county)}`}
                   className={`flex flex-col items-center justify-center gap-1 py-2 transition-colors ${
                     pathname.includes('-county')
-                      ? 'text-green-600 bg-green-50'
-                      : 'text-gray-600 hover:text-gray-800'
+                      ? 'text-farm-green-800 bg-farm-green-50'
+                      : 'text-soil-500 hover:text-soil-800'
                   }`}
                 >
                   <div className="relative">
                     <MapPinLine size={24} weight="regular" />
                     {pathname.includes('-county') && (
-                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-green-600 rounded-full"></div>
+                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-farm-green-800 rounded-full"></div>
                     )}
                   </div>
                   <span className={`text-xs font-medium ${
-                    pathname.includes('-county') ? 'text-green-700' : 'text-gray-600'
+                    pathname.includes('-county') ? 'text-farm-green-800' : 'text-soil-500'
                   }`}>
                     Local
                   </span>

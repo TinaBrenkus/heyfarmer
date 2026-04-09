@@ -117,7 +117,7 @@ export default function MultiImageUpload({
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
           {images.map((image, index) => (
             <div key={index} className="relative group">
-              <div className="aspect-square rounded-lg overflow-hidden border-2 border-gray-200">
+              <div className="aspect-square rounded-lg overflow-hidden border-2 border-warm-border">
                 <img
                   src={image}
                   alt={`Upload ${index + 1}`}
@@ -127,7 +127,7 @@ export default function MultiImageUpload({
 
               {/* Primary Badge */}
               {index === 0 && (
-                <div className="absolute top-1 left-1 bg-green-600 text-white text-xs px-2 py-0.5 rounded">
+                <div className="absolute top-1 left-1 bg-farm-green-800 text-white text-xs px-2 py-0.5 rounded">
                   Main
                 </div>
               )}
@@ -176,19 +176,19 @@ export default function MultiImageUpload({
       {/* Upload Button */}
       {images.length < maxImages && (
         <label className="block">
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-green-500 hover:bg-green-50 transition-colors">
+          <div className="border-2 border-dashed border-warm-border rounded-lg p-6 text-center cursor-pointer hover:border-farm-green-500 hover:bg-farm-green-50 transition-colors">
             {uploading ? (
               <div className="flex flex-col items-center justify-center">
-                <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mb-2"></div>
-                <p className="text-sm text-gray-600">Uploading...</p>
+                <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mb-2"></div>
+                <p className="text-sm text-soil-500">Uploading...</p>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center">
-                <Upload className="h-10 w-10 text-gray-400 mb-2" />
-                <p className="text-sm font-medium text-gray-900 mb-1">
+                <Upload className="h-10 w-10 text-soil-400 mb-2" />
+                <p className="text-sm font-medium text-soil-800 mb-1">
                   {images.length === 0 ? 'Click to upload images' : 'Add another image'}
                 </p>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-soil-400">
                   {images.length} of {maxImages} images • PNG, JPG up to {maxSizeMB}MB each
                 </p>
               </div>
@@ -211,7 +211,7 @@ export default function MultiImageUpload({
       )}
 
       {images.length > 0 && (
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-soil-400">
           Tip: The first image will be used as the main photo. Drag images to reorder.
         </p>
       )}

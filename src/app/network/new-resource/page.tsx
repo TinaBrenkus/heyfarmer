@@ -111,15 +111,15 @@ export default function NewResourcePage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-soil-50">
       <Navigation />
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -127,20 +127,20 @@ export default function NewResourcePage() {
         <div className="mb-8">
           <button
             onClick={() => router.push('/network#resources')}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+            className="flex items-center gap-2 text-soil-500 hover:text-soil-800 mb-4"
           >
             <ArrowLeft size={20} />
             Back to Resources
           </button>
-          <h1 className="text-3xl font-bold text-gray-900">Add New Resource</h1>
-          <p className="text-gray-600 mt-2">Share helpful tools and links with the farming community</p>
+          <h1 className="text-3xl font-bold text-soil-800">Add New Resource</h1>
+          <p className="text-soil-500 mt-2">Share helpful tools and links with the farming community</p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Resource Title */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-soil-700 mb-2">
               Resource Title *
             </label>
             <input
@@ -149,13 +149,13 @@ export default function NewResourcePage() {
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="e.g., Johnny's Seed Calculator"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             />
           </div>
 
           {/* Description */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-soil-700 mb-2">
               Description *
             </label>
             <textarea
@@ -165,16 +165,16 @@ export default function NewResourcePage() {
               placeholder="Brief description (50-100 characters)"
               rows={2}
               maxLength={150}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             />
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-soil-400 mt-1">
               {formData.description.length}/150 characters
             </p>
           </div>
 
           {/* URL */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-soil-700 mb-2">
               Resource URL *
             </label>
             <input
@@ -183,21 +183,21 @@ export default function NewResourcePage() {
               value={formData.url}
               onChange={(e) => setFormData({ ...formData, url: e.target.value })}
               placeholder="https://example.com"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             />
           </div>
 
           {/* Category & Icon */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-soil-700 mb-2">
                 Category *
               </label>
               <select
                 required
                 value={formData.category}
                 onChange={(e) => handleCategoryChange(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               >
                 {categories.map(cat => (
                   <option key={cat.value} value={cat.value}>{cat.label}</option>
@@ -206,7 +206,7 @@ export default function NewResourcePage() {
             </div>
 
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-soil-700 mb-2">
                 Icon (Emoji)
               </label>
               <input
@@ -215,14 +215,14 @@ export default function NewResourcePage() {
                 onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
                 placeholder=""
                 maxLength={2}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-2xl"
+                className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent text-2xl"
               />
             </div>
           </div>
 
           {/* Display Order */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-soil-700 mb-2">
               Display Order (optional)
             </label>
             <input
@@ -231,9 +231,9 @@ export default function NewResourcePage() {
               onChange={(e) => setFormData({ ...formData, displayOrder: parseInt(e.target.value) || 0 })}
               min="0"
               placeholder="0"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
             />
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-soil-400 mt-1">
               Lower numbers appear first within their category (0 = default order)
             </p>
           </div>
@@ -245,11 +245,11 @@ export default function NewResourcePage() {
                 type="checkbox"
                 checked={formData.isFeatured}
                 onChange={(e) => setFormData({ ...formData, isFeatured: e.target.checked })}
-                className="w-5 h-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                className="w-5 h-5 text-farm-green-800 border-warm-border rounded focus:ring-farm-green-500"
               />
               <div>
-                <span className="font-medium text-gray-900">Featured Resource</span>
-                <p className="text-sm text-gray-600">Highlight this resource in the library</p>
+                <span className="font-medium text-soil-800">Featured Resource</span>
+                <p className="text-sm text-soil-500">Highlight this resource in the library</p>
               </div>
             </label>
           </div>
@@ -259,14 +259,14 @@ export default function NewResourcePage() {
             <button
               type="button"
               onClick={() => router.push('/network#resources')}
-              className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+              className="px-6 py-3 bg-soil-100 text-soil-700 rounded-lg font-medium hover:bg-soil-200 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={saving}
-              className="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center gap-2 justify-center"
+              className="px-6 py-3 bg-farm-green-800 text-white rounded-lg font-medium hover:bg-farm-green-800 transition-colors disabled:opacity-50 flex items-center gap-2 justify-center"
             >
               <Plus size={20} />
               {saving ? 'Adding...' : 'Add Resource'}
@@ -275,9 +275,9 @@ export default function NewResourcePage() {
         </form>
 
         {/* Example Resources */}
-        <div className="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <div className="mt-12 bg-terra-50 border border-terra-200 rounded-lg p-6">
           <h3 className="font-semibold text-blue-900 mb-3">Example Resources to Add:</h3>
-          <div className="space-y-2 text-sm text-blue-800">
+          <div className="space-y-2 text-sm text-terra-800">
             <p><strong>Podcasts:</strong> Soil Sisters, No-Till Market Garden, Farm Small Farm Smart</p>
             <p><strong>Government:</strong> USDA Programs, Texas Dept of Agriculture, NRCS Texas</p>
             <p><strong>Tools:</strong> Johnny's Seed Calculator, NOAA Weather, Square Foot Garden Planner</p>

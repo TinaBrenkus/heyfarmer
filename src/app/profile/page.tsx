@@ -90,8 +90,8 @@ export default function ProfilePage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-green-600 animate-spin mx-auto mb-4" />
-          <p className="text-gray-600">Loading profile...</p>
+          <Loader2 className="w-12 h-12 text-farm-green-800 animate-spin mx-auto mb-4" />
+          <p className="text-soil-500">Loading profile...</p>
         </div>
       </div>
     )
@@ -102,7 +102,7 @@ export default function ProfilePage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-600">Failed to load profile</p>
-          <Link href="/dashboard" className="text-blue-600 hover:underline mt-4 inline-block">
+          <Link href="/dashboard" className="text-terra-600 hover:underline mt-4 inline-block">
             Go to Dashboard
           </Link>
         </div>
@@ -111,22 +111,22 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-soil-50">
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+            className="inline-flex items-center gap-2 text-soil-500 hover:text-soil-800 mb-4"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Dashboard
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Profile Settings</h1>
-          <p className="text-gray-600 mt-2">Manage your account information and profile photo</p>
+          <h1 className="text-3xl font-bold text-soil-800">Profile Settings</h1>
+          <p className="text-soil-500 mt-2">Manage your account information and profile photo</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 divide-y divide-gray-200">
+        <div className="bg-white rounded-lg shadow-sm border border-warm-border divide-y divide-gray-200">
           {/* Profile Photo Section */}
           <div className="p-6">
             <ProfilePhotoUpload
@@ -140,12 +140,12 @@ export default function ProfilePage() {
 
           {/* Profile Information */}
           <div className="p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Profile Information</h2>
+            <h2 className="text-xl font-semibold text-soil-800 mb-6">Profile Information</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Full Name */}
               <div>
-                <label htmlFor="full_name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="full_name" className="block text-sm font-medium text-soil-700 mb-1">
                   <div className="flex items-center gap-2">
                     <User className="w-4 h-4" />
                     Full Name
@@ -157,7 +157,7 @@ export default function ProfilePage() {
                   type="text"
                   value={profile.full_name || ''}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   required
                 />
               </div>
@@ -165,7 +165,7 @@ export default function ProfilePage() {
               {/* Farm Name (if farmer) */}
               {profile.user_type !== 'consumer' && (
                 <div>
-                  <label htmlFor="farm_name" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="farm_name" className="block text-sm font-medium text-soil-700 mb-1">
                     Farm/Garden Name
                   </label>
                   <input
@@ -174,14 +174,14 @@ export default function ProfilePage() {
                     type="text"
                     value={profile.farm_name || ''}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   />
                 </div>
               )}
 
               {/* Phone */}
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="phone" className="block text-sm font-medium text-soil-700 mb-1">
                   <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4" />
                     Phone Number
@@ -193,13 +193,13 @@ export default function ProfilePage() {
                   type="tel"
                   value={profile.phone || ''}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 />
               </div>
 
               {/* Bio */}
               <div>
-                <label htmlFor="bio" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="bio" className="block text-sm font-medium text-soil-700 mb-1">
                   <div className="flex items-center gap-2">
                     <FileText className="w-4 h-4" />
                     Bio
@@ -211,30 +211,30 @@ export default function ProfilePage() {
                   rows={4}
                   value={profile.bio || ''}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                  className="w-full px-4 py-3 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent resize-none"
                   placeholder="Tell others about yourself..."
                 />
               </div>
 
               {/* Read-only fields */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-warm-border">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-soil-700 mb-1">
                     Email
                   </label>
-                  <div className="px-4 py-3 bg-gray-50 rounded-lg text-gray-700">
+                  <div className="px-4 py-3 bg-soil-50 rounded-lg text-soil-700">
                     {user.email}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-soil-700 mb-1">
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4" />
                       County
                     </div>
                   </label>
-                  <div className="px-4 py-3 bg-gray-50 rounded-lg text-gray-700">
+                  <div className="px-4 py-3 bg-soil-50 rounded-lg text-soil-700">
                     {profile.county?.replace(/-/g, ' ')?.replace(/\b\w/g, (l: string) => l.toUpperCase()) || 'Not set'}
                   </div>
                 </div>
@@ -242,8 +242,8 @@ export default function ProfilePage() {
 
               {/* Success Message */}
               {success && (
-                <div className="p-3 rounded-lg bg-green-50 border border-green-200">
-                  <p className="text-sm text-green-700">Profile updated successfully!</p>
+                <div className="p-3 rounded-lg bg-farm-green-50 border border-warm-border">
+                  <p className="text-sm text-farm-green-800">Profile updated successfully!</p>
                 </div>
               )}
 
@@ -260,7 +260,7 @@ export default function ProfilePage() {
                   type="submit"
                   disabled={saving}
                   className="px-6 py-3 rounded-lg font-semibold text-white transition-colors disabled:opacity-50 flex items-center gap-2"
-                  style={{ backgroundColor: saving ? '#94a3b8' : '#2E7D32' }}
+                  style={{ backgroundColor: saving ? '#A09E90' : '#4A5E35' }}
                 >
                   {saving && <Loader2 className="w-4 h-4 animate-spin" />}
                   {saving ? 'Saving...' : 'Save Changes'}

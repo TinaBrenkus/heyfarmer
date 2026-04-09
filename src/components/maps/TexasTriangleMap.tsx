@@ -67,11 +67,11 @@ const counties: County[] = [
 ]
 
 const metroColors: Record<string, { bg: string; hover: string; text: string }> = {
-  'Dallas-Fort Worth': { bg: '#3B82F6', hover: '#2563EB', text: 'text-blue-600' },
+  'Dallas-Fort Worth': { bg: '#3B82F6', hover: '#2563EB', text: 'text-terra-600' },
   'Austin': { bg: '#8B5CF6', hover: '#7C3AED', text: 'text-purple-600' },
   'San Antonio': { bg: '#EF4444', hover: '#DC2626', text: 'text-red-600' },
-  'Houston': { bg: '#F97316', hover: '#EA580C', text: 'text-orange-600' },
-  'Central Corridor': { bg: '#22C55E', hover: '#16A34A', text: 'text-green-600' },
+  'Houston': { bg: '#F97316', hover: '#EA580C', text: 'text-terra-600' },
+  'Central Corridor': { bg: '#22C55E', hover: '#16A34A', text: 'text-farm-green-800' },
 }
 
 interface TexasTriangleMapProps {
@@ -102,7 +102,7 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
           className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
             !selectedMetro
               ? 'bg-gray-800 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              : 'bg-soil-100 text-soil-700 hover:bg-soil-200'
           }`}
         >
           All Areas
@@ -114,7 +114,7 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               selectedMetro === metro
                 ? 'text-white'
-                : 'bg-gray-100 hover:bg-gray-200'
+                : 'bg-soil-100 hover:bg-soil-200'
             }`}
             style={selectedMetro === metro ? { backgroundColor: colors.bg } : {}}
           >
@@ -126,10 +126,10 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
       </div>
 
       {/* Map Container */}
-      <div className="relative bg-gradient-to-br from-amber-50 via-green-50 to-blue-50 rounded-xl p-4 md:p-8 overflow-hidden border border-gray-200">
+      <div className="relative bg-gradient-to-br from-amber-50 via-green-50 to-blue-50 rounded-xl p-4 md:p-8 overflow-hidden border border-warm-border">
         {/* Texas State Inset - Shows where the Triangle is */}
-        <div className="absolute top-3 left-3 bg-white/90 rounded-lg shadow-md p-2 border border-gray-200 z-10">
-          <p className="text-[9px] font-semibold text-gray-600 mb-1 text-center">Texas Triangle</p>
+        <div className="absolute top-3 left-3 bg-white/90 rounded-lg shadow-md p-2 border border-warm-border z-10">
+          <p className="text-[9px] font-semibold text-soil-500 mb-1 text-center">Texas Triangle</p>
           <svg viewBox="0 0 100 100" className="w-16 h-16 md:w-20 md:h-20">
             {/* Realistic Texas state outline */}
             <path
@@ -174,9 +174,9 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
             <circle cx="38" cy="58" r="2.5" fill="#8B5CF6" /> {/* Austin */}
           </svg>
           <div className="flex flex-wrap justify-center gap-1 mt-1">
-            <span className="text-[7px] text-gray-500">39 Counties</span>
-            <span className="text-[7px] text-gray-400">•</span>
-            <span className="text-[7px] text-gray-500">4 Metros</span>
+            <span className="text-[7px] text-soil-400">39 Counties</span>
+            <span className="text-[7px] text-soil-400">•</span>
+            <span className="text-[7px] text-soil-400">4 Metros</span>
           </div>
         </div>
 
@@ -196,7 +196,7 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
           {/* Texas Triangle region highlight */}
           <path
             d="M 60 5 L 95 75 L 5 95 Z"
-            fill="#dcfce7"
+            fill="#F0EDE4"
             fillOpacity="0.4"
             stroke="#22c55e"
             strokeWidth="0.8"
@@ -334,17 +334,17 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
 
         {/* Hover Info Card */}
         {hoveredCounty && (
-          <div className="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-3 min-w-[150px] border border-gray-100">
+          <div className="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-3 min-w-[150px] border border-warm-border">
             {(() => {
               const county = counties.find(c => c.id === hoveredCounty)
               if (!county) return null
               const colors = metroColors[county.metro]
               return (
                 <>
-                  <h4 className="font-bold text-gray-900">{county.name} County</h4>
+                  <h4 className="font-bold text-soil-800">{county.name} County</h4>
                   <p className={`text-sm ${colors.text}`}>{county.metro}</p>
                   {showLinks && (
-                    <p className="text-xs text-gray-500 mt-1">Click to view listings</p>
+                    <p className="text-xs text-soil-400 mt-1">Click to view listings</p>
                   )}
                 </>
               )
@@ -353,7 +353,7 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
         )}
 
         {/* Map Legend */}
-        <div className="absolute bottom-2 left-2 bg-white/80 rounded px-2 py-1 text-[10px] text-gray-500">
+        <div className="absolute bottom-2 left-2 bg-white/80 rounded px-2 py-1 text-[10px] text-soil-400">
           <div className="flex items-center gap-1">
             <div className="w-3 h-0.5 bg-amber-400 rounded"></div>
             <span>Interstate Highways</span>
@@ -362,8 +362,8 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
       </div>
 
       {/* County Count */}
-      <p className="text-center text-sm text-gray-500 mt-4">
-        Serving <span className="font-semibold text-gray-700">{filteredCounties.length}</span> counties
+      <p className="text-center text-sm text-soil-400 mt-4">
+        Serving <span className="font-semibold text-soil-700">{filteredCounties.length}</span> counties
         {selectedMetro && ` in ${selectedMetro}`}
         {!selectedMetro && ' across the Texas Triangle'}
       </p>

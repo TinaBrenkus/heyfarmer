@@ -58,8 +58,8 @@ export default function SellPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <div className="w-8 h-8 border-4 border-farm-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-soil-500">Loading...</p>
         </div>
       </div>
     )
@@ -70,7 +70,7 @@ export default function SellPage() {
 
   if (!canCreateListings) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-soil-50">
         <Header />
         
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -81,24 +81,24 @@ export default function SellPage() {
               </svg>
             </div>
             
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl font-bold text-soil-800 mb-4">
               Farmer Account Required
             </h1>
             
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-soil-500 mb-8 max-w-2xl mx-auto">
               Only registered farmers (Backyard Growers, Market Gardeners, and Production Farmers) can create listings on Hey Farmer. 
               Consumers can browse and purchase from our marketplace.
             </p>
 
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8 max-w-md mx-auto">
-              <h3 className="font-semibold text-gray-900 mb-4">Want to become a farmer on Hey Farmer?</h3>
-              <p className="text-sm text-gray-600 mb-4">
+            <div className="bg-white rounded-lg shadow-sm border border-warm-border p-6 mb-8 max-w-md mx-auto">
+              <h3 className="font-semibold text-soil-800 mb-4">Want to become a farmer on Hey Farmer?</h3>
+              <p className="text-sm text-soil-500 mb-4">
                 Update your account type in your profile settings to start selling produce, equipment, and resources.
               </p>
               <button
                 onClick={() => router.push('/dashboard')}
                 className="w-full py-2 px-4 rounded-lg font-medium text-white transition-colors"
-                style={{ backgroundColor: '#2E7D32' }}
+                style={{ backgroundColor: '#4A5E35' }}
               >
                 Go to Profile Settings
               </button>
@@ -107,7 +107,7 @@ export default function SellPage() {
             <div className="text-center">
               <button
                 onClick={() => router.push('/marketplace')}
-                className="text-blue-600 hover:text-blue-700 font-medium"
+                className="text-terra-600 hover:text-terra-700 font-medium"
               >
                 ← Browse Marketplace Instead
               </button>
@@ -121,16 +121,16 @@ export default function SellPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-soil-50">
       <Header />
       
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Sell on <span style={{ color: '#2E7D32' }}>Hey Farmer</span>
+          <h1 className="text-4xl font-bold text-soil-800 mb-4">
+            Sell on <span style={{ color: '#4A5E35' }}>Hey Farmer</span>
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-soil-500 max-w-2xl mx-auto">
             List your produce, equipment, or farming resources to connect with the Texas Triangle farming community
           </p>
         </div>

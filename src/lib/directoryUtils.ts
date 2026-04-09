@@ -75,12 +75,12 @@ export function getDataSourceOptions(): { value: string; label: string }[] {
  */
 export function getStatusInfo(status: string): { label: string; color: string; bgColor: string } {
   const statusMap: Record<string, { label: string; color: string; bgColor: string }> = {
-    'draft': { label: 'Draft', color: 'text-gray-700', bgColor: 'bg-gray-100' },
-    'published': { label: 'Published', color: 'text-green-700', bgColor: 'bg-green-100' },
-    'claimed': { label: 'Claimed', color: 'text-blue-700', bgColor: 'bg-blue-100' },
+    'draft': { label: 'Draft', color: 'text-soil-700', bgColor: 'bg-soil-100' },
+    'published': { label: 'Published', color: 'text-farm-green-800', bgColor: 'bg-farm-green-100' },
+    'claimed': { label: 'Claimed', color: 'text-terra-700', bgColor: 'bg-terra-100' },
     'removed': { label: 'Removed', color: 'text-red-700', bgColor: 'bg-red-100' }
   }
-  return statusMap[status] || { label: status, color: 'text-gray-700', bgColor: 'bg-gray-100' }
+  return statusMap[status] || { label: status, color: 'text-soil-700', bgColor: 'bg-soil-100' }
 }
 
 /**

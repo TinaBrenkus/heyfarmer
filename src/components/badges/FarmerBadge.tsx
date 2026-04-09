@@ -15,29 +15,29 @@ const badgeConfig = {
   consumer: {
     icon: ShoppingCart,
     label: 'Food Lover',
-    bgColor: '#E3F2FD',
-    iconColor: '#1976D2',
+    bgColor: '#FAF0E8',
+    iconColor: '#C4622D',
     iconName: 'ShoppingCart'
   },
   backyard_grower: {
     icon: Home,
     label: 'Backyard Grower',
-    bgColor: '#E8F5E9',
-    iconColor: '#2E7D32',
+    bgColor: '#F0EDE4',
+    iconColor: '#4A5E35',
     iconName: 'House'
   },
   market_gardener: {
     icon: Leaf,
     label: 'Market Gardener',
-    bgColor: '#FFF3E0',
-    iconColor: '#F57C00',
+    bgColor: '#F5F2EA',
+    iconColor: '#4A5E35',
     iconName: 'Plant'
   },
   production_farmer: {
     icon: Tractor,
     label: 'Production Farm',
-    bgColor: '#E3F2FD',
-    iconColor: '#1565C0',
+    bgColor: '#FAF0E8',
+    iconColor: '#B35526',
     iconName: 'Tractor'
   }
 }
@@ -101,7 +101,7 @@ export default function FarmerBadge({
       {verified && (
         <Star 
           className={`${sizes.star} fill-current`}
-          style={{ color: '#FFB300' }}
+          style={{ color: '#C4622D' }}
         />
       )}
     </div>
