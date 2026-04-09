@@ -1,37 +1,59 @@
 @import "tailwindcss";
 
-:root {
-  --background: #FAF7F0;
-  --foreground: #2C2C24;
-
-  /* Hey Farmer Earthy Brand Colors */
-  --farm-green: #4A5E35;
-  --farm-sage: #6B7F4A;
-  --terra: #C4622D;
-  --cream: #FAF7F0;
-  --soil-dark: #2C2C24;
-  --soil-medium: #5C5C4A;
-  --warm-border: #E8E4D8;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* Custom brand colors */
-  --color-farm-green: var(--farm-green);
-  --color-farm-sage: var(--farm-sage);
-  --color-terra: var(--terra);
-  --color-cream: var(--cream);
-  --color-soil-dark: var(--soil-dark);
-  --color-soil-medium: var(--soil-medium);
-  --color-warm-border: var(--warm-border);
+  --color-background: #FAF7F0;
+  --color-foreground: #2C2C24;
+
+  /* ============================
+     HEY FARMER EARTHY PALETTE
+     ============================ */
+
+  /* Farm Green — Primary Brand (Deep Olive) */
+  --color-farm-green-50: #F0EDE4;
+  --color-farm-green-100: #DDD8C8;
+  --color-farm-green-200: #B8B49E;
+  --color-farm-green-300: #9A9A7E;
+  --color-farm-green-400: #7E8A62;
+  --color-farm-green-500: #6B7F4A;
+  --color-farm-green-600: #5E7240;
+  --color-farm-green-700: #526638;
+  --color-farm-green-800: #4A5E35;
+  --color-farm-green-900: #3A4A28;
+
+  /* Terra — Terracotta Accent (CTAs, highlights) */
+  --color-terra-50: #FAF0E8;
+  --color-terra-100: #F0DCC8;
+  --color-terra-200: #E8C4A0;
+  --color-terra-300: #E0A880;
+  --color-terra-400: #D98E60;
+  --color-terra-500: #D07340;
+  --color-terra-600: #C4622D;
+  --color-terra-700: #B35526;
+  --color-terra-800: #8C4420;
+  --color-terra-900: #6B3318;
+
+  /* Soil — Text & Neutral Tones (Warm near-black to cream) */
+  --color-soil-50: #FAF7F0;
+  --color-soil-100: #F5F2EA;
+  --color-soil-200: #E8E4D8;
+  --color-soil-300: #D4D0BE;
+  --color-soil-400: #A09E90;
+  --color-soil-500: #5C5C4A;
+  --color-soil-600: #4A4A3C;
+  --color-soil-700: #3A3A30;
+  --color-soil-800: #2C2C24;
+  --color-soil-900: #1E1E18;
+
+  /* Utility colors */
+  --color-cream: #FAF7F0;
+  --color-warm-border: #E8E4D8;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #FAF7F0;
+  color: #2C2C24;
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
