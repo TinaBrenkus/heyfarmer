@@ -121,10 +121,19 @@ export default function WelcomePage() {
             <p className="text-lg text-green-600 font-semibold">
               Connect • Trade • Grow Together
             </p>
+            <p className="text-base text-gray-500 mt-2">
+              Free for Texas farmers, market gardeners, and the families who want their food.
+            </p>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          {/* Primary CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
+            <Link
+              href="/farmers"
+              className="px-8 py-4 bg-white border-2 border-green-600 text-green-600 rounded-xl font-semibold text-lg shadow-lg hover:bg-green-50 transition-all transform hover:scale-105 flex items-center justify-center"
+            >
+              Browse Farmers
+            </Link>
             <Link
               href="/signup"
               className="group px-8 py-4 bg-green-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:bg-green-700 transition-all transform hover:scale-105 flex items-center justify-center gap-3"
@@ -132,33 +141,31 @@ export default function WelcomePage() {
               Get Started
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link
-              href="/login"
-              className="px-8 py-4 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
-              style={{ backgroundColor: '#1976D2' }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = '#1565C0'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = '#1976D2'}
-            >
-              Already a member?
-            </Link>
           </div>
-          
+
           {/* Secondary Links */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
             <Link
-              href="/how-it-works"
-              className="px-6 py-3 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
-              style={{ backgroundColor: '#FFA726' }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = '#FF9800'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = '#FFA726'}
+              href="/founding-farmers"
+              className="px-5 py-2.5 bg-white border border-green-400 text-green-600 rounded-lg font-medium text-sm hover:bg-green-50 transition-all"
             >
-              How It Works
+              Founding Farmers
             </Link>
             <Link
               href="/about"
-              className="px-6 py-3 bg-white border-2 border-green-500 text-green-600 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:bg-green-50 transition-all transform hover:scale-105"
+              className="px-5 py-2.5 bg-white border border-green-400 text-green-600 rounded-lg font-medium text-sm hover:bg-green-50 transition-all"
             >
               About Hey Farmer
+            </Link>
+          </div>
+
+          {/* Sign in text link */}
+          <div className="text-center mb-16">
+            <Link
+              href="/login"
+              className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+            >
+              Already a member? <span className="underline">Sign in</span>
             </Link>
           </div>
 
