@@ -94,7 +94,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="border-l-4 border-blue-500 pl-4">
+            <div className="border-l-4 border-terra-500 pl-4">
               <h3 className="font-semibold text-soil-800 mb-2">Is Hey Farmer really free to use?</h3>
               <p className="text-soil-700">
                 Yes! Hey Farmer is completely free for farmers and consumers. We don't charge listing fees, 
@@ -120,7 +120,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="border-l-4 border-blue-500 pl-4">
+            <div className="border-l-4 border-terra-500 pl-4">
               <h3 className="font-semibold text-soil-800 mb-2">Can backyard growers sell on Hey Farmer?</h3>
               <p className="text-soil-700">
                 Absolutely! We welcome everyone from large production farms to backyard gardeners with surplus 

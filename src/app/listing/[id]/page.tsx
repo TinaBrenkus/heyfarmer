@@ -220,7 +220,7 @@ export default function ListingDetailPage() {
               <div className="absolute top-4 right-4">
                 <button
                   onClick={() => router.push(`/sell/${listing.id}`)}
-                  className="px-4 py-2 bg-terra-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  className="px-4 py-2 bg-terra-600 text-white rounded-lg hover:bg-terra-700 transition-colors font-medium"
                 >
                   Edit Listing
                 </button>

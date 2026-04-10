@@ -296,7 +296,7 @@ export default function ProfilePreviewPage() {
               <div className="flex items-start gap-3">
                 <span className="text-lg">ℹ️</span>
                 <div>
-                  <h4 className="font-medium text-blue-900 mb-2">Profile Visibility</h4>
+                  <h4 className="font-medium text-soil-800 mb-2">Profile Visibility</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex items-center gap-2">
                       <span className={profile.privacy_settings.show_in_marketplace ? '' : '❌'}></span>

@@ -98,7 +98,7 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
 
   const getMarkerColor = (postType: string) => {
     switch (postType) {
-      case 'fresh_produce': return '#22c55e'
+      case 'fresh_produce': return '#6B7F4A'
       case 'equipment': return '#f97316'
       case 'plants_seeds': return '#8b5cf6'
       case 'livestock': return '#ef4444'
@@ -172,7 +172,7 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
             : ''
 
           const priceHtml = listing.price
-            ? `<p style="color:#16a34a;font-weight:600;font-size:13px;">$${listing.price}${listing.unit ? '/' + listing.unit : ''}</p>`
+            ? `<p style="color:#4A5E35;font-weight:600;font-size:13px;">$${listing.price}${listing.unit ? '/' + listing.unit : ''}</p>`
             : ''
 
           const sellerInfo = listing.profiles?.farm_name || listing.profiles?.full_name || ''
@@ -184,7 +184,7 @@ export default function CountyListingsMap({ county, listings }: CountyListingsMa
               <h3 style="font-weight:600;color:#111;font-size:14px;margin:0 0 4px 0;">${listing.title}</h3>
               ${priceHtml}
               <p style="font-size:11px;color:#666;margin:4px 0 0 0;">${sellerInfo}${cityInfo}</p>
-              <a href="/listing/${listing.id}" style="display:inline-block;margin-top:8px;font-size:12px;color:#16a34a;font-weight:500;text-decoration:none;">View Details →</a>
+              <a href="/listing/${listing.id}" style="display:inline-block;margin-top:8px;font-size:12px;color:#4A5E35;font-weight:500;text-decoration:none;">View Details →</a>
             </div>
           `)
         })

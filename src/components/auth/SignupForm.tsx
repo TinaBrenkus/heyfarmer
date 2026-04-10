@@ -207,7 +207,7 @@ export default function SignupForm() {
                   required
                   value={formData.full_name}
                   onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 />
               </div>
               
@@ -220,7 +220,7 @@ export default function SignupForm() {
                   required
                   value={formData.county}
                   onChange={(e) => setFormData({ ...formData, county: e.target.value as TexasTriangleCounty })}
-                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 >
                   {counties.map((county) => (
                     <option key={county.value} value={county.value}>
@@ -242,7 +242,7 @@ export default function SignupForm() {
                   type="text"
                   value={formData.farm_name}
                   onChange={(e) => setFormData({ ...formData, farm_name: e.target.value })}
-                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   placeholder="Optional"
                 />
               </div>
@@ -260,7 +260,7 @@ export default function SignupForm() {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                 />
               </div>
               
@@ -273,7 +273,7 @@ export default function SignupForm() {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                   placeholder="Optional"
                 />
               </div>
@@ -291,7 +291,7 @@ export default function SignupForm() {
                 minLength={6}
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
               />
               <p className="text-xs text-soil-400 mt-1">At least 6 characters</p>
             </div>

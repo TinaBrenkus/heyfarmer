@@ -288,7 +288,7 @@ export default function FarmPage() {
             </p>
             <Link
               href={`/profile/${farm.claimed_by}`}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-terra-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-terra-600 text-white rounded-lg font-medium hover:bg-terra-700 transition-colors"
             >
               View Full Profile
             </Link>

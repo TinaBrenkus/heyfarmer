@@ -724,7 +724,7 @@ export default function ProfileSettingsPage() {
                 <div className="flex items-start gap-2">
                   <Lightbulb size={24} weight="regular" />
                   <div>
-                    <p className="text-sm font-medium text-blue-900">Privacy Tip</p>
+                    <p className="text-sm font-medium text-soil-800">Privacy Tip</p>
                     <p className="text-xs text-terra-700">
                       You can always update these settings later. Having a public profile helps customers find and trust your products.
                     </p>

@@ -272,7 +272,7 @@ export default function ConversationPage() {
                       <span className="text-sm font-medium text-soil-700">{message.sender.name} (You)</span>
                       <ChatCircle size={24} weight="regular" />
                     </div>
-                    <div className="bg-blue-500 text-white px-4 py-3 rounded-lg rounded-tl-sm">
+                    <div className="bg-terra-500 text-white px-4 py-3 rounded-lg rounded-tl-sm">
                       <p className="text-sm">{message.content}</p>
                     </div>
                     <p className="text-xs text-soil-400 text-left mt-1">

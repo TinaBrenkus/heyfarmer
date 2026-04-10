@@ -256,7 +256,7 @@ export default function ListingCard({
             {isOwnListing ? (
               <button
                 onClick={() => router.push(`/sell/${listing.id}`)}
-                className="flex-1 py-2 px-3 rounded-lg font-medium text-white transition-colors flex items-center justify-center gap-2 bg-terra-600 hover:bg-blue-700"
+                className="flex-1 py-2 px-3 rounded-lg font-medium text-white transition-colors flex items-center justify-center gap-2 bg-terra-600 hover:bg-terra-700"
               >
                 <Edit size={14} />
                 Edit Listing

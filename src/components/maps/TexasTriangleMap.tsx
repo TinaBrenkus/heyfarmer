@@ -71,7 +71,7 @@ const metroColors: Record<string, { bg: string; hover: string; text: string }> =
   'Austin': { bg: '#8B5CF6', hover: '#7C3AED', text: 'text-purple-600' },
   'San Antonio': { bg: '#EF4444', hover: '#DC2626', text: 'text-red-600' },
   'Houston': { bg: '#F97316', hover: '#EA580C', text: 'text-terra-600' },
-  'Central Corridor': { bg: '#22C55E', hover: '#16A34A', text: 'text-farm-green-800' },
+  'Central Corridor': { bg: '#6B7F4A', hover: '#4A5E35', text: 'text-farm-green-800' },
 }
 
 interface TexasTriangleMapProps {
@@ -162,9 +162,9 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
             {/* Texas Triangle region highlighted */}
             <path
               d="M 55 18 L 82 70 L 22 78 Z"
-              fill="#22c55e"
+              fill="#6B7F4A"
               fillOpacity="0.4"
-              stroke="#16a34a"
+              stroke="#4A5E35"
               strokeWidth="1.5"
             />
             {/* Metro city dots */}
@@ -198,7 +198,7 @@ export default function TexasTriangleMap({ showLinks = true, onCountyClick }: Te
             d="M 60 5 L 95 75 L 5 95 Z"
             fill="#F0EDE4"
             fillOpacity="0.4"
-            stroke="#22c55e"
+            stroke="#6B7F4A"
             strokeWidth="0.8"
             strokeDasharray="3,2"
           />

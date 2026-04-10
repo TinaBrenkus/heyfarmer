@@ -272,7 +272,7 @@ ${profile?.full_name}`
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-8 h-8 border-4 border-terra-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-soil-500">Loading dashboard...</p>
         </div>
       </div>
@@ -452,7 +452,7 @@ ${profile?.full_name}`
                     </button>
                   </div>
                   <div className="flex items-center gap-3 p-2 bg-terra-50 rounded-lg border border-terra-100">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-terra-500 rounded-full flex-shrink-0"></div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-soil-800 truncate">Join farmer network</p>
                     </div>
@@ -479,7 +479,7 @@ ${profile?.full_name}`
                     </button>
                   </div>
                   <div className="flex items-center gap-3 p-2 bg-terra-50 rounded-lg border border-terra-100">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-terra-500 rounded-full flex-shrink-0"></div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-soil-800 truncate">Complete profile</p>
                     </div>
@@ -599,7 +599,7 @@ ${profile?.full_name}`
                         <div className="flex flex-col gap-2">
                           <button
                             onClick={() => router.push(`/sell/${listing.id}`)}
-                            className="px-3 py-1.5 text-sm bg-terra-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-1"
+                            className="px-3 py-1.5 text-sm bg-terra-600 text-white rounded-lg hover:bg-terra-700 transition-colors flex items-center gap-1"
                           >
                             <Tractor className="h-4 w-4" />
                             Edit
@@ -724,7 +724,7 @@ ${profile?.full_name}`
       {/* Floating Help Button */}
       <button
         onClick={handleContactSupport}
-        className="fixed bottom-6 right-6 bg-terra-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all transform hover:scale-105 z-50 md:bottom-8 md:right-8"
+        className="fixed bottom-6 right-6 bg-terra-600 hover:bg-terra-700 text-white p-4 rounded-full shadow-lg transition-all transform hover:scale-105 z-50 md:bottom-8 md:right-8"
         title="Contact Support"
       >
         <MessageCircle className="h-6 w-6" />

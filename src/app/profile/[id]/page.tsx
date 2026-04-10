@@ -483,7 +483,7 @@ export default function PublicProfilePage() {
                                   <>
                                     <button
                                       onClick={() => router.push(`/sell/${listing.id}`)}
-                                      className="px-4 py-2 bg-terra-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                                      className="px-4 py-2 bg-terra-600 text-white rounded-lg hover:bg-terra-700 transition-colors text-sm font-medium"
                                     >
                                       Edit
                                     </button>
@@ -613,7 +613,7 @@ export default function PublicProfilePage() {
                             <div className="flex gap-2">
                               <button
                                 onClick={() => router.push(`/sell/${listing.id}`)}
-                                className="flex-1 px-3 py-2 bg-terra-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xs font-medium"
+                                className="flex-1 px-3 py-2 bg-terra-600 text-white rounded-lg hover:bg-terra-700 transition-colors text-xs font-medium"
                               >
                                 Edit
                               </button>

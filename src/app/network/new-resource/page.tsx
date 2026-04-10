@@ -276,7 +276,7 @@ export default function NewResourcePage() {
 
         {/* Example Resources */}
         <div className="mt-12 bg-terra-50 border border-terra-200 rounded-lg p-6">
-          <h3 className="font-semibold text-blue-900 mb-3">Example Resources to Add:</h3>
+          <h3 className="font-semibold text-soil-800 mb-3">Example Resources to Add:</h3>
           <div className="space-y-2 text-sm text-terra-800">
             <p><strong>Podcasts:</strong> Soil Sisters, No-Till Market Garden, Farm Small Farm Smart</p>
             <p><strong>Government:</strong> USDA Programs, Texas Dept of Agriculture, NRCS Texas</p>
