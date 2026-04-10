@@ -2,18 +2,23 @@ import React from 'react'
 import Image from 'next/image'
 
 interface FarmLogoProps {
+  /** Width in pixels — height auto-calculated from 2.37:1 aspect ratio */
   size?: number
   className?: string
 }
 
-const FarmLogo: React.FC<FarmLogoProps> = ({ size = 24, className = "" }) => {
-  // The wordmark is roughly 1:1 aspect ratio (stacked text)
+const ASPECT_RATIO = 5554 / 2345 // ~2.37:1 (width:height)
+
+const FarmLogo: React.FC<FarmLogoProps> = ({ size = 120, className = "" }) => {
+  const width = size
+  const height = Math.round(size / ASPECT_RATIO)
+
   return (
     <Image
       src="/images/heyfarmer-logo.png"
       alt="Hey Farmer"
-      width={size}
-      height={size}
+      width={width}
+      height={height}
       className={className}
       style={{ objectFit: 'contain' }}
       priority

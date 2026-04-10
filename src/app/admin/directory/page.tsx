@@ -523,7 +523,7 @@ export default function AdminDirectoryPage() {
 
               {filteredFarms.length === 0 && (
                 <div className="text-center py-12">
-                  <FarmLogo size={160} />
+                  <FarmLogo size={120} />
                   <p className="text-soil-400 mb-4">No farms found</p>
                   <button
                     onClick={handleNewFarm}

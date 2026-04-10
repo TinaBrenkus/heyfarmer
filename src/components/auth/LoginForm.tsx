@@ -42,7 +42,7 @@ export default function LoginForm() {
     <div className="max-w-md mx-auto p-6">
       <div className="bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
-          <div className="mb-4"><FarmLogo size={180} /></div>
+          <div className="mb-4"><FarmLogo size={120} /></div>
           <h2 className="text-3xl font-bold text-soil-800 mb-2">Welcome Back</h2>
           <p className="text-soil-500">Log in to Hey Farmer</p>
         </div>

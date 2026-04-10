@@ -108,7 +108,7 @@ export default function WelcomePage() {
           {/* Logo and Title */}
           <div className="text-center mb-12 animate-fade-in">
             <div className="inline-flex items-center justify-center p-4 bg-white rounded-2xl shadow-lg mb-6">
-              <FarmLogo size={280} />
+              <FarmLogo size={220} />
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold text-soil-800 mb-4">

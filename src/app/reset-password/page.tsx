@@ -122,7 +122,7 @@ export default function ResetPasswordPage() {
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="text-center mb-8">
               <div className="flex justify-center mb-4">
-                <FarmLogo size={200} />
+                <FarmLogo size={120} />
               </div>
               <h1 className="text-3xl font-bold text-soil-800 mb-2">
                 Link Expired
@@ -153,7 +153,7 @@ export default function ResetPasswordPage() {
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="text-center mb-8">
               <div className="flex justify-center mb-4">
-                <FarmLogo size={200} />
+                <FarmLogo size={120} />
               </div>
               <h1 className="text-3xl font-bold text-soil-800 mb-2">
                 Password Reset!
@@ -190,7 +190,7 @@ export default function ResetPasswordPage() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <FarmLogo size={200} />
+              <FarmLogo size={120} />
             </div>
             <h1 className="text-3xl font-bold text-soil-800 mb-2">
               Reset Your Password

@@ -227,7 +227,7 @@ export default function AdminPage() {
 
             <div className="bg-white rounded-lg shadow-sm p-6">
               <div className="flex items-center">
-                <FarmLogo size={160} />
+                <FarmLogo size={120} />
                 <div className="ml-4">
                   <p className="text-sm font-medium text-soil-400">Backyard Growers</p>
                   <p className="text-2xl font-bold text-soil-800">{stats.backyard_growers}</p>

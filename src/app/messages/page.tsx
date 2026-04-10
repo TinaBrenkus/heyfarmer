@@ -427,7 +427,7 @@ export default function MessagesPage() {
                               className="w-10 h-10 rounded-full object-cover"
                             />
                           ) : (
-                            <FarmLogo size={80} />
+                            <FarmLogo size={60} />
                           )}
                         </div>
                         
@@ -494,7 +494,7 @@ export default function MessagesPage() {
                               className="w-10 h-10 rounded-full object-cover"
                             />
                           ) : (
-                            <FarmLogo size={80} />
+                            <FarmLogo size={60} />
                           )}
                         </div>
                         
