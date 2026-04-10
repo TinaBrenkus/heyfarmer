@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-lora), ui-serif, Georgia, serif;
 
   --color-background: #FAF7F0;
   --color-foreground: #2C2C24;
@@ -52,8 +52,47 @@
   --color-warm-border: #E8E4D8;
 }
 
+/* ============================
+   BASE TYPOGRAPHY
+   ============================ */
+
 body {
   background: #FAF7F0;
   color: #2C2C24;
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Headings — Lora serif for editorial feel */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* H1 — magazine headline size */
+h1 {
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+/* H2 — section headers */
+h2 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* H3-H6 — subsections */
+h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Buttons — Inter medium */
+button, [type="submit"], [type="button"] {
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+/* Links in buttons */
+a[class*="btn"], a[class*="rounded-lg"][class*="font-semibold"],
+a[class*="rounded-xl"][class*="font-semibold"] {
+  font-family: var(--font-sans);
 }
