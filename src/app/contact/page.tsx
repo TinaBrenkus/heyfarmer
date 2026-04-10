@@ -14,8 +14,8 @@ export default function ContactPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header with Logo */}
         <div className="flex justify-center mb-8">
-          <Link href="/" className="inline-block p-3 rounded-xl shadow-lg bg-farm-green-800 hover:bg-farm-green-800 transition-colors transform hover:scale-105">
-            <FarmLogo size={120} />
+          <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
+            <FarmLogo size={160} />
           </Link>
         </div>
 
