@@ -108,7 +108,7 @@ export default function WelcomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 relative">
           {/* Logo as Hero */}
           <div className="text-center mb-10">
-            <div className="mb-6">
+            <div className="flex justify-center mb-6">
               <FarmLogo size={320} />
             </div>
             <p className="text-xl md:text-2xl text-soil-500 mb-1">
