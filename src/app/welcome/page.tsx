@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import FarmLogo from '@/components/icons/FarmLogo'
 import TomatoMark from '@/components/icons/TomatoMark'
+import Navigation from '@/components/navigation/Navigation'
 import { supabase } from '@/lib/supabase'
 
 export default function WelcomePage() {
@@ -99,28 +100,24 @@ export default function WelcomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-farm-green-50 via-orange-25 to-blue-50" style={{ background: 'linear-gradient(135deg, #FAF7F0 0%, #F5F2EA 50%, #FAF7F0 100%)' }}>
+    <div className="min-h-screen bg-soil-50 pb-20 md:pb-0">
+      <Navigation />
+
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/30 via-green-100/30 to-blue-100/30 pointer-events-none"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 relative">
-          {/* Logo and Title */}
-          <div className="text-center mb-12 animate-fade-in">
+      <div className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FAF7F0 0%, #F0EDE4 50%, #FAF7F0 100%)' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 relative">
+          {/* Logo as Hero */}
+          <div className="text-center mb-10">
             <div className="mb-6">
-              <FarmLogo size={260} />
+              <FarmLogo size={320} />
             </div>
-            
-            <h1 className="text-5xl md:text-6xl font-bold text-soil-800 mb-4">
-              Welcome to <span className="text-farm-green-800">Hey Farmer</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-soil-500 mb-2">
+            <p className="text-xl md:text-2xl text-soil-500 mb-1">
               Texas Triangle Farming Community
             </p>
-            <p className="text-lg text-farm-green-800 font-semibold">
+            <p className="text-lg text-farm-green-800 font-semibold mb-1">
               Connect • Trade • Grow Together
             </p>
-            <p className="text-base text-soil-400 mt-2">
+            <p className="text-base text-soil-400">
               Free for Texas farmers, market gardeners, and the families who want their food.
             </p>
           </div>
