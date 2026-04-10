@@ -61,7 +61,7 @@ export default function LoginPage() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <FarmLogo size={80} />
+              <FarmLogo size={200} />
             </div>
             <h1 className="text-3xl font-bold text-soil-800 mb-2">
               Welcome to <span style={{ color: '#4A5E35' }}>Hey Farmer</span>

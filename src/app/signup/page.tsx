@@ -317,7 +317,7 @@ function SignupContent() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <FarmLogo size={80} />
+              <FarmLogo size={200} />
             </div>
             <h1 className="text-3xl font-bold text-soil-800 mb-2">
               {step === 1 ? 'What describes you?' : step === 2 ? 'Create Account' : 'Set Up Your Profile'}
