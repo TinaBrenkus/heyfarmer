@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { ArrowLeft, Mail, MessageCircle, Users, MapPin, Clock, Phone } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'

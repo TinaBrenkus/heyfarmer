@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { useRouter, useParams } from 'next/navigation'
 import { 
   ArrowLeft,
@@ -353,9 +354,11 @@ Photos attached show my current setup and the blossom end rot issues I've been d
               <div className="grid grid-cols-2 gap-3 mb-6">
                 {discussion.photos.map((photo, index) => (
                   <div key={index} className="rounded-lg overflow-hidden bg-soil-100">
-                    <img 
-                      src={photo} 
+                    <Image
+                      src={photo}
                       alt={`Photo ${index + 1}`}
+                      width={400}
+                      height={192}
                       className="w-full h-48 object-cover"
                     />
                   </div>
@@ -464,9 +467,11 @@ Photos attached show my current setup and the blossom end rot issues I've been d
                 {/* Reply Photos */}
                 {reply.photos && reply.photos.length > 0 && (
                   <div className="mb-4">
-                    <img 
-                      src={reply.photos[0]} 
+                    <Image
+                      src={reply.photos[0]}
                       alt="Reply photo"
+                      width={448}
+                      height={192}
                       className="rounded-lg max-w-md h-48 object-cover"
                     />
                   </div>

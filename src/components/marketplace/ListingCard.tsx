@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { Heart, MapPin, User, Calendar, Package, DollarSign, Truck, MessageCircle, Edit } from 'lucide-react'
 import { Post, UserType } from '@/lib/database'
 import FarmLogo from '@/components/icons/FarmLogo'
@@ -82,9 +83,11 @@ export default function ListingCard({
         onClick={() => router.push(`/listing/${listing.id}`)}
       >
         {listing.thumbnail_url ? (
-          <img 
-            src={listing.thumbnail_url} 
+          <Image
+            src={listing.thumbnail_url}
             alt={listing.title}
+            width={400}
+            height={300}
             className="w-full h-full object-cover"
           />
         ) : (
@@ -182,9 +185,11 @@ export default function ListingCard({
             <Link href={`/profile/${listing.profiles.id}`} className="flex items-center gap-2 flex-1 min-w-0 hover:opacity-80 transition-opacity">
               <div className="w-8 h-8 rounded-full bg-soil-100 flex items-center justify-center flex-shrink-0">
                 {listing.profiles.avatar_url ? (
-                  <img 
-                    src={listing.profiles.avatar_url} 
+                  <Image
+                    src={listing.profiles.avatar_url}
                     alt={listing.profiles.full_name}
+                    width={32}
+                    height={32}
                     className="w-8 h-8 rounded-full object-cover"
                   />
                 ) : (

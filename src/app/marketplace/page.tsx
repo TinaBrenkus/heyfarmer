@@ -99,12 +99,17 @@ export default function MarketplacePage() {
   }, [user, profile])
 
   useEffect(() => {
+    // Fetch public listings immediately — don't wait for auth
+    fetchListings()
     checkUser()
   }, [])
 
   useEffect(() => {
-    fetchListings()
-  }, [user, profile, fetchListings])
+    // Re-fetch when profile loads to include farmers-only posts
+    if (profile) {
+      fetchListings()
+    }
+  }, [profile])
 
   // Apply filters when activeFilters or listings change
   useEffect(() => {
