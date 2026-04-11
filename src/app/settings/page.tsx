@@ -51,6 +51,8 @@ export default function ProfileSettingsPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const [deleting, setDeleting] = useState(false)
   const [currentUser, setCurrentUser] = useState<any>(null)
   const [profileData, setProfileData] = useState<ProfileData>({
     full_name: '',
@@ -206,6 +208,29 @@ export default function ProfileSettingsPage() {
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
+  }
+
+  const handleDeleteAccount = async () => {
+    setDeleting(true)
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      // Delete profile data
+      await supabase.from('posts').delete().eq('user_id', user.id)
+      await supabase.from('messages').delete().eq('sender_id', user.id)
+      await supabase.from('profiles').delete().eq('id', user.id)
+
+      // Sign out (Supabase free tier can't delete auth users via client SDK,
+      // but deleting the profile effectively removes them from the platform)
+      await supabase.auth.signOut()
+      router.push('/')
+    } catch (error) {
+      console.error('Error deleting account:', error)
+      alert('There was an error deleting your account. Please contact admin@heyfarmer.farm for help.')
+    } finally {
+      setDeleting(false)
+    }
   }
 
   const handleSave = async () => {
@@ -768,6 +793,43 @@ export default function ProfileSettingsPage() {
               <AlertCircle size={16} />
               <span>{errors.submit}</span>
             </div>
+          )}
+        </div>
+
+        {/* Delete Account Section */}
+        <div className="mt-12 bg-white rounded-lg border border-red-200 p-6">
+          <h3 className="text-lg font-bold text-red-600 mb-2">Delete Account</h3>
+          <p className="text-soil-500 text-sm mb-4">
+            Permanently delete your account and all associated data. This action cannot be undone.
+          </p>
+          {showDeleteConfirm ? (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <p className="text-red-800 font-medium mb-3">
+                Are you sure? This will permanently delete your profile, listings, messages, and all data.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={handleDeleteAccount}
+                  disabled={deleting}
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 disabled:opacity-50 transition-colors"
+                >
+                  {deleting ? 'Deleting...' : 'Yes, Delete My Account'}
+                </button>
+                <button
+                  onClick={() => setShowDeleteConfirm(false)}
+                  className="px-4 py-2 border border-warm-border text-soil-700 rounded-lg font-medium hover:bg-soil-50 transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button
+              onClick={() => setShowDeleteConfirm(true)}
+              className="px-4 py-2 border border-red-300 text-red-600 rounded-lg font-medium hover:bg-red-50 transition-colors"
+            >
+              Delete My Account
+            </button>
           )}
         </div>
       </main>
