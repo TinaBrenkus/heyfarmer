@@ -10,7 +10,11 @@ import {
   Star,
   MessageCircle,
   CheckCircle,
-  Sprout
+  Sprout,
+  MapPin,
+  ClipboardList,
+  UserPlus,
+  Heart
 } from 'lucide-react'
 import Navigation from '@/components/navigation/Navigation'
 import { supabase } from '@/lib/supabase'
@@ -162,6 +166,68 @@ export default function FoundingFarmersPage() {
               </div>
               <p className="text-soil-500 leading-relaxed">
                 I&apos;m Tina Brenkus. I built this. I&apos;m a landowner in Wise County and I answer my own messages. If something isn&apos;t working for you, I want to know.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Your Customers Are Already Out There */}
+        <section className="mb-16">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-soil-800 mb-2">
+              Your customers are already out there.
+            </h2>
+            <p className="text-lg text-soil-500 max-w-2xl mx-auto">
+              HeyFarmer connects you directly with Texas families who want real food from real farms — no middleman, no farmers market tent required.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-lg shadow-sm p-6 border-l-4 border-farm-green-500">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 bg-soil-100 rounded-lg">
+                  <MapPin className="w-6 h-6 text-soil-500" />
+                </div>
+                <h3 className="text-lg font-bold text-soil-800">Browse Local Farms</h3>
+              </div>
+              <p className="text-soil-500 leading-relaxed">
+                Find farmers, market gardeners, and growers in their county — no sign up required.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-sm p-6 border-l-4 border-farm-green-500">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 bg-soil-100 rounded-lg">
+                  <ClipboardList className="w-6 h-6 text-soil-500" />
+                </div>
+                <h3 className="text-lg font-bold text-soil-800">See What&apos;s Available</h3>
+              </div>
+              <p className="text-soil-500 leading-relaxed">
+                Browse listings updated directly by farmers when they have product ready.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-sm p-6 border-l-4 border-farm-green-500">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 bg-soil-100 rounded-lg">
+                  <UserPlus className="w-6 h-6 text-soil-500" />
+                </div>
+                <h3 className="text-lg font-bold text-soil-800">Connect Directly</h3>
+              </div>
+              <p className="text-soil-500 leading-relaxed">
+                Create a free account to reach out to farmers and arrange pickup, delivery, or farm visits.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-sm p-6 border-l-4 border-farm-green-500">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 bg-soil-100 rounded-lg">
+                  <Heart className="w-6 h-6 text-soil-500" />
+                </div>
+                <h3 className="text-lg font-bold text-soil-800">Build a Relationship</h3>
+              </div>
+              <p className="text-soil-500 leading-relaxed">
+                Become a regular customer and know exactly where their food comes from and who grew it.
               </p>
             </div>
           </div>
