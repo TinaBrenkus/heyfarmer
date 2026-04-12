@@ -371,31 +371,7 @@ export default function FarmersPage() {
           </p>
         </div>
 
-        {/* Directory Farms Section */}
-        {filteredDirectoryFarms.length > 0 && (
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-soil-800">Featured Farms</h2>
-              <Link
-                href="/directory"
-                className="text-sm text-farm-green-800 hover:text-farm-green-800 font-medium"
-              >
-                View Full Directory
-              </Link>
-            </div>
-            <div className={
-              viewMode === 'grid'
-                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
-                : 'space-y-4'
-            }>
-              {filteredDirectoryFarms.map(farm => (
-                <DirectoryFarmCard key={farm.id} farm={farm} variant={viewMode} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Registered Farmers Grid/List */}
+        {/* All Farms — unified list */}
         {filteredFarmers.length === 0 && filteredDirectoryFarms.length === 0 ? (
           <div className="text-center py-12">
             <div className="w-24 h-24 rounded-full bg-soil-100 flex items-center justify-center mx-auto mb-4">
@@ -404,12 +380,18 @@ export default function FarmersPage() {
             <h3 className="text-lg font-medium text-soil-800 mb-2">No farmers found</h3>
             <p className="text-soil-500">Try adjusting your search or filters above</p>
           </div>
-        ) : filteredFarmers.length === 0 ? null : (
+        ) : (
           <div className={
-            viewMode === 'grid' 
+            viewMode === 'grid'
               ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
               : 'space-y-4'
           }>
+            {/* Directory farms (unclaimed) */}
+            {filteredDirectoryFarms.map(farm => (
+              <DirectoryFarmCard key={`dir-${farm.id}`} farm={farm} variant={viewMode} />
+            ))}
+
+            {/* Registered farmers */}
             {filteredFarmers.map((farmer) => (
               <div key={farmer.id} className="bg-white rounded-lg shadow-sm border border-warm-border overflow-hidden hover:shadow-md transition-shadow">
                 {viewMode === 'grid' ? (
@@ -435,7 +417,10 @@ export default function FarmersPage() {
                           >
                             {farmer.farm_name || farmer.full_name}
                           </Link>
-                          <FarmerBadge 
+                          <span className="px-2 py-0.5 bg-farm-green-100 text-farm-green-800 rounded text-xs font-medium flex-shrink-0">
+                            Member
+                          </span>
+                          <FarmerBadge
                             userType={farmer.user_type}
                             verified={farmer.verified}
                             size="sm"
@@ -517,7 +502,10 @@ export default function FarmersPage() {
                           >
                             {farmer.farm_name || farmer.full_name}
                           </Link>
-                          <FarmerBadge 
+                          <span className="px-2 py-0.5 bg-farm-green-100 text-farm-green-800 rounded text-xs font-medium flex-shrink-0">
+                            Member
+                          </span>
+                          <FarmerBadge
                             userType={farmer.user_type}
                             verified={farmer.verified}
                             size="sm"
