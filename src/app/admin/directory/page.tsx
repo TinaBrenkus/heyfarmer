@@ -14,6 +14,7 @@ import MultiImageUpload from '@/components/common/MultiImageUpload'
 import { supabase } from '@/lib/supabase'
 import { db, DirectoryFarm, DirectoryFarmStatus, DirectoryFarmType, TexasTriangleCounty } from '@/lib/database'
 import { ALL_COUNTY_IDS, COUNTY_DATA } from '@/lib/countyUtils'
+import { getCountyFromCity, EXTENDED_COUNTIES, getExtendedCountyDisplayName } from '@/lib/cityCountyLookup'
 import { generateSlug, getFarmTypeOptions, getDataSourceOptions, getStatusInfo } from '@/lib/directoryUtils'
 
 type ViewMode = 'list' | 'form' | 'claims'
@@ -415,9 +416,16 @@ export default function AdminDirectoryPage() {
                   className="px-3 py-2 border border-warm-border rounded-lg text-sm"
                 >
                   <option value="all">All Counties</option>
-                  {ALL_COUNTY_IDS.map(id => (
-                    <option key={id} value={id}>{COUNTY_DATA[id].displayName}</option>
-                  ))}
+                  <optgroup label="Texas Triangle">
+                    {ALL_COUNTY_IDS.map(id => (
+                      <option key={id} value={id}>{COUNTY_DATA[id].displayName}</option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Extended">
+                    {Object.entries(EXTENDED_COUNTIES).map(([id, info]) => (
+                      <option key={id} value={id}>{info.displayName}</option>
+                    ))}
+                  </optgroup>
                 </select>
 
                 <button
@@ -459,7 +467,7 @@ export default function AdminDirectoryPage() {
                             </div>
                           </td>
                           <td className="px-6 py-4 text-sm text-soil-500">
-                            {COUNTY_DATA[farm.county]?.displayName || farm.county}
+                            {COUNTY_DATA[farm.county]?.displayName || getExtendedCountyDisplayName(farm.county)}
                           </td>
                           <td className="px-6 py-4">
                             <span className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${statusInfo.bgColor} ${statusInfo.color}`}>
@@ -612,26 +620,41 @@ export default function AdminDirectoryPage() {
                 <h3 className="text-lg font-semibold text-soil-800 mb-4">Location</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
+                    <label className="block text-sm font-medium text-soil-700 mb-1">City (auto-detects county)</label>
+                    <input
+                      type="text"
+                      value={formData.city || ''}
+                      onChange={(e) => {
+                        const city = e.target.value
+                        setFormData(prev => ({ ...prev, city }))
+                        // Auto-detect county from city
+                        const detectedCounty = getCountyFromCity(city)
+                        if (detectedCounty) {
+                          setFormData(prev => ({ ...prev, city, county: detectedCounty as TexasTriangleCounty }))
+                        }
+                      }}
+                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
+                      placeholder="Type a city name..."
+                    />
+                  </div>
+                  <div>
                     <label className="block text-sm font-medium text-soil-700 mb-1">County *</label>
                     <select
                       value={formData.county || 'wise'}
                       onChange={(e) => setFormData(prev => ({ ...prev, county: e.target.value as TexasTriangleCounty }))}
                       className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
                     >
-                      {ALL_COUNTY_IDS.map(id => (
-                        <option key={id} value={id}>{COUNTY_DATA[id].displayName}</option>
-                      ))}
+                      <optgroup label="Texas Triangle Counties">
+                        {ALL_COUNTY_IDS.map(id => (
+                          <option key={id} value={id}>{COUNTY_DATA[id].displayName}</option>
+                        ))}
+                      </optgroup>
+                      <optgroup label="Extended Counties">
+                        {Object.entries(EXTENDED_COUNTIES).map(([id, info]) => (
+                          <option key={id} value={id}>{info.displayName}</option>
+                        ))}
+                      </optgroup>
                     </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-soil-700 mb-1">City</label>
-                    <input
-                      type="text"
-                      value={formData.city || ''}
-                      onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value }))}
-                      className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
-                      placeholder="Decatur"
-                    />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-soil-700 mb-1">ZIP Code</label>
