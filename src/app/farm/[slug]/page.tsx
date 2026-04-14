@@ -166,7 +166,7 @@ export default function FarmPage() {
               {farm.products.map((product, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 bg-farm-green-100 text-farm-green-900 rounded-full font-medium"
+                  className="px-3 py-1.5 bg-farm-green-50 text-farm-green-800 border border-farm-green-200 rounded-lg text-sm font-medium"
                 >
                   {product}
                 </span>
@@ -183,7 +183,7 @@ export default function FarmPage() {
               {farm.specialties.map((specialty, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 bg-terra-100 text-terra-800 rounded-full font-medium"
+                  className="px-3 py-1.5 bg-terra-50 text-terra-700 border border-terra-200 rounded-lg text-sm font-medium"
                 >
                   {specialty}
                 </span>

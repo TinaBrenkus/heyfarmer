@@ -109,13 +109,13 @@ export default function DirectoryFarmCard({ farm, variant = 'grid' }: DirectoryF
             {farm.products.slice(0, 3).map((product, i) => (
               <span
                 key={i}
-                className="px-2 py-0.5 bg-farm-green-100 text-farm-green-800 rounded-full text-xs"
+                className="px-2 py-0.5 bg-farm-green-100 text-farm-green-800 rounded text-xs"
               >
                 {product}
               </span>
             ))}
             {farm.products.length > 3 && (
-              <span className="px-2 py-0.5 bg-soil-100 text-soil-400 rounded-full text-xs">
+              <span className="px-2 py-0.5 bg-soil-100 text-soil-400 rounded text-xs">
                 +{farm.products.length - 3}
               </span>
             )}
