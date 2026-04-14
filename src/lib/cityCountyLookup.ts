@@ -52,6 +52,7 @@ export const EXTENDED_COUNTIES: Record<string, ExtendedCountyInfo> = {
   'young': { displayName: 'Young County', metro: 'North Texas', seat: 'Graham' },
   'clay': { displayName: 'Clay County', metro: 'North Texas', seat: 'Henrietta' },
   'wichita': { displayName: 'Wichita County', metro: 'North Texas', seat: 'Wichita Falls' },
+  'morris': { displayName: 'Morris County', metro: 'East Texas', seat: 'Daingerfield' },
   'matagorda': { displayName: 'Matagorda County', metro: 'Gulf Coast', seat: 'Bay City' },
   'jackson': { displayName: 'Jackson County', metro: 'Gulf Coast', seat: 'Edna' },
   'wharton': { displayName: 'Wharton County', metro: 'Gulf Coast', seat: 'Wharton' },
@@ -119,6 +120,7 @@ export const CITY_TO_COUNTY: Record<string, string> = {
   'llano': 'llano', 'mason': 'mason',
   'bay city': 'matagorda', 'edna': 'jackson',
   'wharton': 'wharton', 'columbus': 'colorado',
+  'daingerfield': 'morris', 'omaha': 'morris', 'naples': 'morris',
 }
 
 /**
