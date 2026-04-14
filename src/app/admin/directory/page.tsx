@@ -583,8 +583,19 @@ export default function AdminDirectoryPage() {
                     <input
                       type="text"
                       value={formData.slug || ''}
-                      onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
+                      onChange={(e) => {
+                        // Auto-sanitize: lowercase, replace spaces with hyphens, strip special chars
+                        const sanitized = e.target.value
+                          .toLowerCase()
+                          .replace(/https?:\/\//g, '')
+                          .replace(/[^a-z0-9-\s]/g, '')
+                          .replace(/\s+/g, '-')
+                          .replace(/-+/g, '-')
+                          .replace(/^-|-$/g, '')
+                        setFormData(prev => ({ ...prev, slug: sanitized }))
+                      }}
                       className="w-full px-4 py-2 border border-warm-border rounded-lg focus:ring-2 focus:ring-farm-green-500 focus:border-transparent"
+                      placeholder="auto-generated-from-name"
                     />
                   </div>
                   <div>
