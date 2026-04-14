@@ -293,9 +293,13 @@ export function getSlugFromCounty(county: TexasTriangleCounty): string {
 /**
  * Get the display name for a county (e.g., "Wise County")
  */
-export function getCountyDisplayName(county: TexasTriangleCounty): string {
-  return COUNTY_DATA[county]?.displayName ||
-    county.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' County'
+export function getCountyDisplayName(county: TexasTriangleCounty | string): string {
+  // Check original Texas Triangle counties first
+  if (COUNTY_DATA[county as TexasTriangleCounty]) {
+    return COUNTY_DATA[county as TexasTriangleCounty].displayName
+  }
+  // Fallback: capitalize the county ID properly
+  return county.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' County'
 }
 
 /**

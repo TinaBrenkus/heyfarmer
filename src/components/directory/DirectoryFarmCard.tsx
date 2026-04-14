@@ -16,7 +16,7 @@ export default function DirectoryFarmCard({ farm, variant = 'grid' }: DirectoryF
     ? `/profile/${farm.claimed_by}`
     : `/farm/${farm.slug}`
 
-  const countyName = COUNTY_DATA[farm.county]?.displayName || farm.county
+  const countyName = COUNTY_DATA[farm.county]?.displayName || farm.county.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()) + ' County'
 
   if (variant === 'list') {
     return (

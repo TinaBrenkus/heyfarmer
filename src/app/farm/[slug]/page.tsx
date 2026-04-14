@@ -70,7 +70,7 @@ export default function FarmPage() {
     return notFound()
   }
 
-  const countyName = COUNTY_DATA[farm.county]?.displayName || farm.county
+  const countyName = COUNTY_DATA[farm.county]?.displayName || farm.county.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()) + ' County'
   const countySlug = getSlugFromCounty(farm.county)
   const jsonLd = buildFarmJsonLd(farm)
 
